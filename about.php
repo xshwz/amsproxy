@@ -5,7 +5,7 @@
             <h2><i class="icon-question-sign"></i> 这是什么</h2>
         </div>
         <p>这是一个面向校外的学生成绩查询代理，输入学号和密码，提交后即可查到成绩。</p>
-        <p>该系统由两个<a href="http://xsh.gxun.edu.cn/" target="_blank">相思湖网站</a>网络部成员开发完成，目的是提供一个校外查询成绩的途径。</p>
+        <p>该系统由两个<a href="http://xsh.gxun.edu.cn/" target="_blank">相思湖网站</a>网络部的成员开发完成，目的是提供一个校外查询成绩的途径。</p>
         <div class="page-header">
             <h2><i class="icon-cogs"></i> 技术实现</h2>
         </div>
@@ -14,10 +14,9 @@
         <p>一开始，你提供的学号和密码会被提交到运行在<a href="http://xsh.gxun.edu.cn/" target="_blank">相思湖网站</a>的代理系统，代理系统收到成绩查询请求后开始尝试模拟登录教务系统，登录成功后即获取成绩。获取到的成绩是html，代理系统会将html解析成统一的格式，然后重新生成html，并加上我们的样式，最终以一种比较友好的方式呈现出来。</p>
         <p>具体实现使用的是<a href="http://php.net/" target="_blank">php</a>，利用php的HttpRequest扩展发送http请求获取教务系统数据。（PS. 最初使用的是<a href="http://www.python.org/" target="_blank">python</a>，后面考虑到部署问题而换成了php）</p>
         <div class="page-header">
-            <h2><i class="icon-shield"></i> 隐私</h2>
+            <h2><i class="icon-shield"></i> 安全性</h2>
         </div>
         <p>你可能会有所顾虑，把学号和密码交给一个第三方系统会不会存在安全隐患。所以你可能想要清楚的知道这个代理系统到底做了什么，为此我们公开了源代码（详见<a href="#opensource">#开源</a>）。</p>
-        <p>值得一提的是，为了提高与教务系统通信的效率，我们会做一些缓存，这以意味着你的学号和密码会被保存下来。但是不用担心，被保存的密码是经过加密的。</p>
         <div class="page-header" id="opensource">
             <h2><i class="icon-github"></i> 开源</h2>
         </div>
