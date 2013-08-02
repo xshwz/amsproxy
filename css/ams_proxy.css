@@ -9,11 +9,6 @@ body {
   background-color: #fff;
   border-radius: 6px;
 }
-@media (max-width: 416px) {
-  .login-form {
-    margin: 8px;
-  }
-}
 .login-form .form-group {
   position: relative;
 }
@@ -67,11 +62,21 @@ body {
   border-radius: 6px;
 }
 .page a {
-    color: #fff;
-    text-decoration: underline;
+  color: #fff;
+  text-decoration: underline;
+}
+.page .page-header {
+  border: none;
+  margin-bottom: 0;
 }
 
 .footer {
   text-align: center;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 416px) {
+  .login-form, .page {
+    margin: 8px;
+  }
 }
