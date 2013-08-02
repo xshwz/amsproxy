@@ -39,6 +39,7 @@ class AmsProxy {
         $this->pwd = $pwd;
         $this->updateConfig($config);
         $this->httpRequest = new HttpRequest();
+        $this->httpRequest->enableCookies();
         $this->login();
     }
 
@@ -67,11 +68,7 @@ class AmsProxy {
      */
     public function getStudentInfo() {
         $responseText = $this->GET('xsxj/Stu_MyInfo_RPT.aspx');
-        $responseText = $this->clearHtml($responseText);
-
-        $dom = new DOMDocument();
-        $dom->loadHTML($responseText);
-
+        $dom = $this->DOM($responseText);
         $table = $dom->getElementsByTagName('table')->item(0);
         $studentInfo = array();
         foreach ($table->getElementsByTagName('tr') as $tr) {
@@ -98,9 +95,8 @@ class AmsProxy {
                 'txt_xm'   => '',
                 'zfx_flag' => '0',
                 'zxf'      => '0'));
-        $responseText = $this->clearHtml($responseText);
-        $dom = new DOMDocument();
-        $dom->loadHTML($responseText);
+
+        $dom = $this->DOM($responseText);
         $tables = $dom->getElementsByTagName('table');
 
         if ($effective)
@@ -186,10 +182,12 @@ class AmsProxy {
 
         foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
             $tds = $tr->getElementsByTagName('td');
+
             if ($term_name = trim($tds->item(0)->textContent)) {
                 $termName = $term_name;
                 $score['tbody'][$termName] = array();
             }
+
             $score['tbody'][$termName][] = array(
                 $tds->item(1)->textContent,
                 $tds->item(2)->textContent,
@@ -243,7 +241,6 @@ class AmsProxy {
         $this->httpRequest->send();
         $responseText = $this->httpRequest->getResponseBody();
         // 教务系统返回的文本有可能存在无效字符，这会导致 DOM 解析失败
-        // 此处将忽略无效字符
         // 暂时没有更好的办法……
         $responseText = iconv(
             $this->config['amsCharset'],
@@ -257,14 +254,15 @@ class AmsProxy {
     }
 
     /**
-     * 整理 html，删去不必要的元素
-     * @param string html 要清理的 html
-     * @return string html 整理后的 html
+     * @param string $html
+     * @return DOMDocument
      */
-    public function clearHtml($html) {
+    public function DOM($html) {
         $html = str_replace('<br>', '', $html);
         $html = str_replace('&nbsp;', '', $html);
-        return $html;
+        $dom = new DOMDocument();
+        $dom->loadHTML($html);
+        return $dom;
     }
 
     /**
