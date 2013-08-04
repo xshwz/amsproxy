@@ -88,6 +88,19 @@ class AmsProxy {
     }
 
     /**
+     * 返回学生成绩分部
+     * @access public
+     * @return void
+     */
+    public function getScoreDist() {
+        $responseText = $this->POST(
+            'xscj/Stu_cjfb_rpt.aspx',
+            array( 'SelXNXQ'   => 0 ));
+        $parser = new Parser($responseText);
+        return $parser->distributionScore();
+    }
+
+    /**
      * 向教务系统发送一个 get http 请求
      * @param string $url
      * @param array $params url 参数
