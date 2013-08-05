@@ -102,7 +102,7 @@ class Parser {
     }
 
     /**
-     * @return string 原始成绩
+     * @return array 原始成绩
      */
     public function originalScore() {
         $score = array(
@@ -150,47 +150,42 @@ class Parser {
     }
 
     /**
-     * 课程表
+     * @return array 成绩分布
      */
-    public function course() {
-        $course = array(
+    public function distributionScore() {
+        $score = array(
             'thead' => array(
-                '课程',
+                '课程/环节',
                 '学分',
-                '总学时',
-                '授课学时',
-                '上机学时',
                 '类别',
-                '授课方式',
                 '考核方式',
-                '任课教师',
-                '周次',
-                '节次',
-                '上课地点',
+                '修读性质',
+                '[100, 90]优秀',
+                '(90, 80]良好',
+                '(80, 70]中等',
+                '(70, 60]及格',
+                '(60, 0]不及格',
             ),
         );
-        $trs = $this
-            ->dom
-            ->getElementsByTagName('table')
-            ->item(1)
-            ->getElementsByTagName('tr');
-        for ($i = 1; $i < $trs->length - 1; $i++) {
-            $tds = $trs->item($i)->getElementsByTagName('td');
-            $course['tbody'][] = array(
+        $tables = $this->dom->getElementsByTagName('table');
+        foreach ($tables->item(1)->getElementsByTagName('tr') as $tr) {
+            $tds = $tr->getElementsByTagName('td');
+            if ($term_name = trim($tds->item(0)->textContent))
+                $termName = $term_name;
+            if ($termName == '合计') break;
+            $score['tbody'][$termName][] = array(
                 $tds->item(1)->textContent,
                 $tds->item(2)->textContent,
-                $tds->item(3)->textContent,
-                $tds->item(4)->textContent,
+                trim($tds->item(3)->textContent),
+                trim($tds->item(4)->textContent),
                 $tds->item(5)->textContent,
                 $tds->item(6)->textContent,
                 $tds->item(7)->textContent,
                 $tds->item(8)->textContent,
                 $tds->item(9)->textContent,
                 $tds->item(10)->textContent,
-                $tds->item(11)->textContent,
-                $tds->item(12)->textContent,
             );
         }
-        return $course;
+        return $score;
     }
 }

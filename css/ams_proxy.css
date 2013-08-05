@@ -4,8 +4,8 @@ body {
 
 .login-form {
   max-width: 400px;
-  margin: 20px auto 20px auto;
-  padding: 32px 24px 17px 24px;
+  margin: 20px auto;
+  padding: 32px 24px 17px;
   background-color: #fff;
   border-radius: 6px;
 }
@@ -29,7 +29,7 @@ body {
 .accordion-group {
   background-color: #fff;
   border: none;
-  margin: 4px;
+  margin: 10px 4px;
 }
 .accordion-toggle {
   text-align: center;
@@ -79,4 +79,19 @@ body {
   .login-form, .page {
     margin: 8px;
   }
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+::-webkit-scrollbar-thumb {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #fefefe;
+    border-radius: 6px;
+    background: #a9a9f9;
+}
+::-webkit-scrollbar-button {
+    display: none;
 }

@@ -89,18 +89,13 @@ class AmsProxy {
     }
 
     /**
-     * @return array 课程表
+     * @return 学生成绩分布表
      */
-    public function getCourse($Sel_XNXQ) {
+    public function getScoreDist() {
         $responseText = $this->POST(
-            'znpk/Pri_StuSel_rpt.aspx',
-            array(
-                'Sel_XNXQ' => $Sel_XNXQ,
-                'rad'      => 1,
-                'px'       => 0,
-            ));
+            'xscj/Stu_cjfb_rpt.aspx', array('SelXNXQ' => 0));
         $parser = new Parser($responseText);
-        return $parser->course();
+        return $parser->distributionScore();
     }
 
     /**

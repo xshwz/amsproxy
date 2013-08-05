@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+        <tr>
+            <?php
+            foreach ($score['thead'] as $th)
+                echo "<th>$th</th>";
+            ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($term_score as $row): ?>
+        <tr
+            <?php if (trim($row[9]) != '') echo 'class="danger"'; ?>>
+            <?php
+            $row[0] = preg_replace('/\[.*?\]/', '', $row[0]);
+            foreach ($row as $td)
+                echo "<td>$td</td>";
+            ?>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
