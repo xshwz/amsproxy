@@ -78,13 +78,29 @@ class AmsProxy {
             'xscj/Stu_MyScore_rpt.aspx',
             array(
                 'SJ'       => (int)$effective,
-                'SelXNXQ'  => '0',
-                'txt_xm'   => '',
-                'zfx_flag' => '0',
-                'zxf'      => '0'));
+                'SelXNXQ'  => 0,
+                'txt_xm'   => null,
+                'zfx_flag' => 0,
+                'zxf'      => 0,
+            ));
         $parser = new Parser($responseText);
         if ($effective) return $parser->effectiveScore();
         else return $parser->originalScore();
+    }
+
+    /**
+     * @return array 课程表
+     */
+    public function getCourse($Sel_XNXQ) {
+        $responseText = $this->POST(
+            'znpk/Pri_StuSel_rpt.aspx',
+            array(
+                'Sel_XNXQ' => $Sel_XNXQ,
+                'rad'      => 1,
+                'px'       => 0,
+            ));
+        $parser = new Parser($responseText);
+        return $parser->course();
     }
 
     /**

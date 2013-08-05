@@ -148,4 +148,49 @@ class Parser {
         }
         return $score;
     }
+
+    /**
+     * 课程表
+     */
+    public function course() {
+        $course = array(
+            'thead' => array(
+                '课程',
+                '学分',
+                '总学时',
+                '授课学时',
+                '上机学时',
+                '类别',
+                '授课方式',
+                '考核方式',
+                '任课教师',
+                '周次',
+                '节次',
+                '上课地点',
+            ),
+        );
+        $trs = $this
+            ->dom
+            ->getElementsByTagName('table')
+            ->item(1)
+            ->getElementsByTagName('tr');
+        for ($i = 1; $i < $trs->length - 1; $i++) {
+            $tds = $trs->item($i)->getElementsByTagName('td');
+            $course['tbody'][] = array(
+                $tds->item(1)->textContent,
+                $tds->item(2)->textContent,
+                $tds->item(3)->textContent,
+                $tds->item(4)->textContent,
+                $tds->item(5)->textContent,
+                $tds->item(6)->textContent,
+                $tds->item(7)->textContent,
+                $tds->item(8)->textContent,
+                $tds->item(9)->textContent,
+                $tds->item(10)->textContent,
+                $tds->item(11)->textContent,
+                $tds->item(12)->textContent,
+            );
+        }
+        return $course;
+    }
 }
