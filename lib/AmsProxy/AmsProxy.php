@@ -99,6 +99,15 @@ class AmsProxy {
     }
 
     /**
+     * @return 学生等级考试报名情况表
+     */
+    public function getRankExamSign() {
+        $responseText = $this->GET('xscj/Stu_djksbm_rpt.aspx');
+        $parser = new Parser($responseText);
+        return $parser->rankExamSign();
+    }
+
+    /**
      * 向教务系统发送一个 get http 请求
      * @param string $url
      * @param array $params url 参数

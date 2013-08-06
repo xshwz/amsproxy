@@ -188,4 +188,39 @@ class Parser {
         }
         return $score;
     }
+
+    /**
+     * @return 等级考试报名情况表
+     */
+    public function rankExamSign() {
+        $exam = array(
+            'thead' => array(
+                '等级',
+                '构成',
+                '考试年月',
+                '收费标准（元）',
+                '报名时间区段',
+                '状态',
+                '限定名额',
+                '剩余名额',
+            ),
+        );
+        $tables = $this->dom->getElementsByTagName('table');
+        foreach ($tables->item(3)->getElementsByTagName('tr') as $tr) {
+            $tds = $tr->getElementsByTagName('td');
+            if ($type_name = trim($tds->item(1)->textContent))
+                $typeName = $type_name;
+            $exam['tbody'][$typeName][] = array(
+                $tds->item(2)->textContent,
+                $tds->item(3)->textContent,
+                $tds->item(4)->textContent,
+                $tds->item(5)->textContent,
+                $tds->item(6)->textContent . ' - ' . $tds->item(7)->textContent,
+                $tds->item(8)->textContent,
+                $tds->item(10)->textContent,
+                $tds->item(11)->textContent,
+            );
+        }
+        return $exam;
+    }
 }
