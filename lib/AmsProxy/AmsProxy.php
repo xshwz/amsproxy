@@ -89,7 +89,7 @@ class AmsProxy {
     }
 
     /**
-     * @return 学生成绩分布表
+     * @return array 学生成绩分布表
      */
     public function getScoreDist() {
         $responseText = $this->POST(
@@ -99,12 +99,27 @@ class AmsProxy {
     }
 
     /**
-     * @return 学生等级考试报名情况表
+     * @return array 学生等级考试报名情况表
      */
     public function getRankExamSign() {
         $responseText = $this->GET('xscj/Stu_djksbm_rpt.aspx');
         $parser = new Parser($responseText);
         return $parser->rankExamSign();
+    }
+
+    /**
+     * @return array 考试安排
+     */
+    public function getExamArrange($sel_lc = null) {
+        $responseJs = $this->GET('KSSW/Private/list_xnxqkslc.aspx');
+        if ($sel_lc == null) {
+            preg_match('/option\\s+value=[\'"](\\d+,)/', $responseJs, $matches);
+            $sel_lc = $matches[1];
+        }
+        $responseText = $this->POST(
+            'KSSW/stu_ksap_rpt.aspx', array('sel_lc' => $sel_lc));
+        $parser = new Parser($responseText);
+        return $parser->examArrange();
     }
 
     /**

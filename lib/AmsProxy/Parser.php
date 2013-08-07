@@ -190,7 +190,7 @@ class Parser {
     }
 
     /**
-     * @return 等级考试报名情况表
+     * @return array 等级考试报名情况表
      */
     public function rankExamSign() {
         $exam = array(
@@ -219,6 +219,37 @@ class Parser {
                 $tds->item(8)->textContent,
                 $tds->item(10)->textContent,
                 $tds->item(11)->textContent,
+            );
+        }
+        return $exam;
+    }
+
+    /**
+     * @return array 考试安排
+     */
+    public function examArrange() {
+        $exam = array(
+            'thead' => array(
+                '课程',
+                '学分',
+                '类别',
+                '考核方式',
+                '考试时间',
+                '考试地点',
+                '座位号',
+            ),
+        );
+        $tables = $this->dom->getElementsByTagName('table');
+        foreach($tables->item(2)->getElementsByTagName('tr') as $tr) {
+            $tds = $tr->getElementsByTagName('td');
+            $exam['tbody'][] = array(
+                $tds->item(1)->textContent,
+                $tds->item(2)->textContent,
+                $tds->item(3)->textContent,
+                $tds->item(4)->textContent,
+                $tds->item(5)->textContent,
+                $tds->item(6)->textContent,
+                $tds->item(7)->textContent,
             );
         }
         return $exam;
