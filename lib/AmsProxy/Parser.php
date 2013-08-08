@@ -254,4 +254,80 @@ class Parser {
         }
         return $exam;
     }
+
+    /**
+     * @return array 理论课程
+     */
+    public function theorySubject() {
+        $subject = array(
+            'thead' => array(
+                '课程',
+                '学分',
+                '课程类别',
+                '考核方式',
+                '总学时',
+                '讲授学时',
+                '实验学时',
+                '上机学时',
+                '其它学时',
+                '周学时',
+            ),
+        );
+        $tables = $this->dom->getElementsByTagName('table');
+        foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
+            $tds = $tr->getElementsByTagName('td');
+            if ($term_name = trim($tds->item(1)->textContent))
+                $termName = $term_name;
+            $subject['tbody'][$termName][] = array(
+                $tds->item(2)->textContent,
+                $tds->item(3)->textContent,
+                $tds->item(4)->textContent,
+                $tds->item(5)->textContent,
+                $tds->item(6)->textContent,
+                $tds->item(7)->textContent,
+                $tds->item(8)->textContent,
+                $tds->item(9)->textContent,
+                $tds->item(10)->textContent,
+                $tds->item(11)->textContent,
+            );
+        }
+        return $subject;
+    }
+
+    /**
+     * @return array 实践环节
+     */
+    public function practiceSubject() {
+        $subject = array(
+            'thead' => array(
+                '环节',
+                '学分',
+                '环节类别',
+                '考核方式',
+                '周数',
+            ),
+        );
+        $tables = $this->dom->getElementsByTagName('table');
+        foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
+            $tds = $tr->getElementsByTagName('td');
+            if ($term_name = trim($tds->item(1)->textContent))
+                $termName = $term_name;
+            $subject['tbody'][$termName][] = array(
+                $tds->item(2)->textContent,
+                $tds->item(3)->textContent,
+                $tds->item(4)->textContent,
+                $tds->item(5)->textContent,
+                $tds->item(6)->textContent,
+            );
+        }
+        return $subject;
+    }
+
+    /**
+     * @param number $type 排版类型, 0按星期, 1按科目
+     * @return array 课程安排表
+     */
+    public function timetable($type) {
+        // 未完成
+    }
 }

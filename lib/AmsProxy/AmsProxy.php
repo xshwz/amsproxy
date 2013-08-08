@@ -108,6 +108,7 @@ class AmsProxy {
     }
 
     /**
+     * @param string sel_lc参数的内容,比如'2012102,'
      * @return array 考试安排
      */
     public function getExamArrange($sel_lc = null) {
@@ -120,6 +121,54 @@ class AmsProxy {
             'KSSW/stu_ksap_rpt.aspx', array('sel_lc' => $sel_lc));
         $parser = new Parser($responseText);
         return $parser->examArrange();
+    }
+
+    /**
+     * @return array 培养方案
+     */
+    public function getTrainPro() {
+        return array(
+            'theory' => $this->getTheorySubject(),
+            'practice' => $this->getPracticeSubject(),
+        );
+    }
+
+    /**
+     * @return array 理论课程
+     */
+    public function getTheorySubject() {
+        $responseText = $this->GET('jxjh/Stu_byfakc_rpt.aspx');
+        $parser = new Parser($responseText);
+        return $parser->theorySubject();
+    }
+
+    /**
+     * @return array 实践环节
+     */
+    public function getPracticeSubject() {
+        $responseText = $this->GET('jxjh/Stu_byfahj_rpt.aspx');
+        $parser = new Parser($responseText);
+        return $parser->practiceSubject();
+    }
+
+	
+    /**
+     * getTimetable 
+     * 
+     * @param string 年份, 如2010
+     * @param string $term 学期, 0上学期, 1下学期
+     * @param number $type 排版类型, 0按星期, 1按科目
+     * @return array 课程安排表
+     */
+    public function getTimetable($year, $term, $type) {
+        $responseText = $this->POST(
+            'znpk/Pri_StuSel_rpt.aspx',
+            array(
+                'Sel_XNXQ' => $year . $term,
+                'rad' => $type,
+            ));
+        $parser = new Parser($responseText);
+        return $parser->timetable($type);
     }
 
     /**
