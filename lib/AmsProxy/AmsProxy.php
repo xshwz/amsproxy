@@ -171,6 +171,21 @@ class AmsProxy {
         return $parser->timetable($type);
     }
 
+     /**
+      * @return array 课程表
+      */
+     public function getCourse($Sel_XNXQ) {
+         $responseText = $this->POST(
+             'znpk/Pri_StuSel_rpt.aspx',
+             array(
+                 'Sel_XNXQ' => $Sel_XNXQ,
+                 'rad'      => 1,
+                 'px'       => 0,
+             ));
+         $parser = new Parser($responseText);
+         return $parser->course();
+     }
+
     /**
      * 向教务系统发送一个 get http 请求
      * @param string $url
