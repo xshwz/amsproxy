@@ -6,7 +6,8 @@ class menu extends CWidget {
         echo '<ul class="nav navbar-nav">';
 
         foreach ($this->items as $item) {
-            if ($this->getController()->id == explode('/', $item['url'][0])[0])
+            $url = explode('/', $item['url'][0]);
+            if ($this->getController()->id == $url[0])
                 $class = ' class="active"';
             else
                 $class = '';

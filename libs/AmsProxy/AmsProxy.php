@@ -205,8 +205,10 @@ class AmsProxy {
      * @return array 处理后的课程表
      */
     public function getCourse($Sel_XNXQ='20121') {
-        foreach ($this->getOriginalCourse($Sel_XNXQ)['tbody'] as $course) {
+        $originalCourse = $this->getOriginalCourse($Sel_XNXQ);
+        foreach ($originalCourse['tbody'] as $course) {
             preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[10], $lesson);
+            $week = explode('-', $course[9]);
             $courseTable[] = array(
                 'courseName' => preg_replace('/^\[.*?\]/', '', $course[0]),
                 'credit' => $course[1],
@@ -217,8 +219,8 @@ class AmsProxy {
                 'teachType' => $course[6],
                 'examType' => $course[7],
                 'teacherName' => $course[8],
-                'weekStart' => explode('-', $course[9])[0],
-                'weekTo' => explode('-', $course[9])[1],
+                'weekStart' => $week[0],
+                'weekTo' => $week[1],
                 'weekDay' => self::$weekDict[$lesson[1]],
                 'lessonStart' => $lesson[2],
                 'lessonTo' => $lesson[3],

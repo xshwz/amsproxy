@@ -1,6 +1,5 @@
 <?php
 return array(
-    'siteName' => '相思青果',
     'basePath' => '..',
     'import' => array(
         'ext.controllers.*',
