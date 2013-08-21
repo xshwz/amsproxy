@@ -1,0 +1,63 @@
+.body {
+    margin-top: 70px;
+}
+
+.login-form {
+  max-width: 320px;
+  margin: 15px auto;
+  border-radius: 6px;
+}
+.login-form .form-group {
+  position: relative;
+}
+.login-form label {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  color: #bdc3c7;
+}
+.login-form .form-control:focus + label {
+  color: #1abc9c;
+  transition: color ease-in-out 0.15s;
+}
+.login-form .alert {
+  padding: 10px 15px;
+}
+
+.navbar-brand img {
+  position: relative;
+  top: -3px;
+}
+
+.main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+a[data-dismiss="modal"] {
+  margin-left: 16px;
+}
+
+.article {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 6px;
+}
+.article > p {
+  text-indent: 2em;
+}
+
+.powered {
+  color: #7f8c8d;
+  margin-bottom: 8px;
+}
+.powered img {
+  position: relative;
+  top: -2px;
+}
