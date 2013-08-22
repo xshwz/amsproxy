@@ -61,3 +61,91 @@ a[data-dismiss="modal"] {
   position: relative;
   top: -2px;
 }
+
+div.courseTable {
+  overflow: auto;
+}
+table.courseTable {
+  width: 100%;
+  border-collapse: separate;
+  white-space: nowrap;
+}
+.courseTable td,
+.courseTable th {
+  background-color: #fff;
+  padding: 4px 8px;
+}
+.courseTable tr > td:first-child {
+  text-align: right;
+  border-right: 2px solid #fff;
+}
+.courseTable th {
+  background-color: #95a5a6;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0 8px 0;
+  border-bottom: 2px solid #7f8c8d;
+}
+.courseTable th:first-child {
+  border-radius: 4px 0 0 0;
+}
+.courseTable th:last-child {
+  border-radius: 0 4px 0 0;
+}
+td.course {
+  background-color: #2ecc71;
+  color: #fff;
+  border: 2px solid;
+  cursor: default;
+}
+td.course-1 {
+  background-color: #1abc9c;
+}
+td.course-2 {
+  background-color: #f1c40f;
+}
+td.course-3 {
+  background-color: #e67e22;
+}
+td.course-4 {
+  background-color: #3498db;
+}
+td.course-5 {
+  background-color: #e74c3c;
+}
+td.course-6 {
+  background-color: #9b59b6;
+}
+td.course-7 {
+  background-color: #34495e;
+}
+td.course-8 {
+  background-color: #16a085;
+}
+td.course-9 {
+  background-color: #f39c12;
+}
+td.course-10 {
+  background-color: #27ae60;
+}
+td.course-11 {
+  background-color: #2980b9;
+}
+td.course-12 {
+  background-color: #c0392b;
+}
+td.course-13 {
+  background-color: #8e44ad;
+}
+.course .tooltip-inner {
+  text-align: left;
+  padding: 8px;
+}
+.course .tooltip-inner p {
+  margin: 2px 0;
+}
+@media (max-width: 768px) {
+  .body {
+    padding: 0;
+  }
+}

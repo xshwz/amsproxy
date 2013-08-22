@@ -219,11 +219,11 @@ class AmsProxy {
                 'teachType' => $course[6],
                 'examType' => $course[7],
                 'teacherName' => $course[8],
-                'weekStart' => $week[0],
-                'weekTo' => $week[1],
-                'weekDay' => self::$weekDict[$lesson[1]],
-                'lessonStart' => $lesson[2],
-                'lessonTo' => $lesson[3],
+                'weekStart' => (int)$week[0],
+                'weekTo' => (int)$week[1],
+                'weekDay' => (int)self::$weekDict[$lesson[1]],
+                'lessonStart' => (int)$lesson[2],
+                'lessonTo' => (int)$lesson[3],
                 'location' => $course[11],
             );
         }

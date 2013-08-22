@@ -30,4 +30,8 @@ class SiteController extends BaseController {
     public function actionAbout() {
 		$this->render('about');
     }
+
+    public function actionCompatibility() {
+		$this->render('compatibility');
+    }
 }

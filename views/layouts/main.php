@@ -7,6 +7,7 @@
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-custom.css" rel="stylesheet">
         <link href="css/amsProxy.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -47,7 +48,7 @@
                                     ),
                                     array(
                                         'label' => '成绩',
-                                        'url' => array('score/originalScore'),
+                                        'url' => array('score/stats'),
                                     ),
                                 ),
                             )
@@ -126,8 +127,8 @@
         </div>
         <?php endif; ?>
 
-        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/Chart.min.js"></script>
         <script src="js/amsProxy.js"></script>
     </body>
 </html>

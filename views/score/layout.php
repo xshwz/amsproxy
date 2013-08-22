@@ -4,16 +4,16 @@
     $this->widget('ext.widgets.submenu', array(
         'items' => array(
             array(
-                'label' => '原始成绩',
-                'action' => array('originalScore'),
+                'label' => '统计',
+                'action' => array('stats'),
             ),
             array(
                 'label' => '有效成绩',
                 'action' => array('effectiveScore'),
             ),
             array(
-                'label' => '统计',
-                'action' => array('stats'),
+                'label' => '原始成绩',
+                'action' => array('originalScore'),
             ),
         ),
     ));
