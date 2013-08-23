@@ -1,5 +1,11 @@
 <?php
+/**
+ * 基控制器，需要登录验证，要进行学生相关操作请继承该控制器
+ */
 class StudentController extends BaseController {
+    /**
+     * @var AmsProxy
+     */
     public $amsProxy;
 
     public function init() {
@@ -13,7 +19,13 @@ class StudentController extends BaseController {
         }
     }
 
+    /**
+     * 未登录的处理
+     */
     public function notLoggedHandle() {
-        $this->redirect(array('site/login'));
+        $this->redirect(array(
+            'site/login',
+            'return' => Yii::app()->request->requestUri,
+        ));
     }
 }

@@ -1,4 +1,7 @@
 <?php
+/**
+ * 成绩控制器
+ */
 class ScoreController extends StudentController {
     public $layout = '/score/layout';
 
@@ -22,8 +25,9 @@ class ScoreController extends StudentController {
         $scoreTable = $this->amsProxy->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('stats', array(
-            'termNames' => array_keys($scoreTable['tbody']),
+            'termNames' => $this->getTermNames($scoreTable),
             'termScoreStats' => $this->getTermScoreStats($scoreTable),
+            'scoreDict' => $this->getScoreDist($scoreTable),
         ));
 	}
 
@@ -36,6 +40,11 @@ class ScoreController extends StudentController {
         }
     }
 
+    /**
+     * 计算各学期通过／挂科数目
+     * @param array $scoreTable 成绩表
+     * @return array 统计信息
+     */
     public function getTermScoreStats($scoreTable) {
         $term_count = 0;
         foreach ($scoreTable['tbody'] as $term_score) {
@@ -52,14 +61,40 @@ class ScoreController extends StudentController {
         return $stats;
     }
 
+    /**
+     * 计算成绩分布情况
+     * @param array $scoreTable 成绩表
+     * @return array 成绩分布表
+     */
     public function getScoreDist($scoreTable) {
+        $scoreDict = array(0, 0, 0, 0, 0);
         foreach ($scoreTable['tbody'] as $term_score) {
             foreach ($term_score as $row) {
-                $score = $row[6];
-                if ($row[6] > 90) {
-                    ;
-                }
+                if ($row[6] >= 90)
+                    $scoreDict[0]++;
+                else if ($row[6] >= 80)
+                    $scoreDict[1]++;
+                else if ($row[6] >= 70)
+                    $scoreDict[2]++;
+                else if ($row[6] >= 60)
+                    $scoreDict[3]++;
+                else
+                    $scoreDict[4]++;
             }
         }
+        return $scoreDict;
+    }
+
+
+    /**
+     * 获取学期名数组
+     * @param array $scoreTable 成绩表
+     * @return array 学期名数组
+     */
+    public function getTermNames($scoreTable) {
+        foreach (array_keys($scoreTable['tbody']) as &$termName) {
+            $termNames[] = str_replace('学年', '学年 ', $termName);
+        }
+        return $termNames;
     }
 }

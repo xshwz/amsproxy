@@ -2,6 +2,6 @@
     <?php
     $this->widget(
         'ext.widgets.courseTable',
-        array('courseTable' => $courseTable));
+        array('courses' => $courses));
     ?>
 </div>

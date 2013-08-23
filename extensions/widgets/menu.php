@@ -1,4 +1,7 @@
 <?php
+/**
+ * 菜单部件，controller active
+ */
 class menu extends CWidget {
     public $items = array();
 

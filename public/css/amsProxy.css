@@ -1,6 +1,11 @@
 .body {
     margin-top: 70px;
 }
+@media (max-width: 768px) {
+  .body > [class^="col-"] {
+    padding: 0;
+  }
+}
 
 .login-form {
   max-width: 320px;
@@ -63,12 +68,12 @@ a[data-dismiss="modal"] {
 }
 
 div.courseTable {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 table.courseTable {
   width: 100%;
   border-collapse: separate;
-  white-space: nowrap;
 }
 .courseTable td,
 .courseTable th {
@@ -83,14 +88,9 @@ table.courseTable {
   background-color: #95a5a6;
   color: #fff;
   text-align: center;
-  padding: 10px 0 8px 0;
+  padding: 10px 8px 8px 8px;
   border-bottom: 2px solid #7f8c8d;
-}
-.courseTable th:first-child {
-  border-radius: 4px 0 0 0;
-}
-.courseTable th:last-child {
-  border-radius: 0 4px 0 0;
+  white-space: nowrap;
 }
 td.course {
   background-color: #2ecc71;
@@ -144,8 +144,7 @@ td.course-13 {
 .course .tooltip-inner p {
   margin: 2px 0;
 }
-@media (max-width: 768px) {
-  .body {
-    padding: 0;
-  }
+
+.stats > div {
+  padding-top: 20px;
 }

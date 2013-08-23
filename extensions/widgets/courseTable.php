@@ -1,7 +1,13 @@
 <?php
 class courseTable extends CWidget {
-    public $courseTable = array();
+    /**
+     * @var array 课程数组
+     */
+    public $courses = array();
 
+    /**
+     * @var array 上课时间表
+     */
     public static $timeTable = array(
 		 1 => array( '7:50',  '8:30'),
 		 2 => array( '8:40',  '9:20'),
@@ -18,7 +24,7 @@ class courseTable extends CWidget {
     );
 
     public function run() {
-        $courseTable = $this->getCourseTable();
+        $courseTable = $this->coursesConvert($this->courses);
 
         echo <<<EOT
             <table class="courseTable">
@@ -30,23 +36,28 @@ class courseTable extends CWidget {
                         <th>星期三</th>
                         <th>星期四</th>
                         <th>星期五</th>
+                        <th>星期六</th>
+                        <th>星期日</th>
                     </tr>
                 </thead>
                 <tbody>
 EOT;
+
         for ($lessonNum = 1; $lessonNum <= 12; $lessonNum++) {
             echo '<tr>';
             echo "<td>{$lessonNum}</td>";
 
-            for ($weekDay = 1; $weekDay <= 5; $weekDay++) {
+            for ($weekDay = 1; $weekDay <= 7; $weekDay++) {
                 if (isset($courseTable[$weekDay][$lessonNum])) {
                     $course = $courseTable[$weekDay][$lessonNum];
                     if ($course['isCourse']) {
                         $timeStart = self::$timeTable[$course['lessonStart']][0];
                         $timeTo = self::$timeTable[$course['lessonTo']][1];
+
                         echo CHtml::openTag('td', array(
                             'class' => "course course-{$course['seq']}",
                             'rowspan' => $course['lessonSpan']));
+
                         echo CHtml::openTag('div', array(
                             'title' => "
                                 <p>
@@ -68,6 +79,7 @@ EOT;
                                 ",
                             'data-html' => true,
                         ));
+
                         echo $course['courseName'];
                         echo '</div>';
                         echo '</td>';
@@ -83,17 +95,22 @@ EOT;
         echo '</tbody></table>';
     }
 
-    public function getCourseTable() {
-        $coursesSeq = $this->getCoursesSeq($this->courseTable);
+    /**
+     * 将课程数组转换成方便遍历输出的课程表
+     * @param array $courses 课程数组
+     * @return array 课程表
+     */
+    public function coursesConvert($courses) {
+        $coursesSeq = $this->getCoursesSeq($courses);
 
-        foreach ($this->courseTable as $course) {
+        foreach ($courses as $course) {
             $course['seq'] = $coursesSeq[$course['courseName']];
             $course['isCourse'] = true;
             $course['lessonSpan'] = $course['lessonTo'] - $course['lessonStart'] + 1;
             $courseMap[$course['weekDay']][$course['lessonStart']] = $course;
         }
 
-        for ($weekDay = 1; $weekDay <= 5; $weekDay++) {
+        for ($weekDay = 1; $weekDay <= 7; $weekDay++) {
             $lessonStart = 1;
             $lessonSpan = 1;
             for ($lessonNum = 1; $lessonNum <= 12; $lessonNum++) {
@@ -102,11 +119,13 @@ EOT;
                     $lessonNum += $courseMap[$weekDay][$lessonNum]['lessonSpan'] - 1;
                     $lessonStart = $lessonNum + 1;
                     $lessonSpan = 1;
-                } else if (isset($courseMap[$weekDay][$lessonNum + 1]) || $lessonNum == 12) {
+                } else if (
+                    isset($courseMap[$weekDay][$lessonNum + 1]) ||
+                    $lessonNum == 12) {
+
                     $courseTable[$weekDay][$lessonStart] = array(
                         'lessonSpan' => $lessonSpan,
-                        'isCourse' => false,
-                    );
+                        'isCourse' => false);
                     $lessonStart = $lessonNum + 1;
                     $lessonSpan = 1;
                 } else {
@@ -118,11 +137,17 @@ EOT;
         return $courseTable;
     }
 
-    public function getCoursesSeq($courseTable) {
-        foreach ($this->courseTable as $course)
-            if (!array_key_exists($course['courseName'], $courses))
-                $courses[$course['courseName']] = count($courses);
+    /**
+     * 获取不重复课程及其序号
+     * @param array $courses 课程数组
+     * @return array “课程 => 序号”数组
+     * @example return array('操作系统' => 0, '软件工程' => 1)
+     */
+    public function getCoursesSeq($courses) {
+        foreach ($courses as $course)
+            if (!array_key_exists($course['courseName'], $coursesSeq))
+                $coursesSeq[$course['courseName']] = count($coursesSeq);
 
-        return $courses;
+        return $coursesSeq;
     }
 }

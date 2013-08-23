@@ -1,4 +1,7 @@
 <?php
+/**
+ * 子菜单部件，controller active
+ */
 class submenu extends CWidget {
     public $items = array();
 

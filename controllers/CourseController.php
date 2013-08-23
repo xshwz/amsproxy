@@ -1,9 +1,11 @@
 <?php
+/**
+ * 课程控制器
+ */
 class CourseController extends StudentController {
 	public function actionIndex() {
-        $courseTable = $this->amsProxy->getCourse();
         $this->render('index', array(
-            'courseTable' => $courseTable,
+            'courses' => $this->amsProxy->getCourse(),
         ));
 	}
 }

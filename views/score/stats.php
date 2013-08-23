@@ -1,28 +1,69 @@
-<canvas id="termStats" width="760" height="760"></canvas>
+<div class="article stats">
+    <div id="termStats"></div>
+    <div id="scoreDict"></div>
+</div>
+
+<script src="js/highcharts.js"></script>
 <script>
-$(document).ready(function(){
-    new Chart(document.getElementById('termStats').getContext('2d')).Bar(
-        {
-            labels : <?php echo json_encode($termNames);?>,
-            datasets : [
-                {
-                    fillColor : 'rgba(46, 204, 113,1.0)',
-                    data : <?php echo json_encode($termScoreStats[0]);?>
-                },
-                {
-                    fillColor : 'rgba(231, 76, 60,1.0)',
-                    data : <?php echo json_encode($termScoreStats[1]);?>
-                }
-            ]
-        },
-        {
-            scaleOverride : true,
-            scaleSteps : 10,
-            scaleStepWidth : 1,
-            scaleStartValue : 0
+Highcharts.setOptions({
+    credits: {
+        enabled: false
+    },
+    tooltip: {
+        borderWidth: 0,
+        shadow: false
+    },
+    yAxis: {
+        title: {
+            text: ''
         }
-    );
-    document.getElementById('termStats').style.width = '100%';
-    document.getElementById('termStats').style.height = 'auto';
+    }
+});
+$(function(){
+    $('#termStats').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: '学期科目统计图'
+        },
+        xAxis: {
+            categories: <?php echo json_encode($termNames); ?>
+        },
+        yAxis: {
+            minTickInterval: 1
+        },
+        colors: ['#2ecc71', '#e74c3c'],
+        series: [{
+            name: '通过',
+            data: <?php echo json_encode($termScoreStats[0]); ?>
+        }, {
+            name: '挂科',
+            data: <?php echo json_encode($termScoreStats[1]); ?>
+        }],
+    });
+
+    $('#scoreDict').highcharts({
+        title: {
+            text: '成绩分布图'
+        },
+        colors: ['#2ecc71', '#f1c40f', '#3498db', '#9b59b6', '#e74c3c'],
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer'
+            }
+        },
+        series: [{
+            type: 'pie',
+            data: [
+                ['[100, 90]', <?php echo $scoreDict[0]; ?>],
+                ['(90, 80]',  <?php echo $scoreDict[1]; ?>],
+                ['(80, 70]',  <?php echo $scoreDict[2]; ?>],
+                ['(70, 60]',  <?php echo $scoreDict[3]; ?>],
+                ['[60, 0]',   <?php echo $scoreDict[4]; ?>]
+            ]
+        }]
+    });
 });
 </script>

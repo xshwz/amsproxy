@@ -117,9 +117,11 @@
                                     name="msg"
                                     rows="4"
                                     id="input-msg"
-                                    class="form-control"></textarea>
+                                    class="form-control">反馈功能尚未实现，有什么建议、问题可以发到我的邮箱：qiuxiang55aa@gmail.com。</textarea>
                             </div>
-                            <button type="submit" class="btn"><i class="glyphicon glyphicon-ok"></i> 提交</button>
+                            <button type="submit" class="btn" disabled="disabled">
+                                <i class="glyphicon glyphicon-ok"></i> 提交
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -128,7 +130,6 @@
         <?php endif; ?>
 
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/Chart.min.js"></script>
         <script src="js/amsProxy.js"></script>
     </body>
 </html>
