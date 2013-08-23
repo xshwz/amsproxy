@@ -92,9 +92,9 @@ class ScoreController extends StudentController {
      * @return array 学期名数组
      */
     public function getTermNames($scoreTable) {
-        foreach (array_keys($scoreTable['tbody']) as &$termName) {
-            $termNames[] = str_replace('学年', '学年 ', $termName);
-        }
+        $termNames = array_keys($scoreTable['tbody']);
+        foreach ($termNames as &$termName)
+            $termName = str_replace('学年', '学年 ', $termName);
         return $termNames;
     }
 }
