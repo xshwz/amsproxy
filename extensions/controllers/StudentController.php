@@ -23,9 +23,6 @@ class StudentController extends BaseController {
      * 未登录的处理
      */
     public function notLoggedHandle() {
-        $this->redirect(array(
-            'site/login',
-            'return' => Yii::app()->request->requestUri,
-        ));
+        $this->redirect(array('site/login'));
     }
 }

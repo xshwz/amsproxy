@@ -1,4 +1,7 @@
 <?php
+/**
+ * 默认控制器
+ */
 class SiteController extends BaseController {
 	public function actionIndex() {
 		$this->render('index');

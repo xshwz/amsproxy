@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>相思青果</title>
         <link rel="shortcut icon" href="favicon.ico">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-custom.css" rel="stylesheet">
