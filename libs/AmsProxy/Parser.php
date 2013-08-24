@@ -10,6 +10,20 @@ class Parser {
     public $dom;
 
     /**
+     * 星期字典
+     * @var array
+     */
+    public static $weekDict = array(
+        '一' => 1,
+        '二' => 2,
+        '三' => 3,
+        '四' => 4,
+        '五' => 5,
+        '六' => 6,
+        '日' => 7,
+    );
+
+    /**
      * @param string $html
      */
     public function __construct($html='') {
@@ -333,7 +347,7 @@ class Parser {
      * 课程表
      */
     public function course() {
-        $course = array(
+        $courses = array(
             'thead' => array(
                 '课程',
                 '学分',
@@ -354,20 +368,20 @@ class Parser {
         $courseType = $tables->item(0)->getElementsByTagName('td')->item(0);
 
         if ($courseType->textContent == '讲授/上机') {
-            $courseItem = array();
+            $course = array();
             $trs = $tables->item(1)->getElementsByTagName('tr');
 
             for ($i = 2; $i < $trs->length - 1; $i++) {
                 $tds = $trs->item($i)->getElementsByTagName('td');
 
-                for ($j = 0; $j < 12; $j++)
+                for ($j = 0; $j < $tds->length; $j++)
                     if ($tds->item($j + 1)->textContent)
-                        $courseItem[$j] = $tds->item($j + 1)->textContent;
+                        $course[$j] = $tds->item($j + 1)->textContent;
 
-                $course['tbody'][] = $courseItem;
+                $courses['tbody'][] = $course;
             }
 
-            return $course;
+            return $courses;
         } else {
             return null;
         }
@@ -378,6 +392,69 @@ class Parser {
      * @return array 课程安排表
      */
     public function timetable($type) {
-        // 未完成
+        // TODO
+    }
+
+    /**
+     * @return array 班级课表
+     */
+    public function classCourse() {
+        $table = $this->dom->getElementsByTagName('table')->item(3);
+        $tds = $table->getElementsByTagName('td');
+
+        for ($i = 10; $i < $tds->length - 1; $i += 10) {
+            for ($j = 0; $j < 10; $j++)
+                if ($tds->item($i + $j)->textContent)
+                    $course[$j] = $tds->item($i + $j)->textContent;
+
+            preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[8], $lesson);
+            $week = explode('-', $course[7]);
+            $courses[] = array(
+                'courseName' => preg_replace('/^\[.*?\]/', '', $course[0]),
+                'credit' => $course[1],
+                'totalHour' => $course[2],
+                'examType' => $course[3],
+                'teacherName' => preg_replace('/^\[.*?\]/', '', $course[4]),
+                'weekStart' => (int)$week[0],
+                'weekTo' => (int)$week[1],
+                'weekDay' => (int)self::$weekDict[$lesson[1]],
+                'lessonStart' => (int)$lesson[2],
+                'lessonTo' => (int)$lesson[3],
+                'location' => $course[9],
+            );
+        }
+
+        return $courses;
+    }
+
+    /**
+     * 将原始课程的格式做转换，以便更容易使用
+     * @param array $originalCourse 要转换的课程数组
+     * @return array 转换后的课程数组
+     */
+    public function coursesConvert($originalCourse) {
+        $courses = array();
+        foreach ($originalCourse['tbody'] as $course) {
+            preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[10], $lesson);
+            $week = explode('-', $course[9]);
+            $courses[] = array(
+                'courseName' => preg_replace('/^\[.*?\]/', '', $course[0]),
+                'credit' => $course[1],
+                'totalHour' => $course[2],
+                'theoryHour' => $course[3],
+                'experimentalHour' => $course[4],
+                'courseType' => $course[5],
+                'teachType' => $course[6],
+                'examType' => $course[7],
+                'teacherName' => $course[8],
+                'weekStart' => (int)$week[0],
+                'weekTo' => (int)$week[1],
+                'weekDay' => (int)self::$weekDict[$lesson[1]],
+                'lessonStart' => (int)$lesson[2],
+                'lessonTo' => (int)$lesson[3],
+                'location' => $course[11],
+            );
+        }
+        return $courses;
     }
 }

@@ -1,3 +1,3 @@
 <div class="jumbotron">
-    <h1>个人主页什么的</h1>
+    <h1>嗯？还没想好要放什么</h1>
 </div>

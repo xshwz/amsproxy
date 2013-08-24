@@ -32,20 +32,6 @@ class AmsProxy {
     );
 
     /**
-     * 星期字典
-     * @var array
-     */
-    public static $weekDict = array(
-        '一' => 1,
-        '二' => 2,
-        '三' => 3,
-        '四' => 4,
-        '五' => 5,
-        '六' => 6,
-        '日' => 7,
-    );
-
-    /**
      * @param string $sid 学号
      * @param string $pwd 密码
      * @param array $config 配置
@@ -71,6 +57,7 @@ class AmsProxy {
                 'UserID' => $this->sid,
                 'PassWord' => $this->pwd,
             ));
+
         if (!strpos($responseText, '正在加载权限数据'))
             throw new Exception('User ID or password is incorrect');
     }
@@ -79,8 +66,8 @@ class AmsProxy {
      * @return array 学生信息
      */
     public function getStudentInfo() {
-        $parser = new Parser($this->GET('xsxj/Stu_MyInfo_RPT.aspx'));
-        return $parser->studentInfo();
+        $responseText = $this->GET('xsxj/Stu_MyInfo_RPT.aspx');
+        return $this->getParser($responseText)->studentInfo();
     }
 
     /**
@@ -108,8 +95,7 @@ class AmsProxy {
     public function getScoreDist() {
         $responseText = $this->POST(
             'xscj/Stu_cjfb_rpt.aspx', array('SelXNXQ' => 0));
-        $parser = new Parser($responseText);
-        return $parser->distributionScore();
+        return $this->getParser($responseText)->distributionScore();
     }
 
     /**
@@ -117,8 +103,7 @@ class AmsProxy {
      */
     public function getRankExamSign() {
         $responseText = $this->GET('xscj/Stu_djksbm_rpt.aspx');
-        $parser = new Parser($responseText);
-        return $parser->rankExamSign();
+        return $this->getParser($responseText)->rankExamSign();
     }
 
     /**
@@ -133,8 +118,7 @@ class AmsProxy {
         }
         $responseText = $this->POST(
             'KSSW/stu_ksap_rpt.aspx', array('sel_lc' => $sel_lc));
-        $parser = new Parser($responseText);
-        return $parser->examArrange();
+        return $this->getParser($responseText)->examArrange();
     }
 
     /**
@@ -152,8 +136,7 @@ class AmsProxy {
      */
     public function getTheorySubject() {
         $responseText = $this->GET('jxjh/Stu_byfakc_rpt.aspx');
-        $parser = new Parser($responseText);
-        return $parser->theorySubject();
+        return $this->getParser($responseText)->theorySubject();
     }
 
     /**
@@ -161,8 +144,7 @@ class AmsProxy {
      */
     public function getPracticeSubject() {
         $responseText = $this->GET('jxjh/Stu_byfahj_rpt.aspx');
-        $parser = new Parser($responseText);
-        return $parser->practiceSubject();
+        return $this->getParser($responseText)->practiceSubject();
     }
 
 	
@@ -175,14 +157,11 @@ class AmsProxy {
      * @return array 课程安排表
      */
     public function getTimetable($year, $term, $type) {
-        $responseText = $this->POST(
-            'znpk/Pri_StuSel_rpt.aspx',
-            array(
-                'Sel_XNXQ' => $year . $term,
-                'rad'      => $type,
-            ));
-        $parser = new Parser($responseText);
-        return $parser->timetable($type);
+        $responseText = $this->POST('znpk/Pri_StuSel_rpt.aspx', array(
+            'Sel_XNXQ' => $year . $term,
+            'rad'      => $type,
+        ));
+        return $this->getParser($responseText)->timetable($type);
     }
 
     /**
@@ -190,44 +169,47 @@ class AmsProxy {
      * @return array 原始未经处理的课程表
      */
     public function getOriginalCourse($Sel_XNXQ) {
-        $responseText = $this->POST(
-            'znpk/Pri_StuSel_rpt.aspx',
-            array(
-                'Sel_XNXQ' => $Sel_XNXQ,
-                'rad'      => 1,
-                'px'       => 0,
-            ));
-        $parser = new Parser($responseText);
-        return $parser->course();
+        $responseText = $this->POST('znpk/Pri_StuSel_rpt.aspx', array(
+            'Sel_XNXQ' => $Sel_XNXQ,
+            'rad'      => 1,
+            'px'       => 0,
+        ));
+        return $this->getParser($responseText)->course();
     }
 
     /**
-     * @return array 处理后的课程表
+     * @return array 课程表
      */
-    public function getCourse($Sel_XNXQ='20121') {
-        $originalCourse = $this->getOriginalCourse($Sel_XNXQ);
-        foreach ($originalCourse['tbody'] as $course) {
-            preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[10], $lesson);
-            $week = explode('-', $course[9]);
-            $courseTable[] = array(
-                'courseName' => preg_replace('/^\[.*?\]/', '', $course[0]),
-                'credit' => $course[1],
-                'totalHour' => $course[2],
-                'theoryHour' => $course[3],
-                'experimentalHour' => $course[4],
-                'courseType' => $course[5],
-                'teachType' => $course[6],
-                'examType' => $course[7],
-                'teacherName' => $course[8],
-                'weekStart' => (int)$week[0],
-                'weekTo' => (int)$week[1],
-                'weekDay' => (int)self::$weekDict[$lesson[1]],
-                'lessonStart' => (int)$lesson[2],
-                'lessonTo' => (int)$lesson[3],
-                'location' => $course[11],
-            );
-        }
-        return $courseTable;
+    public function getCourse($Sel_XNXQ='20130') {
+        return $this->getParser()->coursesConvert(
+            $this->getOriginalCourse($Sel_XNXQ));
+    }
+
+    /**
+     * @param string $className 班级名称
+     * @return array 班级课表
+     */
+    public function getClassCourse($className=null) {
+        $responseText = $this->POST('ZNPK/KBFB_ClassSel_rpt.aspx', array(
+            'Sel_XNXQ' => '20130',
+            'Sel_XZBJ' => $this->getClassCode($className),
+            'type'     => 2,
+            'chkrxkc'  => 1,
+        ));
+        return $this->getParser($responseText)->classCourse();
+    }
+
+    /**
+     * @param string $className 班级名称
+     * @return array 班级课表
+     */
+    public function getClassCode($className) {
+        $classInfo = $this->GET('ZNPK/Private/List_XZBJ.aspx', array(
+            'xnxq' => '20130',
+            'xzbj' => iconv('utf-8', 'gb18030', $className),
+        ));
+        preg_match('/option value=(\d+)/', $classInfo, $matches);
+        return $matches[1];
     }
 
     /**
@@ -278,5 +260,13 @@ class AmsProxy {
             if (isset($config[$key]))
                 $this->config[$key] = $config[$key];
         }
+    }
+
+    /**
+     * @param string $html
+     * @return Parser
+     */
+    public function getParser($html='') {
+        return new Parser($html);
     }
 }

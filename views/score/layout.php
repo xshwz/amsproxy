@@ -8,12 +8,8 @@
                 'action' => array('stats'),
             ),
             array(
-                'label' => '有效成绩',
+                'label' => '成绩表',
                 'action' => array('effectiveScore'),
-            ),
-            array(
-                'label' => '原始成绩',
-                'action' => array('originalScore'),
             ),
         ),
     ));
