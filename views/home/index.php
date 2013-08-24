@@ -1,3 +1,3 @@
 <div class="jumbotron">
-    <h1>啊哈？</h1>
+    <p>今天天气不错～</p>
 </div>

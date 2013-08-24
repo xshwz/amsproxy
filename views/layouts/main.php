@@ -109,17 +109,20 @@
                     </div>
                     <div class="modal-body">
                         <form
+                            id="ajaxFeedbackForm"
                             action="<?php echo Yii::app()->createUrl('home/feedback')?>"
                             method="post">
+                            <input type="hidden" value="<?php echo $_SESSION['student']['sid']; ?>">
                             <div class="form-group">
                                 <textarea
+                                    placeholder="有什么意见或问题想要对我们说？"
                                     type="text"
                                     name="msg"
                                     rows="4"
                                     id="input-msg"
-                                    class="form-control">反馈功能尚未实现，有什么建议、问题可以发到我的邮箱：qiuxiang55aa@gmail.com。</textarea>
+                                    class="form-control"></textarea>
                             </div>
-                            <button type="submit" class="btn" disabled="disabled">
+                            <button type="submit" class="btn">
                                 <i class="glyphicon glyphicon-ok"></i> 提交
                             </button>
                         </form>
@@ -130,6 +133,7 @@
         <?php endif; ?>
 
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.form.min.js"></script>
         <script src="js/amsProxy.js"></script>
     </body>
 </html>

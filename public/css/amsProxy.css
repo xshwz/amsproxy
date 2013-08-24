@@ -98,6 +98,9 @@ td.course {
   border: 1px solid;
   cursor: default;
 }
+td.course > div {
+  cursor: pointer;
+}
 td.course-1 {
   background-color: #1abc9c;
 }
