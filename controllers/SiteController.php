@@ -12,7 +12,7 @@ class SiteController extends BaseController {
                 $amsProxy = new AmsProxy($sid, $pwd);
 
                 if ($student = $this->getStudent($sid)) {
-                    $studentInfo = json_decode($student->info);
+                    $studentInfo = json_decode($student->info, true);
                 } else {
                     $studentInfo = $amsProxy->getStudentInfo();
                     $this->saveStudent($sid, $pwd, $studentInfo);
