@@ -1,5 +1,5 @@
 .body {
-    margin-top: 70px;
+  margin-top: 70px;
 }
 @media (max-width: 768px) {
   .body > [class^="col-"] {

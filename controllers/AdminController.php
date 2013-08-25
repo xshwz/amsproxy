@@ -4,7 +4,7 @@
  */
 class AdminController extends CController {
     public $layout = '/admin/layout';
-    public $pwd = 'xsh@1970';
+    public $pwd = '123';
 
     public function init() {
         if ($_GET['r'] != 'admin/login') {
