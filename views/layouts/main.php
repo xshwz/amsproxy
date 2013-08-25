@@ -51,6 +51,10 @@
                                         'label' => '成绩',
                                         'url' => array('score/stats'),
                                     ),
+                                    array(
+                                        'label' => '消息',
+                                        'url' => array('message/index'),
+                                    ),
                                 ),
                             )
                         );
@@ -113,14 +117,13 @@
                             id="ajaxFeedbackForm"
                             action="<?php echo Yii::app()->createUrl('home/feedback')?>"
                             method="post">
-                            <input type="hidden" value="<?php echo $_SESSION['student']['sid']; ?>">
                             <div class="form-group">
                                 <textarea
                                     placeholder="有什么意见或问题想要对我们说？"
                                     type="text"
-                                    name="msg"
+                                    name="message"
                                     rows="4"
-                                    id="input-msg"
+                                    id="feedback-msg"
                                     class="form-control"></textarea>
                             </div>
                             <button type="submit" class="btn">

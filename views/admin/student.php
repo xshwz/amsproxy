@@ -1,17 +1,22 @@
-<div class="article">
-    <form class="form-inline" method="get">
+<div class="content" id="studentList">
+    <form class="form-inline search-form" method="get">
+        <input type="hidden" name="r" value="<?php echo $_GET['r']; ?>">
         <div class="form-group">
             <div class="input-group">
-                <input type="text" name="keyword" class="form-control">
+                <input
+                    type="text"
+                    name="keyword"
+                    placeholder="关键字"
+                    class="form-control"
+                    value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
                 <span class="input-group-btn">
-                    <button class="btn" type="button">
+                    <button class="btn" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
             </div>
         </div>
     </form>
-    <br>
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -33,12 +38,14 @@
                         href="#detail-modal"
                         class="detail"
                         data-toggle="modal"
+                        data-sid='<?php echo $student->sid; ?>'
                         data-json='<?php echo $student->info; ?>'>
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                     <a
                         href="#send-modal"
                         data-toggle="modal"
+                        data-sid='<?php echo $student->sid; ?>'
                         class="send">
                         <span class="glyphicon glyphicon-send"></span>
                     </a>
@@ -47,24 +54,43 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?php
-    $this->widget('CLinkPager', array(
-        'pages' => $pages,
-        'header' => '',
-        'cssFile' => '',
-        'hiddenPageCssClass' => 'disabled',
-        'selectedPageCssClass' => 'active',
-        'nextPageLabel' => '&gt;',
-        'prevPageLabel' => '&lt;',
-        'firstPageLabel' => '&lt;&lt;',
-        'lastPageLabel' => '&gt;&gt;',
-        'maxButtonCount' => 5,
-        'htmlOptions' => array(
-            'id' => 'pager',
-            'class' => 'pagination',
-        ),
-    ));
-    ?>
+    <?php if ($count > 1): ?>
+        <div>
+            <?php if ($count > 20): ?>
+                <?php
+                $this->widget('CLinkPager', array(
+                    'pages' => $pages,
+                    'header' => '',
+                    'cssFile' => '',
+                    'hiddenPageCssClass' => 'disabled',
+                    'selectedPageCssClass' => 'active',
+                    'nextPageLabel' => '&gt;',
+                    'prevPageLabel' => '&lt;',
+                    'firstPageLabel' => '&lt;&lt;',
+                    'lastPageLabel' => '&gt;&gt;',
+                    'htmlOptions' => array(
+                        'id' => 'studentLinkPager',
+                        'class' => 'pagination pagination-sm pull-left hidden-xs',
+                    ),
+                ));
+                ?>
+                <div class="listPager pull-left">
+                    <?php
+                    $this->widget('CListPager', array(
+                        'pages' => $pages,
+                        'header' => '',
+                        'htmlOptions' => array(
+                            'id' => 'studentListPager',
+                            'class' => 'form-control input-sm',
+                        ),
+                    ));
+                    ?>
+                </div>
+            <?php endif; ?>
+            <span class="badge pull-left"><?php echo $count; ?></span>
+            <div class="clearfix"></div>
+        </div>
+    <?php endif; ?>
 </div>
 
 <div class="modal fade" id="detail-modal">
@@ -88,16 +114,17 @@
             </div>
             <div class="modal-body">
                 <form
-                    id="send-form"
+                    id="ajaxSendForm"
                     action="<?php echo Yii::app()->createUrl('admin/send')?>"
                     method="post">
-                    <input type="hidden" id="send-form-sid">
+                    <input type="hidden" name="sender" value="0">
+                    <input type="hidden" name="receiver" id="send-form-sid">
                     <div class="form-group">
                         <textarea
                             type="text"
-                            name="msg"
+                            name="message"
                             rows="4"
-                            id="input-msg"
+                            id="send-msg"
                             class="form-control"></textarea>
                     </div>
                     <button type="submit" class="btn">

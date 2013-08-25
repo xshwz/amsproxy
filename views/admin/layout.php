@@ -75,6 +75,8 @@
         <div class="container body">
             <?php echo $content; ?>
         </div>
+        
+        <div class="footer"></div>
 
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>

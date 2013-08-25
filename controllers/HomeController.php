@@ -14,11 +14,13 @@ class HomeController extends StudentController {
 
     public function actionFeedback() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $feedback = new Feedback;
-            $feedback->sid = $_SESSION['student']['sid'];
-            $feedback->msg = $_POST['msg'];
-            $feedback->time = date('Y-m-d H:i:s');
-            $feedback->save();
+            $message = new Message;
+            $message->receiver = 0;
+            $message->sender = $_SESSION['student']['sid'];
+            $message->message = $_POST['message'];
+            $message->time = date('Y-m-d H:i:s');
+            $message->state = 1;
+            $message->save();
             $this->render('feedbackSuccess');
         } else {
             $this->render('feedbackForm');

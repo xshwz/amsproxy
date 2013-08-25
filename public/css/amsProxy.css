@@ -49,7 +49,8 @@ a[data-dismiss="modal"] {
   margin-left: 16px;
 }
 
-.article {
+.article,
+.content {
   padding: 20px;
   background-color: #fff;
   border-radius: 6px;
@@ -186,4 +187,32 @@ td[rowspan="12"] {
 
 .stats > div {
   padding-top: 20px;
+}
+
+#studentList .search-form {
+  margin-bottom: 16px;
+}
+#studentList .badge {
+  margin: 6px 0;
+}
+#studentList .pagination {
+  margin: 0 16px 0 0;
+}
+#studentListPager {
+  height: 29px;
+}
+.listPager {
+  display: inline-block;
+  width: auto;
+  margin: 0px 16px 0 0;
+}
+@media (max-width: 768px) {
+  .listPager {
+    display: block;
+    width: 100%;
+    float: none;
+  }
+  #studentList .badge {
+    margin: 16px 0 0 0;
+  }
 }

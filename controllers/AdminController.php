@@ -40,12 +40,32 @@ class AdminController extends CController {
 
     public function actionStudent() {
         $criteria = new CDbCriteria();
-        $pages = new CPagination(Student::model()->count($criteria));
+        if (isset($_GET['keyword'])) {
+            $criteria->addSearchCondition('info',
+                str_replace('"', '%', json_encode($_GET['keyword'])),
+                false);
+        }
+        $count = Student::model()->count($criteria);
+        $pages = new CPagination($count);
         $pages->pageSize = 20;
         $pages->applyLimit($criteria);
         $this->render('student', array(
             'students' => Student::model()->findAll($criteria),
+            'count' => $count,
             'pages' => $pages,
         ));
+    }
+
+    public function actionSend() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $message = new Message;
+            $message->receiver = $_POST['receiver'];
+            $message->sender = 0;
+            $message->message = $_POST['message'];
+            $message->time = date('Y-m-d H:i:s');
+            $message->state = 1;
+            $message->save();
+        }
+        $this->render('send');
     }
 }
