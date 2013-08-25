@@ -4,11 +4,13 @@
  */
 class StudentController extends BaseController {
     /**
+     * 教务系统代理对象
      * @var AmsProxy
      */
     public $amsProxy;
 
     /**
+     * 学生数据模型
      * @var Student
      */
     public $student;
@@ -22,16 +24,12 @@ class StudentController extends BaseController {
 
             $this->student = Student::model()->findByPk(
                 $_SESSION['student']['sid']);
-        } else {
-            $this->notLoggedHandle();
-        }
-    }
 
-    /**
-     * 未登录的处理
-     */
-    public function notLoggedHandle() {
-        $this->redirect(array('site/login'));
+            $this->student->last_login_time = date('Y-m-d H:i:s');
+            $this->student->save();
+        } else {
+            $this->redirect(array('site/login'));
+        }
     }
 
     /**

@@ -22,6 +22,7 @@
             <tr>
                 <th>姓名</th>
                 <th>班级</th>
+                <th>最近登录时间</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -33,6 +34,7 @@
             <tr>
                 <td><?php echo $studentInfo['姓名']; ?></td>
                 <td><?php echo $studentInfo['行政班级']; ?></td>
+                <td><?php echo $student->last_login_time; ?></td>
                 <td>
                     <a
                         href="#detail-modal"
