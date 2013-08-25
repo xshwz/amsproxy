@@ -15,8 +15,13 @@ class menu extends CWidget {
             else
                 $class = '';
 
+            $link = Yii::app()->createUrl($item['url'][0]);
             echo "<li{$class}>";
-            echo CHtml::link($item['label'], array($item['url'][0]));
+            echo "<a href='{$link}'>";
+            echo $item['label'];
+            if (isset($item['badge']) && $item['badge'] > 0)
+                echo "<span class='badge'>{$item['badge']}</span>";
+            echo '</a>';
             echo '</li>';
         }
 

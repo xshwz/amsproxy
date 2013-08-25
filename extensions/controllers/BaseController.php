@@ -3,8 +3,23 @@
  * 基控制器，为了统一管理，所有的控制器都应该直接或间接继承自该控制器
  */
 class BaseController extends CController {
+    /**
+     * @var array 未读信息
+     */
+    public $unReadMsg = array();
+
     public function init() {
-        if ($this->isLogged()) define('IS_LOGGED', true);
+        if ($this->isLogged()) {
+            define('IS_LOGGED', true);
+
+            /** 获取未读消息 */
+            $this->unReadMsg = Message::model()->findAll(array(
+                'condition' => 'receiver=:receiver AND state=1',
+                'params' => array(
+                    ':receiver' => $_SESSION['student']['sid'],
+                ),
+            ));
+        }
     }
 
     /**

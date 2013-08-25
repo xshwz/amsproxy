@@ -54,6 +54,7 @@
                                     array(
                                         'label' => '消息',
                                         'url' => array('message/index'),
+                                        'badge' => count($this->unReadMsg),
                                     ),
                                 ),
                             )

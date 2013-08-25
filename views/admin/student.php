@@ -1,4 +1,4 @@
-<div class="content" id="studentList">
+<div class="content table-responsive" id="studentList">
     <form class="form-inline search-form" method="get">
         <input type="hidden" name="r" value="<?php echo $_GET['r']; ?>">
         <div class="form-group">
@@ -10,7 +10,7 @@
                     class="form-control"
                     value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
                 <span class="input-group-btn">
-                    <button class="btn" type="submit">
+                    <button class="btn" type="submit" title="搜索">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
@@ -37,13 +37,15 @@
                     <a
                         href="#detail-modal"
                         class="detail"
+                        title="详细资料"
                         data-toggle="modal"
                         data-sid='<?php echo $student->sid; ?>'
                         data-json='<?php echo $student->info; ?>'>
-                        <span class="glyphicon glyphicon-search"></span>
+                        <span class="glyphicon glyphicon-file"></span>
                     </a>
                     <a
                         href="#send-modal"
+                        title="发送消息"
                         data-toggle="modal"
                         data-sid='<?php echo $student->sid; ?>'
                         class="send">

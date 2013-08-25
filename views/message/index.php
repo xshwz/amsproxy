@@ -1,9 +1,11 @@
-<div class="content">
+<?php if (count($messages) > 0): ?>
+<div class="content table-responsive">
     <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>发送者</th>
                 <th>内容</th>
+                <th>时间</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -19,10 +21,12 @@
             <tr>
                 <td><?php echo $sender; ?></td>
                 <td><?php echo $message->message; ?></td>
+                <td><?php echo $message->time; ?></td>
                 <td>
                     <a
                         href="#send-modal"
                         class="send"
+                        title="发送消息"
                         data-toggle="modal"
                         data-sid='<?php echo $message->sender; ?>'>
                         <span class="glyphicon glyphicon-send"></span>
@@ -33,6 +37,7 @@
         </tbody>
     </table>
 </div>
+<?php endif; ?>
 
 <div class="modal fade" id="send-modal">
     <div class="modal-dialog">

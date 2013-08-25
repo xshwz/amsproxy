@@ -216,3 +216,10 @@ td[rowspan="12"] {
     margin: 16px 0 0 0;
   }
 }
+
+.navbar-nav .badge {
+  position: absolute;
+  background-color: #e74c3c;
+  font-size: 10px;
+  padding: 3px 6px;
+}
