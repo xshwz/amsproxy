@@ -4,12 +4,27 @@
  */
 class AdminController extends CController {
     public $layout = '/admin/layout';
+
+    /**
+     * @var array 未读信息
+     */
+    public $unReadMsg = array();
+
+    /**
+     * @var string 密码
+     */
     public $pwd = '123';
 
     public function init() {
         if ($_GET['r'] != 'admin/login') {
             if (isset($_SESSION['admin'])) {
                 define('IS_ADMIN', true);
+
+                /** 获取未读消息 */
+                $this->unReadMsg = Message::model()->findAll(array(
+                    'condition' => 'receiver=:receiver AND state=1',
+                    'params' => array(':receiver' => 0),
+                ));
             } else {
                 $this->redirect(array('admin/login'));
             }
@@ -70,6 +85,19 @@ class AdminController extends CController {
     }
 
     public function actionFeedback() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $message = Message::model()->findByPk($_POST['id']);
+            if (isset($_POST['state'])) $message->state = 0;
+            else                        $message->state = 1;
+            $message->save();
+
+            /** 重新获取未读消息 */
+            $this->unReadMsg = Message::model()->findAll(array(
+                'condition' => 'receiver=:receiver AND state=1',
+                'params' => array(':receiver' => 0),
+            ));
+        }
+
         $this->render('feedback', array(
             'messages' => Message::model()->findAll(array(
                 'condition' => 'receiver=:receiver',

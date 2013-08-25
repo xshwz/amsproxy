@@ -44,10 +44,6 @@
                                         'url' => array('admin/student'),
                                     ),
                                     array(
-                                        'label' => '反馈',
-                                        'url' => array('admin/feedback'),
-                                    ),
-                                    array(
                                         'label' => '设置',
                                         'url' => array('admin/setting'),
                                     ),
@@ -60,6 +56,16 @@
                         );
                     ?>
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="<?php echo Yii::app()->createUrl('admin/feedback'); ?>">
+                                <span class="glyphicon glyphicon-bell"></span>
+                                <?php if (count($this->unReadMsg) > 0): ?>
+                                <span class="badge admin">
+                                    <?php echo count($this->unReadMsg); ?>
+                                </span>
+                                <?php endif; ?>
+                            </a>
+                        </li>
                         <li>
                             <?php
                             echo CHtml::link(

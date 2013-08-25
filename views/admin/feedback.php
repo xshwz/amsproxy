@@ -2,6 +2,7 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr>
+                <th>状态</th>
                 <th>发送者</th>
                 <th>内容</th>
                 <th>时间</th>
@@ -14,6 +15,16 @@
                 $student = Student::model()->findByPk($message->sender);
             ?>
             <tr>
+                <td>
+                    <form method="post" class="text-center">
+                        <input type="hidden" name="id" value="<?php echo $message->id; ?>">
+                        <input
+                            type="checkbox"
+                            name="state"
+                            class="state"
+                            <?php if ($message->state == 0) echo 'checked'; ?>>
+                    </form>
+                </td>
                 <td>
                     <a
                         href="#detail-modal"
@@ -51,7 +62,7 @@
             <div class="modal-body">
                 <form
                     id="ajaxSendForm"
-                    action="<?php echo Yii::app()->createUrl('admin/send')?>"
+                    action="<?php echo Yii::app()->createUrl('admin/send'); ?>"
                     method="post">
                     <input type="hidden" name="sender" value="0">
                     <input type="hidden" name="receiver" id="send-form-sid">

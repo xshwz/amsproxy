@@ -52,3 +52,7 @@ $('#ajaxSendForm').ajaxForm({
         $('#send-modal').modal('hide');
     }
 });
+
+$('input.state').click(function(){
+    $(this).parent().submit();
+});
