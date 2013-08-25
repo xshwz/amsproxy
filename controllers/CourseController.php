@@ -4,11 +4,6 @@
  */
 class CourseController extends StudentController {
 	public function actionIndex() {
-        $this->render('index', array(
-            'courses' => array_merge(
-                $this->amsProxy->getCourse(),
-                $this->amsProxy->getClassCourse(
-                    $_SESSION['student']['info']['行政班级'])),
-        ));
+        $this->render('index', array('courses' => $this->getCourse()));
 	}
 }

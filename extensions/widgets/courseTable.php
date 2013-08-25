@@ -146,6 +146,7 @@ EOT;
      * @example return array('操作系统' => 0, '软件工程' => 1)
      */
     public function getCoursesSeq($courses) {
+        $coursesSeq = array();
         foreach ($courses as $course)
             if (!array_key_exists($course['courseName'], $coursesSeq))
                 $coursesSeq[$course['courseName']] = count($coursesSeq);

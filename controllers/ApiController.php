@@ -8,13 +8,10 @@ class ApiController extends StudentController {
 	}
 
     public function actionCourse() {
-        echo json_encode(array_merge(
-            $this->amsProxy->getCourse(),
-            $this->amsProxy->getClassCourse(
-                $_SESSION['student']['info']['行政班级'])));
+        echo $this->getCourse(true);
     }
 
     public function actionScore() {
-        echo json_encode($this->amsProxy->getScore(1));
+        echo $this->getScore(true);
     }
 }

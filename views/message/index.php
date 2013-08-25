@@ -20,7 +20,7 @@
             ?>
             <tr>
                 <td><?php echo $sender; ?></td>
-                <td><?php echo $message->message; ?></td>
+                <td><?php echo CHtml::encode($message->message); ?></td>
                 <td><?php echo $message->time; ?></td>
                 <td>
                     <a

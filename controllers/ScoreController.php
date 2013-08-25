@@ -14,7 +14,7 @@ class ScoreController extends StudentController {
     }
 
     public function actionEffectiveScore() {
-        $scoreTable = $this->amsProxy->getScore(1);
+        $scoreTable = $this->getScore();
         $this->addScoreState($scoreTable, 6);
         $this->render('scoreTable', array(
             'score' => $scoreTable,
@@ -22,7 +22,7 @@ class ScoreController extends StudentController {
     }
 
 	public function actionStats() {
-        $scoreTable = $this->amsProxy->getScore(1);
+        $scoreTable = $this->getScore();
         $this->addScoreState($scoreTable, 6);
         $this->render('stats', array(
             'termNames' => $this->getTermNames($scoreTable),
