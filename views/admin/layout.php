@@ -23,7 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a href="<?php echo Yii::app()->createUrl('admin/index')?>" class="navbar-brand">
+                    <a href="<?php echo Yii::app()->createUrl('admin/index'); ?>" class="navbar-brand">
                         <img width="17" height="17" src="img/logo.png" alt="logo">
                         相思青果后台管理
                     </a>

@@ -10,14 +10,17 @@
         <tbody>
             <?php
             foreach ($messages as $message):
-            if ($message->sender) {
-                // TODO
-            } else {
-                $sender = '管理员';
-            }
             ?>
             <tr>
-                <td><?php echo $sender; ?></td>
+                <td>
+                    <a href="<?php
+                        echo Yii::app()->createUrl('admin/student', array(
+                            'keyword' => $message->sender,
+                        ));
+                        ?>">
+                        <?php echo $message->sender; ?>
+                    </a>
+                </td>
                 <td><?php echo $message->message; ?></td>
                 <td>
                     <a
@@ -44,8 +47,9 @@
             <div class="modal-body">
                 <form
                     id="ajaxSendForm"
-                    action="<?php echo Yii::app()->createUrl('message/send')?>"
+                    action="<?php echo Yii::app()->createUrl('admin/send')?>"
                     method="post">
+                    <input type="hidden" name="sender" value="0">
                     <input type="hidden" name="receiver" id="send-form-sid">
                     <div class="form-group">
                         <textarea

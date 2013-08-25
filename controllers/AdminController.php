@@ -68,4 +68,15 @@ class AdminController extends CController {
         }
         $this->render('send');
     }
+
+    public function actionFeedback() {
+        $this->render('feedback', array(
+            'messages' => Message::model()->findAll(array(
+                'condition'=>'receiver=:receiver',
+                'params'=>array(
+                    ':receiver' => 0,
+                ),
+            )),
+        ));
+    }
 }
