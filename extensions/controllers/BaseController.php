@@ -8,6 +8,11 @@ class BaseController extends CController {
      */
     public $unReadMsg = array();
 
+    /**
+     * @var Setting 设置信息
+     */
+    public $setting;
+
     public function init() {
         if ($this->isLogged()) {
             define('IS_LOGGED', true);
@@ -19,6 +24,8 @@ class BaseController extends CController {
                     ':receiver' => $_SESSION['student']['sid'],
                 ),
             ));
+
+            $this->setting = Setting::model()->find();
         }
     }
 
