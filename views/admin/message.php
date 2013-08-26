@@ -18,8 +18,6 @@
             <tr>
                 <td>
                     <?php if ($message->sender): ?>
-                    管理员
-                    <?php else: ?>
                     <a
                         href="#detail-modal"
                         class="detail"
@@ -27,12 +25,12 @@
                         data-json='<?php if ($sender) echo $sender->info; ?>'>
                         <?php echo $message->sender; ?>
                     </a>
+                    <?php else: ?>
+                    管理员
                     <?php endif; ?>
                 </td>
                 <td>
                     <?php if ($message->receiver): ?>
-                    管理员
-                    <?php else: ?>
                     <a
                         href="#detail-modal"
                         class="detail"
@@ -40,6 +38,8 @@
                         data-json='<?php if ($receiver) echo $receiver->info; ?>'>
                         <?php echo $message->receiver; ?>
                     </a>
+                    <?php else: ?>
+                    管理员
                     <?php endif; ?>
                 </td>
                 <td><?php echo CHtml::encode($message->message); ?></td>
