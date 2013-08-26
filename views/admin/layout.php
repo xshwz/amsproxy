@@ -53,10 +53,6 @@
                                         'url' => array('admin/database'),
                                     ),
                                     array(
-                                        'label' => '命令',
-                                        'url' => array('admin/command'),
-                                    ),
-                                    array(
                                         'label' => '设置',
                                         'url' => array('admin/setting'),
                                     ),
