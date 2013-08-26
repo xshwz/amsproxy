@@ -44,6 +44,10 @@
                                         'url' => array('admin/student'),
                                     ),
                                     array(
+                                        'label' => '消息',
+                                        'url' => array('admin/message'),
+                                    ),
+                                    array(
                                         'label' => '设置',
                                         'url' => array('admin/setting'),
                                     ),

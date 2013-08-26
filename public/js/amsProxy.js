@@ -8,7 +8,7 @@ $('#ajaxFeedbackForm').ajaxForm({
         }
     },
     success: function() {
-        alert('感谢你的反馈，我们会尽快处理。');
+        alert('感谢你的反馈，我们会尽快回复。');
         $('#feedbackModal').modal('hide');
     }
 });

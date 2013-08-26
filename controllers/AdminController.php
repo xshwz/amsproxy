@@ -6,7 +6,7 @@ class AdminController extends CController {
     public $layout = '/admin/layout';
 
     /**
-     * @var array 未读信息
+     * @var array 未读消息
      */
     public $unReadMsg = array();
 
@@ -19,12 +19,7 @@ class AdminController extends CController {
         if ($_GET['r'] != 'admin/login') {
             if (isset($_SESSION['admin'])) {
                 define('IS_ADMIN', true);
-
-                /** 获取未读消息 */
-                $this->unReadMsg = Message::model()->findAll(array(
-                    'condition' => 'receiver=:receiver AND state=1',
-                    'params' => array(':receiver' => 0),
-                ));
+                $this->unReadMsg = $this->getUnReadMsg();
             } else {
                 $this->redirect(array('admin/login'));
             }
@@ -62,7 +57,7 @@ class AdminController extends CController {
         }
         $count = Student::model()->count($criteria);
         $pages = new CPagination($count);
-        $pages->pageSize = 20;
+        $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
         $pages->applyLimit($criteria);
         $this->render('student', array(
             'students' => Student::model()->findAll($criteria),
@@ -92,10 +87,7 @@ class AdminController extends CController {
             $message->save();
 
             /** 重新获取未读消息 */
-            $this->unReadMsg = Message::model()->findAll(array(
-                'condition' => 'receiver=:receiver AND state=1',
-                'params' => array(':receiver' => 0),
-            ));
+            $this->unReadMsg = $this->getUnReadMsg();
         }
 
         $this->render('feedback', array(
@@ -106,6 +98,35 @@ class AdminController extends CController {
                     ':receiver' => 0,
                 ),
             )),
+        ));
+    }
+
+    public function actionMessage() {
+        $criteria = new CDbCriteria(array(
+            'condition' => 'sender=:sender',
+            'params' => array(
+                ':sender' => isset($_GET['sender']) ? $_GET['sender'] : 0,
+            ),
+        ));
+        $count = Message::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
+        $pages->applyLimit($criteria);
+        $this->render('message', array(
+            'messages' => Message::model()->findAll($criteria),
+            'count' => $count,
+            'pages' => $pages,
+        ));
+    }
+
+    /**
+     * 获取未读消息
+     * @return array 未读消息
+     */
+    public function getUnReadMsg() {
+        return Message::model()->findAll(array(
+            'condition' => 'receiver=:receiver AND state=1',
+            'params' => array(':receiver' => 0),
         ));
     }
 }
