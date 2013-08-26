@@ -11,7 +11,7 @@
         <textarea name="sql" rows="4" class="form-control"></textarea>
     </div>
     <div class="form-group col-sm-offset-3 col-sm-6">
-        <button type="submit" class="btn">
+        <button type="submit" class="btn btn-block">
             <span class="glyphicon glyphicon-play"></span>
         </button>
     </div>

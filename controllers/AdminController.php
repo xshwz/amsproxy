@@ -145,6 +145,10 @@ class AdminController extends CController {
         $this->render('database');
     }
 
+    public function actionCommand() {
+        $this->render('command');
+    }
+
     /**
      * 获取未读消息
      * @return array 未读消息
