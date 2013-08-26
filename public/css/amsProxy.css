@@ -246,3 +246,7 @@ td.time {
 .datepicker td.active:hover.active {
   background-color: #1abc9c;
 }
+
+[id^="cnzz_stat_icon"] {
+  display: none;
+}

@@ -57,4 +57,4 @@ $('input.state').click(function(){
     $(this).parent().submit();
 });
 
-$('.date-picker').datepicker();
+if ($.fn.datepicker) $('.date-picker').datepicker();
