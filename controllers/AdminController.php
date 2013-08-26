@@ -129,8 +129,10 @@ class AdminController extends CController {
     }
 
     public function actionSetting() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->setting->updateAll($_POST);
+            $this->setting = Setting::model()->find();
+        }
 
         $this->render('setting');
     }
