@@ -121,7 +121,6 @@
                             <div class="form-group">
                                 <textarea
                                     placeholder="有什么意见或问题想要对我们说？"
-                                    type="text"
                                     name="message"
                                     rows="4"
                                     id="feedback-msg"

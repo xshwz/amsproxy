@@ -17,7 +17,7 @@
             ?>
             <tr>
                 <td>
-                    <?php if ($message->sender == 0): ?>
+                    <?php if ($message->sender): ?>
                     管理员
                     <?php else: ?>
                     <a
@@ -30,7 +30,7 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php if ($message->receiver == 0): ?>
+                    <?php if ($message->receiver): ?>
                     管理员
                     <?php else: ?>
                     <a
@@ -43,7 +43,7 @@
                     <?php endif; ?>
                 </td>
                 <td><?php echo CHtml::encode($message->message); ?></td>
-                <td><?php echo $message->time; ?></td>
+                <td class="time"><?php echo $message->time; ?></td>
                 <td>
                     <?php
                     if ($message->state == 0)

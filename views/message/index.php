@@ -21,7 +21,7 @@
             <tr>
                 <td><?php echo $sender; ?></td>
                 <td><?php echo CHtml::encode($message->message); ?></td>
-                <td><?php echo $message->time; ?></td>
+                <td class="time"><?php echo $message->time; ?></td>
                 <td>
                     <a
                         href="#send-modal"

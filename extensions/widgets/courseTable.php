@@ -86,8 +86,7 @@ EOT;
                         echo '</div>';
                         echo '</td>';
                     } else {
-                        echo CHtml::tag('td', array(
-                            'rowspan' => $course['lessonSpan']));
+                        echo "<td rowspan='{$course['lessonSpan']}'></td>";
                     }
                 }
             }

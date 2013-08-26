@@ -228,3 +228,7 @@ td[rowspan="12"] {
   position: relative;
   top: -6px;
 }
+
+td.time {
+  white-space: nowrap;
+}
