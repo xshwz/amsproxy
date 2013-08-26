@@ -49,6 +49,10 @@
                                         'url' => array('admin/message'),
                                     ),
                                     array(
+                                        'label' => '数据库',
+                                        'url' => array('admin/database'),
+                                    ),
+                                    array(
                                         'label' => '设置',
                                         'url' => array('admin/setting'),
                                     ),

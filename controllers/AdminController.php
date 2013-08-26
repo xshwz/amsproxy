@@ -137,6 +137,14 @@ class AdminController extends CController {
         $this->render('setting');
     }
 
+    public function actionDataBase() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            ;
+        }
+
+        $this->render('database');
+    }
+
     /**
      * 获取未读消息
      * @return array 未读消息

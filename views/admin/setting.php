@@ -1,4 +1,5 @@
-<div class="content form-horizontal">
+<br>
+<div class="form-horizontal">
     <div class="form-group">
         <label for="inputPassword" class="col-sm-4 control-label">密码</label>
         <div class="col-sm-4">

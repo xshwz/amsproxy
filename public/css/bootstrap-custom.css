@@ -32,7 +32,7 @@ pre {
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-nav > li > a:hover {
   color: #1abc9c;
-  transition: color ease-in-out 0.15s;
+  transition: color ease-in-out 0.2s;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
@@ -190,4 +190,8 @@ pre {
 
 .text-info {
   color: #3a87ad;
+}
+
+.page-header {
+  border-bottom-color: #f8f8f8;
 }

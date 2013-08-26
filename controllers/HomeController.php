@@ -4,7 +4,9 @@
  */
 class HomeController extends StudentController {
 	public function actionIndex() {
-		$this->render('index');
+        $this->render('index', array(
+            'courses' => $this->getCourse(),
+        ));
 	}
 
     public function actionLogout() {
