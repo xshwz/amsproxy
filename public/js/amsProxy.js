@@ -56,3 +56,5 @@ $('#ajaxSendForm').ajaxForm({
 $('input.state').click(function(){
     $(this).parent().submit();
 });
+
+$('.date-picker').datepicker();

@@ -232,3 +232,17 @@ td[rowspan="12"] {
 td.time {
   white-space: nowrap;
 }
+
+.datepicker td span.active,
+.datepicker td.active,
+.datepicker td.active:hover {
+  background-image: none;
+}
+.datepicker td span.active:active,
+.datepicker td span.active.active,
+.datepicker td.active:active,
+.datepicker td.active:hover:active,
+.datepicker td.active.active,
+.datepicker td.active:hover.active {
+  background-color: #1abc9c;
+}

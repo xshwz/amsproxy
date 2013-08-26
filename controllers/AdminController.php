@@ -11,11 +11,13 @@ class AdminController extends CController {
     public $unReadMsg = array();
 
     /**
-     * @var string 密码
+     * @var Setting 设置信息
      */
-    public $pwd = '123';
+    public $setting;
 
     public function init() {
+        $this->setting = Setting::model()->find();
+
         if ($_GET['r'] != 'admin/login') {
             if (isset($_SESSION['admin'])) {
                 define('IS_ADMIN', true);
@@ -32,7 +34,7 @@ class AdminController extends CController {
 
     public function actionLogin() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if ($_POST['pwd'] == $this->pwd) {
+            if ($_POST['pwd'] == $this->setting->password) {
                 $_SESSION['admin'] = true;
                 $this->redirect(array('admin/index'));
             } else {
@@ -50,11 +52,13 @@ class AdminController extends CController {
 
     public function actionStudent() {
         $criteria = new CDbCriteria();
+
         if (isset($_GET['keyword'])) {
             $criteria->addSearchCondition('info',
                 str_replace('"', '%', json_encode($_GET['keyword'])),
                 false);
         }
+
         $count = Student::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
@@ -82,8 +86,12 @@ class AdminController extends CController {
     public function actionFeedback() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message = Message::model()->findByPk($_POST['id']);
-            if (isset($_POST['state'])) $message->state = 0;
-            else                        $message->state = 1;
+
+            if (isset($_POST['state']))
+                $message->state = 0;
+            else
+                $message->state = 1;
+
             $message->save();
 
             /** 重新获取未读消息 */
@@ -108,6 +116,7 @@ class AdminController extends CController {
                 ':sender' => isset($_GET['sender']) ? $_GET['sender'] : 0,
             ),
         ));
+
         $count = Message::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
@@ -117,6 +126,13 @@ class AdminController extends CController {
             'count' => $count,
             'pages' => $pages,
         ));
+    }
+
+    public function actionSetting() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+            $this->setting->updateAll($_POST);
+
+        $this->render('setting');
     }
 
     /**

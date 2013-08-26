@@ -14,6 +14,8 @@ class BaseController extends CController {
     public $setting;
 
     public function init() {
+        $this->setting = Setting::model()->find();
+
         if ($this->isLogged()) {
             define('IS_LOGGED', true);
 
@@ -24,8 +26,6 @@ class BaseController extends CController {
                     ':receiver' => $_SESSION['student']['sid'],
                 ),
             ));
-
-            $this->setting = Setting::model()->find();
         }
     }
 

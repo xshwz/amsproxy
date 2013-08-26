@@ -74,6 +74,10 @@ pre {
   border-color: #1abc9c;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 188, 156, 0.6);
 }
+.form-inline .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .btn {
   color: #fff;
@@ -142,6 +146,11 @@ pre {
 }
 .table thead > tr > th {
   border-bottom: none;
+}
+@media (max-width: 768px) {
+  .table-responsive {
+    border: none;
+  }
 }
 
 .pagination > .active > a,

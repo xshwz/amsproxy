@@ -6,6 +6,7 @@
         <title>相思青果后台管理</title>
         <link rel="shortcut icon" href="favicon.ico">
         <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/datepicker.css" rel="stylesheet">
         <link href="css/bootstrap-custom.css" rel="stylesheet">
         <link href="css/amsProxy.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
@@ -90,6 +91,7 @@
 
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
         <script src="js/amsProxy.js"></script>
     </body>
 </html>
