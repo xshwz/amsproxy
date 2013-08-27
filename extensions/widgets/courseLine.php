@@ -37,6 +37,7 @@ class courseLine extends CWidget {
      * @return array 周课程数组
      */
     public function getWeekCourse($courses, $weekDay) {
+        $weekCourses = array();
         foreach ($courses as $course)
             if ($course['weekDay'] == $weekDay)
                 $weekCourses[] = $course;
