@@ -223,7 +223,7 @@ td[rowspan="12"] {
     display: block;
     width: 100%;
     float: none;
-    margin: 0 16px 0 0;
+    margin-top: 16px;
   }
   .pages .badge {
     margin-top: 10px;
