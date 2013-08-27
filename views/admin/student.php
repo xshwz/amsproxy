@@ -1,22 +1,22 @@
-<div class="content table-responsive" id="studentList">
-    <form class="form-inline search-form" method="get">
-        <input type="hidden" name="r" value="<?php echo $_GET['r']; ?>">
-        <div class="form-group">
-            <div class="input-group">
-                <input
-                    type="text"
-                    name="keyword"
-                    placeholder="关键字"
-                    class="form-control"
-                    value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
-                <span class="input-group-btn">
-                    <button class="btn" type="submit" title="搜索">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>
+<form class="form-inline search-form" method="get">
+    <input type="hidden" name="r" value="<?php echo $_GET['r']; ?>">
+    <div class="form-group">
+        <div class="input-group">
+            <input
+                type="text"
+                name="keyword"
+                placeholder="关键字"
+                class="form-control"
+                value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
+            <span class="input-group-btn">
+                <button class="btn" type="submit" title="搜索">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
         </div>
-    </form>
+    </div>
+</form>
+<div class="content table-responsive" id="studentList">
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -58,6 +58,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
+<div class="pages">
     <?php if ($count > 1): ?>
         <div>
             <?php if ($count > 20): ?>
@@ -91,7 +93,7 @@
                     ?>
                 </div>
             <?php endif; ?>
-            <span class="badge pull-left"><?php echo $count; ?></span>
+            <span class="badge"><?php echo $count; ?></span>
             <div class="clearfix"></div>
         </div>
     <?php endif; ?>

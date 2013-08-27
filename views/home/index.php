@@ -1,6 +1,11 @@
 <!--
 <div class="page-header">
     <h2>今日课程</h2>
+    <?php
+    $this->widget(
+        'ext.widgets.courseLine',
+        array('courses' => $courses));
+    ?>
 </div>
 -->
 <?php
@@ -8,11 +13,16 @@ $now = date_create('now');
 $start_date = date_create($this->setting->start_date);
 
 if ($now > $start_date):
-    $this->widget(
-        'ext.widgets.courseLine',
-        array('courses' => $courses));
-else:
 ?>
+<div class="jumbotron">
+    <h1>
+        <p>开学啦！</p>
+        <p>
+            <img src="img/rage_comics/angry-desk-flip.png" height="128" alt="暴走漫画 - 姚明">
+        </p>
+    </h1>
+</div>
+<?php else: ?>
 <div class="jumbotron">
     <h1>
         <p>

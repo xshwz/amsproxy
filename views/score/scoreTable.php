@@ -22,7 +22,7 @@
             class="panel-collapse collapse
                 <?php if ($term_name == $last_term_name) echo 'in'; ?>">
             <div class="panel-body table-responsive">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <?php

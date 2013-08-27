@@ -70,6 +70,10 @@ pre {
   background-color: #1abc9c;
 }
 
+.form-control {
+  border-color: transparent;
+  box-shadow: none;
+}
 .form-control:focus {
   border-color: #1abc9c;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26, 188, 156, 0.6);
@@ -112,6 +116,9 @@ pre {
   background-color: #fff;
   border-radius: 0 0 6px 6px;
 }
+.modal-body .form-control {
+  border: 1px solid #1abc9c;
+}
 
 .list-group-item.active,
 .list-group-item.active:hover,
@@ -146,6 +153,17 @@ pre {
 }
 .table thead > tr > th {
   border-bottom: none;
+}
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+  border-top: none;
+}
+.table-responsive .table {
+  margin-bottom: 0;
 }
 @media (max-width: 768px) {
   .table-responsive {
@@ -194,4 +212,10 @@ pre {
 
 .page-header {
   border-bottom-color: #f8f8f8;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  padding: 6px 10px;
+  border: none;
 }

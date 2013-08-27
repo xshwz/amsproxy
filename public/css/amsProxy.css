@@ -184,16 +184,21 @@ td[rowspan="12"] {
 .course .tooltip-inner p {
   margin: 2px 0;
 }
+@media (max-width: 768px) {
+  .table-responsive {
+    margin-bottom: 0;
+  }
+}
 
 .stats > div {
   padding-top: 20px;
 }
 
-#studentList .search-form {
-  margin-bottom: 16px;
+.search-form {
+  margin-bottom: 12px;
 }
-#studentList .badge {
-  margin: 6px 0;
+#studentLinkPager {
+  margin-right: 16px;
 }
 #studentList .pagination {
   margin: 0 16px 0 0;
@@ -204,16 +209,25 @@ td[rowspan="12"] {
 .listPager {
   display: inline-block;
   width: auto;
-  margin: 0px 16px 0 0;
+  margin: 20px 16px 0 0;
+}
+.pages .badge {
+  margin-top: 25px;
+  float: left;
 }
 @media (max-width: 768px) {
+  .pages {
+    text-align: center;
+  }
   .listPager {
     display: block;
     width: 100%;
     float: none;
+    margin: 0 16px 0 0;
   }
-  #studentList .badge {
-    margin: 16px 0 0 0;
+  .pages .badge {
+    margin-top: 10px;
+    float: none;
   }
 }
 
@@ -233,6 +247,12 @@ td.time {
   white-space: nowrap;
 }
 
+.dropdown-menu {
+  border: 1px solid #1abc9c;
+}
+.datepicker:before {
+  border-bottom: 7px solid #1abc9c;
+}
 .datepicker td span.active,
 .datepicker td.active,
 .datepicker td.active:hover {
