@@ -44,8 +44,7 @@ Highcharts.setOptions({
     ],
     plotOptions: {
         pie: {
-            allowPointSelect: true,
-            cursor: 'pointer'
+            allowPointSelect: true
         }
     }
 });
@@ -132,7 +131,7 @@ $(function(){
                 '</div>' +
                 '<div ' +
                     'id="' + collegeName + '" ' +
-                    'class="panel-collapse collapse in">' +
+                    'class="panel-collapse collapse">' +
                     '<div class="panel-body">' +
                         '<div id="college-' + collegeName + '"></div>' +
                     '</div>' +

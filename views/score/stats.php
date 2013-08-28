@@ -50,8 +50,7 @@ $(function(){
         colors: ['#2ecc71', '#f1c40f', '#3498db', '#9b59b6', '#e74c3c'],
         plotOptions: {
             pie: {
-                allowPointSelect: true,
-                cursor: 'pointer'
+                allowPointSelect: true
             }
         },
         series: [{
