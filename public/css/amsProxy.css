@@ -249,14 +249,26 @@ td.time {
 
 .dropdown-menu {
   border: 1px solid #1abc9c;
+  background-color: #1abc9c;
 }
 .datepicker:before {
   border-bottom: 7px solid #1abc9c;
+}
+.datepicker:after {
+  border-bottom: 6px solid #1abc9c;
 }
 .datepicker td span.active,
 .datepicker td.active,
 .datepicker td.active:hover {
   background-image: none;
+}
+.table-condensed thead > tr > th,
+.table-condensed tbody > tr > th,
+.table-condensed tfoot > tr > th,
+.table-condensed thead > tr > td,
+.table-condensed tbody > tr > td,
+.table-condensed tfoot > tr > td {
+  color: #fff;
 }
 .datepicker td span.active:active,
 .datepicker td span.active.active,
@@ -264,7 +276,22 @@ td.time {
 .datepicker td.active:hover:active,
 .datepicker td.active.active,
 .datepicker td.active:hover.active {
-  background-color: #1abc9c;
+  background-color: #fff;
+  color: #16a085;
+  text-shadow: none;
+}
+.datepicker td.old,
+.datepicker td.new {
+  color: #f1c40f;
+}
+.datepicker td span:hover,
+.datepicker thead tr:first-child th:hover,
+.datepicker td.day:hover {
+  background-color: #16a085;
+}
+.form-control.date-picker {
+  border-color: #fff;
+  box-shadow: none;
 }
 
 [id^="cnzz_stat_icon"] {
@@ -276,6 +303,9 @@ td.time {
   padding: 2px 0;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.courseLine > ul {
+  padding-left: 30px;
 }
 .courseLine .line {
   height: 100%;
@@ -314,7 +344,7 @@ td.time {
   z-index: 999;
   position: absolute;
   top: 20px;
-  left: -47px;
+  left: -37px;
 
   border-radius: 20px;
   border-color: #fff;
@@ -324,4 +354,25 @@ td.time {
 .courseLine .circle:hover {
   border-width: 4px;
   transition: border-width ease-in-out 0.2s;
+}
+
+.queryTable {
+  table-layout: fixed;
+}
+.queryTable td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.executeResult {
+  padding: 0 8px;
+}
+@media (max-width: 768px) {
+  .queryTable {
+    table-layout: auto;
+  }
+  .queryTable td {
+    text-overflow: clip;
+    overflow: visible;
+  }
 }

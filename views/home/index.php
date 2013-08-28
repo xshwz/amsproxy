@@ -1,13 +1,14 @@
 <!--
 <div class="page-header">
     <h2>今日课程</h2>
-    <?php
-    $this->widget(
-        'ext.widgets.courseLine',
-        array('courses' => $courses));
-    ?>
 </div>
+<?php
+$this->widget(
+    'ext.widgets.courseLine',
+    array('courses' => $courses));
+?>
 -->
+
 <?php
 $now = date_create('now');
 $start_date = date_create($this->setting->start_date);

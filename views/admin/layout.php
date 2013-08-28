@@ -53,6 +53,10 @@
                                         'url' => array('admin/database'),
                                     ),
                                     array(
+                                        'label' => '统计',
+                                        'url' => array('admin/stats'),
+                                    ),
+                                    array(
                                         'label' => '设置',
                                         'url' => array('admin/setting'),
                                     ),

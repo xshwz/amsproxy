@@ -25,7 +25,7 @@ $(function(){
             type: 'bar'
         },
         title: {
-            text: '学期科目统计图'
+            text: '学期科目统计'
         },
         xAxis: {
             categories: <?php echo json_encode($termNames); ?>
@@ -45,7 +45,7 @@ $(function(){
 
     $('#scoreDict').highcharts({
         title: {
-            text: '成绩分布图'
+            text: '成绩分布'
         },
         colors: ['#2ecc71', '#f1c40f', '#3498db', '#9b59b6', '#e74c3c'],
         plotOptions: {
@@ -56,6 +56,7 @@ $(function(){
         },
         series: [{
             type: 'pie',
+            name: '分数段',
             data: [
                 ['[100, 90]', <?php echo $scoreDict[0]; ?>],
                 ['(90, 80]',  <?php echo $scoreDict[1]; ?>],
