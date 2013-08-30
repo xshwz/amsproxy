@@ -49,10 +49,6 @@
                                         'url' => array('admin/message'),
                                     ),
                                     array(
-                                        'label' => '数据库',
-                                        'url' => array('admin/database'),
-                                    ),
-                                    array(
                                         'label' => '统计',
                                         'url' => array('admin/stats'),
                                     ),

@@ -138,10 +138,6 @@ class AdminController extends CController {
         $this->render('setting');
     }
 
-    public function actionDataBase() {
-        $this->render('database');
-    }
-
     public function actionStats() {
         $stats = array(
             'gender' => array(
