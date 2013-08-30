@@ -27,9 +27,9 @@ class courseLine extends CWidget {
     );
 
     public function run() {
-        $$weekCourses = $this->getWeekCourse($this->courses, (int)date('N'));
+        $weekCourses = $this->getWeekCourse($this->courses, (int)date('N'));
 
-        if (count($weekCourses) = 0) {
+        if (count($weekCourses) == 0) {
             echo <<<EOT
             <p>今天居然没课！</p>
             <p>
