@@ -27,20 +27,7 @@ class courseLine extends CWidget {
     );
 
     public function run() {
-        $courses = $this->getWeekCourse($this->courses, (int)date('N'));
-    }
-
-    /**
-     * 提取周课程
-     * @param array $courses 原课程数组
-     * @param int $weekDay
-     * @return array 周课程数组
-     */
-    public function getWeekCourse($courses, $weekDay) {
-        $weekCourses = array();
-        foreach ($courses as $course)
-            if ($course['weekDay'] == $weekDay)
-                $weekCourses[] = $course;
+        $$weekCourses = $this->getWeekCourse($this->courses, (int)date('N'));
 
         if (count($weekCourses) = 0) {
             echo <<<EOT
@@ -51,10 +38,6 @@ class courseLine extends CWidget {
 EOT;
             return;
         }
-
-        usort($weekCourses, function($a, $b) {
-            return $a['lessonStart'] > $b['lessonStart'];
-        });
 
         echo '<div class="courseLine col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">';
         echo '<ul>';
@@ -97,5 +80,24 @@ EOT;
         echo '</ul>';
         echo '<div class="line"></div>';
         echo '</div>';
+    }
+
+    /**
+     * 提取周课程
+     * @param array $courses 原课程数组
+     * @param int $weekDay
+     * @return array 周课程数组
+     */
+    public function getWeekCourse($courses, $weekDay) {
+        $weekCourses = array();
+        foreach ($courses as $course)
+            if ($course['weekDay'] == $weekDay)
+                $weekCourses[] = $course;
+
+        usort($weekCourses, function($a, $b) {
+            return $a['lessonStart'] > $b['lessonStart'];
+        });
+
+        return $weekCourses;
     }
 }
