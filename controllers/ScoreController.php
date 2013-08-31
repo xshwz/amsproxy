@@ -6,6 +6,7 @@ class ScoreController extends StudentController {
     public $layout = '/score/layout';
 
     public function actionOriginalScore() {
+        // $scoreTable = $this->getScore(0);
         $scoreTable = $this->amsProxy->getScore(0);
         $this->addScoreState($scoreTable, 10);
         $this->render('scoreTable', array(
@@ -14,7 +15,8 @@ class ScoreController extends StudentController {
     }
 
     public function actionEffectiveScore() {
-        $scoreTable = $this->getScore();
+        // $scoreTable = $this->getScore(1);
+        $scoreTable = $this->amsProxy->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('scoreTable', array(
             'score' => $scoreTable,
@@ -22,7 +24,8 @@ class ScoreController extends StudentController {
     }
 
 	public function actionStats() {
-        $scoreTable = $this->getScore();
+        // $scoreTable = $this->getScore(1);
+        $scoreTable = $this->amsProxy->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('stats', array(
             'termNames' => $this->getTermNames($scoreTable),

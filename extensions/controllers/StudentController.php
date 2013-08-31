@@ -35,10 +35,11 @@ class StudentController extends BaseController {
     /**
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
+     * @param int $type 0：原始成绩 1：有效成绩
      * @param bool $json 是否返回 json
      * @return array 成绩表
      */
-    public function getScore($json=false) {
+    public function getScore($type=0, $json=false) {
         if ($this->student->score) {
             if ($json)
                 return $this->student->score;

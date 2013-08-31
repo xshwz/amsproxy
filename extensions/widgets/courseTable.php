@@ -30,6 +30,7 @@ class courseTable extends CWidget {
             <table class="courseTable">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>星期一</th>
                         <th>星期二</th>
                         <th>星期三</th>
@@ -44,6 +45,7 @@ EOT;
 
         for ($lessonNum = 1; $lessonNum <= 12; $lessonNum++) {
             echo '<tr>';
+            echo "<td>{$lessonNum}</td>";
 
             for ($weekDay = 1; $weekDay <= 7; $weekDay++) {
                 if (isset($courseTable[$weekDay][$lessonNum])) {

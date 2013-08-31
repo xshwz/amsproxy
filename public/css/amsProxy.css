@@ -83,7 +83,12 @@ table.courseTable {
   width: 14.285714286%;
 }
 .courseTable tr > td:first-child {
-  border-right: 2px solid #fff;
+  border-right: 2px solid #ddd;
+  text-align: center;
+  width: 10px;
+}
+.courseTable tr > th:first-child {
+  width: 10px;
 }
 .courseTable th {
   background-color: #95a5a6;
