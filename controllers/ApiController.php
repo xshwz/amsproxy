@@ -8,10 +8,10 @@ class ApiController extends StudentController {
 	}
 
     public function actionCourse() {
-        echo $this->getCourse(true);
+        echo json_encode($this->getCourse());
     }
 
     public function actionScore() {
-        echo $this->getScore(true);
+        echo json_encode($this->getScore(1));
     }
 }

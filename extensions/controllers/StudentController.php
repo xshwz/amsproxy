@@ -36,43 +36,31 @@ class StudentController extends BaseController {
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
      * @param int $is_effective 1、有效成绩 0、原始成绩
-     * @param bool $json 是否返回 json
      * @return array 成绩表
      */
-    public function getScore($is_effective=0, $json=false) {
-        $score = $is_effective ? $this->student->effective_score : $this->student->original_score;
-        if ($score) {
-            if ($json)
-                return $score;
-            else
-                return json_decode($score, true);
-        } else {
-            $scoreTable = $this->amsProxy->getScore($is_effective);
-            if ($is_effective)
-                $this->student->effective_score = json_encode($scoreTable);
-            else
-                $this->student->original_score = json_encode($scoreTable);
-            $this->student->save();
-
-            if ($json)
-                return json_encode($scoreTable);
-            else
-                return $scoreTable;
+    public function getScore($is_effective=0) {
+        if ($this->student->score) {
+            $score = json_decode($this->student->score, true);
         }
+        else {
+            $score = array(
+                $this->amsProxy->getScore(0),
+                $this->amsProxy->getScore(1));
+            $this->student->score = json_encode($score);
+            $this->student->save();
+        }
+
+        return $score[$is_effective];
     }
 
     /**
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
-     * @param bool $json 是否返回 json
      * @return array 课程表
      */
-    public function getCourse($json=false) {
+    public function getCourse() {
         if ($this->student->course) {
-            if ($json)
-                return $this->student->course;
-            else
-                return json_decode($this->student->course, true);
+            return json_decode($this->student->course, true);
         } else {
             $courses = array_merge(
                 $this->amsProxy->getCourse(),
@@ -81,10 +69,7 @@ class StudentController extends BaseController {
             $this->student->course = json_encode($courses);
             $this->student->save();
 
-            if ($json)
-                return json_encode($courses);
-            else
-                return $courses;
+            return $courses;
         }
     }
 }
