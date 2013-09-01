@@ -30,12 +30,7 @@ class courseLine extends CWidget {
         $weekCourses = $this->getWeekCourse($this->courses, (int)date('N'));
 
         if (count($weekCourses) == 0) {
-            echo <<<EOT
-            <p>今天居然没课！</p>
-            <p>
-                <img src="img/rage_comics/misc-jackie-chan.png" height="64" alt="暴走漫画 - 成龙">
-            </p>
-EOT;
+            echo '<p>今天居然没课！</p>';
             return;
         }
 
