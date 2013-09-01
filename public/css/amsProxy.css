@@ -77,8 +77,7 @@ div.courseTable {
 }
 table.courseTable {
   width: 100%;
-  /* border-collapse: separate; */
-
+  border-collapse: separate;
 }
 .courseTable td,
 .courseTable th {
@@ -93,9 +92,6 @@ table.courseTable {
 }
 .courseTable tr > th:first-child {
   width: 10px;
-}
-.courseTable tr.bottom-line {
-  border-bottom: 2px solid #ddd;
 }
 .courseTable th {
   background-color: #95a5a6;
@@ -188,6 +184,9 @@ table.courseTable {
 }
 .courseTable td[rowspan="12"] {
   height: 18em;
+}
+.courseTable a.btn {
+  margin: 10px auto;
 }
 .course .tooltip-inner {
   text-align: left;
