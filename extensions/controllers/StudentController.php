@@ -35,19 +35,23 @@ class StudentController extends BaseController {
     /**
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
-     * @param int $type 0：原始成绩 1：有效成绩
+     * @param int $is_effective 1、有效成绩 0、原始成绩
      * @param bool $json 是否返回 json
      * @return array 成绩表
      */
-    public function getScore($type=0, $json=false) {
-        if ($this->student->score) {
+    public function getScore($is_effective=0, $json=false) {
+        $score = $is_effective ? $this->student->effective_score : $this->student->original_score;
+        if ($score) {
             if ($json)
-                return $this->student->score;
+                return $score;
             else
-                return json_decode($this->student->score, true);
+                return json_decode($score, true);
         } else {
-            $scoreTable = $this->amsProxy->getScore(1);
-            $this->student->score = json_encode($scoreTable);
+            $scoreTable = $this->amsProxy->getScore($is_effective);
+            if ($is_effective)
+                $this->student->effective_score = json_encode($scoreTable);
+            else
+                $this->student->original_score = json_encode($scoreTable);
             $this->student->save();
 
             if ($json)

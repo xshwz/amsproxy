@@ -1,0 +1,42 @@
+.datepicker {
+    &:before {
+        border-bottom: 7px solid #1abc9c;
+    }
+    &:after {
+        border-bottom: 6px solid #1abc9c;
+    }
+    td {
+        span.active,
+        &.active,
+        &.active:hover {
+            background-image: none;
+        }
+        span.active:active,
+        span.active.active,
+        &.active:active,
+        &.active:hover:active,
+        &.active.active,
+        &.active:hover.active {
+            background-color: #fff;
+            color: #16a085;
+            text-shadow: none;
+        }
+
+        &.old,
+        &.new {
+            color: #f1c40f;
+        }
+    }
+    td span:hover,
+    thead tr:first-child th:hover,
+    td.day:hover {
+        background-color: #16a085;
+    }
+}
+td.time {
+    white-space: nowrap;
+}
+.form-control.date-picker {
+    border-color: #fff;
+    box-shadow: none;
+}

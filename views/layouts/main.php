@@ -37,23 +37,23 @@
                                 'items' => array(
                                     array(
                                         'label' => '主页',
-                                        'url' => array('home/index'),
+                                        'url' => 'home/index',
                                     ),
                                     array(
                                         'label' => '学籍',
-                                        'url' => array('info/index'),
+                                        'url' => 'info/index',
                                     ),
                                     array(
                                         'label' => '课表',
-                                        'url' => array('course/index'),
+                                        'url' => 'course/index',
                                     ),
                                     array(
                                         'label' => '成绩',
-                                        'url' => array('score/stats'),
+                                        'url' => 'score/stats',
                                     ),
                                     array(
                                         'label' => '消息',
-                                        'url' => array('message/index'),
+                                        'url' => 'message/index',
                                         'badge' => count($this->unReadMsg),
                                     ),
                                 ),

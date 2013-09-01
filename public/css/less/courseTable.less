@@ -1,0 +1,89 @@
+.courseTable {
+    div& {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    table& {
+        width: 100%;
+        border-collapse: separate;
+    }
+    td, th {
+        background-color: #fff;
+        padding: 4px 8px;
+        width: 14.285714286%;
+    }
+    tr {
+        & > td:first-child {
+            border-right: 2px solid #ddd;
+            text-align: center;
+            width: 10px;
+        }
+        & > th:first-child {
+            width: 10px;
+        }
+    }
+    th {
+        background-color: #95a5a6;
+        color: #fff;
+        text-align: center;
+        padding: 10px 8px 8px 8px;
+        border-bottom: 2px solid #7f8c8d;
+        white-space: nowrap;
+    }
+    td {
+        &.course {
+            background-color: #2ecc71;
+            color: #fff;
+            border: 1px solid;
+            cursor: default;
+            & > div {
+                cursor: pointer;
+            }
+            .bg-color(@n; @co) {
+                &-@{n} {
+                    background-color: @co;
+                }
+            }
+            .bg-color(1, #1abc9c);
+            .bg-color(2, #f1c40f);
+            .bg-color(3, #e67e22);
+            .bg-color(4, #3498db);
+            .bg-color(5, #e74c3c);
+            .bg-color(6, #9b59b6);
+            .bg-color(7, #34495e);
+            .bg-color(8, #16a085);
+            .bg-color(9, #f39c12);
+            .bg-color(10, #27ae60);
+            .bg-color(11, #2980b9);
+            .bg-color(12, #c0392b);
+            .bg-color(13, #8e44ad);
+        }
+        .rowspan_hei(@n) {
+            &[rowspan="@{n}"] {
+                height: 1.5em*@n;
+            }
+        }
+        .rowspan_hei(1);
+        .rowspan_hei(2);
+        .rowspan_hei(3);
+        .rowspan_hei(4);
+        .rowspan_hei(5);
+        .rowspan_hei(6);
+        .rowspan_hei(7);
+        .rowspan_hei(8);
+        .rowspan_hei(9);
+        .rowspan_hei(10);
+        .rowspan_hei(11);
+        .rowspan_hei(12);
+    }
+
+}
+.course {
+    .tooltip-inner {
+        text-align: left;
+        padding: 8px;
+        p {
+            margin: 2px 0;
+        }
+    }
+}

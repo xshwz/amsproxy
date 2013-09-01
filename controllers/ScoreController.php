@@ -6,8 +6,7 @@ class ScoreController extends StudentController {
     public $layout = '/score/layout';
 
     public function actionOriginalScore() {
-        // $scoreTable = $this->getScore(0);
-        $scoreTable = $this->amsProxy->getScore(0);
+        $scoreTable = $this->getScore(0);
         $this->addScoreState($scoreTable, 10);
         $this->render('scoreTable', array(
             'score' => $scoreTable,
@@ -15,8 +14,7 @@ class ScoreController extends StudentController {
     }
 
     public function actionEffectiveScore() {
-        // $scoreTable = $this->getScore(1);
-        $scoreTable = $this->amsProxy->getScore(1);
+        $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('scoreTable', array(
             'score' => $scoreTable,
@@ -24,8 +22,7 @@ class ScoreController extends StudentController {
     }
 
 	public function actionStats() {
-        // $scoreTable = $this->getScore(1);
-        $scoreTable = $this->amsProxy->getScore(1);
+        $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('stats', array(
             'termNames' => $this->getTermNames($scoreTable),
@@ -33,6 +30,13 @@ class ScoreController extends StudentController {
             'scoreDict' => $this->getScoreDist($scoreTable),
         ));
 	}
+
+    public function actionRefreshScore() {
+        $this->student->effective_score = null;
+        $this->student->original_score = null;
+        $this->student->save();
+        $this->redirect(array('stats'));
+    }
 
     public function addScoreState(&$scoreTable, $score_index) {
         foreach ($scoreTable['tbody'] as $term_name => &$term_score) {

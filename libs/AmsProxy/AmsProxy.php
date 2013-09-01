@@ -71,21 +71,21 @@ class AmsProxy {
     }
 
     /**
-     * @param int 1、有效成绩，0、原始成绩
+     * @param int $is_effective 1、有效成绩，0、原始成绩
      * @return array 成绩表
      */
-    public function getScore($effective=1) {
+    public function getScore($is_effective=1) {
         $responseText = $this->POST(
             'xscj/Stu_MyScore_rpt.aspx',
             array(
-                'SJ'       => $effective,
+                'SJ'       => $is_effective,
                 'SelXNXQ'  => 0,
                 'txt_xm'   => null,
                 'zfx_flag' => 0,
                 'zxf'      => 0,
             ));
         $parser = new Parser($responseText);
-        if ($effective) return $parser->effectiveScore();
+        if ($is_effective) return $parser->effectiveScore();
         else return $parser->originalScore();
     }
 

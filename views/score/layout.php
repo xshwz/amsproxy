@@ -5,16 +5,20 @@
         'items' => array(
             array(
                 'label' => '统计',
-                'action' => array('stats'),
+                'action' => 'stats',
             ),
             array(
                 'label' => '有效成绩',
-                'action' => array('effectiveScore'),
+                'action' => 'effectiveScore',
             ),
             array(
                 'label' => '原始成绩',
-                'action' => array('originalScore'),
+                'action' => 'originalScore',
             ),
+            array(
+                'label' => '<span class="text-danger">获取最新成绩数据</span>',
+                'action' => 'refreshScore',
+            )
         ),
     ));
     ?>

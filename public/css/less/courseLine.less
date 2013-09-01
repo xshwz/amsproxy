@@ -1,0 +1,56 @@
+.courseLine {
+    position: relative;
+    padding: 2px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    & > ul {
+        padding-left: 30px;
+        list-style: none;
+        &  > li > div {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 8px 18px 2px 18px;
+            margin: 16px 0;
+            position: relative;
+        }
+    }
+    .line {
+        height: 100%;
+        width: 6px;
+        position: absolute;
+        background-color: #1abc9c;
+        top: 0;
+        border-radius: 4px;
+    }
+    .arrow {
+        position: absolute;
+        left: -10px;
+        top: 20px;
+
+        border-color: transparent;
+        border-style: solid;
+        border-width: 10px;
+        border-right-color: #fff;
+        border-left-width: 0;
+    }
+    .circle {
+        width: 20px;
+        height: 20px;
+        background-color: #16a085;
+
+        z-index: 999;
+        position: absolute;
+        top: 20px;
+        left: -37px;
+
+        border-radius: 20px;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0;
+        &:hover {
+            border-width: 4px;
+            transition: border-width ease-in-out 0.2s;
+        }
+    }
+}
+

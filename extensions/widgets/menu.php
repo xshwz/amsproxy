@@ -12,13 +12,13 @@ class menu extends CWidget {
         echo '<ul class="nav navbar-nav">';
 
         foreach ($this->items as $item) {
-            $url = explode('/', $item['url'][0]);
+            $url = explode('/', $item['url']);
             if ($this->getController()->id == $url[0])
                 $class = ' class="active"';
             else
                 $class = '';
 
-            $link = Yii::app()->createUrl($item['url'][0]);
+            $link = Yii::app()->createUrl($item['url']);
             echo "<li{$class}>";
             echo "<a href='{$link}'>";
             echo $item['label'];

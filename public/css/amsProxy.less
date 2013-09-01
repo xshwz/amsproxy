@@ -1,0 +1,92 @@
+@import 'less/main.less';
+@import 'less/login.less';
+@import 'less/courseTable.less';
+@import 'less/courseLine.less';
+
+
+@media (max-width: 768px) {
+    .table-responsive {
+        margin-bottom: 0;
+    }
+}
+
+.stats > div {
+    padding-top: 20px;
+}
+
+.search-form {
+    margin-bottom: 12px;
+}
+#studentLinkPager {
+    margin-right: 16px;
+    height: 29px;
+}
+#studentList .pagination {
+    margin: 0 16px 0 0;
+}
+.listPager {
+    display: inline-block;
+    width: auto;
+    margin: 20px 16px 0 0;
+}
+.pages .badge {
+    margin-top: 25px;
+    float: left;
+}
+@media (max-width: 768px) {
+    .pages {
+        text-align: center;
+        .badge {
+            margin-top: 10px;
+            float: none;
+        }
+    }
+    .listPager {
+        display: block;
+        width: 100%;
+        float: none;
+        margin-top: 16px;
+    }
+}
+
+@import 'less/datepicker.less';
+
+.dropdown-menu {
+    border: 1px solid #1abc9c;
+    background-color: #1abc9c;
+}
+.table-condensed {
+    thead,
+    tbody,
+    tfoot {
+        & > tr > th ,
+        & > tr > td {
+            color: #fff;
+        }
+    }
+}
+
+[id^="cnzz_stat_icon"] {
+    display: none;
+}
+
+.queryTable {
+    table-layout: fixed;
+    td {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+.executeResult {
+    padding: 0 8px;
+}
+@media (max-width: 768px) {
+    .queryTable {
+        table-layout: auto;
+        td {
+            text-overflow: clip;
+            overflow: visible;
+        }
+    }
+}
