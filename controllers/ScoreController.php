@@ -32,8 +32,7 @@ class ScoreController extends StudentController {
 	}
 
     public function actionRefreshScore() {
-        $this->student->effective_score = null;
-        $this->student->original_score = null;
+        $this->student->score = null;
         $this->student->save();
         $this->redirect(array('stats'));
     }
