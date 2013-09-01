@@ -16,7 +16,7 @@
                 'action' => 'originalScore',
             ),
             array(
-                'label' => '<span class="text-danger">获取最新成绩数据</span>',
+                'label' => '<span class="text-danger">更新数据</span>',
                 'action' => 'refreshScore',
             )
         ),
