@@ -16,7 +16,7 @@
                 'action' => 'originalScore',
             ),
             array(
-                'label' => '<span class="text-danger">更新数据</span>',
+                'label' => '更新数据',
                 'action' => 'refreshScore',
             )
         ),
