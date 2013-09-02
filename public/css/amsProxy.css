@@ -58,7 +58,7 @@ a[data-dismiss="modal"] {
 .login-form .form-group {
   position: relative;
 }
-.login-form label {
+.login-form label.right {
   position: absolute;
   top: 7px;
   right: 9px;
@@ -86,7 +86,6 @@ table.courseTable {
   width: 14.285714286%;
 }
 .courseTable tr > td:first-child {
-  border-right: 2px solid #ddd;
   text-align: center;
   width: 10px;
 }
