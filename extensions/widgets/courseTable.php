@@ -113,6 +113,7 @@ EOT;
             $courseMap[$course['weekDay']][$course['lessonStart']] = $course;
         }
 
+
         for ($weekDay = 1; $weekDay <= 7; $weekDay++) {
             $lessonStart = 1;
             $lessonSpan = 1;
@@ -124,8 +125,10 @@ EOT;
                     $lessonSpan = 1;
                 } else if (
                     isset($courseMap[$weekDay][$lessonNum + 1]) ||
-                    $lessonNum == 12) {
-
+                    $lessonNum == 5 ||
+                    $lessonNum == 9 ||
+                    $lessonNum == 12
+                ) {
                     $courseTable[$weekDay][$lessonStart] = array(
                         'lessonSpan' => $lessonSpan,
                         'isCourse' => false);
