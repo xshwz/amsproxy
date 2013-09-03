@@ -110,7 +110,12 @@ EOT;
             $course['seq'] = $coursesSeq[$course['courseName']];
             $course['isCourse'] = true;
             $course['lessonSpan'] = $course['lessonTo'] - $course['lessonStart'] + 1;
-            $courseMap[$course['weekDay']][$course['lessonStart']] = $course;
+            if (isset($courseMap[$course['weekDay']][$course['lessonStart']])) {
+                $courseMap[$course['weekDay']][$course['lessonStart']]['teacherName'] .= ',' . $course['teacherName'];
+                $courseMap[$course['weekDay']][$course['lessonStart']]['location'] .= ',' . $course['location'];
+            }
+            else
+                $courseMap[$course['weekDay']][$course['lessonStart']] = $course;
         }
 
 
