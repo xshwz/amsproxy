@@ -8,24 +8,29 @@ class SiteController extends BaseController {
 	}
 
     public function actionLogin() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $sid = $_POST['sid'];
-            $pwd = $_POST['pwd'];
+        if (defined('IS_LOGGED')) {
+            $this->render('logged');
+        }
+        else {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $sid = $_POST['sid'];
+                $pwd = $_POST['pwd'];
 
-            /* 记住用户 */
-            if (isset($_POST['remember']) && $_POST['remember'] == 'on')
-                $this->remember($sid, $pwd);
+                /* 记住用户 */
+                if (isset($_POST['remember']) && $_POST['remember'] == 'on')
+                    $this->remember($sid, $pwd);
 
-            try {
-                $this->login($sid, $pwd);
-            } catch(Exception $e) {
-                $this->render('login', array(
-                    'error' => true,
-                    'sid' => $sid,
-                ));
+                try {
+                    $this->login($sid, $pwd);
+                } catch(Exception $e) {
+                    $this->render('login', array(
+                        'error' => true,
+                        'sid' => $sid,
+                    ));
+                }
+            } else {
+                $this->render('login');
             }
-        } else {
-            $this->render('login');
         }
     }
 

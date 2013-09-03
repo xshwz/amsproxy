@@ -26,13 +26,22 @@ class BaseController extends CController {
                     ':receiver' => $_SESSION['student']['sid'],
                 ),
             ));
-        } else if (
-            isset($_COOKIE['ams_xsh_proxy_sid'])
+        }
+        else
+            $this->loginByCookies();
+    }
+
+    /**
+     * 通过cookie登录
+     */
+    public function loginByCookies() {
+        if ( isset($_COOKIE['ams_xsh_proxy_sid'])
             && isset($_COOKIE['ams_xsh_proxy_pwd'])
         ) {
             $rem = $this->getRemember();
             try {
                 $this->login($rem[0], $rem[1], true);
+                $this->redirect(array('Home/index'));
             }
             catch(Exception $e) {
                 $this->destroy_remember();
@@ -40,11 +49,12 @@ class BaseController extends CController {
         }
     }
 
+
     /**
-     * 登陆
+     * 登录
      * @param string $sid 学号
      * @param string $pwd 密码
-     * @param mixed $is_remember 是否记住登陆
+     * @param mixed $is_remember 是否记住登录
      * @access public
      */
     public function login($sid, $pwd, $is_remember=false) {
@@ -78,7 +88,7 @@ class BaseController extends CController {
     }
 
     /**
-     * 记住登陆状态
+     * 记住登录状态
      * @param string $sid 学号
      * @param string $pwd 密码
      * @param int $pwd 保存时间，默认5年
