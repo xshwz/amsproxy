@@ -3,11 +3,11 @@
  * 个人主页控制器
  */
 class HomeController extends StudentController {
-	public function actionIndex() {
+    public function actionIndex() {
         $this->render('index', array(
             'courses' => $this->getCourse(),
         ));
-	}
+    }
 
     public function actionLogout() {
         session_destroy();
