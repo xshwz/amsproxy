@@ -11,23 +11,13 @@ class SiteController extends BaseController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
+
+            /* 记住用户 */
+            if (isset($_POST['remember']) && $_POST['remember'] == 'on')
+                $this->remember($sid, $pwd);
+
             try {
-                $amsProxy = new AmsProxy($sid, $pwd);
-
-                if ($student = $this->getStudent($sid)) {
-                    $studentInfo = json_decode($student->info, true);
-                } else {
-                    $studentInfo = $amsProxy->getStudentInfo();
-                    $this->saveStudent($sid, $pwd, $studentInfo);
-                }
-
-                $_SESSION['student'] = array(
-                    'sid' => $sid,
-                    'pwd' => $pwd,
-                    'info' => $studentInfo,
-                );
-
-                $this->redirect(array('home/index'));
+                $this->login($sid, $pwd);
             } catch(Exception $e) {
                 $this->render('login', array(
                     'error' => true,

@@ -17,6 +17,7 @@ class StudentController extends BaseController {
 
     public function init() {
         parent::init();
+
         if (defined('IS_LOGGED')) {
             $this->amsProxy = new AmsProxy(
                 $_SESSION['student']['sid'],
@@ -35,7 +36,7 @@ class StudentController extends BaseController {
     /**
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
-     * @param int $scoreType 1、有效成绩 0、原始成绩
+     * @param int $scoreType 0、原始成绩 1、有效成绩 2、等级考试成绩
      * @return array 成绩表
      */
     public function getScore($scoreType=0) {
