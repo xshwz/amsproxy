@@ -5,8 +5,6 @@
  */
 class LoginController extends BaseController {
 
-    public $remember;
-    
     public function init() {
         parent::init();
 
@@ -140,7 +138,7 @@ class LoginController extends BaseController {
     }
 
     /**
-     * 从数据库中获取学生信息
+     * 获取学生信息，先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * @param string $sid 学号
      * @return $array 学生信息
      */
