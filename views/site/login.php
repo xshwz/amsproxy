@@ -32,7 +32,7 @@
     <div class="form-group">
         <div class="checkbox">
             <label for="remember">
-                <input id="remember" type="checkbox" name="remember"/>记住我的登陆
+                <input id="remember" type="checkbox" name="remember"/>记住登陆
             </label>
         </div>
     </div>

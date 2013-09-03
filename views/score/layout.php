@@ -16,7 +16,7 @@
                 'action' => 'originalScore',
             ),
             array(
-                'label' => '等级考试成绩',
+                'label' => '等级考试',
                 'action' => 'rankScore',
             ),
             array(
