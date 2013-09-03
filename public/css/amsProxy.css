@@ -58,7 +58,7 @@ a[data-dismiss="modal"] {
 .login-form .form-group {
   position: relative;
 }
-.login-form label.right {
+.login-form label.input-icon {
   position: absolute;
   top: 7px;
   right: 9px;
