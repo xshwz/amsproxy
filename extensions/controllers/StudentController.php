@@ -2,7 +2,7 @@
 /**
  * 基控制器，需要登录验证，要进行学生相关操作请继承该控制器
  */
-class StudentController extends BaseController {
+class StudentController extends LoginController {
     /**
      * 教务系统代理对象
      * @var AmsProxy
@@ -75,4 +75,6 @@ class StudentController extends BaseController {
             return $courses;
         }
     }
+
+
 }
