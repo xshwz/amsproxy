@@ -14,7 +14,7 @@
             class="form-control"
             placeholder="学号"
             value="<?php if (isset($sid)) echo $sid; ?>">
-        <label for="input-sid">
+        <label class="right" for="input-sid">
             <span class="glyphicon glyphicon-user"></span>
         </label>
     </div>
@@ -25,7 +25,7 @@
             type="password"
             class="form-control"
             placeholder="密码">
-        <label for="input-pwd">
+        <label class="right" for="input-pwd">
             <span class="glyphicon glyphicon-lock"></span>
         </label>
     </div>
