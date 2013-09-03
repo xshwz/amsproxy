@@ -34,7 +34,9 @@
                     <tbody>
                         <?php foreach ($term_score as $row): ?>
                         <tr
-                            <?php if (!$row['state']) echo ' class="danger"'; ?>>
+                            <?php 
+                            if (isset($row['state']) && $row['state'] == false)
+                                echo ' class="danger"'; ?>>
                             <?php
                             $row[0] = preg_replace('/\[.*?\]/', '', $row[0]);
                             foreach ($row as $key => $td) {

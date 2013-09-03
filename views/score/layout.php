@@ -16,6 +16,10 @@
                 'action' => 'originalScore',
             ),
             array(
+                'label' => '等级考试成绩',
+                'action' => 'rankScore',
+            ),
+            array(
                 'label' => '更新数据',
                 'action' => 'refreshScore',
             )

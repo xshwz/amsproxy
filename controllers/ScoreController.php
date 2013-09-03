@@ -21,6 +21,13 @@ class ScoreController extends StudentController {
         ));
     }
 
+    public function actionRankScore() {
+        $scoreTable = $this->getScore(2);
+        $this->render('scoreTable', array(
+            'score' => $scoreTable,
+        ));
+    }
+
 	public function actionStats() {
         $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);

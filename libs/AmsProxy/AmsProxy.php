@@ -105,6 +105,14 @@ class AmsProxy {
         $responseText = $this->GET('xscj/Stu_djksbm_rpt.aspx');
         return $this->getParser($responseText)->rankExamSign();
     }
+    
+    /**
+     * @return array 等级考试成绩表
+     */
+    public function getRankScore() {
+        $responseText = $this->GET('xscj/Stu_djkscj_rpt.aspx');
+        return $this->getParser($responseText)->rankScore();
+    }
 
     /**
      * @param string sel_lc参数的内容,比如'2012102,'
