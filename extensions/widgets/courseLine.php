@@ -86,12 +86,14 @@ EOT;
     public function getWeekCourse($courses, $weekDay) {
         $weekCourses = array();
         foreach ($courses as $course)
-            if ($course['weekDay'] == $weekDay)
-                $weekCourses[] = $course;
-
-        usort($weekCourses, function($a, $b) {
-            return $a['lessonStart'] > $b['lessonStart'];
-        });
+            if ($course['weekDay'] == $weekDay) {
+                if (isset($weekCourses[$course['lessonStart']])) {
+                    $weekCourses[$course['lessonStart']]['teacherName'] .= ',' . $course['teacherName'];
+                    $weekCourses[$course['lessonStart']]['location'] .= ',' . $course['location'];
+                }
+                else
+                    $weekCourses[$course['lessonStart']] = $course;
+            }
 
         return $weekCourses;
     }
