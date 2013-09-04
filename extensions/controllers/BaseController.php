@@ -48,6 +48,14 @@ class BaseController extends CController {
         $this->student->save();
     }
 
+    /**
+     * 登录
+     * @param string $sid 学号
+     * @param string $pwd 密码
+     * @param string $is_remember 是否记住登录
+     * @access public
+     * @return bool 是否登录成功
+     */
     public function login($sid, $pwd, $is_remember=false) {
         try {
             $amsProxy = new AmsProxy($sid, $pwd);
