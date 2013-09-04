@@ -52,7 +52,7 @@ class BaseController extends CController {
         try {
             $amsProxy = new AmsProxy($sid, $pwd);
 
-            $this->addStudent($sid, $pwd, $amsProxy->getStudentInfo());
+            $this->tryAddStudent($sid, $pwd, $amsProxy->getStudentInfo());
 
             $_SESSION['student'] = array(
                 'sid' => $sid,
@@ -126,12 +126,12 @@ class BaseController extends CController {
     }
 
     /**
-     * 保存学生到数据库
+     * 尝试添加学生到数据库，没有这个学生时添加
      * @param string $sid 学号
      * @param string $pwd 密码
      * @param string $studentInfo 学生信息
      */
-    public function addStudent($sid, $pwd, $studentInfo) {
+    public function tryAddStudent($sid, $pwd, $studentInfo) {
         if(Student::model()->findByPk($sid) == null) {
             $student = new Student;
             $student->sid = $sid;
