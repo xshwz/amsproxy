@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 基控制器，需要登录验证，要进行学生相关操作请继承该控制器
  */
@@ -9,25 +10,10 @@ class StudentController extends BaseController {
      */
     public $amsProxy;
 
-    /**
-     * 学生数据模型
-     * @var Student
-     */
-    public $student;
-
     public function init() {
         parent::init();
-        if (defined('IS_LOGGED')) {
-            $this->amsProxy = new AmsProxy(
-                $_SESSION['student']['sid'],
-                $_SESSION['student']['pwd']);
 
-            $this->student = Student::model()->findByPk(
-                $_SESSION['student']['sid']);
-
-            $this->student->last_login_time = date('Y-m-d H:i:s');
-            $this->student->save();
-        } else {
+        if (!$this->isLogged()) {
             $this->redirect(array('site/login'));
         }
     }
@@ -35,7 +21,7 @@ class StudentController extends BaseController {
     /**
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
-     * @param int $scoreType 1、有效成绩 0、原始成绩
+     * @param int $scoreType 0、原始成绩 1、有效成绩 2、等级考试成绩
      * @return array 成绩表
      */
     public function getScore($scoreType=0) {
@@ -44,9 +30,9 @@ class StudentController extends BaseController {
         }
         else {
             $score = array(
-                $this->amsProxy->getScore(0),
-                $this->amsProxy->getScore(1),
-                $this->amsProxy->getRankScore(),
+                $this->getAmsProxy()->getScore(0),
+                $this->getAmsProxy()->getScore(1),
+                $this->getAmsProxy()->getRankScore(),
             );
             $this->student->score = json_encode($score);
             $this->student->save();
@@ -64,14 +50,24 @@ class StudentController extends BaseController {
         if ($this->student->course) {
             return json_decode($this->student->course, true);
         } else {
+            $info = $this->getInfo();
             $courses = array_merge(
-                $this->amsProxy->getCourse(),
-                $this->amsProxy->getClassCourse(
-                    $_SESSION['student']['info']['行政班级']));
+                $this->getAmsProxy()->getCourse(),
+                $this->getAmsProxy()->getClassCourse(
+                    $info['行政班级']));
             $this->student->course = json_encode($courses);
             $this->student->save();
 
             return $courses;
         }
+    }
+
+    public function getAmsProxy() {
+        if ($this->amsProxy == null) {
+            $this->amsProxy = new AmsProxy(
+                $_SESSION['student']['sid'],
+                $_SESSION['student']['pwd']);
+        }
+        return $this->amsProxy;
     }
 }

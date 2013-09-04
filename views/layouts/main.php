@@ -30,7 +30,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <?php
-                    if (defined('IS_LOGGED')):
+                    if ($this->isLogged()):
                         $this->widget(
                             'ext.widgets.menu',
                             array(
@@ -92,7 +92,7 @@
                         <span class="glyphicon glyphicon-exclamation-sign"></span> 关于
                     </a>
                 </li>
-                <?php if (defined('IS_LOGGED')): ?>
+                <?php if ($this->isLogged()): ?>
                 <li>
                     <a data-toggle="modal" href="#feedbackModal">
                         <span class="glyphicon glyphicon-send"></span> 反馈
@@ -105,7 +105,7 @@
             </div>
         </div>
 
-        <?php if (defined('IS_LOGGED')): ?>
+        <?php if ($this->isLogged()): ?>
         <div class="modal fade" id="feedbackModal">
             <div class="modal-dialog">
                 <div class="modal-content">

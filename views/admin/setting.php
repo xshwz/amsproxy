@@ -11,7 +11,29 @@
                             class="form-control"
                             name="password"
                             id="inputPassword"
-                            placeholder="新密码">
+                            placeholder="新密码"/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="submit">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label" for="inputCrypt">cookie密钥</label>
+        <div class="col-sm-4">
+            <form class="form-inline" method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="crypt_key"
+                            value="<?php echo $this->setting->crypt_key; ?>"
+                            id="inputCrypt"/>
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -34,7 +56,7 @@
                             type="text"
                             class="form-control date-picker"
                             name="start_date"
-                            id="inputStartDate">
+                            id="inputStartDate"/>
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -59,7 +81,7 @@
                             type="text"
                             class="form-control date-picker"
                             name="end_date"
-                            id="inputEndDate">
+                            id="inputEndDate"/>
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>
