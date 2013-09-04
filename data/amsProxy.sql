@@ -14,6 +14,7 @@ CREATE TABLE "message" (
 DROP TABLE IF EXISTS "setting";
 CREATE TABLE "setting" (
   "password" text NOT NULL,
+  "crypt_key" text NOT NULL,
   "start_date" numeric NOT NULL,
   "end_date" numeric NOT NULL
 );
