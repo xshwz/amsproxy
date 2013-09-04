@@ -11,7 +11,7 @@
                             class="form-control"
                             name="password"
                             id="inputPassword"
-                            placeholder="新密码"/>
+                            placeholder="新密码">
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -33,7 +33,7 @@
                             class="form-control"
                             name="crypt_key"
                             value="<?php echo $this->setting->crypt_key; ?>"
-                            id="inputCrypt"/>
+                            id="inputCrypt">
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -56,7 +56,7 @@
                             type="text"
                             class="form-control date-picker"
                             name="start_date"
-                            id="inputStartDate"/>
+                            id="inputStartDate">
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -81,7 +81,7 @@
                             type="text"
                             class="form-control date-picker"
                             name="end_date"
-                            id="inputEndDate"/>
+                            id="inputEndDate">
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>

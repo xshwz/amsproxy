@@ -12,7 +12,7 @@
             id="input-pwd"
             type="password"
             class="form-control"
-            placeholder="密码"/>
+            placeholder="密码">
         <label for="input-pwd" class="input-icon">
             <span class="glyphicon glyphicon-lock"></span>
         </label>
