@@ -13,7 +13,7 @@
             type="password"
             class="form-control"
             placeholder="密码">
-        <label for="input-pwd" class="input-icon">
+        <label for="input-pwd">
             <span class="glyphicon glyphicon-lock"></span>
         </label>
     </div>

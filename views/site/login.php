@@ -30,13 +30,6 @@
         </label>
     </div>
     <div class="form-group">
-        <div class="checkbox">
-            <label for="remember">
-                <input id="remember" type="checkbox" name="remember"/>记住登录
-            </label>
-        </div>
-    </div>
-    <div class="form-group">
         <button class="btn btn-block" type="submit">登录</button>
     </div>
 </form>
