@@ -56,6 +56,10 @@
                                         'url' => 'rankExam/index',
                                     ),
                                     array(
+                                        'label' => '理论课程',
+                                        'url' => 'theorySubject/index',
+                                    ),
+                                    array(
                                         'label' => '消息',
                                         'url' => 'message/index',
                                         'badge' => count($this->unReadMsg),

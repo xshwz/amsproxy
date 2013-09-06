@@ -21,14 +21,13 @@ class StudentController extends BaseController {
     /**
      * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
      * 获取的数据会保存到数据库
-     * @param int $scoreType 0、原始成绩 1、有效成绩 2、等级考试成绩
+     * @param int $scoreType 0、原始成绩 1、有效成绩
      * @return array 成绩表
      */
     public function getScore($scoreType=0) {
         if ($this->student->score) {
             $score = json_decode($this->student->score, true);
-        }
-        else {
+        } else {
             $score = array(
                 $this->getAmsProxy()->getScore(0),
                 $this->getAmsProxy()->getScore(1),
@@ -61,11 +60,16 @@ class StudentController extends BaseController {
         }
     }
 
+    /**
+     * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
+     * 获取的数据会保存到数据库
+     * @param int $type 0:等级考试报名情况 2:等级考试成绩表
+     * @return array 等级考试数据
+     */
     public function getRankExam($type) {
         if ($this->student->rankExam) {
             $rankExam = json_decode($this->student->rankExam, true);
-        }
-        else {
+        } else {
             $rankExam = array(
                 $this->getAmsProxy()->getRankExamSign(),
                 $this->getAmsProxy()->getRankScore(),
@@ -76,6 +80,25 @@ class StudentController extends BaseController {
         return $rankExam[$type];
     }
 
+    /**
+     * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
+     * 获取的数据会保存到数据库
+     * @return array 理论课程数据
+     */
+    public function getTheorySubject() {
+        if ($this->student->theorySubject) {
+            return json_decode($this->student->theorySubject, true);
+        } else {
+            $theorySubject = $this->getAmsProxy()->getTheorySubject();
+            $this->student->theorySubject = json_encode($theorySubject);
+            $this->student->save();
+            return $theorySubject;
+        }
+    }
+
+    /**
+     * @return AmsProxy 返回AmsProxy对象，当对象没有定义时自动定义
+     */
     public function getAmsProxy() {
         if ($this->amsProxy == null) {
             $this->amsProxy = new AmsProxy(

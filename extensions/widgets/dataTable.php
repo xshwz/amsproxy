@@ -8,9 +8,6 @@ class dataTable extends CWidget {
      */
     public $data = array();
 
-    protected $thead = array();
-    protected $tbody = array();
-
     /**
      * @var int 对该列去除[]标签的内容
      */
@@ -21,6 +18,9 @@ class dataTable extends CWidget {
      * @var int 0: Collapses 1: A table without title
      */
     public $type = 0;
+
+    protected $thead = array();
+    protected $tbody = array();
 
     public function run() {
         $this->thead = $this->data['thead'];
