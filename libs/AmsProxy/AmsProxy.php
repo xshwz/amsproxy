@@ -1,5 +1,5 @@
 <?php
-include 'Parser.php';
+include_once 'Parser.php';
 
 /**
  * 教务系统代理
@@ -105,7 +105,17 @@ class AmsProxy {
         $responseText = $this->GET('xscj/Stu_djksbm_rpt.aspx');
         return $this->getParser($responseText)->rankExamSign();
     }
-    
+
+    /**
+     * 报名或取消等级考试
+     * @param string $id 报名或取消按钮的id
+     */
+    public function enterRankExam($id) {
+        $responseText = $this->GET('xscj/Stu_djksbm_rpt.aspx');
+        $post = $this->getParser($responseText)->enterRankExamById($id);
+        $this->POST('xscj/Stu_djksbm_rpt.aspx', $post);
+    }
+
     /**
      * @return array 等级考试成绩表
      */

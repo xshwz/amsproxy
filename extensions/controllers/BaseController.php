@@ -140,7 +140,7 @@ class BaseController extends CController {
      * @param string $studentInfo 学生信息
      */
     public function tryAddStudent($sid, $pwd, $studentInfo) {
-        if(Student::model()->findByPk($sid) == null) {
+        if (Student::model()->findByPk($sid) == null) {
             $student = new Student;
             $student->sid = $sid;
             $student->pwd = md5($pwd);

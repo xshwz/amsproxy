@@ -4,16 +4,12 @@
     $this->widget('ext.widgets.submenu', array(
         'items' => array(
             array(
-                'label' => '统计',
-                'action' => 'stats',
+                'label' => '报名情况',
+                'action' => 'index',
             ),
             array(
-                'label' => '有效成绩',
-                'action' => 'effectiveScore',
-            ),
-            array(
-                'label' => '原始成绩',
-                'action' => 'originalScore',
+                'label' => '考试成绩',
+                'action' => 'score',
             ),
             array(
                 'label' => '更新数据',

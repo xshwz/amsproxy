@@ -10,11 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            foreach ($messages as $message):
-                $sender = Student::model()->findByPk($message->sender);
-                $receiver = Student::model()->findByPk($message->receiver);
-            ?>
+            <?php foreach ($messages as $message): ?>
             <tr>
                 <td>
                     <?php if ($message->sender): ?>
@@ -22,7 +18,7 @@
                         href="#detail-modal"
                         class="detail"
                         data-toggle="modal"
-                        data-json='<?php if ($sender) echo $sender->info; ?>'>
+                        data-json='<?php echo $message->sender_info['info']; ?>'>
                         <?php echo $message->sender; ?>
                     </a>
                     <?php else: ?>
@@ -35,7 +31,7 @@
                         href="#detail-modal"
                         class="detail"
                         data-toggle="modal"
-                        data-json='<?php if ($receiver) echo $receiver->info; ?>'>
+                        data-json='<?php echo $message->receiver_info['info']; ?>'>
                         <?php echo $message->receiver; ?>
                     </a>
                     <?php else: ?>

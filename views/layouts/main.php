@@ -52,6 +52,10 @@
                                         'url' => 'score/stats',
                                     ),
                                     array(
+                                        'label' => '等级考试',
+                                        'url' => 'rankExam/index',
+                                    ),
+                                    array(
                                         'label' => '消息',
                                         'url' => 'message/index',
                                         'badge' => count($this->unReadMsg),

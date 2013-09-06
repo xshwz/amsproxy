@@ -4,16 +4,14 @@
             <tr>
                 <th>状态</th>
                 <th>发送者</th>
+                <th>姓名</th>
                 <th>内容</th>
                 <th>时间</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            foreach ($messages as $message):
-                $student = Student::model()->findByPk($message->sender);
-            ?>
+            <?php foreach ($messages as $message): ?>
             <tr>
                 <td>
                     <form method="post" class="text-center">
@@ -30,7 +28,7 @@
                         href="#detail-modal"
                         class="detail"
                         data-toggle="modal"
-                        data-json='<?php echo $student->info; ?>'>
+                        data-json='<?php echo $message->sender_info['info']; ?>'>
                         <?php echo $message->sender; ?>
                     </a>
                 </td>

@@ -21,13 +21,6 @@ class ScoreController extends StudentController {
         ));
     }
 
-    public function actionRankScore() {
-        $scoreTable = $this->getScore(2);
-        $this->render('scoreTable', array(
-            'score' => $scoreTable,
-        ));
-    }
-
 	public function actionStats() {
         $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);
@@ -38,10 +31,10 @@ class ScoreController extends StudentController {
         ));
 	}
 
-    public function actionRefreshScore() {
+    public function actionRefresh() {
         $this->student->score = null;
         $this->student->save();
-        $this->render('refreshScore');
+        $this->render('refresh', array('msg' => '成绩'));
     }
 
     public function addScoreState(&$scoreTable, $score_index) {

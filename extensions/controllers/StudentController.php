@@ -32,7 +32,6 @@ class StudentController extends BaseController {
             $score = array(
                 $this->getAmsProxy()->getScore(0),
                 $this->getAmsProxy()->getScore(1),
-                $this->getAmsProxy()->getRankScore(),
             );
             $this->student->score = json_encode($score);
             $this->student->save();
@@ -60,6 +59,21 @@ class StudentController extends BaseController {
 
             return $courses;
         }
+    }
+
+    public function getRankExam($type) {
+        if ($this->student->rankExam) {
+            $rankExam = json_decode($this->student->rankExam, true);
+        }
+        else {
+            $rankExam = array(
+                $this->getAmsProxy()->getRankExamSign(),
+                $this->getAmsProxy()->getRankScore(),
+            );
+            $this->student->rankExam = json_encode($rankExam);
+            $this->student->save();
+        }
+        return $rankExam[$type];
     }
 
     public function getAmsProxy() {

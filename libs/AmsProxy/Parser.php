@@ -220,9 +220,10 @@ class Parser {
                 '考试年月',
                 '收费标准（元）',
                 '报名时间区段',
-                '状态',
                 '限定名额',
                 '剩余名额',
+                '状态',
+                '操作',
             ),
         );
         $tables = $this->dom->getElementsByTagName('table');
@@ -236,14 +237,36 @@ class Parser {
                 $tds->item(4)->textContent,
                 $tds->item(5)->textContent,
                 $tds->item(6)->textContent . ' - ' . $tds->item(7)->textContent,
-                $tds->item(8)->textContent,
                 $tds->item(10)->textContent,
                 $tds->item(11)->textContent,
+                $tds->item(8)->textContent,
+                $tds->item(9)->textContent,
+                'rank_id' => $tds->item(9)->getAttribute('id'),
             );
         }
         return $exam;
     }
 
+    public function enterRankExamById($id) {
+        $td = $this->dom->getElementById($id);
+        $post = array(
+            'state' => iconv('utf-8', 'gb18030', $td->getAttribute('value')),
+            'lb'       => $td->getAttribute('lb'),
+            'dj'       => $td->getAttribute('dj'),
+            'year'     => $td->getAttribute('year'),
+            'month'    => $td->getAttribute('month'),
+            'llbm'     => $td->getAttribute('llbm'),
+            'czbm'     => $td->getAttribute('czbm'),
+            'chkLLbm'  => '1',
+            'djmc'     => $td->getAttribute('DJMC'),
+            // 'xyx'   => $td->getAttribute('xyxdg_flag') || '0',
+        );
+        return $post;
+    }
+
+    /**
+     * @return array 等级考试成绩表
+     */
     public function rankScore() {
         $score = array(
             'thead' => array(
@@ -439,17 +462,17 @@ class Parser {
             preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[8], $lesson);
             $week = explode('-', $course[7]);
             $courses[] = array(
-                'courseName' => preg_replace('/^\[.*?\]/', '', $course[0]),
-                'credit' => $course[1],
-                'totalHour' => $course[2],
-                'examType' => $course[3],
+                'courseName'  => preg_replace('/^\[.*?\]/', '', $course[0]),
+                'credit'      => $course[1],
+                'totalHour'   => $course[2],
+                'examType'    => $course[3],
                 'teacherName' => preg_replace('/^\[.*?\]/', '', $course[4]),
-                'weekStart' => (int)$week[0],
-                'weekTo' => (int)$week[1],
-                'weekDay' => (int)self::$weekDict[$lesson[1]],
+                'weekStart'   => (int)$week[0],
+                'weekTo'      => (int)$week[1],
+                'weekDay'     => (int)self::$weekDict[$lesson[1]],
                 'lessonStart' => (int)$lesson[2],
-                'lessonTo' => (int)$lesson[3],
-                'location' => $course[9],
+                'lessonTo'    => (int)$lesson[3],
+                'location'    => $course[9],
             );
         }
 
@@ -467,21 +490,21 @@ class Parser {
             preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[10], $lesson);
             $week = explode('-', $course[9]);
             $courses[] = array(
-                'courseName' => preg_replace('/^\[.*?\]/', '', $course[0]),
-                'credit' => $course[1],
-                'totalHour' => $course[2],
-                'theoryHour' => $course[3],
+                'courseName'       => preg_replace('/^\[.*?\]/', '', $course[0]),
+                'credit'           => $course[1],
+                'totalHour'        => $course[2],
+                'theoryHour'       => $course[3],
                 'experimentalHour' => $course[4],
-                'courseType' => $course[5],
-                'teachType' => $course[6],
-                'examType' => $course[7],
-                'teacherName' => $course[8],
-                'weekStart' => (int)$week[0],
-                'weekTo' => (int)$week[1],
-                'weekDay' => (int)self::$weekDict[$lesson[1]],
-                'lessonStart' => (int)$lesson[2],
-                'lessonTo' => (int)$lesson[3],
-                'location' => $course[11],
+                'courseType'       => $course[5],
+                'teachType'        => $course[6],
+                'examType'         => $course[7],
+                'teacherName'      => $course[8],
+                'weekStart'        => (int)$week[0],
+                'weekTo'           => (int)$week[1],
+                'weekDay'          => (int)self::$weekDict[$lesson[1]],
+                'lessonStart'      => (int)$lesson[2],
+                'lessonTo'         => (int)$lesson[3],
+                'location'         => $course[11],
             );
         }
         return $courses;
