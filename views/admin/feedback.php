@@ -4,7 +4,6 @@
             <tr>
                 <th>状态</th>
                 <th>发送者</th>
-                <th>姓名</th>
                 <th>内容</th>
                 <th>时间</th>
                 <th>操作</th>
