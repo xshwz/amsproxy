@@ -250,16 +250,16 @@ class Parser {
     public function enterRankExamById($id) {
         $td = $this->dom->getElementById($id);
         $post = array(
-            'state' => iconv('utf-8', 'gb18030', $td->getAttribute('value')),
-            'lb'       => $td->getAttribute('lb'),
-            'dj'       => $td->getAttribute('dj'),
-            'year'     => $td->getAttribute('year'),
-            'month'    => $td->getAttribute('month'),
-            'llbm'     => $td->getAttribute('llbm'),
-            'czbm'     => $td->getAttribute('czbm'),
-            'chkLLbm'  => '1',
-            'djmc'     => $td->getAttribute('DJMC'),
-            // 'xyx'   => $td->getAttribute('xyxdg_flag') || '0',
+            'state'   => iconv('utf-8', 'gb18030', $td->getAttribute('value')),
+            'lb'      => $td->getAttribute('lb'),
+            'dj'      => $td->getAttribute('dj'),
+            'year'    => $td->getAttribute('year'),
+            'month'   => $td->getAttribute('month'),
+            'llbm'    => $td->getAttribute('llbm'),
+            'czbm'    => $td->getAttribute('czbm'),
+            'chkLLbm' => '1',
+            'djmc'    => $td->getAttribute('DJMC'),
+            // 'xyx'  => $td->getAttribute('xyxdg_flag') || '0',
         );
         return $post;
     }
