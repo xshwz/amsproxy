@@ -31,10 +31,4 @@ class RankExamController extends StudentController {
         $this->student->save();
         $this->redirect(array('index'));
     }
-
-    public function actionRefresh() {
-        $this->student->rankExam = null;
-        $this->student->save();
-        $this->render('refresh', array('msg' => '等级考试'));
-    }
 }

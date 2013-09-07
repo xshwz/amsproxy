@@ -15,10 +15,6 @@
                 'label' => '原始成绩',
                 'action' => 'originalScore',
             ),
-            array(
-                'label' => '更新数据',
-                'action' => 'refresh',
-            )
         ),
     ));
     ?>

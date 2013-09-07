@@ -60,6 +60,10 @@
                                         'url' => 'theorySubject/index',
                                     ),
                                     array(
+                                        'label' => '清除缓存',
+                                        'url' => 'refresh/index',
+                                    ),
+                                    array(
                                         'label' => '消息',
                                         'url' => 'message/index',
                                         'badge' => count($this->unReadMsg),

@@ -31,12 +31,6 @@ class ScoreController extends StudentController {
         ));
 	}
 
-    public function actionRefresh() {
-        $this->student->score = null;
-        $this->student->save();
-        $this->render('refresh', array('msg' => '成绩'));
-    }
-
     public function addScoreState(&$scoreTable, $score_index) {
         foreach ($scoreTable['tbody'] as $term_name => &$term_score) {
             foreach ($term_score as &$row) {

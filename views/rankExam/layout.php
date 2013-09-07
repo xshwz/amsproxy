@@ -11,10 +11,6 @@
                 'label' => '考试成绩',
                 'action' => 'score',
             ),
-            array(
-                'label' => '更新数据',
-                'action' => 'refresh',
-            )
         ),
     ));
     ?>
