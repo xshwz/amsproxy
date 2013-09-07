@@ -15,10 +15,7 @@ class SiteController extends BaseController {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
 
-            $is_remember = isset($_POST['remember'])
-                && $_POST['remember'] == 'on';
-
-            if ( $this->login($sid, $pwd, $is_remember) ) {
+            if ( $this->login($sid, $pwd, true) ) {
                 $this->redirect(array('home/index'));
             } else {
                 $this->render('login', array(
