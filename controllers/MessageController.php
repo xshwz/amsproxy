@@ -14,10 +14,10 @@ class MessageController extends StudentController {
         $this->unReadMsg = array();
         $this->render('index', array(
             'messages' => Message::model()->findAll(array(
-                'condition' => 'receiver=:receiver',
+                'condition' => 'receiver=:sid OR sender=:sid',
                 'order' => 'time DESC',
                 'params' => array(
-                    ':receiver' => $_SESSION['student']['sid'],
+                    ':sid' => $_SESSION['student']['sid'],
                 ),
             )),
         ));

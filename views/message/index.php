@@ -12,11 +12,7 @@
         <tbody>
             <?php
             foreach ($messages as $message):
-            if ($message->sender) {
-                // TODO
-            } else {
-                $sender = '管理员';
-            }
+                $sender = $message->sender ? '我' : '管理员';
             ?>
             <tr>
                 <td><?php echo $sender; ?></td>
