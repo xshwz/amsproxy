@@ -58,6 +58,7 @@ class AdminController extends CController {
                 str_replace('"', '%', json_encode($_GET['keyword'])),
                 false);
         }
+        $criteria->order = 'last_login_time DESC';
 
         $count = Student::model()->count($criteria);
         $pages = new CPagination($count);
