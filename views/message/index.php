@@ -12,13 +12,18 @@
         <tbody>
             <?php
             foreach ($messages as $message):
-                $sender = $message->sender ? '我' : '管理员';
+                $isSelf = $message->sender == $_SESSION['student']['sid'];
+                if ($isSelf)
+                    $sender = '我';
+                else
+                    $sender = $message->sender ? $message->sender : '管理员';
             ?>
             <tr>
                 <td><?php echo $sender; ?></td>
                 <td><?php echo CHtml::encode($message->message); ?></td>
                 <td class="time"><?php echo $message->time; ?></td>
                 <td>
+                    <?php if ($message->sender != $_SESSION['student']['sid']): ?>
                     <a
                         href="#send-modal"
                         class="send"
@@ -27,6 +32,7 @@
                         data-sid='<?php echo $message->sender; ?>'>
                         <span class="glyphicon glyphicon-send"></span>
                     </a>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>
