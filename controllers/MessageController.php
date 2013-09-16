@@ -24,7 +24,10 @@ class MessageController extends StudentController {
 	}
 
     public function actionSend() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (
+            $_SERVER['REQUEST_METHOD'] == 'POST'
+            && $_POST['receiver'] != $_SESSION['student']['sid']
+        ) {
             $message = new Message;
             $message->receiver = $_POST['receiver'];
             $message->sender = $_SESSION['student']['sid'];
