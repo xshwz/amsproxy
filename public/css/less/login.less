@@ -1,25 +1,24 @@
-// compile:../amsProxy
+.login-form {
+  max-width: 320px;
+  margin: 15px auto;
 
-.login-form {
-    max-width: 320px;
-    margin: 15px auto;
-    border-radius: 6px;
-    .form-group {
-        position: relative;
-    }
-    label.input-icon {
-        position: absolute;
-        top: 7px;
-        right: 9px;
-        color: #bdc3c7;
-    }
-}
-.login-form {
-    .form-control:focus + label {
-        color: #1abc9c;
-        transition: color ease-in-out 0.15s;
-    }
-    .alert {
-        padding: 10px 15px;
-    }
+  .form-group {
+    position: relative;
+  }
+
+  label.input-icon {
+    position: absolute;
+    top: 7px;
+    right: 9px;
+    color: #bdc3c7;
+  }
+
+  .form-control:focus + label {
+    color: @color-main-dark;
+    transition: color ease-in-out .2s;
+  }
+
+  .alert {
+    padding: 10px 15px;
+  }
 }

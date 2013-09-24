@@ -1,4 +1,4 @@
-<div class="courseTable">
+<div class="table-responsive">
     <?php
     $this->widget(
         'ext.widgets.courseTable',

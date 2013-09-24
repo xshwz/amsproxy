@@ -1,93 +1,76 @@
-// compile:../amsProxy
-
 .courseTable {
-    div& {
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-    table& {
-        width: 100%;
-        border-collapse: separate;
-    }
-    td, th {
-        background-color: #fff;
-        padding: 4px 8px;
-        width: 14.285714286%;
-    }
-    tr {
-        & > td:first-child {
-            text-align: center;
-            width: 10px;
-        }
-        & > th:first-child {
-            width: 10px;
-        }
-    }
-    th {
-        background-color: #95a5a6;
-        color: #fff;
-        text-align: center;
-        padding: 10px 8px 8px 8px;
-        border-bottom: 2px solid #7f8c8d;
-        white-space: nowrap;
-    }
-    td {
-        &.course {
-            background-color: #2ecc71;
-            color: #fff;
-            border: 1px solid;
-            cursor: default;
-            & > div {
-                cursor: pointer;
-            }
-            .bg-color(@n; @co) {
-                &-@{n} {
-                    background-color: @co;
-                }
-            }
+  border-collapse: separate;
 
-            .bg-color(1, #1abc9c);
-            .bg-color(2, #f1c40f);
-            .bg-color(3, #e67e22);
-            .bg-color(4, #3498db);
-            .bg-color(5, #e74c3c);
-            .bg-color(6, #9b59b6);
-            .bg-color(7, #34495e);
-            .bg-color(8, #16a085);
-            .bg-color(9, #f39c12);
-            .bg-color(10, #27ae60);
-            .bg-color(11, #2980b9);
-            .bg-color(12, #c0392b);
-            .bg-color(13, #8e44ad);
-        }
-        .rowspan_hei(@n) {
-            &[rowspan="@{n}"] {
-                height: 1.5em*@n;
-            }
-        }
-        .rowspan_hei(1);
-        .rowspan_hei(2);
-        .rowspan_hei(3);
-        .rowspan_hei(4);
-        .rowspan_hei(5);
-        .rowspan_hei(6);
-        .rowspan_hei(7);
-        .rowspan_hei(8);
-        .rowspan_hei(9);
-        .rowspan_hei(10);
-        .rowspan_hei(11);
-        .rowspan_hei(12);
+  tr {
+    > td:first-child,
+    > th:first-child {
+      text-align: center;
+      width: 10px;
     }
-    a.btn {
-        margin: 10px auto;
-    }
-}
-.course {
-    .tooltip-inner {
+  }
+
+  td, th {
+    padding: 4px 8px;
+    width: 14.285714286%;
+  }
+
+  th {
+    background-color: #95a5a6;
+    color: @color-main-light;
+    text-align: center;
+    padding: 10px 8px 8px 8px;
+    border-bottom: 2px solid #7f8c8d;
+    white-space: nowrap;
+  }
+
+  td {
+    background-color: @color-main-light;
+
+    &.course {
+      background-color: #2ecc71;
+      color: @color-main-light;
+      border: 1px solid;
+
+      > div {
+        cursor: pointer;
+      }
+
+      .tooltip-inner {
         text-align: left;
         padding: 8px;
+
         p {
-            margin: 2px 0;
+          margin: 2px 0;
         }
+      }
+
+      .course-color(@n, @color) {
+        &-@{n} {
+          background-color: @color;
+        }
+      }
+
+      .course-color( 1, #1abc9c);
+      .course-color( 2, #f1c40f);
+      .course-color( 3, #e67e22);
+      .course-color( 4, #3498db);
+      .course-color( 5, #e74c3c);
+      .course-color( 6, #9b59b6);
+      .course-color( 7, #34495e);
+      .course-color( 8, #16a085);
+      .course-color( 9, #f39c12);
+      .course-color(10, #27ae60);
+      .course-color(11, #2980b9);
+      .course-color(12, #c0392b);
+      .course-color(13, #8e44ad);
     }
+
+    .rowspan-height(@n) when (@n > 0) {
+      &[rowspan="@{n}"] {
+        height: 1.5em * @n;
+      }
+      .rowspan-height(@n - 1);
+    }
+    .rowspan-height(12);
+  }
 }

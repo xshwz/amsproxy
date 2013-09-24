@@ -16,7 +16,7 @@
         </div>
     </div>
 </form>
-<div class="content table-responsive" id="studentList">
+<div class="article table-responsive" id="studentList">
     <table class="table table-hover table-striped">
         <thead>
             <tr>

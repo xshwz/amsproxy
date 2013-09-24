@@ -34,7 +34,7 @@ class dataTable extends CWidget {
     }
 
     protected function echoTable() {
-        echo '<div class="content table-responsive">';
+        echo '<div class="article table-responsive">';
         $this->openTable();
         $this->echoThead();
         echo '<tbody>';

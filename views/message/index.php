@@ -1,5 +1,5 @@
 <?php if (count($messages) > 0): ?>
-<div class="content table-responsive">
+<div class="article table-responsive">
     <table class="table table-hover table-striped">
         <thead>
             <tr>

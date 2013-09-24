@@ -1,4 +1,4 @@
-<div class="main form-horizontal">
+<div class="article form-horizontal">
     <br>
     <?php foreach ( $this->getInfo() as $key => $value): ?>
     <div class="form-group">
