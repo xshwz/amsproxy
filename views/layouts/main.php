@@ -24,7 +24,7 @@
                         <span class="icon-bar"></span>
                     </a>
                     <a href="<?php echo Yii::app()->createUrl('site/index')?>" class="navbar-brand">
-                        <img width="17" height="17" src="img/logo.png" alt="logo">
+                        <img width="17" height="17" src="favicon.ico" alt="logo">
                         相思青果
                     </a>
                 </div>
@@ -63,16 +63,25 @@
                                         'label' => '清除缓存',
                                         'url' => 'refresh/index',
                                     ),
-                                    array(
-                                        'label' => '消息',
-                                        'url' => 'message/index',
-                                        'badge' => count($this->unReadMsg),
-                                    ),
                                 ),
                             )
                         );
                     ?>
                     <ul class="nav navbar-nav navbar-right">
+                        <li
+                            <?php
+                            if (Yii::app()->controller->id == 'message')
+                                echo 'class="active"';
+                            ?>>
+                            <a class="bubble" href="<?php echo Yii::app()->createUrl('admin/feedback'); ?>">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                                <?php if (count($this->unReadMsg) > 0): ?>
+                                <span class="badge admin">
+                                    <?php echo count($this->unReadMsg); ?>
+                                </span>
+                                <?php endif; ?>
+                            </a>
+                        </li>
                         <li>
                             <?php
                             echo CHtml::link(

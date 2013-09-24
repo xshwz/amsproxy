@@ -180,11 +180,18 @@
   border-width: 0;
   transition: border-width ease-in-out 0.2s;
 }
+.datepicker {
+  background-color: #1abc9c;
+}
 .datepicker:before {
   border-bottom-color: #1abc9c;
 }
 .datepicker:after {
   border-bottom-color: #1abc9c;
+}
+.datepicker td,
+.datepicker th {
+  color: #ffffff;
 }
 .datepicker td.active.active,
 .datepicker td.active:hover.active,
@@ -274,16 +281,16 @@ body {
   position: relative;
   top: -3px;
 }
-.navbar-nav .badge {
+.navbar-nav .bubble {
+  position: relative;
+}
+.navbar-nav .bubble .badge {
   position: absolute;
   background-color: #e74c3c;
   font-size: 10px;
   padding: 3px 6px;
-  top: 12px;
-}
-.navbar-nav .badge.admin {
-  position: relative;
-  top: -6px;
+  top: 8px;
+  right: 6px;
 }
 .article {
   padding: 20px;

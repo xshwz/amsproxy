@@ -65,9 +65,13 @@
                         );
                     ?>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="<?php echo Yii::app()->createUrl('admin/feedback'); ?>">
-                                <span class="glyphicon glyphicon-bell"></span>
+                        <li
+                            <?php
+                            if (Yii::app()->controller->action->id == 'feedback')
+                                echo 'class="active"';
+                            ?>>
+                            <a class="bubble" href="<?php echo Yii::app()->createUrl('admin/feedback'); ?>">
+                                <span class="glyphicon glyphicon-envelope"></span>
                                 <?php if (count($this->unReadMsg) > 0): ?>
                                 <span class="badge admin">
                                     <?php echo count($this->unReadMsg); ?>
