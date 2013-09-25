@@ -10,7 +10,6 @@
         <div class="col-sm-6 col-lg-4">
             <textarea
                 name="message"
-                type="text"
                 rows="4"
                 class="form-control"></textarea>
         </div>

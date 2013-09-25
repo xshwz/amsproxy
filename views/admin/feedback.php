@@ -65,7 +65,6 @@
                     <input type="hidden" name="receiver" id="send-form-sid">
                     <div class="form-group">
                         <textarea
-                            type="text"
                             name="message"
                             rows="4"
                             id="send-msg"

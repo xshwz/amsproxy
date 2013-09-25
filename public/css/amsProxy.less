@@ -1,0 +1,40 @@
+@import 'less/variables';
+@import 'less/bootstrap.less';
+@import 'less/login';
+@import 'less/courseTable';
+@import 'less/courseLine';
+@import 'less/datepicker.less';
+@import 'less/footer.less';
+@import 'less/nav.less';
+@import 'less/admin.less';
+
+body {
+  background-color: @color-body-bg;
+}
+.body {
+  margin-top: 70px;
+}
+
+.stats > div {
+  padding-top: 20px;
+}
+
+.article {
+  padding: 20px;
+  background-color: @color-main-light;
+  border-radius: 6px;
+
+  > p {
+    text-indent: 2em;
+  }
+}
+
+[id^="cnzz_stat_icon"] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .body > [class^="col-"] {
+    padding: 0;
+  }
+}

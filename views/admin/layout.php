@@ -7,7 +7,6 @@
         <link rel="shortcut icon" href="favicon.ico">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/datepicker.css" rel="stylesheet">
-        <link href="css/bootstrap-custom.css" rel="stylesheet">
         <link href="css/amsProxy.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
     </head>
