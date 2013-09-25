@@ -58,10 +58,6 @@
                                         'label' => '理论课程',
                                         'url' => 'theorySubject/index',
                                     ),
-                                    array(
-                                        'label' => '清除缓存',
-                                        'url' => 'refresh/index',
-                                    ),
                                 ),
                             )
                         );

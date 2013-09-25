@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-4 control-label" for="inputCrypt">cookie密钥</label>
+        <label class="col-sm-4 control-label" for="inputCrypt">cookie 密钥</label>
         <div class="col-sm-4">
             <form class="form-inline" method="post">
                 <div class="form-group">

@@ -168,15 +168,26 @@ pre {
   border: none;
 }
 .panel-heading {
-  background-color: #1abc9c;
   padding: 0;
 }
-.panel-heading a,
-.panel-heading a:hover {
+.panel-heading .accordion-toggle {
   display: block;
   padding: 10px 15px;
+  background-color: #16a085;
   color: #ffffff;
+}
+.panel-heading .accordion-toggle.collapsed {
+  background-color: #1abc9c;
+}
+.panel-heading .accordion-toggle.collapsed:hover {
+  background-color: #16a085;
+}
+.panel-heading .accordion-toggle:hover {
   text-decoration: none;
+}
+.panel-heading .badge {
+  color: #1abc9c;
+  background-color: #ffffff;
 }
 .login-form {
   max-width: 320px;
@@ -394,6 +405,33 @@ pre {
   border-color: #ffffff;
   box-shadow: none;
 }
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+.footer .powered {
+  color: #7f8c8d;
+  margin-bottom: 8px;
+}
+.footer .powered img {
+  position: relative;
+  top: -2px;
+}
+.navbar-brand img {
+  position: relative;
+  top: -3px;
+}
+.navbar-nav .bubble {
+  position: relative;
+}
+.navbar-nav .bubble .badge {
+  position: absolute;
+  background-color: #e74c3c;
+  font-size: 10px;
+  padding: 3px 6px;
+  top: 8px;
+  left: 20px;
+}
 .search-form {
   margin-bottom: 12px;
 }
@@ -437,41 +475,6 @@ body {
 .stats > div {
   padding-top: 20px;
 }
-[id^="cnzz_stat_icon"] {
-  display: none;
-}
-@media (max-width: 768px) {
-  .body > [class^="col-"] {
-    padding: 0;
-  }
-}
-.footer {
-  margin-top: 20px;
-  text-align: center;
-}
-.footer .powered {
-  color: #7f8c8d;
-  margin-bottom: 8px;
-}
-.footer .powered img {
-  position: relative;
-  top: -2px;
-}
-.navbar-brand img {
-  position: relative;
-  top: -3px;
-}
-.navbar-nav .bubble {
-  position: relative;
-}
-.navbar-nav .bubble .badge {
-  position: absolute;
-  background-color: #e74c3c;
-  font-size: 10px;
-  padding: 3px 6px;
-  top: 8px;
-  left: 20px;
-}
 .article {
   padding: 20px;
   background-color: #ffffff;
@@ -479,4 +482,12 @@ body {
 }
 .article > p {
   text-indent: 2em;
+}
+[id^="cnzz_stat_icon"] {
+  display: none;
+}
+@media (max-width: 768px) {
+  .body > [class^="col-"] {
+    padding: 0;
+  }
 }

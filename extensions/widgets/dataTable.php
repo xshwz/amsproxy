@@ -75,7 +75,7 @@ class dataTable extends CWidget {
         echo '<h4 class="panel-title">';
         echo CHtml::link($title, "#{$title}", array(
             'class' => 'accordion-toggle '
-                . (!$is_last ? 'collapse' : ''),
+                . (!$is_last ? 'collapsed' : ''),
             'data-toggle' => 'collapse',
             'data-parent' => '.panel-group',
         ));

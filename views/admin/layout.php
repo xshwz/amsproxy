@@ -36,10 +36,6 @@
                             array(
                                 'items' => array(
                                     array(
-                                        'label' => '主页',
-                                        'url' => array('admin/index'),
-                                    ),
-                                    array(
                                         'label' => '学生',
                                         'url' => array('admin/student'),
                                     ),

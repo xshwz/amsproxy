@@ -211,18 +211,32 @@ pre {
 
 .panel {
   border: none;
-}
-.panel-heading {
-  background-color: @color-main-dark;
-  padding: 0;
 
-  a {
-    &,
-    &:hover {
+  &-heading {
+    padding: 0;
+
+    .accordion-toggle {
       display: block;
       padding: 10px 15px;
+      background-color: @color-main-darker;
       color: @color-main-light;
-      text-decoration: none;
+
+      &.collapsed {
+        background-color: @color-main-dark;
+
+        &:hover {
+          background-color: @color-main-darker;
+        }
+      }
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .badge {
+      color: @color-main-dark;
+      background-color: @color-main-light;
     }
   }
 }
