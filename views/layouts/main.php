@@ -55,7 +55,7 @@
                                         'url' => 'rankExam/index',
                                     ),
                                     array(
-                                        'label' => '理论课程',
+                                        'label' => '教学计划',
                                         'url' => 'theorySubject/index',
                                     ),
                                 ),
@@ -68,10 +68,10 @@
                             if (Yii::app()->controller->id == 'message')
                                 echo 'class="active"';
                             ?>>
-                            <a class="bubble" href="<?php echo Yii::app()->createUrl('admin/feedback'); ?>">
+                            <a class="bubble" href="<?php echo Yii::app()->createUrl('message/index'); ?>">
                                 <span class="glyphicon glyphicon-envelope"></span>
                                 <?php if (count($this->unReadMsg) > 0): ?>
-                                <span class="badge admin">
+                                <span class="badge">
                                     <?php echo count($this->unReadMsg); ?>
                                 </span>
                                 <?php endif; ?>
