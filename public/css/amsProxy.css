@@ -13,7 +13,7 @@ pre {
 }
 .navbar-inverse {
   background-color: #34495e;
-  border-color: #2c3e50;
+  border: none;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;
