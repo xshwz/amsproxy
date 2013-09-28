@@ -23,7 +23,7 @@
                         <span class="icon-bar"></span>
                     </a>
                     <a href="<?php echo Yii::app()->createUrl('site/index')?>" class="navbar-brand">
-                        <img width="17" height="17" src="favicon.ico" alt="logo">
+                        <img width="17" height="17" src="img/xsh-logo.png" alt="logo">
                         相思青果
                     </a>
                 </div>
