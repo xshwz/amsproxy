@@ -56,7 +56,7 @@ class WechatController extends BaseController {
 
                 case '课程':
                     if (!isset($command[1]))
-                        $command[1] = $this->getCurrentWday();
+                        $command[1] = (int)date('N');
 
                     $wechat->response($this->getCourse((int)$command[1]));
                     break;
@@ -150,14 +150,6 @@ class WechatController extends BaseController {
             $scores .= "成绩：{$score[6]}\n\n";
         }
         return rtrim($scores);
-    }
-
-    /**
-     * 获取当前星期天数
-     * @return int wday
-     */
-    public function getCurrentWday() {
-        return (int)date('N', time());
     }
 }
 
