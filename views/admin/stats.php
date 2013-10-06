@@ -8,9 +8,6 @@
 <script src="js/highcharts.js"></script>
 <script>
 Highcharts.setOptions({
-    chart: {
-        backgroundColor: '#f9f9f9'
-    },
     credits: {
         enabled: false
     },
@@ -151,6 +148,9 @@ $(function(){
             data.push([discipline, disciplines[discipline]]);
 
         $('#college-' + collegeName).highcharts({
+            chart: {
+                backgroundColor: '#f9f9f9'
+            },
             title: {
                 text: ''
             },

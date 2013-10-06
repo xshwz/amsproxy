@@ -41,10 +41,11 @@ $('#ajaxSendForm').ajaxForm({
 (function(){
     function resize() {
         $('#main').css('height', $(document).height());
-        if ($(window).width() < 768)
+        if ($(window).width() < 768) {
             $('#side').css('height', $(window).height());
-        else
+        } else {
             $('#side').css('height', $(document).height());
+        }
     }
 
     resize();

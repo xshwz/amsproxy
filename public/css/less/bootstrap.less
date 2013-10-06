@@ -109,8 +109,7 @@ pre {
 }
 
 .form-control {
-  border-color: transparent;
-  box-shadow: none;
+  border-color: lighten(@color-main-dark, 6%);
 
   &:focus {
     border-color: @color-main-dark;
@@ -225,12 +224,16 @@ pre {
       padding: 10px 15px;
       background-color: @color-main-darker;
       color: @color-main-light;
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 
       &.collapsed {
         background-color: @color-main-dark;
+        border-bottom: 2px solid @color-main-darker;
+        box-shadow: none;
 
         &:hover {
           background-color: @color-main-darker;
+          border-bottom: 2px solid darken(@color-main-darker, 6%);;
         }
       }
       

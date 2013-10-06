@@ -48,7 +48,12 @@
         a {
           display: block;
           padding: 6px 8px;
+          margin: 2px 0;
           color: @color-main-light;
+
+          .glyphicon {
+            margin-right: 8px;
+          }
         }
 
         li.active a,
@@ -59,13 +64,6 @@
       }
     }
   }
-
-  @media (max-width: @screen-sm) {
-    overflow: auto;
-    height: 100%;
-    position: fixed;
-    left: -200px;
-  }
 }
 
 #side-toggle {
@@ -74,20 +72,18 @@
   top: 50%;
   left: 200px;
   padding: 8px 6px;
-  margin-top: -16px;
+  margin-top: -18px;
   color: @color-main-light;
   background-color: @color-main-bg-dark;
   border-radius: 0 4px 4px 0;
   border: none;
+  border-bottom: 2px solid @color-main-bg-darker;
+  opacity: .9;
 
   .icon-bar {
     background-color: @color-main-light;
     width: 10px;
     border-radius: 0 1px 1px 0;
-  }
-
-  @media (max-width: @screen-sm) {
-    left: 0;
   }
 }
 
@@ -106,8 +102,30 @@
   > .container {
     padding: 20px;
   }
+}
 
-  @media (max-width: @screen-sm) {
+@media (max-width: @screen-sm) {
+  #main {
     margin-left: 0;
+
+    > .container {
+      padding: 16px 8px;
+    }
+  }
+
+  #side-toggle {
+    left: 0;
+  }
+
+  #side {
+    overflow: auto;
+    height: 100%;
+    position: fixed;
+    left: -200px;
+  }
+
+  .form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

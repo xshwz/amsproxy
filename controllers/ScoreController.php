@@ -68,19 +68,24 @@ class ScoreController extends StudentController {
      * @return array 成绩分布表
      */
     public function getScoreDist($scoreTable) {
-        $scoreDict = array(0, 0, 0, 0, 0);
+        $scoreDict = array();
         foreach ($scoreTable['tbody'] as $term_score) {
             foreach ($term_score as $row) {
                 if ($row[6] >= 90)
-                    $scoreDict[0]++;
+                    $index = 0;
                 else if ($row[6] >= 80)
-                    $scoreDict[1]++;
+                    $index = 1;
                 else if ($row[6] >= 70)
-                    $scoreDict[2]++;
+                    $index = 2;
                 else if ($row[6] >= 60)
-                    $scoreDict[3]++;
+                    $index = 3;
                 else
-                    $scoreDict[4]++;
+                    $index = 4;
+
+                $scoreDict[$index][] = array(
+                    preg_replace('/\[.*?\]/', '', $row[0]),
+                    $row[6],
+                );
             }
         }
         return $scoreDict;

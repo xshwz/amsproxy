@@ -19,13 +19,14 @@ Highcharts.setOptions({
         }
     },
 });
+
 $(function(){
     $('#termStats').highcharts({
         chart: {
             type: 'bar'
         },
         title: {
-            text: '学期科目统计'
+            text: ''
         },
         xAxis: {
             categories: <?php echo json_encode($termNames); ?>
@@ -33,7 +34,7 @@ $(function(){
         yAxis: {
             minTickInterval: 1
         },
-        colors: ['#2ecc71', '#e74c3c'],
+        colors: ['#1abc9c', '#f1c40f'],
         series: [{
             name: '通过',
             data: <?php echo json_encode($termScoreStats[0]); ?>
@@ -43,11 +44,29 @@ $(function(){
         }],
     });
 
+    var scoreDict = eval(<?php echo json_encode($scoreDict); ?>);
+    var scoreDictLabels = ['', '', '', '', ''];
+
+    for (var i in scoreDict) {
+        for (var score in scoreDict[i]) {
+            scoreDictLabels[i] +=
+                scoreDict[i][score][0] + '：' +
+                '<b>' + scoreDict[i][score][1] + '</b><br>';
+        }
+    }
+
+    console.log(scoreDictLabels);
+
     $('#scoreDict').highcharts({
         title: {
             text: '成绩分布'
         },
         colors: ['#2ecc71', '#f1c40f', '#3498db', '#9b59b6', '#e74c3c'],
+        tooltip: {
+            formatter: function() {
+                return scoreDictLabels[this.point.x];
+            }
+        },
         plotOptions: {
             pie: {
                 allowPointSelect: true
@@ -55,13 +74,14 @@ $(function(){
         },
         series: [{
             type: 'pie',
-            name: '分数段',
+            showInLegend: false,
+            name: 'test',
             data: [
-                ['[90, 100]', <?php echo $scoreDict[0]; ?>],
-                ['(80, 90]',  <?php echo $scoreDict[1]; ?>],
-                ['(70, 80]',  <?php echo $scoreDict[2]; ?>],
-                ['(60, 70]',  <?php echo $scoreDict[3]; ?>],
-                ['[0, 60]',   <?php echo $scoreDict[4]; ?>]
+                ['[90, 100]', scoreDict[0].length],
+                ['(80, 90]',  scoreDict[1].length],
+                ['(70, 80]',  scoreDict[2].length],
+                ['(60, 70]',  scoreDict[3].length],
+                ['[0, 60]',   scoreDict[4].length]
             ]
         }]
     });

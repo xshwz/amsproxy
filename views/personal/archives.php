@@ -8,4 +8,7 @@
         </div>
     </div>
     <?php endforeach; ?>
+    <a href="" title="编辑" class="btn archives-edit">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </a>
 </div>

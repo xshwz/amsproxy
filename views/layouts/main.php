@@ -87,7 +87,7 @@
                                 'items' => array(
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-refresh"></span> 清除缓存',
-                                        'url' => array('setting/clean'),
+                                        'url' => array('setting/clear'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-lock"></span> 修改密码',
@@ -113,6 +113,15 @@
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-info-sign"></span> 关于',
                                         'url' => array('help/about'),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'label' => '',
+                                'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-log-out"></span> 退出',
+                                        'url' => array('home/logout'),
                                     ),
                                 ),
                             ),
