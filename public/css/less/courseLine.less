@@ -10,7 +10,7 @@
     list-style: none;
 
     > li > div {
-      background-color: @color-main-light;
+      background-color: @color-main-bg-light;
       border-radius: 4px;
       padding: 4px 16px 2px 16px;
       margin: 16px 0;
@@ -37,27 +37,21 @@
     top: @circle-width;
 
     border: @circle-width / 2 solid transparent;
-    border-right-color: @color-main-light;
+    border-right-color: @color-main-bg-light;
     border-left-width: 0;
   }
 
   .circle {
     width: @circle-width;
     height: @circle-width;
-    background-color: @color-main-dark;
+    background-color: @color-main-light;
 
-    z-index: 999;
+    z-index: 1;
     position: absolute;
     top: @circle-width;
     left: -(@line-right + (@circle-width - @line-width) / 2);
 
-    border: @circle-width / 4 solid @color-main-light;
+    border: @circle-width / 4 solid @color-main-dark;
     border-radius: @circle-width;
-
-    &:hover {
-      border-width: 0;
-      transition: border-width ease-in-out .2s;
-    }
   }
 }
-

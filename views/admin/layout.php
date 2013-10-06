@@ -10,7 +10,7 @@
         <link href="css/amsProxy.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="admin">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

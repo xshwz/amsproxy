@@ -3,154 +3,149 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>相思青果</title>
+        <meta name="keywords" content="相思青果,相思湖网站,广西民族大学,教务系统">
+        <meta name="description" content="“相思青果”是由相思湖网站开发的，广西民族大学教务系统代理。">
+        <title>
+        <?php
+        if (isset($this->pageTitle) && $this->pageTitle)
+            echo $this->pageTitle . ' - ';
+        ?>
+        相思青果
+        </title>
         <link rel="shortcut icon" href="favicon.ico">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/amsProxy.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a
-                        class="navbar-toggle"
-                        href="javascript:"
-                        data-toggle="collapse"
-                        data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a href="<?php echo Yii::app()->createUrl('site/index')?>" class="navbar-brand">
-                        <img width="17" height="17" src="img/xsh-logo.png" alt="logo">
-                        相思青果
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <?php
-                    if ($this->isLogged()):
-                        $this->widget(
-                            'ext.widgets.menu',
+        <div id="body">
+            <div id="side">
+                <?php
+                $this->widget(
+                    'zii.widgets.CMenu',
+                    array(
+                        'encodeLabel' => false,
+                        'items' => array(
                             array(
+                                'label' => '个人',
                                 'items' => array(
                                     array(
-                                        'label' => '主页',
-                                        'url' => 'home/index',
-                                    ),
-                                    array(
-                                        'label' => '学籍',
-                                        'url' => 'info/index',
-                                    ),
-                                    array(
-                                        'label' => '课表',
-                                        'url' => 'course/index',
-                                    ),
-                                    array(
-                                        'label' => '成绩',
-                                        'url' => 'score/stats',
-                                    ),
-                                    array(
-                                        'label' => '等级考试',
-                                        'url' => 'rankExam/index',
-                                    ),
-                                    array(
-                                        'label' => '教学计划',
-                                        'url' => 'theorySubject/index',
+                                        'label' => '<span class="glyphicon glyphicon-user"></span> 学籍档案',
+                                        'url' => array('personal/archives'),
                                     ),
                                 ),
-                            )
-                        );
+                            ),
+                            array(
+                                'label' => '课程',
+                                'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-list"></span> 今日课程',
+                                        'url' => array('course/today'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-th"></span> 课程表',
+                                        'url' => array('course/table'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-list-alt"></span> 教学计划',
+                                        'url' => array('course/plan'),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'label' => '成绩',
+                                'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-stats"></span> 统计',
+                                        'url' => array('score/stats'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-check"></span> 有效成绩',
+                                        'url' => array('score/effectiveScore'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-unchecked"></span> 原始成绩',
+                                        'url' => array('score/originalScore'),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'label' => '等级考试',
+                                'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-hand-right"></span> 报名',
+                                        'url' => array('rankExam/index'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-list-alt"></span> 成绩',
+                                        'url' => array('rankExam/score'),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'label' => '设置',
+                                'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-refresh"></span> 清除缓存',
+                                        'url' => array('setting/clean'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-lock"></span> 修改密码',
+                                        'url' => array('setting/passwrod'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-phone"></span> 微信',
+                                        'url' => array('course/wechat'),
+                                    ),
+                                ),
+                            ),
+                            array(
+                                'label' => '帮助',
+                                'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-comment"></span> 反馈',
+                                        'url' => array('help/feedback'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-question-sign"></span> FAQ',
+                                        'url' => array('help/faq'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-info-sign"></span> 关于',
+                                        'url' => array('help/about'),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    )
+                );
+                ?>
+            </div>
+            <button class="navbar-toggle" id="side-toggle" type="button">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+            <div id="main">
+                <div class="container">
+                    <?php
+                    if (isset($this->breadcrumbs)) {
+                        $this->widget('zii.widgets.CBreadcrumbs', array(
+                            'tagName' => 'ol',
+                            'separator' => '',
+                            'activeLinkTemplate' => '
+                                <li><a href="{url}">{label}</a></li>',
+                            'inactiveLinkTemplate' => '
+                                <li class="active">{label}</li>',
+                            'htmlOptions' => array('class' => 'breadcrumb'),
+                            'homeLink' => false,
+                            'links' => $this->breadcrumbs,
+                        ));
+                    }
+
+                    echo $content;
                     ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li
-                            <?php
-                            if (Yii::app()->controller->id == 'message')
-                                echo 'class="active"';
-                            ?>>
-                            <a class="bubble" href="<?php echo Yii::app()->createUrl('message/index'); ?>">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                                <?php if (count($this->unReadMsg) > 0): ?>
-                                <span class="badge">
-                                    <?php echo count($this->unReadMsg); ?>
-                                </span>
-                                <?php endif; ?>
-                            </a>
-                        </li>
-                        <li>
-                            <?php
-                            echo CHtml::link(
-                                '退出', array('home/logout'));
-                            ?>
-                        </li>
-                    </ul>
-                    <?php else: ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="<?php echo Yii::app()->createUrl('site/login')?>">
-                                登录
-                            </a>
-                        </li>
-                    </ul>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
-
-        <div class="container body">
-            <?php echo $content; ?>
-        </div>
-
-        <div class="footer">
-            <ul class="list-inline">
-                <li>
-                    <a href="<?php echo Yii::app()->createUrl('site/about')?>">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span> 关于
-                    </a>
-                </li>
-                <?php if ($this->isLogged()): ?>
-                <li>
-                    <a data-toggle="modal" href="#feedbackModal">
-                        <span class="glyphicon glyphicon-send"></span> 反馈
-                    </a>
-                </li>
-                <?php endif; ?>
-            </ul>
-            <div class="powered">
-                <em>powered by 相思湖网站</em>
-            </div>
-        </div>
-
-        <?php if ($this->isLogged()): ?>
-        <div class="modal fade" id="feedbackModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h4 class="modal-title">反馈</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form
-                            id="ajaxFeedbackForm"
-                            action="<?php echo Yii::app()->createUrl('home/feedback')?>"
-                            method="post">
-                            <div class="form-group">
-                                <textarea
-                                    placeholder="有什么意见或问题想要对我们说？"
-                                    name="message"
-                                    rows="4"
-                                    id="feedback-msg"
-                                    class="form-control"></textarea>
-                            </div>
-                            <button type="submit" class="btn">
-                                <i class="glyphicon glyphicon-ok"></i> 提交
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php endif; ?>
 
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>

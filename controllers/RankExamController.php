@@ -1,8 +1,8 @@
 <?php
 class RankExamController extends StudentController {
-    public $layout = '/rankExam/layout';
-
     public function actionIndex() {
+        $this->pageTitle = '等级考试报名';
+
         $rankExam = $this->getRankExam(0);
         foreach ( $rankExam['tbody'] as &$tbody ) {
             foreach ( $tbody as &$trs ) {
@@ -14,12 +14,12 @@ class RankExamController extends StudentController {
                 }
             }
         }
-        $this->render('table', array(
-            'data' => $rankExam
-        ));
+
+        $this->render('table', array('data' => $rankExam));
     }
 
     public function actionScore() {
+        $this->pageTitle = '等级考试成绩';
         $this->render('table', array(
             'data' => $this->getRankExam(1),
         ));

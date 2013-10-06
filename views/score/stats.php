@@ -1,4 +1,4 @@
-<div class="article stats">
+<div class="stats">
     <div id="termStats"></div>
     <div id="scoreDict"></div>
 </div>
@@ -17,7 +17,7 @@ Highcharts.setOptions({
         title: {
             text: ''
         }
-    }
+    },
 });
 $(function(){
     $('#termStats').highcharts({
@@ -57,11 +57,11 @@ $(function(){
             type: 'pie',
             name: '分数段',
             data: [
-                ['[100, 90]', <?php echo $scoreDict[0]; ?>],
-                ['(90, 80]',  <?php echo $scoreDict[1]; ?>],
-                ['(80, 70]',  <?php echo $scoreDict[2]; ?>],
-                ['(70, 60]',  <?php echo $scoreDict[3]; ?>],
-                ['[60, 0]',   <?php echo $scoreDict[4]; ?>]
+                ['[90, 100]', <?php echo $scoreDict[0]; ?>],
+                ['(80, 90]',  <?php echo $scoreDict[1]; ?>],
+                ['(70, 80]',  <?php echo $scoreDict[2]; ?>],
+                ['(60, 70]',  <?php echo $scoreDict[3]; ?>],
+                ['[0, 60]',   <?php echo $scoreDict[4]; ?>]
             ]
         }]
     });

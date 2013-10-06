@@ -101,7 +101,7 @@ class dataTable extends CWidget {
     }
 
     protected function openTable() {
-        echo '<table class="table table-striped table-hover">';
+        echo '<table class="table table-hover">';
     }
 
     protected function closeTable() {

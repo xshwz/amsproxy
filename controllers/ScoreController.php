@@ -3,9 +3,8 @@
  * 成绩控制器
  */
 class ScoreController extends StudentController {
-    public $layout = '/score/layout';
-
     public function actionOriginalScore() {
+        $this->pageTitle = '原始成绩';
         $scoreTable = $this->getScore(0);
         $this->addScoreState($scoreTable, 10);
         $this->render('scoreTable', array(
@@ -14,6 +13,7 @@ class ScoreController extends StudentController {
     }
 
     public function actionEffectiveScore() {
+        $this->pageTitle = '有效成绩';
         $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('scoreTable', array(
@@ -22,6 +22,7 @@ class ScoreController extends StudentController {
     }
 
 	public function actionStats() {
+        $this->pageTitle = '成绩统计';
         $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);
         $this->render('stats', array(

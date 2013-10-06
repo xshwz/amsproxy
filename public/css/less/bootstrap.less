@@ -85,7 +85,7 @@ pre {
   }
 }
 .modal-body {
-  background-color: @color-main-light;
+  background-color: #fff;
   border-radius: 0 0 6px 6px;
 
   .form-control {
@@ -152,6 +152,11 @@ pre {
 @media (max-width: @screen-sm) {
   .table-responsive {
     border: none;
+    margin-bottom: 0;
+
+    .table {
+      background-color: transparent;
+    }
   }
 }
 
@@ -238,5 +243,18 @@ pre {
       color: @color-main-dark;
       background-color: @color-main-light;
     }
+  }
+
+  &-body {
+    background-color: #f9f9f9;
+  }
+}
+.panel-group .panel-heading + .panel-collapse .panel-body {
+  border-top: none;
+}
+
+@media (max-width: @screen-sm) {
+  .form-horizontal .form-group label[class^="col-xs"] {
+    text-align: right;
   }
 }

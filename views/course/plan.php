@@ -1,5 +1,5 @@
 <?php
 $this->widget('ext.widgets.dataTable', array(
-    'data' => $score,
+    'data' => $this->getTheorySubject(),
     'cutSquareBracketNum' => 0,
 ));

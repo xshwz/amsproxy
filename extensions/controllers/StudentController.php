@@ -10,6 +10,11 @@ class StudentController extends BaseController {
      */
     public $amsProxy;
 
+    /**
+     * 网页标题
+     */
+    public $pageTitle = '';
+
     public function init() {
         parent::init();
 

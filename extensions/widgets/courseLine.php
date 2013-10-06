@@ -12,7 +12,7 @@ class courseLine extends CWidget {
         $weekCourses = $this->getWeekCourse($this->courses, (int)date('N'));
 
         if (count($weekCourses) == 0) {
-            echo '<p>今天居然没课！</p>';
+            echo '<p><img src="img/rage_comics/happy-epic-win.png" class="img-responsive" alt="rage comic - happy epic win"></p>';
             return;
         }
 
@@ -37,7 +37,7 @@ class courseLine extends CWidget {
                         </dd>
                         <dd>
                             <span class='glyphicon glyphicon-time'></span>
-                            {$timeStart} - {$timeTo}
+                            {$course['lessonStart']} - {$course['lessonTo']}（{$timeStart} - {$timeTo}）
                         </dd>
                         <dd>
                             <span class='glyphicon glyphicon-user'></span>
