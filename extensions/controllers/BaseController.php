@@ -66,12 +66,13 @@ class BaseController extends CController {
                 'sid' => $sid,
                 'pwd' => $pwd,
             );
+
             if ($is_remember)
                 $this->remember($sid, $pwd);
-        }
-        catch(Exception $e) {
+        } catch(Exception $e) {
             return false;
         }
+
         return true;
     }
 

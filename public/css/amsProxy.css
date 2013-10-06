@@ -178,12 +178,10 @@ pre {
   padding: 10px 15px;
   background-color: #16a085;
   color: #ffffff;
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 .panel-heading .accordion-toggle.collapsed {
   background-color: #1abc9c;
   border-bottom: 2px solid #16a085;
-  box-shadow: none;
 }
 .panel-heading .accordion-toggle.collapsed:hover {
   background-color: #16a085;

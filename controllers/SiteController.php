@@ -16,7 +16,7 @@ class SiteController extends BaseController {
             $pwd = $_POST['pwd'];
 
             if ( $this->login($sid, $pwd, true) ) {
-                $this->redirect(array('home/index'));
+                $this->redirect(array('personal/archives'));
             } else {
                 $this->render('login', array(
                     'error' => true,

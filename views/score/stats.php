@@ -77,13 +77,17 @@ $(function(){
             showInLegend: false,
             name: 'test',
             data: [
-                ['[90, 100]', scoreDict[0].length],
-                ['(80, 90]',  scoreDict[1].length],
-                ['(70, 80]',  scoreDict[2].length],
-                ['(60, 70]',  scoreDict[3].length],
-                ['[0, 60]',   scoreDict[4].length]
+                ['[90, 100]', len(scoreDict[0])],
+                ['(80, 90]',  len(scoreDict[1])],
+                ['(70, 80]',  len(scoreDict[2])],
+                ['(60, 70]',  len(scoreDict[3])],
+                ['[0, 60]',   len(scoreDict[4])]
             ]
         }]
     });
+
+    function len(a) {
+        return typeof(a) == 'undefined' ? 0 : a.length;
+    }
 });
 </script>

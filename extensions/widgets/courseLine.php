@@ -13,6 +13,7 @@ class courseLine extends CWidget {
 
         if (count($weekCourses) == 0) {
             echo '<p><img src="img/rage_comics/happy-epic-win.png" class="img-responsive" alt="rage comic - happy epic win"></p>';
+            echo '<h2>今天居然没课～</h2>';
             return;
         }
 
