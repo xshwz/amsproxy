@@ -131,7 +131,9 @@
                 ?>
             </div>
             <button class="navbar-toggle" id="side-toggle" type="button">
-                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <div id="main">
                 <div class="container">
