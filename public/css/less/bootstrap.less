@@ -144,7 +144,8 @@ pre {
   }
 }
 .table-responsive {
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
 
   .table {
     margin-bottom: 0;
@@ -252,7 +253,9 @@ pre {
         }
       }
       
-      &:hover {
+      &:hover,
+      &:active,
+      &:focus {
         text-decoration: none;
       }
     }
@@ -271,8 +274,6 @@ pre {
   border-top: none;
 }
 
-@media (max-width: @screen-sm) {
-  .form-horizontal .form-group label[class^="col-xs"] {
-    text-align: right;
-  }
+.form-horizontal .form-group label[class^="col-xs"] {
+  text-align: right;
 }

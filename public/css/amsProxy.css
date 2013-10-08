@@ -113,7 +113,8 @@ pre {
   white-space: nowrap;
 }
 .table-responsive {
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 .table-responsive .table {
   margin-bottom: 0;
@@ -201,7 +202,9 @@ pre {
   background-color: #16a085;
   border-bottom: 2px solid #12856f;
 }
-.panel-heading .accordion-toggle:hover {
+.panel-heading .accordion-toggle:hover,
+.panel-heading .accordion-toggle:active,
+.panel-heading .accordion-toggle:focus {
   text-decoration: none;
 }
 .panel-heading .badge {
@@ -214,10 +217,8 @@ pre {
 .panel-group .panel-heading + .panel-collapse .panel-body {
   border-top: none;
 }
-@media (max-width: 768px) {
-  .form-horizontal .form-group label[class^="col-xs"] {
-    text-align: right;
-  }
+.form-horizontal .form-group label[class^="col-xs"] {
+  text-align: right;
 }
 .login-form {
   max-width: 320px;
@@ -498,6 +499,7 @@ pre {
   transition: background-color ease-in-out 0.2s;
 }
 #side-toggle {
+  display: none;
   z-index: 999;
   position: fixed;
   bottom: 0;
@@ -514,6 +516,11 @@ pre {
   background-color: #ffffff;
   width: 10px;
   border-radius: 0 1px 1px 0;
+}
+@media (max-width: 768px) {
+  #side-toggle {
+    display: block;
+  }
 }
 #sideMask {
   opacity: 0;
@@ -639,4 +646,8 @@ body {
   position: fixed;
   top: 16px;
   right: 16px;
+}
+#feedback-form {
+  max-width: 480px;
+  margin: 20px auto 0 auto;
 }

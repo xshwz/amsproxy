@@ -15,6 +15,9 @@
         <link rel="shortcut icon" href="favicon.ico">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/amsProxy.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+        <link href="css/ie.css" rel="stylesheet">
+        <![endif]-->
         <script src="js/jquery.min.js"></script>
     </head>
     <body>

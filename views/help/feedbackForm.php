@@ -1,6 +1,5 @@
 <form
     id="feedback-form"
-    class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"
     method="post">
     <input type="hidden" value="<?php echo $_SESSION['student']['sid']; ?>">
     <div class="form-group">
