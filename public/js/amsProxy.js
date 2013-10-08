@@ -1,4 +1,4 @@
-$('.courseTable .course > div').tooltip();
+$('.courseTable .course > div').tooltip({'placement': 'auto'});
 
 if ($.fn.datepicker) $('.date-picker').datepicker();
 
