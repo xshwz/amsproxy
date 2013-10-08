@@ -55,17 +55,6 @@ pre {
   color: #ffffff;
   border-radius: 6px 6px 0 0;
 }
-.modal-header .close {
-  color: #fff;
-  opacity: .6;
-  filter: alpha(opacity=60);
-  text-shadow: 0 1px 0 #000;
-}
-.modal-header .close:hover {
-  color: #fff;
-  opacity: .8;
-  filter: alpha(opacity=80);
-}
 .modal-body {
   background-color: #fff;
   border-radius: 0 0 6px 6px;
@@ -76,21 +65,34 @@ pre {
 .modal-body .form-control:focus {
   border-style: solid;
 }
+.close {
+  color: #fff;
+  opacity: .6;
+  filter: alpha(opacity=60);
+}
+.close:hover {
+  color: #fff;
+  opacity: .8;
+  filter: alpha(opacity=80);
+}
 .btn {
   color: #ffffff;
   background-color: #1abc9c;
 }
 .btn:hover,
+.btn:focus,
 .btn:active {
   color: #ffffff;
   background-color: #16a085;
 }
 .form-control {
-  border-color: #1ed7b2;
+  border-color: transparent;
+  background-color: #ecf0f1;
+  box-shadow: none;
 }
 .form-control:focus {
+  box-shadow: none;
   border-color: #1abc9c;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08), 0 0 8px rgba(26, 188, 156, 0.6);
 }
 .list-group-item {
   border: none;
@@ -148,6 +150,18 @@ pre {
 }
 .alert {
   border: none;
+}
+.alert-warning {
+  color: #fff;
+  background-color: #f39c12;
+}
+.alert-success {
+  color: #fff;
+  background-color: #2ecc71;
+}
+.alert-danger {
+  color: #fff;
+  background-color: #e74c3c;
 }
 .badge {
   background-color: #1abc9c;

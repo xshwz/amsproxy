@@ -186,4 +186,37 @@ class BaseController extends CController {
         $p_t = mcrypt_cfb (MCRYPT_CAST_256, $key, $c_t, MCRYPT_DECRYPT, $iv);
         return trim(chop($p_t));
     }
+
+    /**
+     * alert success
+     * @param string $message 消息
+     */
+    public function success($message) {
+        $this->render('/common/alert', array(
+            'type' => 'success',
+            'message' => $message,
+        ));
+    }
+
+    /**
+     * alert warning
+     * @param string $message 消息
+     */
+    public function warning($message) {
+        $this->render('/common/alert', array(
+            'type' => 'warning',
+            'message' => $message,
+        ));
+    }
+
+    /**
+     * alert error
+     * @param string $message 消息
+     */
+    public function danger($message) {
+        $this->render('/common/alert', array(
+            'type' => 'danger',
+            'message' => $message,
+        ));
+    }
 }
