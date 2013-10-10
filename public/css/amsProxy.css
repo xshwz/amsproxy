@@ -9,7 +9,7 @@ pre {
   border: none;
 }
 .jumbotron {
-  background-color: #ffffff;
+  background-color: #ecf0f1;
 }
 .navbar-inverse {
   background-color: #34495e;
@@ -146,23 +146,27 @@ pre {
 .text-info {
   color: #3a87ad;
 }
-.page-header {
-  border-bottom-color: #f8f8f8;
-}
 .alert {
   border: none;
 }
 .alert-warning {
-  color: #fff;
+  color: #ffffff;
   background-color: #f39c12;
 }
 .alert-success {
-  color: #fff;
+  color: #ffffff;
   background-color: #2ecc71;
 }
 .alert-danger {
-  color: #fff;
+  color: #ffffff;
   background-color: #e74c3c;
+}
+.alert a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.alert a:hover {
+  text-decoration: none;
 }
 .badge {
   background-color: #1abc9c;
@@ -649,5 +653,64 @@ body {
 }
 #feedback-form {
   max-width: 480px;
-  margin: 20px auto 0 auto;
+  margin: auto;
+}
+.screenshot {
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+}
+.screenshot ul {
+  list-style: none;
+  padding-left: 0;
+}
+.screenshot ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.screenshot ul li:last-child {
+  margin-right: 0;
+}
+@media (max-width: 768px) {
+  .screenshot ul li {
+    margin-right: 5px;
+  }
+  .screenshot ul li img {
+    width: 80px;
+  }
+}
+.wechat-header {
+  background-color: #1abc9c;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+}
+@media (max-width: 768px) {
+  .wechat-header {
+    border-radius: 0;
+    margin: -16px -8px 0 -8px;
+  }
+}
+.modal.lightbox {
+  text-align: center;
+}
+.modal.lightbox .modal-content {
+  box-shadow: none;
+}
+.modal.lightbox .modal-content .lightbox-wrap {
+  display: inline-block;
+  position: relative;
+}
+.modal.lightbox .modal-content .lightbox-wrap .close {
+  opacity: 1;
+  text-shadow: none;
+  position: absolute;
+  top: -16px;
+  right: -16px;
+}
+@media (max-width: 768px) {
+  .modal.lightbox .modal-content {
+    margin-top: 20px;
+  }
 }

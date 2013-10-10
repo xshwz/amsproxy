@@ -2,6 +2,11 @@ $('.courseTable .course > div').tooltip();
 
 if ($.fn.datepicker) $('.date-picker').datepicker();
 
+$('.wechat-qrcode').tooltip({
+    html: true,
+    placement: 'bottom'
+});
+
 $('#ajaxFeedbackForm').ajaxForm({
     beforeSubmit: function() {
         if (!$('#feedback-msg').val()) {
@@ -48,8 +53,7 @@ $('#ajaxSendForm').ajaxForm({
         }
     }
 
-    resize();
-    $(window).resize(resize);
+    $(window).load(resize).resize(resize);
 
     $.getScript('js/jquery.easing.js');
     var speed = 600;
@@ -103,4 +107,11 @@ $('a.detail').each(function(){
         html += '</div>';
         $('#detail-modal .modal-body').html(html);
     });
+});
+
+/** lightbox */
+$('a.lightbox').click(function(){
+    $($(this).attr('href') + ' img.lightbox')
+        .attr('src', $('img', this).attr('src'))
+        .height($(window).height() - 60);
 });

@@ -98,7 +98,7 @@
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-phone"></span> 微信',
-                                        'url' => array('course/wechat'),
+                                        'url' => array('setting/wechat'),
                                     ),
                                 ),
                             ),
@@ -111,7 +111,7 @@
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-question-sign"></span> FAQ',
-                                        'url' => array('help/faq'),
+                                        'url' => array('help/FAQ'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-info-sign"></span> 关于',

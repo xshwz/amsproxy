@@ -25,5 +25,73 @@ body {
 
 #feedback-form {
   max-width: 480px;
-  margin: 20px auto 0 auto;
+  margin: auto;
+}
+
+.screenshot {
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @media (max-width: @screen-sm) {
+        margin-right: 5px;
+
+        img {
+          width: 80px;
+        }
+      }
+    }
+  }
+}
+
+.wechat-header {
+  background-color: @color-main-dark;
+  color: @color-main-light;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+
+  @media (max-width: @screen-sm) {
+    border-radius: 0;
+    margin: -16px -8px 0 -8px;
+  }
+}
+
+.modal.lightbox {
+  text-align: center;
+
+  .modal-content {
+    box-shadow: none;
+    
+    .lightbox-wrap {
+      display: inline-block;
+      position: relative;
+
+      .close {
+        opacity: 1;
+        text-shadow: none;
+        position: absolute;
+        top: -16px;
+        right: -16px;
+      }
+    }
+  }
+
+  @media (max-width: @screen-sm) {
+    .modal-content {
+      margin-top: 20px;
+    }
+  }
 }

@@ -14,7 +14,7 @@ pre {
 }
 
 .jumbotron {
-  background-color: @color-main-light;
+  background-color: @color-main-bg-light;
 }
 
 .navbar-inverse {
@@ -181,26 +181,31 @@ pre {
   color: #3a87ad;
 }
 
-.page-header {
-  border-bottom-color: #f8f8f8;
-}
-
 .alert {
   border: none;
 
   &-warning {
-    color: #fff;
+    color: @color-main-light;
     background-color: @color-orange;
   }
   
   &-success {
-    color: #fff;
+    color: @color-main-light;
     background-color: @color-emerald;
   }
   
   &-danger {
-    color: #fff;
+    color: @color-main-light;
     background-color: @color-alizarin;
+  }
+
+  a {
+    color: @color-main-light;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 

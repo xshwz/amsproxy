@@ -16,4 +16,8 @@ class SettingController extends StudentController {
             $this->render('clear');
         }
     }
+
+    public function actionWechat() {
+        $this->render('wechat');
+    }
 }

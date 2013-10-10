@@ -10,3 +10,7 @@
   top: 28px;
   background-color: #f1c40f;
 }
+
+.lightbox .lightbox-wrap {
+  margin-top: 20px;
+}

@@ -4,6 +4,7 @@
  */
 class HelpController extends StudentController {
     public function actionFeedback() {
+        $this->pageTitle = '反馈';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message = new Message;
             $message->receiver = 0;
@@ -16,5 +17,15 @@ class HelpController extends StudentController {
         } else {
             $this->render('feedbackForm');
         }
+    }
+
+    public function actionAbout() {
+        $this->pageTitle = '关于';
+        $this->render('about');
+    }
+
+    public function actionFAQ() {
+        $this->pageTitle = 'FAQ';
+        $this->render('FAQ');
     }
 }

@@ -55,8 +55,6 @@ $(function(){
         }
     }
 
-    console.log(scoreDictLabels);
-
     $('#scoreDict').highcharts({
         title: {
             text: '成绩分布'
