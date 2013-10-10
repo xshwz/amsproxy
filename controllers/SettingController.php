@@ -6,6 +6,7 @@ class SettingController extends StudentController {
     public function actionClear() {
         $this->pageTitle = '清除缓存';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->student->info = json_encode($this->getAmsProxy()->getStudentInfo());
             $this->student->course = null;
             $this->student->score = null;
             $this->student->rankExam = null;
