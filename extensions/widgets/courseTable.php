@@ -33,8 +33,8 @@ EOT;
                 if (isset($courseTable[$weekDay][$lessonNum])) {
                     $course = $courseTable[$weekDay][$lessonNum];
                     if ($course['isCourse']) {
-                        $timeStart = schedule($course['lessonStart'], 0);
-                        $timeTo = schedule($course['lessonTo'], 1);
+                        $timeStart = Setting::$timetable[$course['lessonStart']][0];
+                        $timeTo = Setting::$timetable[$course['lessonTo']][1];
 
                         echo CHtml::openTag('td', array(
                             'class' => "course course-{$course['seq']}",
@@ -52,7 +52,7 @@ EOT;
                                 </p>
                                 <p>
                                     <span class='glyphicon glyphicon-time'></span>
-                                    {$timeStart} - {$timeTo}
+                                    {$course['lessonStart']} - {$course['lessonTo']}（{$timeStart} - {$timeTo}）
                                 </p>
                                 <p>
                                     <span class='glyphicon glyphicon-user'></span>

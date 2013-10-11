@@ -13,7 +13,7 @@ class courseLine extends CWidget {
 
         if (count($weekCourses) == 0) {
             echo '<p><img src="img/rage_comics/happy-epic-win.png" class="img-responsive" alt="rage comic - happy epic win"></p>';
-            echo '<h2>今天居然没课～</h2>';
+            echo '<h2>今天居然没课 :)</h2>';
             return;
         }
 
@@ -21,8 +21,8 @@ class courseLine extends CWidget {
         echo '<ul>';
 
         foreach ($weekCourses as $course) {
-            $timeStart = schedule($course['lessonStart'], 0);
-            $timeTo = schedule($course['lessonTo'], 1);
+            $timeStart = Setting::$timetable[$course['lessonStart']][0];
+            $timeTo = Setting::$timetable[$course['lessonTo']][1];
 
             echo <<<EOT
             <li>

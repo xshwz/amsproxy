@@ -29,7 +29,7 @@ class StudentController extends BaseController {
      * @param int $scoreType 0、原始成绩 1、有效成绩
      * @return array 成绩表
      */
-    public function getScore($scoreType=0) {
+    public function getScore($scoreType=1) {
         if ($this->student->score) {
             $score = json_decode($this->student->score, true);
         } else {
@@ -53,11 +53,11 @@ class StudentController extends BaseController {
         if ($this->student->course) {
             return json_decode($this->student->course, true);
         } else {
-            $info = $this->getInfo();
+            $archives = (array)$this->student->getArchives();
             $courses = array_merge(
                 $this->getAmsProxy()->getCourse(),
                 $this->getAmsProxy()->getClassCourse(
-                    $info['行政班级']));
+                    $archives['行政班级']));
             $this->student->course = json_encode($courses);
             $this->student->save();
 

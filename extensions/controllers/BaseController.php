@@ -6,7 +6,7 @@ class BaseController extends CController {
     /**
      * @var array 未读信息
      */
-    public $unReadMsg = array();
+    public $unread = array();
 
     /**
      * @var Setting 设置信息
@@ -33,12 +33,7 @@ class BaseController extends CController {
      */
     public function initStudent() {
         /** 获取未读消息 */
-        $this->unReadMsg = Message::model()->findAll(array(
-            'condition' => 'receiver=:receiver AND state=1',
-            'params' => array(
-                ':receiver' => $_SESSION['student']['sid'],
-            ),
-        ));
+        $this->unread = Message::unread($_SESSION['student']['sid']);
 
         /** 获取学生个人数据 */
         $this->student = Student::model()->findByPk(
@@ -60,7 +55,7 @@ class BaseController extends CController {
         try {
             $amsProxy = new AmsProxy($sid, $pwd);
 
-            $this->tryAddStudent($sid, $pwd, $amsProxy->getStudentInfo());
+            $this->tryAddStudent($sid, $pwd, $amsProxy->getArchives());
 
             $_SESSION['student'] = array(
                 'sid' => $sid,
@@ -138,25 +133,16 @@ class BaseController extends CController {
      * 尝试添加学生到数据库，没有这个学生时添加
      * @param string $sid 学号
      * @param string $pwd 密码
-     * @param string $studentInfo 学生信息
+     * @param string $archives 学籍档案
      */
-    public function tryAddStudent($sid, $pwd, $studentInfo) {
+    public function tryAddStudent($sid, $pwd, $archives) {
         if (Student::model()->findByPk($sid) == null) {
             $student = new Student;
             $student->sid = $sid;
             $student->pwd = md5($pwd);
-            $student->info = json_encode($studentInfo);
+            $student->archives = json_encode($archives);
             $student->save();
         }
-    }
-
-    /**
-     * 读取学生信息
-     * @access public
-     * @return array 学生信息
-     */
-    public function getInfo() {
-        return json_decode($this->student->info, true);
     }
 
     /**

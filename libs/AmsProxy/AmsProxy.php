@@ -63,11 +63,11 @@ class AmsProxy {
     }
 
     /**
-     * @return array 学生信息
+     * @return array 学籍档案
      */
-    public function getStudentInfo() {
+    public function getArchives() {
         $responseText = $this->GET('xsxj/Stu_MyInfo_RPT.aspx');
-        return $this->getParser($responseText)->studentInfo();
+        return $this->getParser($responseText)->archives();
     }
 
     /**

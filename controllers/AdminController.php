@@ -3,12 +3,12 @@
  * 后台管理控制器
  */
 class AdminController extends CController {
-    public $layout = '/admin/layout';
+    public $layout = '/layouts/admin';
 
     /**
      * @var array 未读消息
      */
-    public $unReadMsg = array();
+    public $unread = array();
 
     /**
      * @var Setting 设置信息
@@ -21,7 +21,7 @@ class AdminController extends CController {
         if ($_GET['r'] != 'admin/login') {
             if (isset($_SESSION['admin'])) {
                 define('IS_ADMIN', true);
-                $this->unReadMsg = $this->getUnReadMsg();
+                $this->unread = Message::unread(0);
             } else {
                 $this->redirect(array('admin/login'));
             }
@@ -72,16 +72,10 @@ class AdminController extends CController {
     }
 
     public function actionSend() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $message = new Message;
-            $message->receiver = $_POST['receiver'];
-            $message->sender = 0;
-            $message->message = $_POST['message'];
-            $message->time = date('Y-m-d H:i:s');
-            $message->state = 1;
-            $message->save();
-        }
-        $this->render('send');
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+            Message::send(0, $_POST['receiver'], $_POST['message']);
+        else
+            $this->render('send');
     }
 
     public function actionFeedback() {
@@ -96,7 +90,7 @@ class AdminController extends CController {
             $message->save();
 
             /** 重新获取未读消息 */
-            $this->unReadMsg = $this->getUnReadMsg();
+            $this->unread = Message::unread(0);
         }
 
         $this->render('feedback', array(
@@ -193,17 +187,6 @@ class AdminController extends CController {
 
         $this->render('stats', array(
             'stats' => $stats,
-        ));
-    }
-
-    /**
-     * 获取未读消息
-     * @return array 未读消息
-     */
-    public function getUnReadMsg() {
-        return Message::model()->findAll(array(
-            'condition' => 'receiver=:receiver AND state=1',
-            'params' => array(':receiver' => 0),
         ));
     }
 }

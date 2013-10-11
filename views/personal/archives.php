@@ -1,7 +1,5 @@
 <div class="article form-horizontal">
-    <br>
-    <?php $studentInfo = $this->getInfo();
-    foreach ($studentInfo as $key => $value): ?>
+    <?php foreach ($archives as $key => $value): ?>
     <div class="form-group">
         <label class="col-xs-5 control-label"><?php echo $key; ?></label>
         <div class="col-xs-7">
@@ -29,21 +27,21 @@
                             <label for="phone" class="col-sm-3 control-label">联系电话</label>
                             <div class="col-sm-8">
                                 <input name="txt0" type="text" class="form-control" id="phone"
-                                    <?php if (isset($studentInfo['联系电话'])) echo "value=\"{$studentInfo['联系电话']}\""; ?>>
+                                    <?php if (isset($archives['联系电话'])) echo "value=\"{$archives['联系电话']}\""; ?>>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="usedName" class="col-sm-3 control-label">曾用名</label>
                             <div class="col-sm-8">
                                 <input name="txt1" type="text" class="form-control" id="usedName"
-                                    <?php if (isset($studentInfo['曾用名'])) echo "value=\"{$studentInfo['曾用名']}\""; ?>>
+                                    <?php if (isset($archives['曾用名'])) echo "value=\"{$archives['曾用名']}\""; ?>>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="hometown" class="col-sm-3 control-label">籍贯</label>
                             <div class="col-sm-8">
                                 <select name="txt2" class="form-control" id="hometown" 
-                                    <?php if (isset($studentInfo['籍贯'])) echo "value=\"{$studentInfo['籍贯']}\""; ?>>
+                                    <?php if (isset($archives['籍贯'])) echo "value=\"{$archives['籍贯']}\""; ?>>
                                 </select>
                             </div>
                         </div>
@@ -51,28 +49,28 @@
                             <label for="address" class="col-sm-3 control-label">联系地址</label>
                             <div class="col-sm-8">
                                 <input name="txt3" type="text" class="form-control" id="address"
-                                    <?php if (isset($studentInfo['联系地址'])) echo "value=\"{$studentInfo['联系地址']}\"" ?>>
+                                    <?php if (isset($archives['联系地址'])) echo "value=\"{$archives['联系地址']}\"" ?>>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="contact" class="col-sm-3 control-label">联系人</label>
                             <div class="col-sm-8">
                                 <input name="txt4" type="text" class="form-control" id="contact"
-                                    <?php if (isset($studentInfo['联系人'])) echo "value=\"{$studentInfo['联系人']}\"" ?>>
+                                    <?php if (isset($archives['联系人'])) echo "value=\"{$archives['联系人']}\"" ?>>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="zip-code" class="col-sm-3 control-label">邮政编码</label>
                             <div class="col-sm-8">
                                 <input name="txt5" type="text" class="form-control" id="zip-code"
-                                    <?php if (isset($studentInfo['邮政编码'])) echo "value=\"{$studentInfo['邮政编码']}\"" ?>>
+                                    <?php if (isset($archives['邮政编码'])) echo "value=\"{$archives['邮政编码']}\"" ?>>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="political-landscape" class="col-sm-3 control-label">政治面貌</label>
                             <div class="col-sm-8">
                                 <select name="txt6" class="form-control" id="political-landscape"
-                                    <?php if (isset($studentInfo['政治面貌'])) echo "value=\"{$studentInfo['政治面貌']}\"" ?>>
+                                    <?php if (isset($archives['政治面貌'])) echo "value=\"{$archives['政治面貌']}\"" ?>>
                                 </select>
                             </div>
                         </div>
@@ -80,7 +78,7 @@
                             <label for="cell-phone" class="col-sm-3 control-label">手机号码</label>
                             <div class="col-sm-8">
                                 <input name="txt7" type="text" class="form-control" id="cell-phone"
-                                    <?php if (isset($studentInfo['手机号码'])) echo "value=\"{$studentInfo['手机号码']}\"" ?>>
+                                    <?php if (isset($archives['手机号码'])) echo "value=\"{$archives['手机号码']}\"" ?>>
                                 </div>
                         </div>
                         <div class="form-group">

@@ -6,16 +6,10 @@ class HelpController extends StudentController {
     public function actionFeedback() {
         $this->pageTitle = '反馈';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $message = new Message;
-            $message->receiver = 0;
-            $message->sender = $_SESSION['student']['sid'];
-            $message->message = $_POST['message'];
-            $message->time = date('Y-m-d H:i:s');
-            $message->state = 1;
-            $message->save();
-            $this->render('feedbackSuccess');
+            Message::send($_SESSION['student']['sid'], 0, $_POST['message']);
+            $this->success('感谢你的反馈，我们会尽快处理并给你答复的。');
         } else {
-            $this->render('feedbackForm');
+            $this->render('feedback');
         }
     }
 

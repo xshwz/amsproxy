@@ -67,9 +67,9 @@
                             ?>>
                             <a class="bubble" href="<?php echo Yii::app()->createUrl('admin/feedback'); ?>">
                                 <span class="glyphicon glyphicon-envelope"></span>
-                                <?php if (count($this->unReadMsg) > 0): ?>
+                                <?php if (count($this->unread) > 0): ?>
                                 <span class="badge admin">
-                                    <?php echo count($this->unReadMsg); ?>
+                                    <?php echo count($this->unread); ?>
                                 </span>
                                 <?php endif; ?>
                             </a>
