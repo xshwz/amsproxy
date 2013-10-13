@@ -5,13 +5,13 @@
 class Message extends CActiveRecord {
     public function relations() {
         return array(
-            'sender_info' => array(
+            '_sender' => array(
                 self::BELONGS_TO, 'Student', 'sender',
-                'select' => 'info'
+                'select' => 'archives'
             ),
-            'receiver_info' => array(
+            '_receiver' => array(
                 self::BELONGS_TO, 'Student', 'receiver',
-                'select' => 'info'
+                'select' => 'archives'
             )
         );
     }

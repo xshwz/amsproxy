@@ -18,7 +18,7 @@
                         href="#detail-modal"
                         class="detail"
                         data-toggle="modal"
-                        data-json='<?php echo $message->sender_info['info']; ?>'>
+                        data-json='<?php echo $message->_sender['archives']; ?>'>
                         <?php echo $message->sender; ?>
                     </a>
                     <?php else: ?>
@@ -31,7 +31,7 @@
                         href="#detail-modal"
                         class="detail"
                         data-toggle="modal"
-                        data-json='<?php echo $message->receiver_info['info']; ?>'>
+                        data-json='<?php echo $message->_receiver['archives']; ?>'>
                         <?php echo $message->receiver; ?>
                     </a>
                     <?php else: ?>

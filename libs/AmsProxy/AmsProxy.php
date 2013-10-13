@@ -1,5 +1,6 @@
 <?php
-include_once 'Parser.php';
+include 'Parser.php';
+include 'cUrl/Request.php';
 
 /**
  * 教务系统代理
@@ -18,10 +19,9 @@ class AmsProxy {
     public $pwd;
 
     /**
-     * HttpRequest object
-     * @var object
+     * @var Request
      */
-    public $httpRequest;
+    public $http;
 
     /**
      * 配置
@@ -40,8 +40,7 @@ class AmsProxy {
         $this->sid = $sid;
         $this->pwd = $pwd;
         $this->updateConfig($config);
-        $this->httpRequest = new HttpRequest();
-        $this->httpRequest->enableCookies();
+        $this->http = new cUrl\Request;
         $this->login();
     }
 
@@ -270,7 +269,7 @@ class AmsProxy {
      * @return string
      */
     public function GET($url, $params=null) {
-        return $this->request(HttpRequest::METH_GET, $url, $params);
+        return $this->request('get', $url, $params);
     }
 
     /**
@@ -281,23 +280,24 @@ class AmsProxy {
      * @return string
      */
     public function POST($url, $data, $params=null) {
-        return $this->request(HttpRequest::METH_POST, $url, $params, $data);
+        return $this->request('post', $url, $params, $data);
     }
 
     /**
      * 向教务系统发送一个 http 请求
+     * @param string $method
      * @param string $url
      * @param array $params url 参数
      * @param array $data post 数据
      * @return string
      */
     public function request($method, $url, $params=null, $data=null) {
-        $this->httpRequest->setMethod($method);
-        $this->httpRequest->setUrl($this->config['baseUrl'] . $url);
-        $this->httpRequest->setQueryData($params);
-        $this->httpRequest->setPostFields($data);
-        $this->httpRequest->send();
-        $responseText = $this->httpRequest->getResponseBody();
+        $responseText = $this->http->request(array(
+            'method' => $method,
+            'url' => $this->config['baseUrl'] . $url,
+            'params' => $params,
+            'data' => $data,
+        ))->body;
         $responseText = iconv('gb18030', 'utf-8//ignore', $responseText);
         return $responseText;
     }

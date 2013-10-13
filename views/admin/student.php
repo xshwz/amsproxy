@@ -29,11 +29,11 @@
         <tbody>
             <?php
             foreach ($students as $student):
-            $studentInfo = json_decode($student->info, true);
+            $archives = (array)$student->getArchives();
             ?>
             <tr>
-                <td><?php echo $studentInfo['姓名']; ?></td>
-                <td><?php echo $studentInfo['行政班级']; ?></td>
+                <td><?php echo $archives['姓名']; ?></td>
+                <td><?php echo $archives['行政班级']; ?></td>
                 <td><?php echo $student->last_login_time; ?></td>
                 <td>
                     <a
@@ -42,7 +42,7 @@
                         title="详细资料"
                         data-toggle="modal"
                         data-sid='<?php echo $student->sid; ?>'
-                        data-json='<?php echo $student->info; ?>'>
+                        data-json='<?php echo $student->archives; ?>'>
                         <span class="glyphicon glyphicon-file"></span>
                     </a>
                     <a

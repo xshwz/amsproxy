@@ -54,7 +54,7 @@ class AdminController extends CController {
         $criteria = new CDbCriteria();
 
         if (isset($_GET['keyword'])) {
-            $criteria->addSearchCondition('info',
+            $criteria->addSearchCondition('archives',
                 str_replace('"', '%', json_encode($_GET['keyword'])),
                 false);
         }
@@ -145,13 +145,13 @@ class AdminController extends CController {
         );
 
         foreach (Student::model()->findAll() as $student) {
-            $studentInfo = json_decode($student->info, true);
-            $college = $studentInfo['院(系)/部'];
-            $discipline = $studentInfo['专业'];
-            $grade = $studentInfo['入学年份'];
-            $nation = isset($studentInfo['民族']) ? $studentInfo['民族'] : null;
+            $archives = (array)$student->getArchives();
+            $college = $archives['院(系)/部'];
+            $discipline = $archives['专业'];
+            $grade = $archives['入学年份'];
+            $nation = isset($archives['民族']) ? $archives['民族'] : null;
 
-            $stats['gender'][$studentInfo['性别']]++;
+            $stats['gender'][$archives['性别']]++;
 
             /** 年级统计 */
             if (array_key_exists($grade, $stats['grade']))
