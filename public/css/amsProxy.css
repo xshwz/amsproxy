@@ -630,13 +630,10 @@ body.admin .article {
   border-radius: 6px;
 }
 body.admin .form-control {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 body.admin .modal-body .form-control {
-  border: 1px dashed #1abc9c;
-}
-body.admin .modal-body .form-control:focus {
-  border-style: solid;
+  background-color: #ecf0f1;
 }
 .search-form {
   margin-bottom: 12px;

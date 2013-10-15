@@ -4,6 +4,7 @@ return array(
     'import' => array(
         'ext.controllers.*',
         'application.libs.AmsProxy.AmsProxy',
+        'application.libs.Mcrypt',
         'application.models.*',
     ),
     'components' => array(

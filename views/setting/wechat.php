@@ -63,6 +63,12 @@ EOT;
 <?php if (isset($this->student->wechat)): ?>
 <br>
 <div class="alert alert-success">
-你的帐号已与相思青果微信公众平台绑定，如果需要，你可以<a href="">解除绑定</a>。
+你的帐号已与相思青果微信公众平台绑定，如果需要，你可以
+<a href="<?php
+    echo Yii::app()->createUrl('setting/wechat', array(
+        'operate' => 'unbind',
+    )); ?>"
+    class="text-danger"
+>解除绑定</a>。
 </div>
 <?php endif; ?>

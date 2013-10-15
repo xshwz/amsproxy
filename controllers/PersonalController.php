@@ -7,8 +7,9 @@ class PersonalController extends StudentController {
         $this->pageTitle = '学籍档案';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->getAmsProxy()->setStudentInfo($_POST);
-            $this->student->archives = json_encode($this->getAmsProxy()->getStudentInfo());
+            $this->getAmsProxy()->invoke('setStudentInfo', $_POST);
+            $this->student->archives = json_encode(
+                $this->AmsProxy()->invoke('getArchives'));
         }
 
         $this->render('archives', array(

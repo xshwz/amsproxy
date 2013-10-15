@@ -9,11 +9,6 @@ class dataTable extends CWidget {
     public $data = array();
 
     /**
-     * @var int 对该列去除[]标签的内容
-     */
-    public $cutSquareBracketNum;
-
-    /**
      * 显示的类型
      * @var int 0: Collapses 1: A table without title
      */
@@ -101,7 +96,7 @@ class dataTable extends CWidget {
     }
 
     protected function openTable() {
-        echo '<table class="table table-hover">';
+        echo '<table class="table table-hover table-striped">';
     }
 
     protected function closeTable() {
@@ -130,18 +125,11 @@ class dataTable extends CWidget {
                 array('class' => 'danger') : array()
             );
 
-            $n = &$this->cutSquareBracketNum;
-            if ( $n !== null)
-                $row[$n] = $this->cutSquareBrackets($row[$n]);
             foreach ($row as $key => $td) {
                 if (is_int($key))
                     echo "<td>$td</td>";
             }
             echo CHtml::closeTag('tr');
         }
-    }
-
-    protected function cutSquareBrackets($str) {
-        return preg_replace('/\[.*?\]/', '', $str);
     }
 }

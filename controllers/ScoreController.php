@@ -7,8 +7,8 @@ class ScoreController extends StudentController {
         $this->pageTitle = '原始成绩';
         $scoreTable = $this->getScore(0);
         $this->addScoreState($scoreTable, 10);
-        $this->render('scoreTable', array(
-            'score' => $scoreTable,
+        $this->render('/common/table', array(
+            'data' => $scoreTable,
         ));
     }
 
@@ -16,8 +16,8 @@ class ScoreController extends StudentController {
         $this->pageTitle = '有效成绩';
         $scoreTable = $this->getScore(1);
         $this->addScoreState($scoreTable, 6);
-        $this->render('scoreTable', array(
-            'score' => $scoreTable,
+        $this->render('/common/table', array(
+            'data' => $scoreTable,
         ));
     }
 
@@ -32,45 +32,56 @@ class ScoreController extends StudentController {
         ));
 	}
 
-    public function addScoreState(&$scoreTable, $score_index) {
-        foreach ($scoreTable['tbody'] as $term_name => &$term_score) {
-            foreach ($term_score as &$row) {
-                if ((float)$row[$score_index] < 60) $row['state'] = false;
-                else $row['state'] = true;
+    /**
+     * @param array $scoreTable
+     * @param array $scoreIndex
+     */
+    public function addScoreState(&$scoreTable, $scoreIndex) {
+        foreach ($scoreTable['tbody'] as $termName => &$termScore) {
+            foreach ($termScore as &$row) {
+                if ((float)$row[$scoreIndex] < 60)
+                    $row['state'] = false;
+                else
+                    $row['state'] = true;
             }
         }
     }
 
     /**
      * 计算各学期通过／挂科数目
+     *
      * @param array $scoreTable 成绩表
      * @return array 统计信息
      */
     public function getTermScoreStats($scoreTable) {
-        $term_count = 0;
-        foreach ($scoreTable['tbody'] as $term_score) {
-            $stats[0][$term_count] = 0;
-            $stats[1][$term_count] = 0;
-            foreach ($term_score as $row) {
+        $termCount = 0;
+        foreach ($scoreTable['tbody'] as $termScore) {
+            $stats[0][$termCount] = 0;
+            $stats[1][$termCount] = 0;
+
+            foreach ($termScore as $row) {
                 if ((float)$row[6] < 60)
-                    $stats[1][$term_count]++;
+                    $stats[1][$termCount]++;
                 else
-                    $stats[0][$term_count]++;
+                    $stats[0][$termCount]++;
             }
-            $term_count++;
+
+            $termCount++;
         }
+
         return $stats;
     }
 
     /**
      * 计算成绩分布情况
+     *
      * @param array $scoreTable 成绩表
      * @return array 成绩分布表
      */
     public function getScoreDist($scoreTable) {
         $scoreDict = array();
-        foreach ($scoreTable['tbody'] as $term_score) {
-            foreach ($term_score as $row) {
+        foreach ($scoreTable['tbody'] as $termScore) {
+            foreach ($termScore as $row) {
                 if ($row[6] >= 90)
                     $index = 0;
                 else if ($row[6] >= 80)
@@ -94,6 +105,7 @@ class ScoreController extends StudentController {
 
     /**
      * 获取学期名数组
+     *
      * @param array $scoreTable 成绩表
      * @return array 学期名数组
      */

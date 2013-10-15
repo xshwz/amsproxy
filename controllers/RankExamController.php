@@ -1,33 +1,37 @@
 <?php
 class RankExamController extends StudentController {
-    public function actionIndex() {
+    public function actionForm() {
         $this->pageTitle = '等级考试报名';
-
-        $rankExam = $this->getRankExam(0);
-        foreach ( $rankExam['tbody'] as &$tbody ) {
+        $rankExam = $this->getRankExam();
+        foreach ( $rankExam['form']['tbody'] as &$tbody ) {
             foreach ( $tbody as &$trs ) {
-                if ($trs[8] != '') {
+                if ($trs[8]) {
                     $trs[8] = CHtml::link($trs[8], array(
-                        'signExam',
-                        'rank_id' => $trs['rank_id'],
+                        'apply',
+                        'id' => $trs['id'],
                     ));
                 }
             }
         }
 
-        $this->render('table', array('data' => $rankExam));
+        $this->render('/common/table', array(
+            'data' => $rankExam['form'],
+            'type' => 1,
+        ));
     }
 
     public function actionScore() {
         $this->pageTitle = '等级考试成绩';
-        $this->render('table', array(
-            'data' => $this->getRankExam(1),
+        $rankExam = $this->getRankExam();
+        $this->render('/common/table', array(
+            'data' => $rankExam['score'],
+            'type' => 1,
         ));
     }
 
-    public function actionSignExam() {
-        $this->getAmsProxy()->enterRankExam($_GET['rank_id']);
-        $this->student->rankExam = null;
+    public function actionApply() {
+        $this->AmsProxy()->invoke('rankExamApply', $_GET['id']);
+        $this->student->rank_exam = null;
         $this->student->save();
         $this->redirect(array('index'));
     }

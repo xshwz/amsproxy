@@ -3,9 +3,6 @@
  * 菜单部件，controller active
  */
 class menu extends CWidget {
-    /**
-     * @var array 菜单
-     */
     public $items = array();
 
     public function run() {

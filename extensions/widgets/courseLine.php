@@ -4,7 +4,7 @@
  */
 class courseLine extends CWidget {
     /**
-     * @var array 课程数组
+     * @var array
      */
     public $courses = array();
 
@@ -13,7 +13,7 @@ class courseLine extends CWidget {
 
         if (count($weekCourses) == 0) {
             echo '<p><img src="img/rage_comics/happy-epic-win.png" class="img-responsive" alt="rage comic - happy epic win"></p>';
-            echo '<h2>今天居然没课 :)</h2>';
+            echo '<h2>今天居然没课～</h2>';
             return;
         }
 
@@ -62,22 +62,24 @@ EOT;
     }
 
     /**
-     * 提取周课程
-     * @param array $courses 原课程数组
+     * @param array $courses
      * @param int $weekDay
-     * @return array 周课程数组
+     * @return array
      */
     public function getWeekCourse($courses, $weekDay) {
         $weekCourses = array();
-        foreach ($courses as $course)
+        foreach ($courses as $course) {
             if ($course['weekDay'] == $weekDay) {
                 if (isset($weekCourses[$course['lessonStart']])) {
-                    $weekCourses[$course['lessonStart']]['teacherName'] .= ',' . $course['teacherName'];
-                    $weekCourses[$course['lessonStart']]['location'] .= ',' . $course['location'];
-                }
-                else
+                    $weekCourses[$course['lessonStart']]['teacherName'] .=
+                        ',' . $course['teacherName'];
+                    $weekCourses[$course['lessonStart']]['location'] .=
+                        ',' . $course['location'];
+                } else {
                     $weekCourses[$course['lessonStart']] = $course;
+                }
             }
+        }
 
         return $weekCourses;
     }

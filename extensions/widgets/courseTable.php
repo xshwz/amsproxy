@@ -1,7 +1,10 @@
 <?php
+/**
+ * 课程表部件
+ */
 class courseTable extends CWidget {
     /**
-     * @var array 课程数组
+     * @var array
      */
     public $courses = array();
 
@@ -9,20 +12,21 @@ class courseTable extends CWidget {
         $courseTable = $this->coursesConvert($this->courses);
 
         echo <<<EOT
-            <table class="courseTable">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>星期一</th>
-                        <th>星期二</th>
-                        <th>星期三</th>
-                        <th>星期四</th>
-                        <th>星期五</th>
-                        <th>星期六</th>
-                        <th>星期日</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="table-responsive">
+                <table class="courseTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>星期一</th>
+                            <th>星期二</th>
+                            <th>星期三</th>
+                            <th>星期四</th>
+                            <th>星期五</th>
+                            <th>星期六</th>
+                            <th>星期日</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 EOT;
 
         for ($lessonNum = 1; $lessonNum <= 12; $lessonNum++) {
@@ -77,13 +81,14 @@ EOT;
 
             echo '</tr>';
         }
-        echo '</tbody></table>';
+        echo '</tbody></table></div>';
     }
 
     /**
      * 将课程数组转换成方便遍历输出的课程表
-     * @param array $courses 课程数组
-     * @return array 课程表
+     *
+     * @param array $courses
+     * @return array
      */
     public function coursesConvert($courses) {
         $coursesSeq = $this->getCoursesSeq($courses);
@@ -131,9 +136,8 @@ EOT;
     }
 
     /**
-     * 获取不重复课程及其序号
-     * @param array $courses 课程数组
-     * @return array “课程 => 序号”数组
+     * @param array $courses
+     * @return array
      * @example return array('操作系统' => 0, '软件工程' => 1)
      */
     public function getCoursesSeq($courses) {

@@ -95,7 +95,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
 $('#archives-edit').on('show.bs.modal', function () {
     $.getJSON('js/hometown.json', function(data){
         initSelect($('#hometown'), data);

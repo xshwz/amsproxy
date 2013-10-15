@@ -3,8 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="相思青果,相思湖网站,广西民族大学,教务系统">
-        <meta name="description" content="“相思青果”是由相思湖网站开发的，广西民族大学教务系统代理。">
         <title>
         <?php
         if (isset($this->pageTitle) && $this->pageTitle)
@@ -50,8 +48,8 @@
                                         'url' => array('course/table'),
                                     ),
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-list-alt"></span> 教学计划',
-                                        'url' => array('course/plan'),
+                                        'label' => '<span class="glyphicon glyphicon-list-alt"></span> 理论课程',
+                                        'url' => array('course/theorySubject'),
                                     ),
                                 ),
                             ),
@@ -77,7 +75,7 @@
                                 'items' => array(
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-hand-right"></span> 报名',
-                                        'url' => array('rankExam/index'),
+                                        'url' => array('rankExam/form'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-list-alt"></span> 成绩',
@@ -94,7 +92,7 @@
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-lock"></span> 修改密码',
-                                        'url' => array('setting/passwrod'),
+                                        'url' => array('setting/password'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-phone"></span> 微信',
@@ -165,7 +163,9 @@
         <script src="js/jquery.form.min.js"></script>
         <script src="js/amsProxy.js"></script>
 
+        <!--
         <div id="cnzz_stat_icon_1000039522"></div>
         <script src="http://s22.cnzz.com/z_stat.php?id=1000039522"></script>
+        -->
     </body>
 </html>

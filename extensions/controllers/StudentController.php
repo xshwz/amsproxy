@@ -1,11 +1,11 @@
 <?php
-
 /**
  * 基控制器，需要登录验证，要进行学生相关操作请继承该控制器
  */
 class StudentController extends BaseController {
+    public $layout = '/layouts/main';
+
     /**
-     * 教务系统代理对象
      * @var AmsProxy
      */
     public $amsProxy;
@@ -19,24 +19,26 @@ class StudentController extends BaseController {
         parent::init();
 
         if (!$this->isLogged()) {
-            $this->redirect(array('site/login'));
+            $this->redirect(array(
+                'site/login',
+                'returnUri' => Yii::app()->request->requestUri,
+            ));
         }
     }
 
     /**
-     * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
-     * 获取的数据会保存到数据库
-     * @param int $scoreType 0、原始成绩 1、有效成绩
-     * @return array 成绩表
+     * @param int $scoreType 0、原始成绩；1、有效成绩
+     * @return array
      */
     public function getScore($scoreType=1) {
         if ($this->student->score) {
             $score = json_decode($this->student->score, true);
         } else {
             $score = array(
-                $this->getAmsProxy()->getScore(0),
-                $this->getAmsProxy()->getScore(1),
+                $this->AmsProxy()->invoke('getScore', 0),
+                $this->AmsProxy()->invoke('getScore', 1),
             );
+
             $this->student->score = json_encode($score);
             $this->student->save();
         }
@@ -45,9 +47,7 @@ class StudentController extends BaseController {
     }
 
     /**
-     * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
-     * 获取的数据会保存到数据库
-     * @return array 课程表
+     * @return array
      */
     public function getCourse() {
         if ($this->student->course) {
@@ -55,9 +55,9 @@ class StudentController extends BaseController {
         } else {
             $archives = (array)$this->student->getArchives();
             $courses = array_merge(
-                $this->getAmsProxy()->getCourse(),
-                $this->getAmsProxy()->getClassCourse(
-                    $archives['行政班级']));
+                $this->AmsProxy()->invoke('getPersonalCourse'),
+                $this->AmsProxy()->invoke(
+                    'getClassCourse', $archives['行政班级']));
             $this->student->course = json_encode($courses);
             $this->student->save();
 
@@ -66,50 +66,50 @@ class StudentController extends BaseController {
     }
 
     /**
-     * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
-     * 获取的数据会保存到数据库
-     * @param int $type 0:等级考试报名情况 2:等级考试成绩表
-     * @return array 等级考试数据
+     * @return array
      */
-    public function getRankExam($type) {
-        if ($this->student->rankExam) {
-            $rankExam = json_decode($this->student->rankExam, true);
+    public function getRankExam() {
+        if ($this->student->rank_exam) {
+            $rankExam = json_decode($this->student->rank_exam, true);
         } else {
             $rankExam = array(
-                $this->getAmsProxy()->getRankExamSign(),
-                $this->getAmsProxy()->getRankScore(),
+                'form'  => $this->AmsProxy()->invoke('getRankExamForm'),
+                'score' => $this->AmsProxy()->invoke('getRankExamScore'),
             );
-            $this->student->rankExam = json_encode($rankExam);
+
+            $this->student->rank_exam = json_encode($rankExam);
             $this->student->save();
         }
-        return $rankExam[$type];
+
+        return $rankExam;
     }
 
     /**
-     * 先尝试从数据库中读取，如果数据库中没有数据，则从教务系统获取
-     * 获取的数据会保存到数据库
-     * @return array 理论课程数据
+     * @return array
      */
     public function getTheorySubject() {
-        if ($this->student->theorySubject) {
-            return json_decode($this->student->theorySubject, true);
+        if ($this->student->theory_subject) {
+            return json_decode($this->student->theory_subject, true);
         } else {
-            $theorySubject = $this->getAmsProxy()->getTheorySubject();
-            $this->student->theorySubject = json_encode($theorySubject);
+            $theorySubject = $this->AmsProxy()->invoke('getTheorySubject');
+            $this->student->theory_subject = json_encode($theorySubject);
             $this->student->save();
             return $theorySubject;
         }
     }
 
     /**
-     * @return AmsProxy 返回AmsProxy对象，当对象没有定义时自动定义
+     * @return AmsProxy
      */
-    public function getAmsProxy() {
+    public function AmsProxy() {
         if ($this->amsProxy == null) {
-            $this->amsProxy = new AmsProxy(
-                $_SESSION['student']['sid'],
-                $_SESSION['student']['pwd']);
+            $this->amsProxy = new AmsProxy(array(
+                'sid'     => $_SESSION['student']['sid'],
+                'pwd'     => $_SESSION['student']['pwd'],
+                'session' => $_SESSION['student']['session'],
+            ));
         }
+
         return $this->amsProxy;
     }
 }
