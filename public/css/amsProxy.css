@@ -225,6 +225,7 @@ pre {
 .login-form {
   max-width: 320px;
   margin: 15px auto;
+  padding: 8px 20px 0 20px;
 }
 .login-form .form-group {
   position: relative;
@@ -241,6 +242,97 @@ pre {
 }
 .login-form .alert {
   padding: 10px 15px;
+}
+.site .jumbotron {
+  margin-bottom: 0;
+}
+#site-top {
+  background-color: #ecf0f1;
+  text-align: center;
+  color: #34495e;
+}
+#site-top h1 {
+  color: #27ae60;
+}
+#site-top h1 span {
+  color: #34495e;
+}
+#site-top .logo img {
+  width: 160px;
+}
+#site-top .description {
+  color: #7f8c8d;
+}
+@media (max-width: 768px) {
+  #site-top .logo img {
+    width: 100px;
+  }
+  #site-top .description {
+    font-size: 16px;
+  }
+  #site-top .btn.btn-lg {
+    font-size: 16px;
+    padding: 6px 20px;
+  }
+}
+#functions-intro {
+  background-color: #1abc9c;
+  color: #fff;
+}
+#functions-intro h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+#functions-intro div[class^="col"] {
+  text-align: center;
+  margin-bottom: 32px;
+}
+#functions-intro div[class^="col"] div.img {
+  width: 160px;
+  height: 160px;
+  padding: 40px;
+  border-radius: 100px;
+  background-color: #f1c40f;
+  margin: auto;
+}
+#functions-intro div[class^="col"] div.img img {
+  width: 100%;
+}
+#functions-intro div[class^="col"] div.description ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: #ecf0f1;
+}
+#responsive-design {
+  background-color: #fff;
+  color: #34495e;
+}
+#footer {
+  color: #fff;
+  background-color: #34495e;
+  padding: 40px 0 20px 0;
+  text-align: center;
+}
+#footer a {
+  color: #fff;
+}
+#footer a:hover {
+  color: #fff;
+}
+#footer .powered {
+  color: #ecf0f1;
+}
+#footer .powered img {
+  position: relative;
+  top: -3px;
+}
+#footer .links {
+  font-size: 18px;
+}
+#footer .links a {
+  color: #2ecc71;
 }
 .courseTable {
   border-collapse: separate;
@@ -433,17 +525,6 @@ pre {
 .form-control.date-picker {
   border-color: #ffffff;
   box-shadow: none;
-}
-.footer {
-  margin-top: 20px;
-  text-align: center;
-}
-.footer .powered {
-  color: #7f8c8d;
-}
-.footer .powered img {
-  position: relative;
-  top: -2px;
 }
 #body {
   position: absolute;
@@ -699,4 +780,15 @@ body {
 #feedback-form {
   max-width: 480px;
   margin: auto;
+}
+.btn.btn-bottom {
+  border-bottom: 3px solid #15987e;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.btn.btn-bottom:hover,
+.btn.btn-bottom:focus,
+.btn.btn-bottom:active {
+  border-bottom-color: #117c67;
+  box-shadow: none;
 }

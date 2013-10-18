@@ -1,13 +1,13 @@
 @import 'less/variables';
-@import 'less/bootstrap.less';
+@import 'less/bootstrap';
 @import 'less/login';
+@import 'less/site';
 @import 'less/courseTable';
 @import 'less/courseLine';
-@import 'less/datepicker.less';
-@import 'less/footer.less';
-@import 'less/layout.less';
-@import 'less/wechat.less';
-@import 'less/admin.less';
+@import 'less/datepicker';
+@import 'less/layout';
+@import 'less/wechat';
+@import 'less/admin';
 
 [id^="cnzz_stat_icon"] {
   display: none;
@@ -27,4 +27,19 @@ body {
 #feedback-form {
   max-width: 480px;
   margin: auto;
+}
+
+.btn {
+  &.btn-bottom {
+    border-bottom: 3px solid darken(@color-main-dark, 8%);
+    padding-left: 30px;
+    padding-right: 30px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-bottom-color: darken(@color-main-darker, 8%);
+      box-shadow: none;
+    }
+  }
 }

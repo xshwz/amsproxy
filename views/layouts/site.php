@@ -20,7 +20,7 @@
         <![endif]-->
         <script src="js/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="site">
         <?php echo $content; ?>
 
         <script src="js/bootstrap.min.js"></script>

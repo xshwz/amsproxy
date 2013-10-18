@@ -1,0 +1,116 @@
+.site .jumbotron {
+  margin-bottom: 0;
+}
+
+#site-top {
+  background-color: @color-main-bg-light;
+  text-align: center;
+  color: @color-main-bg-dark;
+
+  h1 {
+    color: #27ae60;
+
+    span {
+      color: @color-main-bg-dark;
+    }
+  }
+
+  .logo img {
+    width: 160px;
+
+  }
+
+  .description {
+    color: #7f8c8d;
+  }
+
+  @media (max-width: @screen-sm) {
+    .logo img {
+      width: 100px;
+    }
+
+    .description {
+      font-size: 16px;
+    }
+
+    .btn.btn-lg {
+      font-size: 16px;
+      padding: 6px 20px;
+    }
+  }
+}
+
+#functions-intro {
+  background-color: #1abc9c;
+  color: #fff;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  div[class^="col"] {
+    text-align: center;
+    margin-bottom: 32px;
+
+    div.img {
+      width: 160px;
+      height: 160px;
+      padding: 40px;
+      border-radius: 100px;
+      background-color: #f1c40f;
+      margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    div.description {
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+        font-size: 14px;
+        font-style: italic;
+        color: #ecf0f1;
+      }
+    }
+  }
+}
+
+#responsive-design {
+  background-color: #fff;
+  color: #34495e;
+}
+
+#footer {
+  color: #fff;
+  background-color: #34495e;
+  padding: 40px 0 20px 0;
+  text-align: center;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .powered {
+    color: #ecf0f1;
+
+    img {
+      position: relative;
+      top: -3px;
+    }
+  }
+
+  .links {
+    font-size: 18px;
+
+    a {
+      color: #2ecc71;
+    }
+  }
+}
