@@ -22,7 +22,7 @@
         <h2>相思青果可以做什么？</h2>
         <div class="col-sm-3 course">
             <div class="img">
-                <img src="img/icons/png/Book.png" alt="课程">
+                <img src="img/icons/Book.png" alt="课程">
             </div>
             <div class="description">
                 <h3>课程</h3>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-sm-3 score">
             <div class="img">
-                <img src="img/icons/png/Clipboard.png" alt="成绩">
+                <img src="img/icons/Clipboard.png" alt="成绩">
             </div>
             <div class="description">
                 <h3>成绩</h3>
@@ -48,7 +48,7 @@
         </div>
         <div class="col-sm-3 exam">
             <div class="img">
-                <img src="img/icons/png/Pensils.png" alt="考试">
+                <img src="img/icons/Pensils.png" alt="考试">
             </div>
             <div class="description">
                 <h3>考试</h3>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-sm-3 rankExam">
             <div class="img">
-                <img src="img/icons/png/Retina-Ready.png" alt="等级考试">
+                <img src="img/icons/Retina-Ready.png" alt="等级考试">
             </div>
             <div class="description">
                 <h3>等级考试</h3>
