@@ -22,8 +22,9 @@ class Message extends CActiveRecord {
 
     /**
      * 获取未读消息
-     * @param int $receiverId 接收者ID
-     * @return array 未读消息
+     *
+     * @param int $receiverId
+     * @return array
      */
     public static function unread($receiverId) {
         return self::model()->findAll(array(
@@ -34,17 +35,18 @@ class Message extends CActiveRecord {
 
     /**
      * 发送消息
-     * @param int $senderId 发送者ID
-     * @param int $receiverId 接收者ID
-     * @param string $text 文本消息
+     * @param int $senderId
+     * @param int $receiverId
+     * @param string $text
+     * @param int $state
      */
-    public static function send($senderId, $receiverId, $text) {
+    public static function send($senderId, $receiverId, $text, $state=1) {
         $message = new Message;
         $message->sender = $senderId;
         $message->receiver = $receiverId;
         $message->message = $text;
         $message->time = date('Y-m-d H:i:s');
-        $message->state = 1;
+        $message->state = $state;
         $message->save();
     }
 }

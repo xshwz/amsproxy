@@ -718,6 +718,7 @@ body.admin {
 }
 body.admin .body {
   margin-top: 70px;
+  padding-bottom: 20px;
 }
 body.admin .article {
   background-color: #ffffff;
@@ -778,6 +779,68 @@ body.admin .modal-body .form-control {
   padding: 3px 6px;
   top: 8px;
   left: 20px;
+}
+.messages .session {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+}
+.messages .session:first-child,
+.messages .session:last-child {
+  margin: 0;
+}
+.messages .session > div.user,
+.messages .session > div.admin {
+  padding: 4px 8px;
+  margin: 8px 0;
+  border: 1px solid transparent;
+}
+.messages .session > div.user .operate,
+.messages .session > div.admin .operate {
+  visibility: hidden;
+  position: absolute;
+}
+.messages .session > div.user:hover .operate,
+.messages .session > div.admin:hover .operate {
+  visibility: visible;
+}
+.messages .session > div.user {
+  border-left-width: 1px;
+  border-left-color: #1abc9c;
+}
+.messages .session > div.user:hover {
+  border-color: #1abc9c;
+}
+.messages .session > div.user .operate {
+  right: 30px;
+}
+.messages .session > div.user.unread {
+  border-left-color: #e74c3c;
+}
+.messages .session > div.user.unread:hover {
+  border-color: #e74c3c;
+}
+.messages .session > div.admin {
+  border-right-width: 1px;
+  border-right-color: #f1c40f;
+  text-align: right;
+}
+.messages .session > div.admin:hover {
+  border-color: #f1c40f;
+}
+.messages .session > div.admin .operate {
+  left: 30px;
+  color: #f1c40f;
+}
+.messages .session > div .time {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+.messages .session .bottom {
+  position: relative;
+  top: 4px;
 }
 [id^="cnzz_stat_icon"] {
   display: none;

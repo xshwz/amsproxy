@@ -3,6 +3,7 @@ body.admin {
 
   .body {
     margin-top: 70px;
+    padding-bottom: 20px;
   }
 
   .article {
@@ -73,6 +74,83 @@ body.admin {
       padding: 3px 6px;
       top: 8px;
       left: 20px;
+    }
+  }
+}
+
+.messages {
+  .session {
+    background-color: @color-main-light;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+
+    &:first-child, &:last-child {
+      margin: 0;
+    }
+
+    > div {
+      &.user, &.admin {
+        padding: 4px 8px;
+        margin: 8px 0;
+        border: 1px solid transparent;
+
+        .operate {
+          visibility: hidden;
+          position: absolute;
+        }
+
+        &:hover .operate {
+          visibility: visible;
+        }
+      }
+
+      &.user {
+        border-left-width: 1px; 
+        border-left-color: #1abc9c;
+
+        &:hover {
+          border-color: #1abc9c; 
+        }
+
+        .operate {
+          right: 30px;
+        }
+
+        &.unread {
+          border-left-color: #e74c3c;
+
+          &:hover {
+            border-color: #e74c3c; 
+          }
+        }
+      }
+
+      &.admin {
+        border-right-width: 1px; 
+        border-right-color: #f1c40f; 
+        text-align: right;
+
+        &:hover {
+          border-color: #f1c40f; 
+        }
+
+        .operate {
+          left: 30px;
+          color: #f1c40f;
+        }
+      }
+
+      .time {
+        font-size: 12px;
+        color: #7f8c8d;
+      }
+    }
+
+    .bottom {
+      position: relative;
+      top: 4px;
     }
   }
 }

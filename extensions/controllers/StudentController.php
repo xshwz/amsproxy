@@ -3,7 +3,7 @@
  * 基控制器，需要登录验证，要进行学生相关操作请继承该控制器
  */
 class StudentController extends BaseController {
-    public $layout = '/layouts/main';
+    public $layout = '/layouts/amsProxy';
 
     /**
      * @var AmsProxy

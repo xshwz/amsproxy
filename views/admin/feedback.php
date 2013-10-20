@@ -1,52 +1,54 @@
-<div class="article table-responsive">
-    <table class="table table-hover table-striped">
-        <thead>
-            <tr>
-                <th>状态</th>
-                <th>发送者</th>
-                <th>内容</th>
-                <th>时间</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($messages as $message): ?>
-            <tr>
-                <td>
-                    <form method="post" class="text-center">
-                        <input type="hidden" name="id" value="<?php echo $message->id; ?>">
-                        <input
-                            type="checkbox"
-                            name="state"
-                            class="state"
-                            <?php if ($message->state == 0) echo 'checked'; ?>>
-                    </form>
-                </td>
-                <td>
-                    <a
-                        href="#detail-modal"
-                        class="detail"
-                        data-toggle="modal"
-                        data-json='<?php echo $message->sender_info['info']; ?>'>
-                        <?php echo $message->sender; ?>
-                    </a>
-                </td>
-                <td><?php echo CHtml::encode($message->message); ?></td>
-                <td class="time"><?php echo $message->time; ?></td>
-                <td>
-                    <a
-                        href="#send-modal"
-                        class="send"
-                        title="发送消息"
-                        data-toggle="modal"
-                        data-sid='<?php echo $message->sender; ?>'>
-                        <span class="glyphicon glyphicon-send"></span>
-                    </a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+<div class="messages">
+    <?php foreach ($messages as $group): ?>
+    <div class="session">
+        <?php foreach ($group['session'] as $message): ?>
+            <?php
+            if ($message->sender == 0)
+                $className = 'admin';
+            elseif ($message->receiver == 0)
+                $className = 'user';
+
+            if ($message->state)
+                $className .= ' unread';
+            ?>
+            <div class="<?php echo $className; ?>">
+                <p><?php echo $message->message; ?></p>
+                <em class="time"><?php echo $message->time; ?></em>
+
+                <?php if ($message->sender == 0): ?>
+                <a
+                    href="#edit-modal"
+                    class="edit operate"
+                    title="编辑"
+                    data-toggle="modal"
+                    data-id='<?php echo $message->id; ?>'>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <?php elseif ($message->receiver == 0): ?>
+                <a
+                    href="#send-modal"
+                    class="send operate"
+                    title="发送消息"
+                    data-toggle="modal"
+                    data-reply='<?php echo $message->id; ?>'
+                    data-sid='<?php echo $group['sender']->sid; ?>'>
+                    <span class="glyphicon glyphicon-send"></span>
+                </a>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+        <div class="bottom text-right">
+            <a
+                href="#detail-modal"
+                class="detail"
+                title="用户信息"
+                data-toggle="modal"
+                data-json='<?php echo $group['sender']->archives; ?>'>
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+    <?php endforeach; ?>
 </div>
 
 <div class="modal fade" id="send-modal">
@@ -63,6 +65,7 @@
                     method="post">
                     <input type="hidden" name="sender" value="0">
                     <input type="hidden" name="receiver" id="send-form-sid">
+                    <input type="hidden" name="reply" id="reply-id">
                     <div class="form-group">
                         <textarea
                             name="message"
@@ -84,7 +87,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">详细资料</h4>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-user"></span>
+                    用户信息
+                </h4>
             </div>
             <div class="modal-body"></div>
         </div>

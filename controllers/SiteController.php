@@ -36,11 +36,15 @@ class SiteController extends BaseController {
     }
 
     public function actionAbout() {
+        $this->pageTitle = '关于';
         $this->render('about');
+    }
+
+    public function actionFAQ() {
+        $this->render('faq');
     }
 
     public function actionCompatibility() {
         $this->render('compatibility');
     }
-
 }

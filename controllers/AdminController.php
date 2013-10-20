@@ -58,6 +58,7 @@ class AdminController extends CController {
                 str_replace('"', '%', json_encode($_GET['keyword'])),
                 false);
         }
+
         $criteria->order = 'last_login_time DESC';
 
         $count = Student::model()->count($criteria);
@@ -72,10 +73,20 @@ class AdminController extends CController {
     }
 
     public function actionSend() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Message::send(0, $_POST['receiver'], $_POST['message']);
-        else
+
+            if (isset($_POST['reply'])) {
+                $message = Message::model()->findByPk($_POST['reply']);
+
+                if ($message->state)
+                    $message->state = 0;
+
+                $message->save();
+            }
+        } else {
             $this->render('send');
+        }
     }
 
     public function actionFeedback() {
@@ -93,35 +104,23 @@ class AdminController extends CController {
             $this->unread = Message::unread(0);
         }
 
-        $this->render('feedback', array(
-            'messages' => Message::model()->findAll(array(
-                'condition' => 'receiver=:receiver',
-                'order' => 'time DESC',
-                'params' => array(
-                    ':receiver' => 0,
-                ),
-            )),
-        ));
-    }
-
-    public function actionMessage() {
-        $criteria = new CDbCriteria(array(
-            'condition' => 'sender=:sender',
+        $_messages = Message::model()->findAll(array(
             'order' => 'time DESC',
-            'params' => array(
-                ':sender' => isset($_GET['sender']) ? $_GET['sender'] : 0,
-            ),
         ));
 
-        $count = Message::model()->count($criteria);
-        $pages = new CPagination($count);
-        $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
-        $pages->applyLimit($criteria);
-        $this->render('message', array(
-            'messages' => Message::model()->findAll($criteria),
-            'count' => $count,
-            'pages' => $pages,
-        ));
+        foreach ($_messages as $message) {
+            if ($message->sender == 0 && $message->receiver != 0) {
+                $messages[$message->receiver]['sender'] = $message->_receiver;
+                $messages[$message->receiver]['session'][] = $message;
+            }
+
+            if ($message->sender != 0 && $message->receiver == 0) {
+                $messages[$message->sender]['sender'] = $message->_sender;
+                $messages[$message->sender]['session'][] = $message;
+            }
+        }
+
+        $this->render('feedback', array('messages' => $messages));
     }
 
     public function actionSetting() {

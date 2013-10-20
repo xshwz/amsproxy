@@ -26,6 +26,7 @@ $('#ajaxFeedbackForm').ajaxForm({
 $('a.send').each(function(){
     $(this).click(function(){
         $('#send-form-sid').val($(this).attr('data-sid'));
+        $('#reply-id').val($(this).attr('data-reply'));
     });
 });
 

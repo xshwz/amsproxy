@@ -5,8 +5,9 @@
     <div id="collegeStats"></div>
     <div class="panel-group accordion" id="accordion"></div>
 </div>
-<script src="js/highcharts.js"></script>
 <script>
+window.onload = function(){
+
 Highcharts.setOptions({
     credits: {
         enabled: false
@@ -48,6 +49,7 @@ Highcharts.setOptions({
         }
     }
 });
+
 $(function(){
     $('#genderStats').highcharts({
         title: {
@@ -162,4 +164,6 @@ $(function(){
         });
     }
 });
+
+}
 </script>

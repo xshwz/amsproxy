@@ -8,7 +8,6 @@
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/datepicker.css" rel="stylesheet">
         <link href="css/amsProxy.css" rel="stylesheet">
-        <script src="js/jquery.min.js"></script>
     </head>
     <body class="admin">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,10 +37,6 @@
                                     array(
                                         'label' => '学生',
                                         'url' => array('admin/student'),
-                                    ),
-                                    array(
-                                        'label' => '消息',
-                                        'url' => array('admin/message'),
                                     ),
                                     array(
                                         'label' => '统计',
@@ -90,11 +85,11 @@
             <?php echo $content; ?>
         </div>
         
-        <div class="footer"></div>
-
+        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
         <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/highcharts.js"></script>
         <script src="js/amsProxy.js"></script>
     </body>
 </html>
