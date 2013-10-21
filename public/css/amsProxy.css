@@ -236,6 +236,21 @@ h6,
 .form-horizontal .form-group label[class^="col-xs"] {
   text-align: right;
 }
+.tooltip.top .tooltip-arrow {
+  border-top-color: #2c3e50;
+}
+.tooltip.right .tooltip-arrow {
+  border-right-color: #2c3e50;
+}
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #2c3e50;
+}
+.tooltip.left .tooltip-arrow {
+  border-left-color: #2c3e50;
+}
+.tooltip-inner {
+  background-color: #2c3e50;
+}
 .login-form {
   max-width: 320px;
   margin: 15px auto;
