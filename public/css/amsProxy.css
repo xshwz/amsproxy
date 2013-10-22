@@ -1,5 +1,5 @@
 a {
-  color: #1abc9c;
+  color: #16a085;
 }
 a:hover {
   color: #16a085;
@@ -272,6 +272,9 @@ h6,
 .login-form .alert {
   padding: 10px 15px;
 }
+body.site {
+  background-color: #16a085;
+}
 .site .jumbotron {
   margin-bottom: 0;
 }
@@ -338,30 +341,77 @@ h6,
   background-color: #fff;
   color: #34495e;
 }
-#footer {
+#index-footer {
   color: #fff;
   background-color: #34495e;
   padding: 40px 0 20px 0;
   text-align: center;
 }
-#footer a {
+#index-footer a {
   color: #fff;
 }
-#footer a:hover {
+#index-footer a:hover {
   color: #fff;
 }
-#footer .powered {
+#index-footer .powered {
   color: #ecf0f1;
 }
-#footer .powered img {
-  position: relative;
-  top: -3px;
-}
-#footer .links {
+#index-footer .links {
   font-size: 18px;
 }
-#footer .links a {
+#index-footer .links a {
   color: #2ecc71;
+}
+.site .login-form {
+  padding: 0;
+}
+#site-header {
+  background-color: #34495e;
+}
+#site-header img {
+  width: 24px;
+  position: relative;
+  top: -4px;
+}
+#site-header h1 {
+  margin: 0;
+}
+#site-header a {
+  display: inline-block;
+  font-size: 24px;
+  color: #ffffff;
+  margin: 16px 0;
+}
+#site-header a:hover,
+#site-header a:active,
+#site-header a:focus {
+  text-decoration: none;
+  color: #16a085;
+  transition: color ease-in-out 0.2s;
+}
+#wrap {
+  background-color: #fff;
+}
+#wrap > .container {
+  padding: 20px;
+}
+#site-footer {
+  text-align: center;
+  padding: 16px 0;
+  background-color: #16a085;
+  color: #ecf0f1;
+}
+#site-footer p {
+  margin: 0;
+}
+#site-footer a {
+  color: #ecf0f1;
+}
+.article .page-header {
+  color: #16a085;
+}
+.article .page-header .glyphicon {
+  top: 3px;
 }
 .courseTable {
   border-collapse: separate;
@@ -648,6 +698,11 @@ h6,
 #main > .container {
   padding: 20px;
 }
+#message-label .badge {
+  background-color: #e74c3c;
+  position: relative;
+  top: 2px;
+}
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
@@ -727,6 +782,41 @@ h6,
   .modal.lightbox .modal-content {
     margin-top: 20px;
   }
+}
+.messages .message {
+  margin: 20px;
+  position: relative;
+}
+.messages .message-arrow {
+  position: absolute;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.messages .message-inner {
+  padding: 16px;
+  text-align: left;
+  display: inline-block;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+}
+.messages .message-inner .time {
+  font-size: 12px;
+}
+.messages .message.admin {
+  text-align: right;
+}
+.messages .message.admin .message-arrow {
+  right: -8px;
+  border-left-color: #ecf0f1;
+  border-width: 8px 0 8px 8px;
+}
+.messages .message.user .message-arrow {
+  left: -8px;
+  border-right-color: #ecf0f1;
+  border-width: 8px 8px 8px 0;
 }
 body.admin {
   background-color: #ecf0f1;
@@ -823,10 +913,10 @@ body.admin .modal-body .form-control {
 }
 .messages .session > div.user {
   border-left-width: 1px;
-  border-left-color: #1abc9c;
+  border-left-color: #2ecc71;
 }
 .messages .session > div.user:hover {
-  border-color: #1abc9c;
+  border-color: #2ecc71;
 }
 .messages .session > div.user .operate {
   right: 30px;
@@ -847,7 +937,12 @@ body.admin .modal-body .form-control {
 }
 .messages .session > div.admin .operate {
   left: 30px;
-  color: #f1c40f;
+}
+.messages .session > div.admin.unread {
+  border-right-color: #e67e22;
+}
+.messages .session > div.admin.unread:hover {
+  border-color: #e67e22;
 }
 .messages .session > div .time {
   font-size: 12px;
@@ -863,6 +958,9 @@ body.admin .modal-body .form-control {
 body {
   font-family: "Microsoft YaHei";
   background-color: #ffffff;
+}
+#main {
+  position: relative;
 }
 .archives-edit {
   position: fixed;
@@ -883,4 +981,17 @@ body {
 .btn.btn-bottom:active {
   border-bottom-color: #117c67;
   box-shadow: none;
+}
+.powered img {
+  position: relative;
+  top: -3px;
+}
+.amsProxy .footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.amsProxy .footer .powered {
+  color: #7f8c8d;
 }

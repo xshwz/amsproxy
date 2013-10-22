@@ -69,6 +69,7 @@ class Request {
      */
     public function setCookies($cookies) {
         $this->cookies = array_merge($this->cookies, $cookies);
+        $_cookies = array();
         foreach ($this->cookies as $key => $value)
             $_cookies[] = $key . '=' . $value;
         curl_setopt($this->curl, CURLOPT_COOKIE, join('; ', $_cookies));

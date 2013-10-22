@@ -14,4 +14,8 @@ class ApiController extends StudentController {
     public function actionScore() {
         echo json_encode($this->getScore(1));
     }
+
+    public function actionUnread() {
+        echo CJSON::encode(Message::unread($_SESSION['student']['sid']));
+    }
 }

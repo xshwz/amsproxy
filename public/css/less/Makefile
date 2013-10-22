@@ -1,2 +1,2 @@
-../amsProxy.css: ../amsProxy.less *.less
-	lessc ../amsProxy.less > $@
+../amsProxy.css: main.less *.less
+	lessc main.less > $@

@@ -4,10 +4,11 @@
  */
 class BaseController extends CController {
     /**
-     * unread message
-     * @var array
+     * stylesheet
+     *
+     * @var string
      */
-    public $unread = array();
+    public $_style = '';
 
     /**
      * @var Setting
@@ -35,11 +36,14 @@ class BaseController extends CController {
     }
 
     public function initStudent() {
-        $this->unread = Message::unread($_SESSION['student']['sid']);
         $this->student = Student::model()->findByPk(
             $_SESSION['student']['sid']);
         $this->student->last_login_time = date('Y-m-d H:i:s');
         $this->student->save();
+
+        if (!isset($_SESSION['unread']))
+            $_SESSION['unread'] = Message::unread(
+                $_SESSION['student']['sid']);
     }
 
     /**

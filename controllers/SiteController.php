@@ -3,9 +3,10 @@
  * 默认控制器
  */
 class SiteController extends BaseController {
-    public $layout = '/layouts/site';
+    public $layout = '/layouts/site-default';
 
     public function actionIndex() {
+        $this->layout = '/site/index';
         $this->pageTitle = '';
         $this->render('index');
     }
@@ -35,16 +36,33 @@ class SiteController extends BaseController {
         }
     }
 
+    public function actionAjaxLogin() {
+        $sid = $_POST['sid'];
+        $pwd = $_POST['pwd'];
+
+        if ($this->login($sid, $pwd))
+            echo '1';
+        else
+            echo '0';
+    }
+
     public function actionAbout() {
         $this->pageTitle = '关于';
         $this->render('about');
     }
 
     public function actionFAQ() {
-        $this->render('faq');
+        $this->pageTitle = 'FAQ';
+        $this->render('FAQ');
+    }
+
+    public function actionAPI() {
+        $this->pageTitle = 'API';
+        $this->render('api');
     }
 
     public function actionCompatibility() {
+        $this->pageTitle = '浏览器兼容性';
         $this->render('compatibility');
     }
 }

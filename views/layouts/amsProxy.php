@@ -16,9 +16,8 @@
         <!--[if lt IE 9]>
         <link href="css/ie.css" rel="stylesheet">
         <![endif]-->
-        <script src="js/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="amsProxy">
         <div id="body">
             <div id="side">
                 <?php
@@ -111,15 +110,16 @@
                                         'label' => '<span class="glyphicon glyphicon-question-sign"></span> FAQ',
                                         'url' => array('help/FAQ'),
                                     ),
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-info-sign"></span> 关于',
-                                        'url' => array('help/about'),
-                                    ),
                                 ),
                             ),
                             array(
                                 'label' => '',
                                 'items' => array(
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-envelope"></span> 消息',
+                                        'url' => array('home/message'),
+                                        'linkOptions' => array('id' => 'message-label'),
+                                    ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-log-out"></span> 退出',
                                         'url' => array('home/logout'),
@@ -156,12 +156,38 @@
                     echo $content;
                     ?>
                 </div>
+
+                <div class="footer">
+                    <p class="powered">
+                        <em>
+                            Powered By
+                            <a href="http://xsh.gxun.edu.cn/">
+                                <img src="img/xsh-logo.png" width="16" alt="xsh logo">相思湖网站
+                            </a>
+                        </em>
+                    </p>
+                </div>
             </div>
         </div>
 
+        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
+        <script src="js/highcharts.js"></script>
         <script src="js/amsProxy.js"></script>
+        <script>
+        (function(){
+            var unread = <?php echo CJSON::encode($_SESSION['unread']); ?>;
+
+            if (unread.length) {
+                $('#message-label').append(
+                    '<span class="badge pull-right">' +
+                        unread.length +
+                    '</span>'
+                );
+            }
+        })();
+        </script>
 
         <!--
         <div id="cnzz_stat_icon_1000039522"></div>

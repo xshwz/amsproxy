@@ -1,8 +1,8 @@
 <div class="messages">
     <?php foreach ($messages as $group): ?>
     <div class="session">
-        <?php foreach ($group['session'] as $message): ?>
-            <?php
+        <?php
+        foreach ($group['session'] as $message):
             if ($message->sender == 0)
                 $className = 'admin';
             elseif ($message->receiver == 0)
@@ -10,7 +10,7 @@
 
             if ($message->state)
                 $className .= ' unread';
-            ?>
+        ?>
             <div class="<?php echo $className; ?>">
                 <p><?php echo $message->message; ?></p>
                 <em class="time"><?php echo $message->time; ?></em>

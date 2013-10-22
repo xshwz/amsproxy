@@ -1,13 +1,14 @@
-@import 'less/variables';
-@import 'less/bootstrap';
-@import 'less/login';
-@import 'less/site';
-@import 'less/courseTable';
-@import 'less/courseLine';
-@import 'less/datepicker';
-@import 'less/layout';
-@import 'less/wechat';
-@import 'less/admin';
+@import 'variables';
+@import 'bootstrap';
+@import 'login';
+@import 'site';
+@import 'courseTable';
+@import 'courseLine';
+@import 'datepicker';
+@import 'layout';
+@import 'wechat';
+@import 'message';
+@import 'admin';
 
 [id^="cnzz_stat_icon"] {
   display: none;
@@ -16,6 +17,10 @@
 body {
   font-family: "Microsoft YaHei";
   background-color: @color-main-light;
+}
+
+#main {
+  position: relative;
 }
 
 .archives-edit {
@@ -40,6 +45,24 @@ body {
     &:active {
       border-bottom-color: darken(@color-main-darker, 8%);
       box-shadow: none;
+    }
+  }
+}
+
+.powered img {
+  position: relative;
+  top: -3px;
+}
+
+.amsProxy {
+  .footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+
+    .powered {
+      color: #7f8c8d;
     }
   }
 }

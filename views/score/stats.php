@@ -3,8 +3,9 @@
     <div id="scoreDict"></div>
 </div>
 
-<script src="js/highcharts.js"></script>
 <script>
+window.onload = function(){
+
 Highcharts.setOptions({
     credits: {
         enabled: false
@@ -88,4 +89,6 @@ $(function(){
         return typeof(a) == 'undefined' ? 0 : a.length;
     }
 });
+
+};
 </script>

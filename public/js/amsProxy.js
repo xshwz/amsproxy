@@ -95,10 +95,10 @@ $('a.detail').each(function(){
         for (var key in studentInfo) {
             html +=
                 '<div class="form-group">' +
-                    '<label class="col-sm-4 control-label">' +
+                    '<label class="col-xs-5 control-label">' +
                         key +
                     '</label>' +
-                    '<div class="col-sm-8">' +
+                    '<div class="col-xs-7">' +
                         '<p class="form-control-static">' +
                             studentInfo[key] + 
                         '</p>' +
@@ -115,4 +115,28 @@ $('a.lightbox').click(function(){
     $($(this).attr('href') + ' img.lightbox')
         .attr('src', $('img', this).attr('src'))
         .height($(window).height() - 60);
+});
+
+/** ajax login */
+$('#ajax-login').ajaxForm({
+    beforeSubmit: function(){
+        if (!$('#input-sid').val()) {
+            alert('请输入学号');
+            $('#input-sid').focus();
+            return false;
+        }
+
+        if (!$('#input-pwd').val()) {
+            alert('请输入密码');
+            $('#input-pwd').focus();
+            return false;
+        }
+    },
+    dataType: 'json',
+    success: function(data){
+        if (data)
+            location.reload();
+        else
+            alert('学号或密码错误');
+    }
 });

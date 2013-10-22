@@ -1,7 +1,8 @@
+<?php $this->beginContent('/layouts/site-base'); ?>
 <div class="jumbotron" id="site-top">
     <div class="container">
         <div class="logo img-responsive">
-            <img src="img/xsh-logo.png" alt="相思湖网站 logo">
+            <img src="img/xsh-logo.png" width="64" alt="相思湖网站 logo">
         </div>
         <h1><span>相思</span>青果</h1>
         <p class="description"><em>广西民族大学教务系统代理</em></p>
@@ -11,7 +12,9 @@
             class="btn btn-lg btn-bottom">进入</a>
         <?php else: ?>
         <a
-            href="<?php echo Yii::app()->createUrl('site/login')?>"
+            href="#"
+            data-toggle="modal"
+            data-target="#login-modal"
             class="btn btn-lg btn-bottom">登录</a>
         <?php endif; ?>
     </div>
@@ -86,7 +89,7 @@
     </div>
 </div>
 
-<div id="footer">
+<div id="index-footer">
     <div class="container">
         <ul class="links list-inline">
             <li>
@@ -103,9 +106,57 @@
             <em>
                 Powered By
                 <a href="http://xsh.gxun.edu.cn/">
-                    <img src="favicon.ico" width="16" alt="xsh logo">相思湖网站
+                    <img src="img/xsh-logo.png" width="16" alt="xsh logo">相思湖网站
                 </a>
             </em>
         </p>
     </div>
 </div>
+
+<div class="modal fade" id="login-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form
+                    class="login-form"
+                    id="ajax-login"
+                    method="POST"
+                    action="<?php echo Yii::app()->createUrl('site/ajaxLogin'); ?>">
+                    <div class="form-group">
+                        <input
+                            name="sid"
+                            id="input-sid"
+                            type="text"
+                            class="form-control"
+                            placeholder="学号"
+                            value="<?php if (isset($sid)) echo $sid; ?>">
+                        <label class="input-icon" for="input-sid">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input
+                            name="pwd"
+                            id="input-pwd"
+                            type="password"
+                            class="form-control"
+                            placeholder="密码">
+                        <label class="input-icon" for="input-pwd">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block" id="login-btn" type="submit">登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $this->endContent(); ?>

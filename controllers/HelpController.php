@@ -13,11 +13,6 @@ class HelpController extends StudentController {
         }
     }
 
-    public function actionAbout() {
-        $this->pageTitle = '关于';
-        $this->render('about');
-    }
-
     public function actionFAQ() {
         $this->pageTitle = 'FAQ';
         $this->render('FAQ');

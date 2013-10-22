@@ -1,3 +1,7 @@
+body.site {
+  background-color: @color-main-darker;
+}
+
 .site .jumbotron {
   margin-bottom: 0;
 }
@@ -83,7 +87,7 @@
   color: #34495e;
 }
 
-#footer {
+#index-footer {
   color: #fff;
   background-color: #34495e;
   padding: 40px 0 20px 0;
@@ -99,11 +103,6 @@
 
   .powered {
     color: #ecf0f1;
-
-    img {
-      position: relative;
-      top: -3px;
-    }
   }
 
   .links {
@@ -111,6 +110,72 @@
 
     a {
       color: #2ecc71;
+    }
+  }
+}
+
+.site .login-form {
+  padding: 0;
+}
+
+#site-header {
+  background-color: @color-main-bg-dark;
+
+  img {
+    width: 24px;
+    position: relative;
+    top: -4px;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  a {
+    display: inline-block;
+    font-size: 24px;
+    color: @color-main-light;
+    margin: 16px 0;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+      color: @color-main-darker;
+      transition: color ease-in-out .2s;
+    }
+  }
+}
+
+#wrap { 
+  background-color: #fff;
+
+  > .container {
+    padding: 20px;
+  }
+}
+
+#site-footer {
+  text-align: center;
+  padding: 16px 0;
+  background-color: @color-main-darker;
+  color: @color-main-bg-light;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: @color-main-bg-light;
+  }
+}
+
+.article {
+  .page-header {
+    color: @color-main-darker;
+
+    .glyphicon {
+      top: 3px;
     }
   }
 }

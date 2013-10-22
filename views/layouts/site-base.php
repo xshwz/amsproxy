@@ -18,11 +18,15 @@
         <!--[if lt IE 9]>
         <link href="css/ie.css" rel="stylesheet">
         <![endif]-->
-        <script src="js/jquery.min.js"></script>
+        <?php
+        if ($this->_style)
+            echo '<style>' . $this->_style . '</style>';
+        ?>
     </head>
     <body class="site">
         <?php echo $content; ?>
 
+        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.form.min.js"></script>
         <script src="js/amsProxy.js"></script>
