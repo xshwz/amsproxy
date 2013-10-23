@@ -3,7 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>相思青果后台管理</title>
+        <title>
+        <?php
+        if (isset($this->pageTitle) && $this->pageTitle)
+            echo $this->pageTitle . ' - ';
+        ?>
+        相思青果后台管理
+        </title>
         <link rel="shortcut icon" href="favicon.ico">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/datepicker.css" rel="stylesheet">

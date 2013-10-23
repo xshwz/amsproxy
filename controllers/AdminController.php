@@ -6,6 +6,11 @@ class AdminController extends CController {
     public $layout = '/layouts/admin';
 
     /**
+     * @var string
+     */
+    public $pageTitle = '';
+
+    /**
      * @var array 未读消息
      */
     public $unread = array();
@@ -33,6 +38,8 @@ class AdminController extends CController {
     }
 
     public function actionLogin() {
+        $this->pageTitle = '登录';
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['pwd'] == $this->setting->password) {
                 $_SESSION['admin'] = true;
@@ -51,6 +58,8 @@ class AdminController extends CController {
     }
 
     public function actionStudent() {
+        $this->pageTitle = '学生';
+
         $criteria = new CDbCriteria();
 
         if (isset($_GET['keyword'])) {
@@ -90,6 +99,8 @@ class AdminController extends CController {
     }
 
     public function actionFeedback() {
+        $this->pageTitle = '反馈';
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message = Message::model()->findByPk($_POST['id']);
 
@@ -124,6 +135,8 @@ class AdminController extends CController {
     }
 
     public function actionSetting() {
+        $this->pageTitle = '设置';
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->setting->updateAll($_POST);
             $this->setting = Setting::model()->find();
@@ -133,6 +146,8 @@ class AdminController extends CController {
     }
 
     public function actionStats() {
+        $this->pageTitle = '统计';
+
         $stats = array(
             'gender' => array(
                 '男' => 0,
