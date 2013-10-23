@@ -95,6 +95,7 @@
     </div>
 </div>
 
+<!--
 <script>
 $('#archives-edit').on('show.bs.modal', function () {
     $.getJSON('js/hometown.json', function(data){
@@ -120,3 +121,4 @@ function initSelect($node, data) {
     $node.find('option[value="' + select_key + '"]').prop('selected', true);
 }
 </script>
+-->
