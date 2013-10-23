@@ -80,7 +80,17 @@ class WechatController extends BaseController {
                     $wechat->response('啊哈？');
             }
         } else {
-            $wechat->response($wechat->request->FromUserName);
+            $wechat->response(
+                'http://xsh.gxun.edu.cn/' .
+                Yii::app()->createUrl(
+                    'setting/wechat',
+                    array(
+                        'operate' => 'bind',
+                        'openId' => $wechat->request->FromUserName,
+                    ),
+                    '&amp;'
+                )
+            );
         }
 	}
 

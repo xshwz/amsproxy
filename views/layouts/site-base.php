@@ -18,10 +18,6 @@
         <!--[if lt IE 9]>
         <link href="css/ie.css" rel="stylesheet">
         <![endif]-->
-        <?php
-        if ($this->_style)
-            echo '<style>' . $this->_style . '</style>';
-        ?>
     </head>
     <body class="site">
         <?php echo $content; ?>
