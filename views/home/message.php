@@ -1,11 +1,12 @@
 <div class="messages">
     <?php
     foreach ($messages as $message):
-        $className = 'other';
         if ($message->sender == 0)
             $className = 'admin';
         elseif ($message->receiver == 0)
             $className = 'user';
+        else
+            continue;
     ?>
     <div class="message <?php echo $className; ?>">
         <div class="message-arrow"></div>
