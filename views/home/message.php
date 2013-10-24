@@ -1,6 +1,7 @@
 <div class="messages">
     <?php
     foreach ($messages as $message):
+        $className = 'other';
         if ($message->sender == 0)
             $className = 'admin';
         elseif ($message->receiver == 0)

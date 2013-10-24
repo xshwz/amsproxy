@@ -3,6 +3,7 @@
     <div class="session">
         <?php
         foreach ($group['session'] as $message):
+            $className = 'other';
             if ($message->sender == 0)
                 $className = 'admin';
             elseif ($message->receiver == 0)
