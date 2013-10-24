@@ -123,7 +123,6 @@ class BaseController extends CController {
         if (Student::model()->findByPk($amsProxy->sid) == null) {
             $student = new Student;
             $student->sid = $amsProxy->sid;
-            $student->session = $amsProxy->getSession();
             $student->archives = json_encode(
                 $amsProxy->invoke('getArchives'));
             $student->save();
