@@ -6,7 +6,7 @@ class HomeController extends StudentController {
     public function actionLogout() {
         session_destroy();
         $this->destroyRemember();
-        $this->redirect(array('site/login'));
+        $this->redirect(array('site/index'));
     }
 
     public function actionMessage() {
