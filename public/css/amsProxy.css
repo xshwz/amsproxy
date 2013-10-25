@@ -986,12 +986,15 @@ body {
   position: relative;
   top: -3px;
 }
-.amsProxy .footer {
+.amsProxy #main > .container {
+  padding-bottom: 40px;
+}
+.amsProxy #main .footer {
   position: absolute;
   bottom: 0;
   text-align: center;
   width: 100%;
 }
-.amsProxy .footer .powered {
+.amsProxy #main .footer .powered {
   color: #7f8c8d;
 }
