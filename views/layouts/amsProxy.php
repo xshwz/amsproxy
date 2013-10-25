@@ -191,6 +191,8 @@
         })();
         </script>
 
+        <div id="cnzz_stat_icon_1000039522"></div>
+        <script src="http://s22.cnzz.com/z_stat.php?id=1000039522"></script>
         <script src="http://tajs.qq.com/stats?sId=28159787"></script>
     </body>
 </html>
