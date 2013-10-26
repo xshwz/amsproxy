@@ -952,7 +952,8 @@ body.admin .modal-body .form-control {
   position: relative;
   top: 4px;
 }
-[id^="cnzz_stat_icon"] {
+[id^="cnzz_stat_icon"],
+a[href="http://tongji.baidu.com/hm-web/welcome/ico?s=a2186fb065286f8785f3b01b2afeeea6"] {
   display: none;
 }
 body {
