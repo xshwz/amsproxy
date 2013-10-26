@@ -988,6 +988,7 @@ body {
 }
 .amsProxy #main > .container {
   padding-bottom: 40px;
+  max-width: 100%;
 }
 .amsProxy #main .footer {
   position: absolute;

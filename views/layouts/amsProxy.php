@@ -179,7 +179,7 @@
         <script src="js/amsProxy.js"></script>
         <script>
         (function(){
-            var unread = <?php echo CJSON::encode($_SESSION['unread']); ?>;
+            var unread = <?php echo CJSON::encode($this->unread); ?>;
 
             if (unread.length) {
                 $('#message-label').append(

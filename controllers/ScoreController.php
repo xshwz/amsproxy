@@ -6,30 +6,42 @@ class ScoreController extends StudentController {
     public function actionOriginalScore() {
         $this->pageTitle = '原始成绩';
         $scoreTable = $this->getScore(0);
-        $this->addScoreState($scoreTable, 10);
-        $this->render('/common/table', array(
-            'data' => $scoreTable,
-        ));
+        if (isset($scoreTable['tbody'])) {
+            $this->addScoreState($scoreTable, 10);
+            $this->render('/common/table', array(
+                'data' => $scoreTable,
+            ));
+        } else {
+            $this->warning('暂无数据');
+        }
     }
 
     public function actionEffectiveScore() {
         $this->pageTitle = '有效成绩';
         $scoreTable = $this->getScore(1);
-        $this->addScoreState($scoreTable, 6);
-        $this->render('/common/table', array(
-            'data' => $scoreTable,
-        ));
+        if (isset($scoreTable['tbody'])) {
+            $this->addScoreState($scoreTable, 6);
+            $this->render('/common/table', array(
+                'data' => $scoreTable,
+            ));
+        } else {
+            $this->warning('暂无数据');
+        }
     }
 
 	public function actionStats() {
         $this->pageTitle = '成绩统计';
         $scoreTable = $this->getScore(1);
-        $this->addScoreState($scoreTable, 6);
-        $this->render('stats', array(
-            'termNames' => $this->getTermNames($scoreTable),
-            'termScoreStats' => $this->getTermScoreStats($scoreTable),
-            'scoreDict' => $this->getScoreDist($scoreTable),
-        ));
+        if (isset($scoreTable['tbody'])) {
+            $this->addScoreState($scoreTable, 6);
+            $this->render('stats', array(
+                'termNames' => $this->getTermNames($scoreTable),
+                'termScoreStats' => $this->getTermScoreStats($scoreTable),
+                'scoreDict' => $this->getScoreDist($scoreTable),
+            ));
+        } else {
+            $this->warning('暂无数据');
+        }
 	}
 
     /**

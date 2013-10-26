@@ -46,25 +46,27 @@ class getScore extends __base__ {
         );
 
         $tables = $dom->getElementsByTagName('table');
-        foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
-            $tds = $tr->getElementsByTagName('td');
+        if ($tables->length) {
+            foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
+                $tds = $tr->getElementsByTagName('td');
 
-            if ($term_name = trim($tds->item(0)->textContent))
-                $termName = $term_name;
+                if ($term_name = trim($tds->item(0)->textContent))
+                    $termName = $term_name;
 
-            $score['tbody'][$termName][] = array(
-                preg_replace('/\[.*?\]/', '',
-                    $tds->item(1)->textContent),
-                $tds->item(2)->textContent,
-                $tds->item(3)->textContent,
-                $tds->item(4)->textContent,
-                $tds->item(5)->textContent,
-                $tds->item(6)->textContent,
-                $tds->item(7)->textContent,
-                $tds->item(8)->textContent,
-                $tds->item(9)->textContent,
-                $tds->item(10)->textContent,
-            );
+                $score['tbody'][$termName][] = array(
+                    preg_replace('/\[.*?\]/', '',
+                        $tds->item(1)->textContent),
+                    $tds->item(2)->textContent,
+                    $tds->item(3)->textContent,
+                    $tds->item(4)->textContent,
+                    $tds->item(5)->textContent,
+                    $tds->item(6)->textContent,
+                    $tds->item(7)->textContent,
+                    $tds->item(8)->textContent,
+                    $tds->item(9)->textContent,
+                    $tds->item(10)->textContent,
+                );
+            }
         }
 
         return $score;

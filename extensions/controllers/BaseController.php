@@ -16,6 +16,11 @@ class BaseController extends CController {
     public $setting;
 
     /**
+     * @var array
+     */
+    public $unread;
+
+    /**
      * @var Student
      */
     public $student;
@@ -41,9 +46,7 @@ class BaseController extends CController {
         $this->student->last_login_time = date('Y-m-d H:i:s');
         $this->student->save();
 
-        if (!isset($_SESSION['unread']))
-            $_SESSION['unread'] = Message::unread(
-                $_SESSION['student']['sid']);
+        $this->unread = Message::unread($_SESSION['student']['sid']);
     }
 
     /**
