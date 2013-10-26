@@ -18,8 +18,7 @@ class HomeController extends StudentController {
             )
         );
 
-        $_SESSION['unread'] = array();
-
+        $this->unread = array();
         $this->render('message', array(
             'messages' => Message::model()->findAll(array(
                 'condition' => 'receiver=:sid OR sender=:sid',
