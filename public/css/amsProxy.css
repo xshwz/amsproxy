@@ -1000,3 +1000,22 @@ body {
 .amsProxy #main .footer .powered {
   color: #7f8c8d;
 }
+.score-table {
+  border: 1px solid;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.score-table th,
+.score-table td {
+  border: 1px solid;
+  padding: 4px;
+}
+.score-table td.credit {
+  width: 3em;
+}
+.score-table td.score {
+  width: 5em;
+}
+.score-table caption {
+  font-weight: bold;
+}

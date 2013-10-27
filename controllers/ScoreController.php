@@ -44,6 +44,10 @@ class ScoreController extends StudentController {
         }
 	}
 
+    public function actionTable() {
+        $this->render('table', array('scoreTable' => $this->getScore()));
+    }
+
     /**
      * @param array $scoreTable
      * @param array $scoreIndex
@@ -113,7 +117,6 @@ class ScoreController extends StudentController {
         }
         return $scoreDict;
     }
-
 
     /**
      * 获取学期名数组
