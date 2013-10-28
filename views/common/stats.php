@@ -10,8 +10,3 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-43494312-1', 'gxun.edu.cn');
 ga('send', 'pageview');
 </script>
-
-<script>
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa2186fb065286f8785f3b01b2afeeea6' type='text/javascript'%3E%3C/script%3E"));
-</script>
