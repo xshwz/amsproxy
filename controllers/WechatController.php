@@ -2,7 +2,7 @@
 /**
  * 微信公众平台控制器
  */
-class WechatController extends BaseController {
+class WechatController extends CController {
     /**
      * @var Student
      */
@@ -41,8 +41,10 @@ class WechatController extends BaseController {
     );
 
 	public function actionIndex() {
-        if (isset($_GET['echostr']))
+        if (isset($_GET['echostr'])) {
             echo $_GET['echostr'];
+            return;
+        }
 
         $wechat = new Wechat();
         $this->student = Student::model()->find( 'wechat=:wechat',
@@ -96,14 +98,14 @@ class WechatController extends BaseController {
 
     public function getStudentInfo() {
         $studentInfo = '';
-        foreach(json_decode($this->student->info, true) as $key => $value)
+        foreach(json_decode($this->student->archives, true) as $key => $value)
             $studentInfo .= "{$key}：\n{$value}\n\n";
         return rtrim($studentInfo);
     }
 
     public function getRankExamScore() {
-        $rankExamScoreTable = json_decode($this->student->rankExam);
-        $rankExamScoreTable = $rankExamScoreTable[1]->tbody;
+        $rankExamScoreTable = json_decode($this->student->rank_exam);
+        $rankExamScoreTable = $rankExamScoreTable->score->tbody;
         $rankExamScores = "等级考试成绩\n\n";
         foreach($rankExamScoreTable as $group) {
             foreach ($group as $row) {
