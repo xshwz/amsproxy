@@ -3,7 +3,7 @@ class RankExamController extends StudentController {
     public function actionForm() {
         $this->pageTitle = '等级考试报名';
         $rankExam = $this->getRankExam();
-        if (isset($rankExam['tbody'])) {
+        if (isset($rankExam['form']['tbody'])) {
             foreach ( $rankExam['form']['tbody'] as &$tbody ) {
                 foreach ( $tbody as &$trs ) {
                     if ($trs[8]) {
@@ -27,7 +27,7 @@ class RankExamController extends StudentController {
     public function actionScore() {
         $this->pageTitle = '等级考试成绩';
         $rankExam = $this->getRankExam();
-        if (isset($rankExam['tbody'])) {
+        if (isset($rankExam['score']['tbody'])) {
             $this->render('/common/table', array(
                 'data' => $rankExam['score'],
                 'type' => 1,
