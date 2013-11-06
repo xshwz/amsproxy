@@ -6,18 +6,25 @@
  */
 class getClassCourse extends __base__ {
     public function getData() {
-        return $this->amsProxy->POST(
-            'ZNPK/KBFB_ClassSel_rpt.aspx',
-            array(
-                'Sel_XNXQ' => '20130',
-                'Sel_XZBJ' => $this->getClassCode($this->args),
-                'type'     => 2,
-                'chkrxkc'  => 1,
-            )
-        );
+        if ($classCode = $this->getClassCode($this->args)) { // don't panic
+            return $this->amsProxy->POST(
+                'ZNPK/KBFB_ClassSel_rpt.aspx',
+                array(
+                    'Sel_XNXQ' => '20130',
+                    'Sel_XZBJ' => $classCode,
+                    'type'     => 2,
+                    'chkrxkc'  => 1,
+                )
+            );
+        } else {
+            return null;
+        }
     }
 
     public function parse($dom) {
+        if (!$dom->textContent)
+            return array();
+
         $courses = array();
         $table = $dom->getElementsByTagName('table')->item(3);
         $tds = $table->getElementsByTagName('td');
@@ -61,6 +68,6 @@ class getClassCourse extends __base__ {
         );
 
         preg_match('/option value=(\d+)/', $classInfo, $matches);
-        return $matches[1];
+        return isset($matches[1]) ? $matches[1] : null;
     }
 }

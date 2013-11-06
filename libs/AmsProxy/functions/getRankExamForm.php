@@ -23,26 +23,29 @@ class getRankExamForm extends __base__ {
         );
 
         $tables = $dom->getElementsByTagName('table');
-        foreach ($tables->item(3)->getElementsByTagName('tr') as $tr) {
-            $tds = $tr->getElementsByTagName('td');
 
-            if ($_typeName = trim($tds->item(1)->textContent))
-                $typeName = $_typeName;
+        if ($tables->length == 4) {
+            foreach ($tables->item(3)->getElementsByTagName('tr') as $tr) {
+                $tds = $tr->getElementsByTagName('td');
 
-            $exam['tbody'][$typeName][] = array(
-                $tds->item(2)->textContent,
-                $tds->item(3)->textContent,
-                $tds->item(4)->textContent,
-                $tds->item(5)->textContent,
-                $tds->item(6)->textContent . ' - '
-                    . $tds->item(7)->textContent,
-                $tds->item(10)->textContent,
-                $tds->item(11)->textContent,
-                $tds->item(8)->textContent,
-                $tds->item(9)->textContent,
+                if ($_typeName = trim($tds->item(1)->textContent))
+                    $typeName = $_typeName;
 
-                'id' => $tds->item(9)->getAttribute('id'),
-            );
+                $exam['tbody'][$typeName][] = array(
+                    $tds->item(2)->textContent,
+                    $tds->item(3)->textContent,
+                    $tds->item(4)->textContent,
+                    $tds->item(5)->textContent,
+                    $tds->item(6)->textContent . ' - '
+                        . $tds->item(7)->textContent,
+                    $tds->item(10)->textContent,
+                    $tds->item(11)->textContent,
+                    $tds->item(8)->textContent,
+                    $tds->item(9)->textContent,
+
+                    'id' => $tds->item(9)->getAttribute('id'),
+                );
+            }
         }
 
         return $exam;

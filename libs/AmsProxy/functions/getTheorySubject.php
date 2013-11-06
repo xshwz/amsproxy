@@ -24,25 +24,28 @@ class getTheorySubject extends __base__ {
         );
 
         $tables = $dom->getElementsByTagName('table');
-        foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
-            $tds = $tr->getElementsByTagName('td');
 
-            if ($_termName = trim($tds->item(1)->textContent))
-                $termName = $_termName;
+        if ($tables->length) {
+            foreach ($tables->item(2)->getElementsByTagName('tr') as $tr) {
+                $tds = $tr->getElementsByTagName('td');
 
-            $subject['tbody'][$termName][] = array(
-                preg_replace('/\[.*?\]/', '',
-                    $tds->item(2)->textContent),
-                $tds->item(3)->textContent,
-                $tds->item(4)->textContent,
-                $tds->item(5)->textContent,
-                $tds->item(6)->textContent,
-                $tds->item(7)->textContent,
-                $tds->item(8)->textContent,
-                $tds->item(9)->textContent,
-                $tds->item(10)->textContent,
-                $tds->item(11)->textContent,
-            );
+                if ($_termName = trim($tds->item(1)->textContent))
+                    $termName = $_termName;
+
+                $subject['tbody'][$termName][] = array(
+                    preg_replace('/\[.*?\]/', '',
+                        $tds->item(2)->textContent),
+                    $tds->item(3)->textContent,
+                    $tds->item(4)->textContent,
+                    $tds->item(5)->textContent,
+                    $tds->item(6)->textContent,
+                    $tds->item(7)->textContent,
+                    $tds->item(8)->textContent,
+                    $tds->item(9)->textContent,
+                    $tds->item(10)->textContent,
+                    $tds->item(11)->textContent,
+                );
+            }
         }
 
         return $subject;

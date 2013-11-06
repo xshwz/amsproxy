@@ -19,7 +19,8 @@ class dataTable extends CWidget {
 
     public function run() {
         $this->thead = $this->data['thead'];
-        $this->tbody = $this->data['tbody'];
+        $this->tbody = isset(
+            $this->data['tbody']) ? $this->data['tbody'] : null;
 
         switch ( $this->type ) {
             case 0 : $this->echoPanel(); break;
@@ -43,24 +44,26 @@ class dataTable extends CWidget {
     }
 
     protected function echoPanel() {
-        echo '<div class="panel-group accordion">';
-        $tbodys = array_keys($this->tbody);
-        $last_collapse_name = $tbodys[count($tbodys) - 1];
-        foreach ($this->tbody as $title => $tbody) {
+        if (isset($this->tbody)) {
+            echo '<div class="panel-group accordion">';
+            $tbodys = array_keys($this->tbody);
+            $last_collapse_name = $tbodys[count($tbodys) - 1];
+            foreach ($this->tbody as $title => $tbody) {
 
-            $this->openPanel(
-                $title,
-                $last_collapse_name == $title
-            );
+                $this->openPanel(
+                    $title,
+                    $last_collapse_name == $title
+                );
 
-            $this->openTable();
-            $this->echoThead();
-            $this->echoTbody($tbody);
-            $this->closeTable();
+                $this->openTable();
+                $this->echoThead();
+                $this->echoTbody($tbody);
+                $this->closeTable();
 
-            $this->closePanel();
+                $this->closePanel();
+            }
+            echo '</div>';
         }
-        echo '</div>';
     }
 
     protected function openPanel($title, $is_last) {
