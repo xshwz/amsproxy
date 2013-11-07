@@ -15,7 +15,7 @@ class SiteController extends BaseController {
         $this->pageTitle = '登录';
 
         if ($this->isLogged()) {
-            $this->success('你已经成功登录。');
+            $this->redirect(array('site/index'));
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
