@@ -51,7 +51,7 @@
 </div>
 
 <script>
-(function(){
+window.onload = function(){
     $('#btn-calc').click(function(){
         var sumCredit = 0;
         var sumGPA = 0;
@@ -86,5 +86,5 @@
         else
             return parseFloat((score / 10 - 5).toFixed(1));
     }
-})();
+};
 </script>
