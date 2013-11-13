@@ -1,0 +1,83 @@
+.messages {
+  .session {
+    background-color: @color-white;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+
+    &:first-child, &:last-child {
+      margin: 0;
+    }
+
+    > div {
+      &.user, &.admin {
+        padding: 4px 8px;
+        margin: 8px 0;
+        border: 1px solid transparent;
+
+        .operate {
+          visibility: hidden;
+          position: absolute;
+        }
+
+        &:hover .operate {
+          visibility: visible;
+        }
+      }
+
+      &.user {
+        border-left-width: 1px; 
+        border-left-color: #2ecc71;
+
+        &:hover {
+          border-color: #2ecc71;
+        }
+
+        .operate {
+          right: 30px;
+        }
+
+        &.unread {
+          border-left-color: #e74c3c;
+
+          &:hover {
+            border-color: #e74c3c;
+          }
+        }
+      }
+
+      &.admin {
+        border-right-width: 1px; 
+        border-right-color: #f1c40f;
+        text-align: right;
+
+        &:hover {
+          border-color: #f1c40f;
+        }
+
+        .operate {
+          left: 30px;
+        }
+
+        &.unread {
+          border-right-color: #e67e22;
+
+          &:hover {
+            border-color: #e67e22;
+          }
+        }
+      }
+
+      .time {
+        font-size: 12px;
+        color: #7f8c8d;
+      }
+    }
+
+    .bottom {
+      position: relative;
+      top: 4px;
+    }
+  }
+}

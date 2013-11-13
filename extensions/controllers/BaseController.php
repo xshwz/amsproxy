@@ -1,52 +1,42 @@
 <?php
-/**
- * 基控制器，为了统一管理，所有的控制器都应该直接或间接继承自该控制器
- */
 class BaseController extends CController {
+    public $layout = '/layouts/main';
+
     /**
-     * stylesheet
-     *
      * @var string
      */
-    public $_style = '';
+    public $pageTitle = '';
 
     /**
-     * @var Setting
+     * @var string javascript
      */
-    public $setting;
+    public $script = '';
 
     /**
-     * @var array
+     * @var array unread messages
      */
-    public $unread;
-
-    /**
-     * @var Student
-     */
-    public $student;
+    public $unread = array();
 
     /**
      * @var Mcrypt
      */
     public $mcrypt;
 
+    /**
+     * @var Setting
+     */
+    public $setting;
+
     public function init() {
         $this->setting = Setting::model()->find();
         $this->mcrypt = new Mcrypt($this->setting['crypt_key']);
-
-        if ($this->isLogged())
-            $this->initStudent();
-        else
-            $this->loginFromCookie();
     }
 
-    public function initStudent() {
-        $this->student = Student::model()->findByPk(
-            $_SESSION['student']['sid']);
-        $this->student->last_login_time = date('Y-m-d H:i:s');
-        $this->student->save();
-
-        $this->unread = Message::unread($_SESSION['student']['sid']);
+    /**
+     * @return bool
+     */
+    public function isLogged() {
+        return isset($_SESSION['student']);
     }
 
     /**
@@ -62,11 +52,12 @@ class BaseController extends CController {
         ));
 
         if ($amsProxy->login()) {
-            $this->saveStudent($amsProxy);
+            $this->trySaveStudent($amsProxy);
             $_SESSION['student'] = array(
                 'sid'     => $sid,
                 'pwd'     => $pwd,
                 'session' => $amsProxy->getSession(),
+                'isAdmin' => $this->isAdmin($sid),
             );
 
             if ($remember) $this->remember($sid, $pwd);
@@ -77,15 +68,31 @@ class BaseController extends CController {
         }
     }
 
-    public function loginFromCookie() {
-        if (isset($_COOKIE['sid']) && isset($_COOKIE['pwd'])) {
-            $sid = $this->decrypt($_COOKIE['sid']);
-            $pwd = $this->decrypt($_COOKIE['pwd']);
+    /**
+     * @param string $sid
+     * @return bool
+     */
+    public function isAdmin($sid='') {
+        if (isset($_SESSION['student']['isAdmin']))
+            return $_SESSION['student']['isAdmin'];
 
-            if ($this->login($sid, $pwd))
-                $this->initStudent();
-            else
-                $this->destroyRemember();
+        if ($student = Student::model()->findByPk($sid))
+            return $student->is_admin == '1';
+        else
+            return false;
+    }
+
+    /**
+     * @param AmsProxy $amsProxy
+     * @param string $archives
+     */
+    public function trySaveStudent($amsProxy) {
+        if (Student::model()->findByPk($amsProxy->sid) == null) {
+            $student = new Student;
+            $student->sid = $amsProxy->sid;
+            $student->archives = json_encode(
+                $amsProxy->invoke('getArchives'));
+            $student->save();
         }
     }
 
@@ -106,10 +113,6 @@ class BaseController extends CController {
         setcookie('pwd', null, 1);
     }
 
-    public function isLogged() {
-        return isset($_SESSION['student']);
-    }
-
     /**
      * @param string
      * @return string
@@ -118,18 +121,37 @@ class BaseController extends CController {
         return rtrim($this->mcrypt->decrypt(urldecode($s)));
     }
 
-    /**
-     * @param AmsProxy $amsProxy
-     * @param string $archives
-     */
-    public function saveStudent($amsProxy) {
-        if (Student::model()->findByPk($amsProxy->sid) == null) {
-            $student = new Student;
-            $student->sid = $amsProxy->sid;
-            $student->archives = json_encode(
-                $amsProxy->invoke('getArchives'));
-            $student->save();
+    public function renderStyle() {
+        $styleFile =
+            $this->getViewPath() . '/' .
+            Yii::app()->controller->action->id . '.css';
+
+        if (file_exists($styleFile)) {
+            echo '<style>';
+            $this->renderFile($styleFile);
+            echo '</style>';
         }
+    }
+
+    public function renderScript() {
+        $scriptFile =
+            $this->getViewPath() . '/' .
+            Yii::app()->controller->action->id . '.js';
+
+        if (file_exists($scriptFile))
+            $this->script .= $this->renderFile($scriptFile, null, true);
+
+        if ($this->script)
+            echo '<script>' . $this->script . '</script>';
+    }
+
+    public function beginScript() {
+        ob_start();
+    }
+
+    public function endScript() {
+        $this->script .= ob_get_contents();
+        ob_end_clean();
     }
 
     /**

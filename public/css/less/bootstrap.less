@@ -1,15 +1,15 @@
-// 自定义 bootstrap
+// customize bootstrap
 
 a {
-  color: @color-main-darker;
+  color: @color-darker;
 
   &:hover {
-    color: @color-main-darker;
+    color: @color-darker;
   }
 }
 
 pre {
-  background-color: @color-main-light;
+  background-color: @color-white;
   border: none;
 }
 
@@ -18,20 +18,20 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .jumbotron {
-  background-color: @color-main-bg-light;
+  background-color: @color-light;
 }
 
 .navbar-inverse {
-  background-color: @color-main-bg-dark;
+  background-color: @color-inverse-dark;
   border: none;
 
   .nav-anchor () {
-    color: @color-main-light;
+    color: @color-white;
 
     &:hover,
     &:focus {
-      color: @color-main-dark;
-      transition: color ease-in-out .2s;
+      color: @color-dark;
+      transition: color ease-in-out 0.2s;
     }
   }
 
@@ -48,21 +48,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       &,
       &:hover,
       &:focus {
-        background-color: @color-main-dark;
+        background-color: @color-dark;
       }
     }
   }
 
   .navbar-toggle {
-    border-color: @color-main-bg-dark;
+    border-color: @color-inverse-dark;
     &:hover,
     &:focus {
-      background-color: @color-main-bg-darker;
+      background-color: @color-inverse-darker;
     }
   }
 
   .navbar-collapse {
-    border-color: @color-main-bg-darker;
+    border-color: @color-inverse-darker;
   }
 }
 
@@ -71,8 +71,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   border: none;
 }
 .modal-header {
-  background-color: @color-main-bg-dark;
-  color: @color-main-light;
+  background-color: @color-inverse-dark;
+  color: @color-white;
   border-radius: 6px 6px 0 0;
 }
 .modal-body {
@@ -88,37 +88,37 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .close {
   color: #fff;
-  opacity: .6;
+  opacity: 0.6;
   filter: alpha(opacity=60);
 
   &:hover {
     color: #fff;
-    opacity: .8;
+    opacity: 0.8;
     filter: alpha(opacity=80);
   }
 }
 
 .btn {
-  color: @color-main-light;
-  background-color: @color-main-dark;
+  color: @color-white;
+  background-color: @color-dark;
 
   &:hover,
   &:focus,
   &:active {
-    color: @color-main-light;
-    background-color: @color-main-darker;
-    transition: background-color ease-in-out .2s;
+    color: @color-white;
+    background-color: @color-darker;
+    transition: background-color ease-in-out 0.2s;
   }
 }
 
 .form-control {
   border-color: transparent;
-  background-color: @color-main-bg-light;
+  background-color: @color-light;
   box-shadow: none;
 
   &:focus {
     box-shadow: none;
-    border-color: @color-main-dark;
+    border-color: @color-dark;
   }
 }
 
@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   &.active,
   &.active:hover,
   &.active:focus {
-    background-color: @color-main-dark;
+    background-color: @color-dark;
   }
 }
 
@@ -188,22 +188,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   border: none;
 
   &-warning {
-    color: @color-main-light;
+    color: @color-white;
     background-color: @color-orange;
   }
   
   &-success {
-    color: @color-main-light;
+    color: @color-white;
     background-color: @color-emerald;
   }
   
   &-danger {
-    color: @color-main-light;
+    color: @color-white;
     background-color: @color-alizarin;
   }
 
   a {
-    color: @color-main-light;
+    color: @color-white;
     text-decoration: underline;
 
     &:hover {
@@ -213,8 +213,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .badge {
-  background-color: @color-main-dark;
-  color: @color-main-light;
+  background-color: @color-dark;
+  color: @color-white;
 }
 
 .pagination {
@@ -232,8 +232,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       &,
       &:hover,
       &:focus {
-        background-color: @color-main-dark;
-        border-color: @color-main-dark;
+        background-color: @color-dark;
+        border-color: @color-dark;
       }
     }
   }
@@ -248,16 +248,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     .accordion-toggle {
       display: block;
       padding: 10px 15px;
-      background-color: @color-main-darker;
-      color: @color-main-light;
+      background-color: @color-darker;
+      color: @color-white;
 
       &.collapsed {
-        background-color: @color-main-dark;
-        border-bottom: 2px solid @color-main-darker;
+        background-color: @color-dark;
+        border-bottom: 2px solid @color-darker;
 
         &:hover {
-          background-color: @color-main-darker;
-          border-bottom: 2px solid darken(@color-main-darker, 6%);;
+          background-color: @color-darker;
+          border-bottom: 2px solid darken(@color-darker, 6%);;
         }
       }
       
@@ -269,13 +269,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     .badge {
-      color: @color-main-dark;
-      background-color: @color-main-light;
+      color: @color-dark;
+      background-color: @color-white;
     }
   }
 
   &-body {
     background-color: #f9f9f9;
+
+    &.table-responsive {
+      padding-left: 0;
+    }
   }
 }
 .panel-group .panel-heading + .panel-collapse .panel-body {
@@ -287,17 +291,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .tooltip.top .tooltip-arrow {
-  border-top-color: @color-main-bg-darker;
+  border-top-color: @color-inverse-darker;
 }
 .tooltip.right .tooltip-arrow {
-  border-right-color: @color-main-bg-darker;
+  border-right-color: @color-inverse-darker;
 }
 .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: @color-main-bg-darker;
+  border-bottom-color: @color-inverse-darker;
 }
 .tooltip.left .tooltip-arrow {
-  border-left-color: @color-main-bg-darker;
+  border-left-color: @color-inverse-darker;
 }
 .tooltip-inner {
-  background-color: @color-main-bg-darker;
+  background-color: @color-inverse-darker;
 }

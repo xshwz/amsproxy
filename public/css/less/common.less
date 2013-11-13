@@ -1,0 +1,29 @@
+@import 'variables';
+@import 'bootstrap';
+
+[id^="cnzz_stat_icon"] {
+  display: none;
+}
+
+.btn.btn-bottom {
+  border-bottom: 3px solid darken(@color-dark, 8%);
+  padding-left: 30px;
+  padding-right: 30px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-bottom-color: darken(@color-darker, 8%);
+    box-shadow: none;
+  }
+}
+
+.powered img {
+  position: relative;
+  top: -2px;
+}
+
+.navbar-brand img {
+  position: relative;
+  top: -3px;
+}

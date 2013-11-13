@@ -1,0 +1,137 @@
+body {
+  background-color: #ecf0f1;
+}
+.body {
+  margin-top: 70px;
+  padding-bottom: 20px;
+}
+.article {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 6px;
+}
+.form-control {
+  background-color: #ffffff;
+}
+.modal-body .form-control {
+  background-color: #ecf0f1;
+}
+.search-form {
+  margin-bottom: 12px;
+}
+.navbar-brand img {
+  position: relative;
+  top: -3px;
+}
+.navbar-nav .bubble {
+  position: relative;
+}
+.navbar-nav .bubble .badge {
+  position: absolute;
+  background-color: #e74c3c;
+  font-size: 10px;
+  padding: 3px 6px;
+  top: 8px;
+  left: 20px;
+}
+.messages .session {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+}
+.messages .session:first-child,
+.messages .session:last-child {
+  margin: 0;
+}
+.messages .session > div.user,
+.messages .session > div.admin {
+  padding: 4px 8px;
+  margin: 8px 0;
+  border: 1px solid transparent;
+}
+.messages .session > div.user .operate,
+.messages .session > div.admin .operate {
+  visibility: hidden;
+  position: absolute;
+}
+.messages .session > div.user:hover .operate,
+.messages .session > div.admin:hover .operate {
+  visibility: visible;
+}
+.messages .session > div.user {
+  border-left-width: 1px;
+  border-left-color: #2ecc71;
+}
+.messages .session > div.user:hover {
+  border-color: #2ecc71;
+}
+.messages .session > div.user .operate {
+  right: 30px;
+}
+.messages .session > div.user.unread {
+  border-left-color: #e74c3c;
+}
+.messages .session > div.user.unread:hover {
+  border-color: #e74c3c;
+}
+.messages .session > div.admin {
+  border-right-width: 1px;
+  border-right-color: #f1c40f;
+  text-align: right;
+}
+.messages .session > div.admin:hover {
+  border-color: #f1c40f;
+}
+.messages .session > div.admin .operate {
+  left: 30px;
+}
+.messages .session > div.admin.unread {
+  border-right-color: #e67e22;
+}
+.messages .session > div.admin.unread:hover {
+  border-color: #e67e22;
+}
+.messages .session > div .time {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+.messages .session .bottom {
+  position: relative;
+  top: 4px;
+}
+.search-form {
+  margin-bottom: 12px;
+}
+#studentLinkPager {
+  margin-right: 16px;
+  height: 29px;
+}
+#studentList .pagination {
+  margin: 0 16px 0 0;
+}
+.listPager {
+  display: inline-block;
+  width: auto;
+  margin: 20px 16px 0 0;
+}
+.pages .badge {
+  margin-top: 25px;
+  float: left;
+}
+@media (max-width: 768px) {
+  .pages {
+    text-align: center;
+  }
+  .pages .badge {
+    margin-top: 10px;
+    float: none;
+  }
+  .listPager {
+    display: block;
+    width: 100%;
+    float: none;
+    margin-top: 16px;
+  }
+}

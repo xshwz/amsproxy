@@ -1,0 +1,92 @@
+.index {
+  .jumbotron {
+    margin-bottom: 0;
+  }
+
+  #top {
+    background-color: #ecf0f1;
+    text-align: center;
+
+    h1 {
+      color: #27ae60;
+
+      span {
+        color: #34495e;
+      }
+    }
+
+    .logo img {
+      width: 160px;
+    }
+
+    .description {
+      color: #7f8c8d;
+    }
+
+    @media (max-width: @screen-sm) {
+      .logo img {
+        width: 100px;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+    }
+  }
+
+  #functions-intro {
+    background-color: #1abc9c;
+    color: #fff;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    div[class^="col"] {
+      text-align: center;
+      margin-bottom: 32px;
+
+      div.img {
+        width: 160px;
+        height: 160px;
+        padding: 40px;
+        border-radius: 100px;
+        background-color: #f1c40f;
+        margin: auto;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      div.description ul {
+        list-style-type: none;
+        padding-left: 0;
+        font-size: 14px;
+        font-style: italic;
+        color: #ecf0f1;
+      }
+    }
+  }
+
+  #responsive-design {
+    background-color: #fff;
+    color: #34495e;
+  }
+
+  #footer {
+    background-color: #34495e;
+    padding: 40px 0 20px 0;
+    text-align: center;
+
+    a, .powered {
+      color: #ecf0f1;
+    }
+
+    .links a {
+      font-size: 18px;
+      color: #2ecc71;
+    }
+  }
+}

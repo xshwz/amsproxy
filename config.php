@@ -1,6 +1,16 @@
 <?php
 return array(
     'basePath' => '..',
+    'modules' => array(
+        'admin' => array(
+            'defaultController' => 'home',
+        ),
+        'proxy' => array(
+            'defaultController' => 'home',
+        ),
+        'site',
+    ),
+    'defaultController' => 'site/home',
     'import' => array(
         'ext.controllers.*',
         'application.libs.AmsProxy.AmsProxy',
@@ -10,7 +20,10 @@ return array(
     'components' => array(
         'db' => array(
             'connectionString' => 'sqlite:../data/amsProxy.db',
-            'tablePrefix' => '',
+        ),
+        'viewRenderer' => array(
+            'class' => 'CPradoViewRenderer',
+            'fileExtension' => '.tpl',
         ),
     ),
 );

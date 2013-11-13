@@ -1,0 +1,138 @@
+.site {
+  margin-top: 50px;
+}
+.site > .container {
+  padding: 20px;
+}
+.site #header {
+  background-color: #34495e;
+}
+.site #header img {
+  width: 24px;
+  position: relative;
+  top: -4px;
+}
+.site #header h1 {
+  margin: 0;
+}
+.site #header a {
+  display: inline-block;
+  font-size: 24px;
+  color: #ffffff;
+  margin: 16px 0;
+}
+.site #header a:hover,
+.site #header a:active,
+.site #header a:focus {
+  text-decoration: none;
+  color: #16a085;
+  transition: color ease-in-out 0.2s;
+}
+.site #footer {
+  text-align: center;
+  color: #7f8c8d;
+}
+.site #footer .powered a {
+  color: #27ae60;
+}
+.site .article .page-header {
+  color: #16a085;
+}
+.site .article .page-header .glyphicon {
+  top: 3px;
+}
+.index .jumbotron {
+  margin-bottom: 0;
+}
+.index #top {
+  background-color: #ecf0f1;
+  text-align: center;
+}
+.index #top h1 {
+  color: #27ae60;
+}
+.index #top h1 span {
+  color: #34495e;
+}
+.index #top .logo img {
+  width: 160px;
+}
+.index #top .description {
+  color: #7f8c8d;
+}
+@media (max-width: 768px) {
+  .index #top .logo img {
+    width: 100px;
+  }
+  .index #top .description {
+    font-size: 16px;
+  }
+}
+.index #functions-intro {
+  background-color: #1abc9c;
+  color: #fff;
+}
+.index #functions-intro h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.index #functions-intro div[class^="col"] {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.index #functions-intro div[class^="col"] div.img {
+  width: 160px;
+  height: 160px;
+  padding: 40px;
+  border-radius: 100px;
+  background-color: #f1c40f;
+  margin: auto;
+}
+.index #functions-intro div[class^="col"] div.img img {
+  width: 100%;
+}
+.index #functions-intro div[class^="col"] div.description ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: #ecf0f1;
+}
+.index #responsive-design {
+  background-color: #fff;
+  color: #34495e;
+}
+.index #footer {
+  background-color: #34495e;
+  padding: 40px 0 20px 0;
+  text-align: center;
+}
+.index #footer a,
+.index #footer .powered {
+  color: #ecf0f1;
+}
+.index #footer .links a {
+  font-size: 18px;
+  color: #2ecc71;
+}
+.login-form {
+  max-width: 320px;
+  margin: 15px auto;
+  padding: 8px 20px 0 20px;
+}
+.login-form .form-group {
+  position: relative;
+}
+.login-form label.input-icon {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  color: #bdc3c7;
+}
+.login-form .form-control:focus + label {
+  color: #1abc9c;
+  transition: color ease-in-out 0.2s;
+}
+.login-form .alert {
+  padding: 10px 15px;
+}

@@ -1,0 +1,159 @@
+#body {
+  position: absolute;
+  width: 100%;
+}
+
+#side {
+  z-index: 999;
+  width: 200px;
+  position: absolute;
+  background-color: @color-inverse-dark;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  a {
+    color: @color-white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  > ul {
+    padding: 0 16px;
+
+    > li {
+      padding: 24px 0 16px 0;
+      border-top: 1px solid @color-inverse-darker;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+      &:first-child {
+        border-top: none;
+        box-shadow: none;
+      }
+
+      > span {
+        font-size: 16px;
+        font-weight: bold;
+        color: @color-dark;
+      }
+
+      > ul {
+        margin-top: 4px;
+
+        a {
+          display: block;
+          padding: 6px 8px;
+          margin: 2px 0;
+          color: @color-white;
+
+          .glyphicon {
+            margin-right: 8px;
+          }
+        }
+
+        li.active a,
+        a:hover {
+          background-color: @color-inverse-darker;
+          transition: background-color ease-in-out 0.2s;
+        }
+      }
+    }
+  }
+}
+
+#side-toggle {
+  display: none;
+  z-index: 999;
+  padding: 8px 6px 8px 0;
+  cursor: pointer;
+
+  position: fixed;
+  bottom: 0;
+  left: 200px;
+
+  background-color: @color-inverse-dark;
+  opacity: 0.9;
+
+  border-radius: 0 4px 4px 0;
+  border: none;
+  border-bottom: 2px solid @color-inverse-darker;
+
+  .icon-bar {
+    background-color: @color-white;
+    width: 10px;
+    border-radius: 0 1px 1px 0;
+  }
+
+  @media (max-width: @screen-sm) {
+    display: block;
+  }
+}
+
+#side-mask {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 98;
+  position: fixed;
+}
+
+#main {
+  margin-left: 200px;
+  position: relative;
+
+  > .container {
+    padding: 20px;
+    padding-bottom: 40px;
+    width: 100%;
+  }
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+
+  .powered {
+    color: #7f8c8d;
+  }
+}
+
+#message-label {
+  .badge {
+    background-color: #e74c3c;
+    position: relative;
+    top: 2px;
+  }
+}
+
+@media (max-width: @screen-sm) {
+  #main {
+    margin-left: 0;
+
+    > .container {
+      padding: 16px 8px;
+    }
+  }
+
+  #side-toggle {
+    left: 0;
+  }
+
+  #side {
+    overflow: auto;
+    height: 100%;
+    position: fixed;
+    left: -200px;
+  }
+
+  .form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

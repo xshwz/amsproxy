@@ -1,0 +1,25 @@
+.login-form {
+  max-width: 320px;
+  margin: 15px auto;
+  padding: 8px 20px 0 20px;
+
+  .form-group {
+    position: relative;
+  }
+
+  label.input-icon {
+    position: absolute;
+    top: 7px;
+    right: 9px;
+    color: #bdc3c7;
+  }
+
+  .form-control:focus + label {
+    color: @color-dark;
+    transition: color ease-in-out .2s;
+  }
+
+  .alert {
+    padding: 10px 15px;
+  }
+}
