@@ -4,8 +4,7 @@ CREATE TABLE "message" (
   "sender" text NOT NULL,
   "receiver" text NOT NULL,
   "message" text NOT NULL,
-  "time" numeric NOT NULL,
-  "state" integer NOT NULL DEFAULT '1',
+  "time" numeric NOT NULL, "state" integer NOT NULL DEFAULT '0',
   FOREIGN KEY ("sender") REFERENCES "student" ("sid"),
   FOREIGN KEY ("receiver") REFERENCES "student" ("sid")
 );
@@ -23,10 +22,12 @@ CREATE TABLE "setting" (
 DROP TABLE IF EXISTS "student";
 CREATE TABLE "student" (
   "sid" text NOT NULL,
-  "pwd" text NOT NULL,
-  "info" text NULL,
+  "archives" text NULL,
   "course" text NULL,
   "score" text NULL,
-  "last_login_time" numeric NOT NULL,
+  "rank_exam" text NULL,
+  "theory_subject" text NULL,
+  "last_login_time" numeric NULL,
+  "wechat" numeric NULL, "is_admin" integer NULL,
   PRIMARY KEY ("sid")
 );

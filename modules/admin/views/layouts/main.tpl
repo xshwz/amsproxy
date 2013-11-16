@@ -15,6 +15,7 @@
         <link href="css/datepicker.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet">
         <link href="css/admin.css" rel="stylesheet">
+        <% $this->renderStyle(); %>
     </head>
     <body class="admin">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -91,5 +92,6 @@
         <script src="js/jquery.form.min.js"></script>
         <script src="js/bootstrap-datepicker.js"></script>
         <script src="js/highcharts.js"></script>
+        <% $this->renderScript(); %>
     </body>
 </html>

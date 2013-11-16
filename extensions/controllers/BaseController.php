@@ -18,6 +18,11 @@ class BaseController extends CController {
     public $unread = array();
 
     /**
+     * @var array view data
+     */
+    public $viewData = null;
+
+    /**
      * @var Mcrypt
      */
     public $mcrypt;
@@ -121,6 +126,11 @@ class BaseController extends CController {
         return rtrim($this->mcrypt->decrypt(urldecode($s)));
     }
 
+    public function render($view, $data=null, $return=false) {
+        $this->viewData = $data;
+        parent::render($view, $data, $return);
+    }
+
     public function renderStyle() {
         $styleFile =
             $this->getViewPath() . '/' .
@@ -139,19 +149,11 @@ class BaseController extends CController {
             Yii::app()->controller->action->id . '.js';
 
         if (file_exists($scriptFile))
-            $this->script .= $this->renderFile($scriptFile, null, true);
+            $this->script .= $this->renderFile(
+                $scriptFile, $this->viewData, true);
 
         if ($this->script)
             echo '<script>' . $this->script . '</script>';
-    }
-
-    public function beginScript() {
-        ob_start();
-    }
-
-    public function endScript() {
-        $this->script .= ob_get_contents();
-        ob_end_clean();
     }
 
     /**
