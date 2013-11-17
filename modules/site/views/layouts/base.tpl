@@ -26,9 +26,9 @@
     <body>
         <%= $content; %>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.form.min.js"></script>
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.form.min.js"></script>
 
         <% $this->renderScript(); %>
         <% $this->renderPartial('/common/stats'); %>

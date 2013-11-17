@@ -12,7 +12,6 @@
         <link rel="shortcut icon" href="favicon.ico">
 
         <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/datepicker.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet">
         <link href="css/admin.css" rel="stylesheet">
         <% $this->renderStyle(); %>
@@ -63,7 +62,7 @@
                         );
                     %>
                     <ul class="nav navbar-nav navbar-right">
-                        <li <% if (Yii::app()->controller->action->id == 'feedback') echo 'class="active"' %> >
+                        <li <% if (Yii::app()->controller->id == 'feedback') echo 'class="active"' %> >
                             <a class="bubble" href="<%= Yii::app()->createUrl('/admin/feedback'); %>" >
                                 <span class="glyphicon glyphicon-envelope"></span>
 
@@ -87,11 +86,11 @@
             <%= $content; %>
         </div>
         
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.form.min.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script src="js/highcharts.js"></script>
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.form.min.js"></script>
+        <script src="js/libs/highcharts.js"></script>
+        <script src="js/admin.js"></script>
         <% $this->renderScript(); %>
     </body>
 </html>

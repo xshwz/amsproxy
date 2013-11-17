@@ -10,6 +10,7 @@
         </title>
 
         <link rel="shortcut icon" href="favicon.ico">
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet">
         <link href="css/proxy.css" rel="stylesheet">
@@ -174,10 +175,10 @@
             </div>
         </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.form.min.js"></script>
-        <script src="js/highcharts.js"></script>
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.form.min.js"></script>
+        <script src="js/libs/highcharts.js"></script>
         <script src="js/proxy.js"></script>
 
         <% $this->renderScript(); %>
