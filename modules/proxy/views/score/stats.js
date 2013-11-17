@@ -1,18 +1,3 @@
-Highcharts.setOptions({
-    credits: {
-        enabled: false
-    },
-    tooltip: {
-        borderWidth: 0,
-        shadow: false
-    },
-    yAxis: {
-        title: {
-            text: ''
-        }
-    },
-});
-
 $(function(){
     $('#termStats').highcharts({
         chart: {

@@ -239,6 +239,10 @@ h6,
 .form-horizontal .form-group label[class^="col-xs"] {
   text-align: right;
 }
+.tooltip.in {
+  opacity: 0.96;
+  filter: alpha(opacity=96);
+}
 .tooltip.top .tooltip-arrow {
   border-top-color: #2c3e50;
 }

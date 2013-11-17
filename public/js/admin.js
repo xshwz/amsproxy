@@ -1,3 +1,22 @@
+Highcharts.setOptions({
+    credits: {
+        enabled: false
+    },
+    tooltip: {
+        borderWidth: 0,
+        shadow: false,
+        backgroundColor: 'rgba(44, 62, 80, 0.96)',
+        style: {
+            color: '#ecf0f1'
+        }
+    },
+    yAxis: {
+        title: {
+            text: ''
+        }
+    },
+});
+
 $('a.send').each(function(){
     $(this).click(function(){
         $('#send-form-sid').val($(this).attr('data-sid'));

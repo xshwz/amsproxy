@@ -1,3 +1,22 @@
+Highcharts.setOptions({
+    credits: {
+        enabled: false
+    },
+    tooltip: {
+        borderWidth: 0,
+        shadow: false,
+        backgroundColor: 'rgba(44, 62, 80, 0.96)',
+        style: {
+            color: '#ecf0f1'
+        }
+    },
+    yAxis: {
+        title: {
+            text: ''
+        }
+    },
+});
+
 /** 响应式布局 */
 (function(){
     function resize() {
@@ -11,7 +30,7 @@
 
     $(window).load(resize).resize(resize);
 
-    $.getScript('js/jquery.easing.js');
+    $.getScript('js/libs/jquery.easing.js');
     var speed = 600;
 
     function hideSideNavbar() {
