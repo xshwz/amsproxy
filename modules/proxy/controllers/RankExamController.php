@@ -41,6 +41,6 @@ class RankExamController extends ProxyController {
         $this->AmsProxy()->invoke('rankExamApply', $_GET['id']);
         $this->student->rank_exam = null;
         $this->student->save();
-        $this->redirect(array('index'));
+        $this->redirect(array('form'));
     }
 }

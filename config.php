@@ -8,9 +8,11 @@ return array(
         'proxy' => array(
             'defaultController' => 'home',
         ),
-        'site',
+        'site' => array(
+            'defaultController' => 'home',
+        ),
     ),
-    'defaultController' => 'site/home',
+    'defaultController' => 'site',
     'import' => array(
         'ext.controllers.*',
         'application.libs.AmsProxy.AmsProxy',
@@ -25,5 +27,13 @@ return array(
             'class' => 'CPradoViewRenderer',
             'fileExtension' => '.tpl',
         ),
+        /* I don't know why it's not work :(
+        'urlManager' => array(
+            'rules' => array(
+                'about' => 'site/home/about',
+                'FAQ' => 'site/home/FAQ',
+            ),
+        ),
+        */
     ),
 );

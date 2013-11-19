@@ -6,7 +6,7 @@
  */
 class rankExamApply extends __base__ {
     public function getData() {
-        return = $this->amsProxy->GET('xscj/Stu_djksbm_rpt.aspx');
+        return $this->amsProxy->GET('xscj/Stu_djksbm_rpt.aspx');
     }
 
     public function parse($dom) {
