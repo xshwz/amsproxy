@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
-  .jumbotron,
-  div.wechat-header {
+  .container .jumbotron,
+  .container .wechat-header {
     border-radius: 0;
     margin: -16px -8px 0 -8px;
   }
@@ -383,6 +383,9 @@
 .current-date .week-number {
   position: relative;
   top: -3px;
+}
+em.tips {
+  color: #7f8c8d;
 }
 .home.jumbotron {
   margin-bottom: 20px;

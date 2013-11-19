@@ -20,8 +20,8 @@
         </a>
     </p>
 </div>
-<div class="alert alert-info visible-xs">
+<em class="visible-xs tips">
     <span class="glyphicon glyphicon-info-sign"></span>
     点击左下角的小按钮可以弹出菜单哦
     <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-</div>
+</em>
