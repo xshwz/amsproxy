@@ -33,6 +33,10 @@
                                 'label' => '个人',
                                 'items' => array(
                                     array(
+                                        'label' => '<span class="glyphicon glyphicon-home"></span> 主页',
+                                        'url' => array('/proxy/home/index'),
+                                    ),
+                                    array(
                                         'label' => '<span class="glyphicon glyphicon-user"></span> 学籍档案',
                                         'url' => array('/proxy/personal/archives'),
                                     ),
@@ -112,7 +116,7 @@
                                         'url' => array('/proxy/help/feedback'),
                                     ),
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-question-sign"></span> FAQ',
+                                        'label' => '<span class="glyphicon glyphicon-question-sign"></span> 常见问题',
                                         'url' => array('/proxy/help/FAQ'),
                                     ),
                                 ),

@@ -1,3 +1,10 @@
+@media (max-width: 768px) {
+  .jumbotron,
+  div.wechat-header {
+    border-radius: 0;
+    margin: -16px -8px 0 -8px;
+  }
+}
 #body {
   position: absolute;
   width: 100%;
@@ -89,8 +96,7 @@
   position: relative;
 }
 #main > .container {
-  padding: 20px;
-  padding-bottom: 40px;
+  padding: 20px 20px 40px 20px;
   width: 100%;
 }
 #footer {
@@ -112,7 +118,7 @@
     margin-left: 0;
   }
   #main > .container {
-    padding: 16px 8px;
+    padding: 16px 8px 40px 8px;
   }
   #side-toggle {
     left: 0;
@@ -317,12 +323,6 @@
   text-align: center;
   border-radius: 6px;
 }
-@media (max-width: 768px) {
-  .wechat-header {
-    border-radius: 0;
-    margin: -16px -8px 0 -8px;
-  }
-}
 .modal.lightbox {
   text-align: center;
 }
@@ -379,4 +379,23 @@
   left: -8px;
   border-right-color: #ecf0f1;
   border-width: 8px 8px 8px 0;
+}
+.current-date .week-number {
+  position: relative;
+  top: -3px;
+}
+.home.jumbotron {
+  margin-bottom: 20px;
+}
+.home.jumbotron h1 span {
+  color: #1abc9c;
+}
+.home.jumbotron a.btn {
+  margin: 4px 4px 4px 0;
+}
+.home.jumbotron a.score {
+  background-color: #f1c40f;
+}
+.home.jumbotron a.score:hover {
+  background-color: #f39c12;
 }

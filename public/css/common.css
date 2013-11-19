@@ -173,9 +173,16 @@ h6,
   color: #ffffff;
   background-color: #e74c3c;
 }
+.alert-info {
+  color: #ffffff;
+  background-color: #3498db;
+}
 .alert a {
   color: #ffffff;
   text-decoration: underline;
+}
+.alert a.close {
+  text-decoration: none;
 }
 .alert a:hover {
   text-decoration: none;
@@ -232,6 +239,7 @@ h6,
 }
 .panel-body.table-responsive {
   padding-left: 0;
+  padding-right: 0;
 }
 .panel-group .panel-heading + .panel-collapse .panel-body {
   border-top: none;

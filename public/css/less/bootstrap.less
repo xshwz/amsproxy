@@ -189,22 +189,31 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
   &-warning {
     color: @color-white;
-    background-color: @color-orange;
+    background-color: #f39c12;
   }
   
   &-success {
     color: @color-white;
-    background-color: @color-emerald;
+    background-color: #2ecc71;
   }
   
   &-danger {
     color: @color-white;
-    background-color: @color-alizarin;
+    background-color: #e74c3c;
+  }
+
+  &-info {
+    color: @color-white;
+    background-color: #3498db;
   }
 
   a {
     color: @color-white;
     text-decoration: underline;
+
+    &.close {
+      text-decoration: none;
+    }
 
     &:hover {
       text-decoration: none;
@@ -279,6 +288,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
     &.table-responsive {
       padding-left: 0;
+      padding-right: 0;
     }
   }
 }

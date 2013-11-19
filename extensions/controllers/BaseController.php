@@ -188,4 +188,21 @@ class BaseController extends CController {
             'message' => $message,
         ));
     }
+
+    /**
+     * 计算目标日期距离开学经过了多少周，默认使用当前日期
+     * 
+     * @param string $date 
+     * @return int
+     */
+    function weekNumber($date=null)
+    {
+        if ($date)
+            $time = strtotime($date);
+        else
+            $time = time();
+
+        $time -= strtotime($this->setting['start_date']);
+        return (int)($time / 86400 / 7 + 1);
+    }
 }
