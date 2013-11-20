@@ -132,11 +132,13 @@ h6,
   margin-bottom: 0;
 }
 @media (max-width: 768px) {
-  .table-responsive {
+  body .table-responsive {
     border: none;
     margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
-  .table-responsive .table {
+  body .table-responsive .table {
     background-color: transparent;
   }
 }
@@ -236,10 +238,6 @@ h6,
 }
 .panel-body {
   background-color: #f9f9f9;
-}
-.panel-body.table-responsive {
-  padding-left: 0;
-  padding-right: 0;
 }
 .panel-group .panel-heading + .panel-collapse .panel-body {
   border-top: none;

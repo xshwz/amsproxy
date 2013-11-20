@@ -155,9 +155,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 @media (max-width: @screen-sm) {
-  .table-responsive {
+  body .table-responsive {
     border: none;
     margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
 
     .table {
       background-color: transparent;
@@ -285,11 +287,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
   &-body {
     background-color: #f9f9f9;
-
-    &.table-responsive {
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 }
 .panel-group .panel-heading + .panel-collapse .panel-body {
