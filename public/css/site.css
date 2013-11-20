@@ -43,10 +43,12 @@
 }
 .index .jumbotron {
   margin-bottom: 0;
+  padding: 80px 0;
 }
 .index #top {
   background-color: #ecf0f1;
   text-align: center;
+  padding: 120px 0;
 }
 .index #top h1 {
   color: #27ae60;

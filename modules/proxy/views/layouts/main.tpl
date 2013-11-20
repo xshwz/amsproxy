@@ -23,6 +23,14 @@
     <body>
         <div id="body">
             <div id="side">
+                <div class="side-header">
+                    <h1>
+                        <a href="<%= $this->createUrl('/site'); %>">
+                            <img src="img/logo.png" width="32" alt="">
+                            <span>相思青果</span>
+                        </a>
+                    </h1>
+                </div>
                 <%
                 $this->widget(
                     'zii.widgets.CMenu',
