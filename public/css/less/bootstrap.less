@@ -99,15 +99,39 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .btn {
-  color: @color-white;
-  background-color: @color-dark;
+  .hover(@background-color: @color-darker, @text-color: @color-white) {
+    &:hover,
+    &:focus,
+    &:active {
+      color: @text-color;
+      border-color: @background-color;
+      background-color: @background-color;
+      transition: background-color ease-in-out 0.2s;
+    }
+  }
 
-  &:hover,
-  &:focus,
-  &:active {
-    color: @color-white;
-    background-color: @color-darker;
-    transition: background-color ease-in-out 0.2s;
+  .colors(@color: @color-dark) {
+    color: @color-light;
+    border-color: @color;
+    background-color: @color;
+  }
+
+  .colors();
+  .hover();
+
+  &-warning {
+    .colors(@color-warning);
+    .hover(@color-warning-dark);
+  }
+
+  &-info {
+    .colors(@color-info);
+    .hover(@color-info-dark);
+  }
+
+  &-danger {
+    .colors(@color-danger);
+    .hover(@color-danger-dark);
   }
 }
 
@@ -174,16 +198,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: @color-peterRiver;
 }
 .text-warning {
-  color: @color-carrot;
+  color: @color-warning;
 }
 .text-danger {
-  color: @color-alizarin;
+  color: @color-danger;
 }
 .text-success {
-  color: @color-emerald;
+  color: @color-success;
 }
 .text-info {
-  color: #3a87ad;
+  color: @color-info;
 }
 
 .alert {
@@ -315,4 +339,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .tooltip-inner {
   background-color: @color-inverse-darker;
+}
+
+@media (max-width: @screen-sm) {
+  span.visible-xs {
+    display: inline !important;
+    margin-left: 8px;
+  }
 }

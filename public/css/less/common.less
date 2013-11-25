@@ -5,16 +5,40 @@
   display: none;
 }
 
-.btn.btn-bottom {
-  border-bottom: 3px solid darken(@color-dark, 8%);
-  padding-left: 30px;
-  padding-right: 30px;
+.btn {
+  .bottom(@color-dark: @color-dark, @color-darker: @color-darker) {
+    &.btn-bottom {
+      border-bottom: 4px solid darken(@color-dark, 8%);
+      padding-left: 30px;
+      padding-right: 30px;
 
-  &:hover,
-  &:focus,
-  &:active {
-    border-bottom-color: darken(@color-darker, 8%);
-    box-shadow: none;
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom-color: darken(@color-darker, 8%);
+        box-shadow: none;
+      }
+
+      &:active {
+        position: relative;
+        top: 2px;
+        border-bottom-width: 2px;
+      }
+    }
+  }
+
+  .bottom();
+
+  &-warning {
+    .bottom(@color-warning, @color-warning-dark);
+  }
+
+  &-info {
+    .bottom(@color-info, @color-info-dark);
+  }
+
+  &-danger {
+    .bottom(@color-danger, @color-danger-dark);
   }
 }
 

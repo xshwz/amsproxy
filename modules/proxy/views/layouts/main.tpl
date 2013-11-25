@@ -26,8 +26,7 @@
                 <div class="side-header">
                     <h1>
                         <a href="<%= $this->createUrl('/site'); %>">
-                            <img src="img/logo.png" width="32" alt="">
-                            <span>相思青果</span>
+                            <img src="img/logo.png" width="32" alt="相思湖网站 Logo" title="相思青果">
                         </a>
                     </h1>
                 </div>

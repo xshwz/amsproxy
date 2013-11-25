@@ -69,11 +69,6 @@
   position: relative;
   top: -6px;
 }
-.side-header h1 span {
-  position: relative;
-  left: -4px;
-  display: none;
-}
 #side-toggle {
   display: none;
   z-index: 999;
@@ -410,10 +405,4 @@ em.tips {
 }
 .home.jumbotron a.btn {
   margin: 4px 4px 4px 0;
-}
-.home.jumbotron a.score {
-  background-color: #f1c40f;
-}
-.home.jumbotron a.score:hover {
-  background-color: #f39c12;
 }

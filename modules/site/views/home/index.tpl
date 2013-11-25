@@ -9,6 +9,11 @@
             <a
                 href="<%= Yii::app()->createUrl('/proxy'); %>"
                 class="btn btn-lg btn-bottom">进入</a>
+            <% if ($this->isAdmin()): %>
+            <a
+                href="<%= Yii::app()->createUrl('/admin'); %>"
+                class="btn btn-lg btn-warning btn-bottom">管理</a>
+            <% endif; %>
         </div>
     </div>
 
@@ -84,7 +89,7 @@
         <div class="container">
             <ul class="links list-inline">
                 <li>
-                    <a href="<%= Yii::app()->createUrl('site/home/faq'); %>">FAQ</a>
+                    <a href="<%= Yii::app()->createUrl('site/home/faq'); %>">常见问题</a>
                 </li>
                 <li>
                     <a href="<%= Yii::app()->createUrl('site/home/about'); %>">关于</a>
@@ -96,7 +101,7 @@
             <p class="powered">
                 <em>
                     Powered By
-                    <a href="//xsh.gxun.edu.cn/">
+                    <a href="http://xsh.gxun.edu.cn/">
                         <img src="img/logo.png" width="16" alt="xsh logo">相思湖网站
                     </a>
                 </em>

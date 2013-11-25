@@ -40,17 +40,18 @@
                         $this->widget(
                             'zii.widgets.CMenu',
                             array(
+                                'encodeLabel' => false,
                                 'items' => array(
                                     array(
-                                        'label' => '学生',
+                                        'label' => '<span class="glyphicon glyphicon-user"></span> <span class="visible-xs">学生</span>',
                                         'url' => array('/admin/student/index'),
                                     ),
                                     array(
-                                        'label' => '统计',
+                                        'label' => '<span class="glyphicon glyphicon-stats"></span> <span class="visible-xs">统计</span>',
                                         'url' => array('/admin/stats/index'),
                                     ),
                                     array(
-                                        'label' => '设置',
+                                        'label' => '<span class="glyphicon glyphicon-cog"></span> <span class="visible-xs">设置</span>',
                                         'url' => array('/admin/setting/index'),
                                     ),
                                 ),
@@ -65,6 +66,7 @@
                         <li <% if (Yii::app()->controller->id == 'feedback') echo 'class="active"' %> >
                             <a class="bubble" href="<%= Yii::app()->createUrl('/admin/feedback'); %>" >
                                 <span class="glyphicon glyphicon-envelope"></span>
+                                <span class="visible-xs">反馈</span>
 
                                 <% if (count($this->unread) > 0): %>
                                 <span class="badge">
@@ -74,7 +76,10 @@
                             </a>
                         </li>
                         <li>
-                            <%= CHtml::link('退出', array('/proxy/home/logout')); %>
+                            <%= CHtml::link('<span class="glyphicon glyphicon-home"></span> <span class="visible-xs">青果</span>', array('/proxy')); %>
+                        </li>
+                        <li>
+                            <%= CHtml::link('<span class="glyphicon glyphicon-log-out"></span> <span class="visible-xs">退出</span>', array('/proxy/home/logout')); %>
                         </li>
                     </ul>
                     <% endif; %>

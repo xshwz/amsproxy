@@ -24,7 +24,7 @@
                         array(
                             'items' => array(
                                 array(
-                                    'label' => 'FAQ',
+                                    'label' => '常见问题',
                                     'url' => array('/site/home/FAQ'),
                                 ),
                                 array(
@@ -73,7 +73,7 @@
         <p class="powered">
             <em>
                 Powered By
-                <a href="//xsh.gxun.edu.cn/">
+                <a href="http://xsh.gxun.edu.cn/">
                     <img src="img/logo.png" width="16" alt="xsh logo">相思湖网站
                 </a>
             </em>
