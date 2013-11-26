@@ -22,6 +22,11 @@
         <![endif]-->
 
         <% $this->renderStyle(); %>
+
+        <!--[if lt IE 9]>
+        <script src="js/libs/html5shiv.js"></script>
+        <script src="js/libs/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
         <%= $content; %>

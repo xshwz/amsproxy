@@ -16,20 +16,27 @@ class WechatController extends BaseController {
     public $request;
 
     public function wechatInit() {
-        Yii::import('application.libs.Wechat');
-        $this->wechat = new Wechat();
-        $this->request = $this->wechat->request;
-        $this->student = Student::model()->find('wechat_openid=:openId',
-            array(':openId' => $this->request->FromUserName));
-
-
         if (isset($_GET['echostr'])) {
             echo $_GET['echostr'];
+            Yii::app()->end();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            Yii::import('application.libs.Wechat');
+            $this->wechat = new Wechat();
+            $this->request = $this->wechat->request;
+            $this->student = Student::model()->find('wechat_openid=:openId',
+                array(':openId' => $this->request->FromUserName));
+        } else {
             Yii::app()->end();
         }
     }
 
     public function actionIndex() {
+        $this->render('index');
+    }
+
+    public function actionAPI() {
         $this->wechatInit();
 
         switch ($this->request->MsgType) {
@@ -52,7 +59,14 @@ class WechatController extends BaseController {
     }
 
     public function subscribeHandler() {
-        $this->wechat->response('欢迎关注“相思青果”（http://xsh.gxun.edu.cn/ams/）。');
+        $responseText =
+            "欢迎关注“相思青果”（http://xsh.gxun.edu.cn/ams/）。\n\n" .
+            "在这里，你可以通过发送指令消息查看课表、成绩，以及吐槽“相思青果”。";
+
+        if (!$this->student->wechat_openid)
+            $responseText .= "\n\n点击链接（" . $this->getBindUrl() . '），成功登录后即可完成绑定。';
+
+        $this->wechat->response($responseText);
     }
 
     public function textHandler() {
@@ -257,11 +271,10 @@ class WechatController extends BaseController {
 
     public function aboutHandler() {
         $this->wechat->response(
-            "关于“相思青果”订阅号\n\n" . 
-            "　　“相思青果”订阅号通过微信公众平台开发模式提供消息的自动回复。\n" . 
-            "　　通过向我们的订阅号发送消息指令，即可返回你的课程、成绩、等级考试成绩。\n" .
-            "　　同时，任何关于或者无关于“相思青果”的问题都可以向我们吐槽。\n" .
-            ""
+            "关于“相思青果”公众号\n\n" . 
+            "　　“相思青果”公众号通过微信公众平台开发模式提供消息的自动回复。\n" . 
+            "　　通过向我们的公众号发送消息指令，即可返回你的课程、成绩、等级考试成绩等信息。\n" .
+            "　　同时，任何关于“相思青果”的问题都可以在这里向我们吐槽。"
         );
     }
 
@@ -276,7 +289,7 @@ class WechatController extends BaseController {
      * @return string
      */
     public function getBindUrl() {
-        return 'http://localhost' . $this->createUrl(
+        return 'http://xsh.gxun.edu.cn' . $this->createUrl(
             '/proxy/wechat/bind',
             array(
                 'openId' => $this->request->FromUserName,

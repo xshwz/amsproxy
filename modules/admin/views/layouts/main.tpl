@@ -14,7 +14,13 @@
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet">
         <link href="css/admin.css" rel="stylesheet">
+
         <% $this->renderStyle(); %>
+
+        <!--[if lt IE 9]>
+        <script src="js/libs/html5shiv.js"></script>
+        <script src="js/libs/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body class="admin">
         <div class="navbar navbar-inverse navbar-fixed-top">

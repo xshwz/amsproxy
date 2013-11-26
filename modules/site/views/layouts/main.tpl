@@ -24,6 +24,10 @@
                         array(
                             'items' => array(
                                 array(
+                                    'label' => '微信',
+                                    'url' => array('/site/wechat/index'),
+                                ),
+                                array(
                                     'label' => '常见问题',
                                     'url' => array('/site/home/FAQ'),
                                 ),

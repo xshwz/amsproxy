@@ -227,8 +227,8 @@ h6,
 .alert a.close {
   text-decoration: none;
 }
-.alert a:hover {
-  text-decoration: none;
+.alert abbr {
+  border-bottom-color: #ecf0f1;
 }
 .badge {
   background-color: #1abc9c;

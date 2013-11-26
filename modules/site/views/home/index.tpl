@@ -89,6 +89,9 @@
         <div class="container">
             <ul class="links list-inline">
                 <li>
+                    <a href="<%= Yii::app()->createUrl('site/wechat/index'); %>">微信</a>
+                </li>
+                <li>
                     <a href="<%= Yii::app()->createUrl('site/home/faq'); %>">常见问题</a>
                 </li>
                 <li>
