@@ -15,33 +15,7 @@ class SettingController extends ProxyController {
         }
     }
 
-    public function actionWechat() {
-        if (isset($_GET['operate'])) {
-            switch ($_GET['operate']) {
-                case 'unbind':
-                    $this->student->wechat = null;
-                    $message = '解除绑定成功';
-                    break;
-
-                case 'bind':
-                    $this->student->wechat = $_GET['openId'];
-                    $message = '绑定成功';
-                    break;
-            }
-
-            $this->student->save();
-            $this->success($message);
-            return;
-        }
-
-        $this->render('wechat');
-    }
-
     public function actionPassword() {
         $this->render('password');
-    }
-
-    public function actionUnbind() {
-        $this->redirect(array('setting/wechat'));
     }
 }

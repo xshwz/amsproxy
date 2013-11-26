@@ -1,7 +1,4 @@
 <?php
-/**
- * 反馈数据模型
- */
 class Message extends CActiveRecord {
     public function relations() {
         return array(
@@ -21,7 +18,7 @@ class Message extends CActiveRecord {
     }
 
     /**
-     * 获取未读消息
+     * get unread messages
      *
      * @param int $receiverId
      * @return array
@@ -34,7 +31,6 @@ class Message extends CActiveRecord {
     }
 
     /**
-     * 发送消息
      * @param int $senderId
      * @param int $receiverId
      * @param string $text

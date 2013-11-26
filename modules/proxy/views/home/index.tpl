@@ -4,7 +4,7 @@
         <em class="date"><%= date('Y 年 n 月 j 日'); %></em>
         ，第
         <span class="week-number badge">
-            <%= $this->weekNumber('2013-11-22'); %>
+            <%= $this->weekNumber(); %>
         </span>
         个教学周。
     </p>
