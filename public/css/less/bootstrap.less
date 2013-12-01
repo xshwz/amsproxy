@@ -210,26 +210,27 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: @color-info;
 }
 
+.label {
+  background-color: @color-dark;
+}
+
 .alert {
   border: none;
+  color: @color-white;
 
   &-warning {
-    color: @color-white;
     background-color: #f39c12;
   }
   
   &-success {
-    color: @color-white;
     background-color: #2ecc71;
   }
   
   &-danger {
-    color: @color-white;
     background-color: #e74c3c;
   }
 
   &-info {
-    color: @color-white;
     background-color: #3498db;
   }
 
@@ -345,5 +346,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   span.visible-xs {
     display: inline !important;
     margin-left: 8px;
+  }
+}
+
+a.thumbnail {
+  margin-bottom: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: @color-darker;
   }
 }

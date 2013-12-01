@@ -8,6 +8,11 @@ class BaseController extends CController {
     public $pageTitle = '';
 
     /**
+     * @var array
+     */
+    public $alert = null;
+
+    /**
      * @var string javascript
      */
     public $script = '';
@@ -204,5 +209,13 @@ class BaseController extends CController {
 
         $time -= strtotime($this->setting['start_date']);
         return (int)($time / 86400 / 7 + 1);
+    }
+
+    /**
+     * return full url
+     */
+    function createFullUrl($route, $params=array(), $ampersand='&') {
+        return 'http://' . $_SERVER['HTTP_HOST'] . $this->createUrl(
+            $route, $params, $ampersand);
     }
 }

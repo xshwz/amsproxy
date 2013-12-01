@@ -16,7 +16,7 @@
             <p>移动设备兼容的网页设计，方便你随时随地使用教务系统；</p>
         </li>
         <li>
-            <p>通过这个平台提供统一的数据接口，可以进一步开发出手机客户端；</p>
+            <p>通过这个平台提供统一的数据接口，可以进一步开发出手机客户端、<a href="<%= $this->createUrl('/site/wechat'); %>">微信公众平台</a>；</p>
         </li>
     </ul>
 
@@ -30,6 +30,7 @@
     <div class="page-header">
         <h3><span class="glyphicon glyphicon-wrench"></span> 开发者</h3>
     </div>
+    <p>目前的开发者主要是相思湖网站网络部的成员们。如果你也是开发者，如果你也对“相思青果”感兴趣，欢迎你的 fork and pull :)</p>
     <ul>
         <li>
             <p>

@@ -31,6 +31,7 @@
 .site #footer {
   text-align: center;
   color: #7f8c8d;
+  margin-top: 20px;
 }
 .site #footer .powered a {
   color: #27ae60;
@@ -167,7 +168,6 @@
   color: #ffffff;
   padding: 20px;
   text-align: center;
-  border-radius: 6px;
 }
 .modal.lightbox {
   text-align: center;
@@ -178,6 +178,7 @@
 .modal.lightbox .modal-content .lightbox-wrap {
   display: inline-block;
   position: relative;
+  box-shadow: 0 0 16px;
 }
 .modal.lightbox .modal-content .lightbox-wrap .close {
   opacity: 1;

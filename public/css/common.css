@@ -201,23 +201,23 @@ h6,
 .text-info {
   color: #3498db;
 }
+.label {
+  background-color: #1abc9c;
+}
 .alert {
   border: none;
+  color: #ffffff;
 }
 .alert-warning {
-  color: #ffffff;
   background-color: #f39c12;
 }
 .alert-success {
-  color: #ffffff;
   background-color: #2ecc71;
 }
 .alert-danger {
-  color: #ffffff;
   background-color: #e74c3c;
 }
 .alert-info {
-  color: #ffffff;
   background-color: #3498db;
 }
 .alert a {
@@ -311,72 +311,76 @@ h6,
     margin-left: 8px;
   }
 }
+a.thumbnail {
+  margin-bottom: 0;
+}
+a.thumbnail:hover,
+a.thumbnail:active,
+a.thumbnail:focus {
+  border-color: #16a085;
+}
 [id^="cnzz_stat_icon"] {
   display: none;
 }
 .btn.btn-bottom {
-  border-bottom: 4px solid #15987e;
+  box-shadow: 0 4px 0 #15987e;
   padding-left: 30px;
   padding-right: 30px;
 }
 .btn.btn-bottom:hover,
 .btn.btn-bottom:focus,
 .btn.btn-bottom:active {
-  border-bottom-color: #117c67;
-  box-shadow: none;
+  box-shadow: 0 4px 0 #117c67;
 }
 .btn.btn-bottom:active {
   position: relative;
   top: 2px;
-  border-bottom-width: 2px;
+  box-shadow: 0 2px 0 #15987e;
 }
 .btn-warning.btn-bottom {
-  border-bottom: 4px solid #c96a17;
+  box-shadow: 0 4px 0 #c96a17;
   padding-left: 30px;
   padding-right: 30px;
 }
 .btn-warning.btn-bottom:hover,
 .btn-warning.btn-bottom:focus,
 .btn-warning.btn-bottom:active {
-  border-bottom-color: #aa4400;
-  box-shadow: none;
+  box-shadow: 0 4px 0 #aa4400;
 }
 .btn-warning.btn-bottom:active {
   position: relative;
   top: 2px;
-  border-bottom-width: 2px;
+  box-shadow: 0 2px 0 #c96a17;
 }
 .btn-info.btn-bottom {
-  border-bottom: 4px solid #2383c4;
+  box-shadow: 0 4px 0 #2383c4;
   padding-left: 30px;
   padding-right: 30px;
 }
 .btn-info.btn-bottom:hover,
 .btn-info.btn-bottom:focus,
 .btn-info.btn-bottom:active {
-  border-bottom-color: #226998;
-  box-shadow: none;
+  box-shadow: 0 4px 0 #226998;
 }
 .btn-info.btn-bottom:active {
   position: relative;
   top: 2px;
-  border-bottom-width: 2px;
+  box-shadow: 0 2px 0 #2383c4;
 }
 .btn-danger.btn-bottom {
-  border-bottom: 4px solid #df2e1b;
+  box-shadow: 0 4px 0 #df2e1b;
   padding-left: 30px;
   padding-right: 30px;
 }
 .btn-danger.btn-bottom:hover,
 .btn-danger.btn-bottom:focus,
 .btn-danger.btn-bottom:active {
-  border-bottom-color: #9f2f24;
-  box-shadow: none;
+  box-shadow: 0 4px 0 #9f2f24;
 }
 .btn-danger.btn-bottom:active {
   position: relative;
   top: 2px;
-  border-bottom-width: 2px;
+  box-shadow: 0 2px 0 #df2e1b;
 }
 .powered img {
   position: relative;
@@ -385,4 +389,8 @@ h6,
 .navbar-brand img {
   position: relative;
   top: -3px;
+}
+pre.example {
+  background-color: #2c3e50;
+  color: #ecf0f1;
 }

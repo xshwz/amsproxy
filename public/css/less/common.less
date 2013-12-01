@@ -8,21 +8,20 @@
 .btn {
   .bottom(@color-dark: @color-dark, @color-darker: @color-darker) {
     &.btn-bottom {
-      border-bottom: 4px solid darken(@color-dark, 8%);
+      box-shadow: 0 4px 0 darken(@color-dark, 8%);
       padding-left: 30px;
       padding-right: 30px;
 
       &:hover,
       &:focus,
       &:active {
-        border-bottom-color: darken(@color-darker, 8%);
-        box-shadow: none;
+        box-shadow: 0 4px 0 darken(@color-darker, 8%);
       }
 
       &:active {
         position: relative;
         top: 2px;
-        border-bottom-width: 2px;
+        box-shadow: 0 2px 0 darken(@color-dark, 8%);
       }
     }
   }
@@ -50,4 +49,9 @@
 .navbar-brand img {
   position: relative;
   top: -3px;
+}
+
+pre.example {
+  background-color: @color-inverse-darker;
+  color: @color-light;
 }

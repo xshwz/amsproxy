@@ -123,11 +123,15 @@
                                 'items' => array(
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-comment"></span> 反馈',
-                                        'url' => array('/proxy/help/feedback'),
+                                        'url' => array('/proxy/home/feedback'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-question-sign"></span> 常见问题',
-                                        'url' => array('/proxy/help/FAQ'),
+                                        'url' => array('/site/home/FAQ'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-info-sign"></span> 关于',
+                                        'url' => array('/site/home/about'),
                                     ),
                                 ),
                             ),
@@ -171,6 +175,14 @@
                             'links' => $this->breadcrumbs,
                         ));
                     }
+
+                    if (isset($this->alert))
+                        echo <<<EOT
+                        <div class="alert alert-{$this->alert['type']}">
+                            <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+                            {$this->alert['message']}
+                        </div>
+EOT;
 
                     echo $content;
                     %>

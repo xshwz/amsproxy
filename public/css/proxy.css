@@ -22,7 +22,9 @@
 #side a {
   color: #ffffff;
 }
-#side a:hover {
+#side a:hover,
+#side a:active,
+#side a:focus {
   text-decoration: none;
 }
 #side > ul {

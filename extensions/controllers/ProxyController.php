@@ -13,13 +13,8 @@ class ProxyController extends BaseController {
     public function init() {
         parent::init();
 
-        if (!$this->isLogged() && !$this->tryLoginFromCookie()) {
-            $this->destroyRemember();
-            $this->redirect(array(
-                '/site/home/login',
-                'returnUri' => Yii::app()->request->requestUri,
-            ));
-        }
+        if (!$this->isLogged() && !$this->tryLoginFromCookie())
+            $this->notLoggedHandler();
 
         $this->student = Student::model()->findByPk(
             $_SESSION['student']['sid']);
@@ -27,6 +22,14 @@ class ProxyController extends BaseController {
         $this->student->save();
 
         $this->unread = $this->getUnreadMessage();
+    }
+
+    public function notLoggedHandler() {
+        $this->destroyRemember();
+        $this->redirect(array(
+            '/site/home/login',
+            'returnUri' => Yii::app()->request->requestUri,
+        ));
     }
 
     /**

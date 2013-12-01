@@ -49,15 +49,21 @@
                                 'encodeLabel' => false,
                                 'items' => array(
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-user"></span> <span class="visible-xs">学生</span>',
+                                        'label' => '
+                                            <span class="glyphicon glyphicon-user"></span>
+                                            <span class="visible-xs">学生</span>',
                                         'url' => array('/admin/student/index'),
                                     ),
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-stats"></span> <span class="visible-xs">统计</span>',
+                                        'label' => '
+                                            <span class="glyphicon glyphicon-stats"></span>
+                                            <span class="visible-xs">统计</span>',
                                         'url' => array('/admin/stats/index'),
                                     ),
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-cog"></span> <span class="visible-xs">设置</span>',
+                                        'label' => '
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                            <span class="visible-xs">设置</span>',
                                         'url' => array('/admin/setting/index'),
                                     ),
                                 ),
@@ -82,10 +88,20 @@
                             </a>
                         </li>
                         <li>
-                            <%= CHtml::link('<span class="glyphicon glyphicon-home"></span> <span class="visible-xs">青果</span>', array('/proxy')); %>
+                            <%=
+                            CHtml::link('
+                                <span class="glyphicon glyphicon-home"></span>
+                                <span class="visible-xs">首页</span>',
+                                array('/site'));
+                            %>
                         </li>
                         <li>
-                            <%= CHtml::link('<span class="glyphicon glyphicon-log-out"></span> <span class="visible-xs">退出</span>', array('/proxy/home/logout')); %>
+                            <%=
+                            CHtml::link('
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                <span class="visible-xs">退出</span>',
+                                array('/proxy/home/logout'));
+                            %>
                         </li>
                     </ul>
                     <% endif; %>

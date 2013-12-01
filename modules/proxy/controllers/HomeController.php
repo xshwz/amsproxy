@@ -10,6 +10,25 @@ class HomeController extends ProxyController {
         $this->redirect(array('/site/home/login'));
     }
 
+    public function actionFeedback() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (trim($_POST['message'])) {
+                Message::send(
+                    $_SESSION['student']['sid'], 0, $_POST['message']);
+                $this->alert = array(
+                    'type' => 'success',
+                    'message' => '感谢你的反馈，我们会尽快处理并给你答复的。',
+                );
+            } else {
+                $this->alert = array(
+                    'type' => 'danger',
+                    'message' => '请填写反馈内容',
+                );
+            }
+        }
+
+        $this->render('feedback');
+    }
 
     public function actionMessage() {
         Message::model()->updateAll(
