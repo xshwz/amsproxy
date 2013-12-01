@@ -26,8 +26,7 @@ class getClassCourse extends __base__ {
             return array();
 
         $courses = array();
-        $table = $dom->getElementsByTagName('table')->item(3);
-        if ($table) {
+        if ($table = $dom->getElementsByTagName('table')->item(3)) {
             $tds = $table->getElementsByTagName('td');
 
             for ($i = 10; $i < $tds->length - 1; $i += 10) {
