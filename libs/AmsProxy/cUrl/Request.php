@@ -78,8 +78,9 @@ class Request {
 
     /**
      * @param array $options
+     * @param function $callback
      */
-    public function request($options) {
+    public function request($options, $callback=null) {
         if (isset($options['method']))
             $this->setMethod($options['method']);
 
@@ -99,6 +100,8 @@ class Request {
 
         $response = new Response($this->send(), curl_getInfo($this->curl));
         $this->setCookies($response->cookies);
+
+        if ($callback) $callback();
         return $response;
     }
 }

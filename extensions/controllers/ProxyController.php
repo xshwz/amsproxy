@@ -22,6 +22,7 @@ class ProxyController extends BaseController {
         $this->student->save();
 
         $this->unread = $this->getUnreadMessage();
+        $this->update();
     }
 
     public function notLoggedHandler() {
@@ -138,5 +139,19 @@ class ProxyController extends BaseController {
             $this->student->save();
             return $theorySubject;
         }
+    }
+
+    public function update() {
+        if (!$this->student->course)
+            $this->getCourse();
+
+        if (!$this->student->score)
+            $this->getScore();
+
+        if (!$this->student->rank_exam)
+            $this->getRankExam();
+
+        if (!$this->student->theory_subject)
+            $this->getTheorySubject();
     }
 }

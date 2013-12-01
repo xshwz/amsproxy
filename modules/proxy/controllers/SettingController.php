@@ -1,6 +1,6 @@
 <?php
 class SettingController extends ProxyController {
-    public function actionClear() {
+    public function actionUpdate() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->student->archives = json_encode(
                 $this->AmsProxy()->invoke('getArchives'));
@@ -9,9 +9,11 @@ class SettingController extends ProxyController {
             $this->student->rank_exam = null;
             $this->student->theory_subject = null;
             $this->student->save();
-            $this->success('清除缓存成功');
+
+            $this->update();
+            $this->success('<span class="glyphicon glyphicon-ok"></span> 更新成功');
         } else {
-            $this->render('clear');
+            $this->render('update');
         }
     }
 

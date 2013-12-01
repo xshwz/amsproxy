@@ -105,8 +105,8 @@
                                 'label' => '设置',
                                 'items' => array(
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-refresh"></span> 清除缓存',
-                                        'url' => array('/proxy/setting/clear'),
+                                        'label' => '<span class="glyphicon glyphicon-refresh"></span> 更新数据',
+                                        'url' => array('/proxy/setting/update'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-lock"></span> 修改密码',
