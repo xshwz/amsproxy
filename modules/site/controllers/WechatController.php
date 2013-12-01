@@ -115,14 +115,17 @@ class WechatController extends BaseController {
     }
 
     public function unknownCommandHandler($args=null) {
-        $responseText = array(
-            '啊哈？',
-            '你输入的命令不正确',
-            '元芳，你怎么看？',
-            ':(',
-            'unknow cammand');
         $this->wechat->response(
-            $responseText[rand(0, count($responseText) - 1)]);
+            "你输入的指令不正确哦，目前支持的指令有：\n\n" .
+            "/课程\n" . 
+            "　　默认返回当天课程，可带参数，比如“/课程3”返回星期三的课程。\n\n" .
+            "/成绩\n" . 
+            "　　默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一个学期的成绩。\n\n" .
+            "/等级考试\n" . 
+            "　　返回等级考试成绩。\n\n" . 
+            "/学籍\n" . 
+            "　　返回个人学籍档案。"
+        );
     }
 
     public function helpHandler($args=null) {

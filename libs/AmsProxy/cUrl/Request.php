@@ -52,6 +52,13 @@ class Request {
     }
 
     /**
+     * @param int $port
+     */
+    public function setPort($port) {
+        curl_setopt($this->curl, CURLOPT_PORT, $port);
+    }
+
+    /**
      * @param array $headers
      */
     public function setHeaders($headers) {
@@ -88,6 +95,9 @@ class Request {
             $this->setUrl($options['url'], $options['params']);
         else
             $this->setUrl($options['url']);
+
+        if (isset($options['port']))
+            $this->setPort($options['port']);
 
         if (isset($options['data']))
             $this->setPostFields($options['data']);
