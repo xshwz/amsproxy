@@ -62,7 +62,7 @@ class WechatController extends BaseController {
         $responseText =
             "欢迎关注“相思青果”（http://xsh.gxun.edu.cn/ams/）。\n\n" .
             "在这里，你可以通过发送指令消息查看课表、成绩、等级考试成绩等信息，以及反馈在使用“相思青果”中遇到的问题。\n\n" .
-            "更多关于“相思青果”公众号的详情请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat/index\n\n";
+            "更多关于“相思青果”公众号的详情请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n";
             "PS.\n" .
             " - 发送“帮助”可以获取帮助文档；\n" .
             " - 发送的指令不一定都能成功返回，可以多试几次哦；\n" .
@@ -116,7 +116,9 @@ class WechatController extends BaseController {
                         "/等级考试\n" . 
                         "　　返回等级考试成绩。\n\n" . 
                         "/学籍\n" . 
-                        "　　返回个人学籍档案。",
+                        "　　返回个人学籍档案。\n\n\n" .
+                        "PS.\n" .
+                        "发送的指令不一定都能成功返回，可以多试几次。",
                 ),
                 array(
                     'pattern' => '/.*/',
@@ -129,7 +131,9 @@ class WechatController extends BaseController {
                         "/等级考试\n" . 
                         "　　返回等级考试成绩。\n\n" . 
                         "/学籍\n" . 
-                        "　　返回个人学籍档案。",
+                        "　　返回个人学籍档案。\n\n" .
+                        "PS.\n" .
+                        "发送的指令不一定都能成功返回，可以多试几次。",
                 ),
             ));
         } else {
@@ -254,14 +258,15 @@ class WechatController extends BaseController {
             array(
                 'pattern' => '/^(help|帮助)$/i',
                 'handler' =>
+                    "欢迎使用“相思青果”（http://xsh.gxun.edu.cn/ams/）\n\n" .
                     "“相思青果”公众号主要用于：\n" .
-                    "　　1、基于微信公众平台开发模式提供消息自动回复，向我们发送消息指令（比如“/成绩”），即可返回你的课程、成绩、等级考试成绩等信息。（只有绑定后才能使用指令消息哦）\n" .
+                    "　　1、基于微信公众平台开发模式提供消息自动回复，向我们发送消息指令（比如“/成绩”），即可返回你的课程、成绩、等级考试成绩等信息。（只有绑定后才能使用哦）\n" .
                     "　　2、反馈和解决使用“相思青果”中遇到的问题。\n\n" .
                     "提示：\n" .
-                    " - 发送的指令不一定都能成功返回，可以多试几次哦；\n" .
+                    " - 发送的指令不一定都能成功返回，可以多试几次；\n" .
                     " - 发送“/帮助”可以获取指令帮助；\n" .
                     " - 由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；\n\n" .
-                    "更多请参考：http://xsh.gxun.edu.cn/?r=site/wechat\n\n" .
+                    "更多请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n" .
                     "如果还是没有解决你的问题，可以直接发消息给我们～",
             ),
             array(
