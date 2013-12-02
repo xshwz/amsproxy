@@ -28,6 +28,7 @@ class WechatController extends BaseController {
             $this->student = Student::model()->find('wechat_openid=:openId',
                 array(':openId' => $this->request->FromUserName));
         } else {
+            var_dump(WechatMessage::model()->find()->student);
             Yii::app()->end();
         }
     }
@@ -41,6 +42,7 @@ class WechatController extends BaseController {
 
         switch ($this->request->MsgType) {
             case 'text':
+                $this->saveMessage();
                 $this->textHandler();
                 break;
 
@@ -62,13 +64,13 @@ class WechatController extends BaseController {
         $responseText =
             "欢迎关注“相思青果”（http://xsh.gxun.edu.cn/ams/）。\n\n" .
             "在这里，你可以通过发送指令消息查看课表、成绩、等级考试成绩等信息，以及反馈在使用“相思青果”中遇到的问题。\n\n" .
-            "更多关于“相思青果”公众号的详情请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n";
+            "更多关于“相思青果”公众号的详情请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n" .
             "PS.\n" .
-            " - 发送“帮助”可以获取帮助文档；\n" .
-            " - 发送的指令不一定都能成功返回，可以多试几次哦；\n" .
-            " - 由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；";
+            "　　发送“帮助”可以获取帮助文档；\n" .
+            "　　发送的指令不一定都能成功返回，可以多试几次哦；\n" .
+            "　　由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；";
 
-        if (!$this->student->wechat_openid)
+        if (!$this->student)
             $responseText .= "\n\n点击链接（" . $this->getBindUrl() . '），成功登录后即可完成绑定。';
 
         $this->wechat->response($responseText);
@@ -117,8 +119,7 @@ class WechatController extends BaseController {
                         "　　返回等级考试成绩。\n\n" . 
                         "/学籍\n" . 
                         "　　返回个人学籍档案。\n\n\n" .
-                        "PS.\n" .
-                        "发送的指令不一定都能成功返回，可以多试几次。",
+                        "PS. 发送的指令不一定都能成功返回，可以多试几次。",
                 ),
                 array(
                     'pattern' => '/.*/',
@@ -132,12 +133,14 @@ class WechatController extends BaseController {
                         "　　返回等级考试成绩。\n\n" . 
                         "/学籍\n" . 
                         "　　返回个人学籍档案。\n\n" .
-                        "PS.\n" .
-                        "发送的指令不一定都能成功返回，可以多试几次。",
+                        "PS. 发送的指令不一定都能成功返回，可以多试几次。",
                 ),
             ));
         } else {
-            $this->unbindHandler();
+            $this->wechat->response(
+                "你的微信还未与“相思青果”绑定哦，点击下面的链接，登录成功后即可绑定。\n\n" .
+                $this->getBindUrl()
+            );
         }
     }
 
@@ -263,9 +266,9 @@ class WechatController extends BaseController {
                     "　　1、基于微信公众平台开发模式提供消息自动回复，向我们发送消息指令（比如“/成绩”），即可返回你的课程、成绩、等级考试成绩等信息。（只有绑定后才能使用哦）\n" .
                     "　　2、反馈和解决使用“相思青果”中遇到的问题。\n\n" .
                     "提示：\n" .
-                    " - 发送的指令不一定都能成功返回，可以多试几次；\n" .
-                    " - 发送“/帮助”可以获取指令帮助；\n" .
-                    " - 由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；\n\n" .
+                    "　　发送的指令不一定都能成功返回，可以多试几次；\n" .
+                    "　　发送“/帮助”可以获取指令帮助；\n" .
+                    "　　由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；\n\n" .
                     "更多请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n" .
                     "如果还是没有解决你的问题，可以直接发消息给我们～",
             ),
@@ -274,7 +277,7 @@ class WechatController extends BaseController {
                 'handler' => '查成绩的指令为“/成绩”，默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一学期的成绩',
             ),
             array(
-                'pattern' => '/^(课程|课表|查课程|查课表)\s*\d?$/i',
+                'pattern' => '/^(课程|课表|查课程|查课表|课程表)\s*\d?$/i',
                 'handler' => '查课程的指令为“/课程”，默认返回当天课程，可带参数，比如“/课程2”返回星期二的课程',
             ),
             array(
@@ -288,13 +291,6 @@ class WechatController extends BaseController {
         ));
     }
 
-    public function unbindHandler() {
-        $this->wechat->response(
-            "你的微信还未与“相思青果”绑定哦，点击下面的链接，登录成功后即可绑定。\n\n" .
-            $this->getBindUrl()
-        );
-    }
-
     /**
      * @return string
      */
@@ -306,5 +302,13 @@ class WechatController extends BaseController {
             ),
             '&amp;'
         );
+    }
+
+    public function saveMessage() {
+        $message = new WechatMessage;
+        $message->openid = $this->request->FromUserName;
+        $message->message = $this->request->Content;
+        $message->time = date('Y-m-d H:i:s');
+        $message->save();
     }
 }

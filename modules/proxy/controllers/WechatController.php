@@ -10,8 +10,8 @@ class WechatController extends ProxyController {
         $this->success('
             <p><span class="glyphicon glyphicon-ok"></span> 绑定成功</p>
             <br>
-            <p>目前支持的指令有：</p>
             <ul>
+                <li><p><code>帮助</code>：获取帮助</p></li>
                 <li><p><code>/学籍</code>：个人学籍档案</p></li>
                 <li><p><code>/课程</code>：默认返回当天课程，可带参数，比如“/课程3”返回星期三的课程</p></li>
                 <li><p><code>/成绩</code>：默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一个学期的成绩</p></li>
