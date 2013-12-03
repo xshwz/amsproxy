@@ -61,9 +61,14 @@ class WechatController extends BaseController {
     public function subscribeHandler() {
         $responseText =
             "欢迎关注“相思青果”（http://xsh.gxun.edu.cn/ams/）。\n\n" .
-            "在这里，你可以通过发送指令消息查看课表、成绩，以及吐槽“相思青果”。";
+            "在这里，你可以通过发送指令消息查看课表、成绩、等级考试成绩等信息，以及反馈在使用“相思青果”中遇到的问题。\n\n" .
+            "更多关于“相思青果”公众号的详情请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n" .
+            "PS.\n" .
+            "　　发送“帮助”可以获取帮助文档；\n" .
+            "　　发送的指令不一定都能成功返回，可以多试几次哦；\n" .
+            "　　由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；";
 
-        if (!$this->student->wechat_openid)
+        if (!$this->student)
             $responseText .= "\n\n点击链接（" . $this->getBindUrl() . '），成功登录后即可完成绑定。';
 
         $this->wechat->response($responseText);
@@ -102,37 +107,36 @@ class WechatController extends BaseController {
                 ),
                 array(
                     'pattern' => '/^(h\b|help|帮助)/i',
-                    'handler' => 'helpHandler',
+                    'handler' =>
+                        "目前支持的指令有：\n\n" .
+                        "/课程\n" . 
+                        "　　默认返回当天课程，可带参数，比如“/课程3”返回星期三的课程。\n\n" .
+                        "/成绩\n" . 
+                        "　　默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一个学期的成绩。\n\n" .
+                        "/等级考试\n" . 
+                        "　　返回等级考试成绩。\n\n" . 
+                        "/学籍\n" . 
+                        "　　返回个人学籍档案。\n\n\n" .
+                        "PS. 发送的指令不一定都能成功返回，可以多试几次。",
                 ),
                 array(
                     'pattern' => '/.*/',
-                    'handler' => 'unknownCommandHandler',
+                    'handler' =>
+                        "你输入的指令不正确哦，目前支持的指令有：\n\n" .
+                        "/课程\n" . 
+                        "　　默认返回当天课程，可带参数，比如“/课程3”返回星期三的课程。\n\n" .
+                        "/成绩\n" . 
+                        "　　默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一个学期的成绩。\n\n" .
+                        "/等级考试\n" . 
+                        "　　返回等级考试成绩。\n\n" . 
+                        "/学籍\n" . 
+                        "　　返回个人学籍档案。\n\n" .
+                        "PS. 发送的指令不一定都能成功返回，可以多试几次。",
                 ),
             ));
         } else {
             $this->unbindHandler();
         }
-    }
-
-    public function unknownCommandHandler($args=null) {
-        $this->wechat->response(
-            "你输入的指令不正确哦，目前支持的指令有：\n\n" .
-            "/课程\n" . 
-            "　　默认返回当天课程，可带参数，比如“/课程3”返回星期三的课程。\n\n" .
-            "/成绩\n" . 
-            "　　默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一个学期的成绩。\n\n" .
-            "/等级考试\n" . 
-            "　　返回等级考试成绩。\n\n" . 
-            "/学籍\n" . 
-            "　　返回个人学籍档案。"
-        );
-    }
-
-    public function helpHandler($args=null) {
-        $this->wechat->response(
-            "请参考：http://xsh.gxun.edu.cn" . $this->createUrl('/site/wechat') . "\n\n" .
-            "或者直接发消息给我们！"
-        );
     }
 
     public function archivesHandler($args=null) {
@@ -237,48 +241,49 @@ class WechatController extends BaseController {
             preg_match($router['pattern'], $subject, $matches);
 
             if (!empty($matches)) {
-                $this->$router['handler']($matches);
+                if (method_exists($this, $router['handler']))
+                    $this->$router['handler']($matches);
+                else
+                    $this->wechat->response($router['handler']);
+
                 break;
             }
         }
-    }
-
-    public function developerHandler($args=null) {
-        $this->wechat->response(
-            "开发者：\n\n" .
-            "姓名：丘翔\n" .
-            "班级：10网络工程\n" .
-            "邮箱：qiuxiang55aa@gmail.com\n\n" .
-            "姓名：徐伟榕\n" .
-            "班级：11软件工程1班\n" .
-            "邮箱：weirongxuraidou@gmail.com\n"
-        );
     }
 
     public function defaultTextHandler() {
         $this->dispatcher($this->request->Content, array(
             array(
                 'pattern' => '/^(help|帮助)$/i',
-                'handler' => 'helpHandler',
+                'handler' =>
+                    "欢迎使用“相思青果”（http://xsh.gxun.edu.cn/ams/）\n\n" .
+                    "“相思青果”公众号主要用于：\n" .
+                    "　　1、基于微信公众平台开发模式提供消息自动回复，向我们发送消息指令（比如“/成绩”），即可返回你的课程、成绩、等级考试成绩等信息。（只有绑定后才能使用哦）\n" .
+                    "　　2、反馈和解决使用“相思青果”中遇到的问题。\n\n" .
+                    "提示：\n" .
+                    "　　发送的指令不一定都能成功返回，可以多试几次；\n" .
+                    "　　发送“/帮助”可以获取指令帮助；\n" .
+                    "　　由于我们的微信平台刚建设，有很多不足，还请见谅，欢迎你的反馈，让我们把微信平台建立得更好；\n\n" .
+                    "更多请参考：http://xsh.gxun.edu.cn/ams/index.php?r=site/wechat\n\n" .
+                    "如果还是没有解决你的问题，可以直接发消息给我们～",
             ),
             array(
-                'pattern' => '/^(about|关于)$/i',
-                'handler' => 'aboutHandler',
+                'pattern' => '/^(成绩|查成绩)\s*\d?$/i',
+                'handler' => '查成绩的指令为“/成绩”，默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一学期的成绩',
             ),
             array(
-                'pattern' => '/^(developer|开发者)$/i',
-                'handler' => 'developerHandler',
+                'pattern' => '/^(课程|课表|查课程|查课表|课程表)\s*\d?$/i',
+                'handler' => '查课程的指令为“/课程”，默认返回当天课程，可带参数，比如“/课程2”返回星期二的课程',
+            ),
+            array(
+                'pattern' => '/^(等级考试|等级考试成绩)$/i',
+                'handler' => '查等级考试成绩的指令为“/等级考试”',
+            ),
+            array(
+                'pattern' => '/^(学籍|查看学籍)$/i',
+                'handler' => '查个人学籍档案的指令为“/学籍”',
             ),
         ));
-    }
-
-    public function aboutHandler() {
-        $this->wechat->response(
-            "关于“相思青果”公众号\n\n" . 
-            "　　“相思青果”公众号通过微信公众平台开发模式提供消息的自动回复。\n" . 
-            "　　向我们的公众号发送消息指令，即可返回你的课程、成绩、等级考试成绩等信息。\n" .
-            "　　同时，任何关于“相思青果”的问题都可以在这里向我们吐槽。"
-        );
     }
 
     public function unbindHandler() {
