@@ -22,7 +22,7 @@ class AmsProxy {
      * @var array
      */
     public $config = array(
-        'baseUrl' => 'http://ams.gxun.edu.cn/',
+        'baseUrl' => 'http://210.36.64.98/',
     );
 
     /**
