@@ -28,6 +28,7 @@ class WechatController extends BaseController {
             $this->student = Student::model()->find('wechat_openid=:openId',
                 array(':openId' => $this->request->FromUserName));
         } else {
+            var_dump(WechatMessage::model()->find()->student);
             Yii::app()->end();
         }
     }
@@ -41,6 +42,7 @@ class WechatController extends BaseController {
 
         switch ($this->request->MsgType) {
             case 'text':
+                $this->saveMessage();
                 $this->textHandler();
                 break;
 
@@ -135,7 +137,10 @@ class WechatController extends BaseController {
                 ),
             ));
         } else {
-            $this->unbindHandler();
+            $this->wechat->response(
+                "你的微信还未与“相思青果”绑定哦，点击下面的链接，登录成功后即可绑定。\n\n" .
+                $this->getBindUrl()
+            );
         }
     }
 
@@ -304,5 +309,13 @@ class WechatController extends BaseController {
             ),
             '&amp;'
         );
+    }
+
+    public function saveMessage() {
+        $message = new WechatMessage;
+        $message->openid = $this->request->FromUserName;
+        $message->message = $this->request->Content;
+        $message->time = date('Y-m-d H:i:s');
+        $message->save();
     }
 }
