@@ -9,12 +9,12 @@ class HomeController extends BaseController {
         $this->render('about');
     }
 
-    public function actionFAQ() {
-        $this->render('FAQ');
+    public function actionFaq() {
+        $this->render('faq');
     }
 
-    public function actionAPI() {
-        $this->render('API');
+    public function actionApi() {
+        $this->render('api');
     }
 
     public function actionLogin() {

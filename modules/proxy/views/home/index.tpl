@@ -13,9 +13,9 @@
             <span class="glyphicon glyphicon-list"></span>
             今日课程
         </a>
-        <a class="btn btn-lg btn-warning btn-bottom" href="<%= $this->createUrl('/proxy/rankExam/form'); %>">
-            <span class="glyphicon glyphicon-hand-right"></span>
-            等级考试报名
+        <a class="btn btn-lg btn-warning btn-bottom" href="<%= $this->createUrl('/proxy/score/stats'); %>">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            我的成绩
         </a>
     </p>
 </div>

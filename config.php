@@ -27,13 +27,22 @@ return array(
             'class' => 'CPradoViewRenderer',
             'fileExtension' => '.tpl',
         ),
-        /* I don't know why it's not work :(
         'urlManager' => array(
+            'urlFormat' => 'path',
+            'showScriptName' => false,
             'rules' => array(
-                'about' => 'site/home/about',
-                'FAQ' => 'site/home/FAQ',
+                ''       => 'site/home/index',
+                'about'  => 'site/home/about',
+                'faq'    => 'site/home/faq',
+                'login'  => 'site/home/login',
+                'wechat' => 'site/wechat/index',
+
+                'api'          => 'site/home/api',
+                'api/login'    => 'site/api/login',
+                'api/courses'  => 'proxy/api/courses',
+                'api/scores'   => 'proxy/api/scores',
+                'api/rankExam' => 'proxy/api/rankExam',
             ),
         ),
-        */
     ),
 );

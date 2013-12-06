@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a href="<%= Yii::app()->createUrl('site/home'); %>" class="navbar-brand">
+                <a href="<%= Yii::app()->createUrl('site/home/index'); %>" class="navbar-brand">
                     <img width="18" height="18" src="img/logo.png" alt="logo">
                     相思青果
                 </a>
@@ -29,15 +29,15 @@
                                 ),
                                 array(
                                     'label' => '常见问题',
-                                    'url' => array('/site/home/FAQ'),
+                                    'url' => array('/site/home/faq'),
                                 ),
                                 array(
                                     'label' => '关于',
                                     'url' => array('/site/home/about'),
                                 ),
                                 array(
-                                    'label' => 'API',
-                                    'url' => array('/site/home/API'),
+                                    'label' => 'api',
+                                    'url' => array('/site/home/api'),
                                 ),
                             ),
                             'htmlOptions' => array(

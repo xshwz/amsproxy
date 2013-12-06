@@ -3,17 +3,17 @@
 <br>
 <div class="form-horizontal">
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-4 control-label">密码</label>
+        <label class="col-sm-4 control-label" for="inputBaseUrl">BaseUrl</label>
         <div class="col-sm-4">
             <form class="form-inline" method="post">
                 <div class="form-group">
                     <div class="input-group">
                         <input
-                            type="password"
+                            type="text"
                             class="form-control"
-                            name="password"
-                            id="inputPassword"
-                            placeholder="新密码">
+                            name="base_url"
+                            value="<%= $this->setting->base_url; %>"
+                            id="inputBaseUrl">
                         <span class="input-group-btn">
                             <button class="btn" type="submit">
                                 <span class="glyphicon glyphicon-pencil"></span>

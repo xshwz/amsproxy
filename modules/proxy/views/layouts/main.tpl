@@ -9,6 +9,8 @@
         相思青果
         </title>
 
+        <base href="<%= $this->setting['base_url']; %>">
+
         <link rel="shortcut icon" href="favicon.ico">
 
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -30,7 +32,7 @@
             <div id="side">
                 <div class="side-header">
                     <h1>
-                        <a href="<%= $this->createUrl('/site'); %>">
+                        <a href="<%= $this->createUrl('/site/home/index'); %>">
                             <img src="img/logo.png" width="32" alt="相思湖网站 Logo" title="相思青果">
                         </a>
                     </h1>

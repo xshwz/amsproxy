@@ -1,5 +1,4 @@
 <form class="form-inline search-form" method="get">
-    <input type="hidden" name="r" value="<?php echo $_GET['r']; ?>">
     <div class="form-group">
         <div class="input-group">
             <input
@@ -7,7 +6,7 @@
                 name="keyword"
                 placeholder="关键字"
                 class="form-control"
-                value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>">
+                value="<% if (isset($_GET['keyword'])) echo $_GET['keyword']; %>">
             <span class="input-group-btn">
                 <button class="btn" type="submit" title="搜索">
                     <span class="glyphicon glyphicon-search"></span>
@@ -27,43 +26,43 @@
             </tr>
         </thead>
         <tbody>
-            <?php
+            <%
             foreach ($students as $student):
             $archives = (array)$student->getArchives();
-            ?>
+            %>
             <tr>
-                <td><?php echo $archives['姓名']; ?></td>
-                <td><?php echo $archives['行政班级']; ?></td>
-                <td><?php echo $student->last_login_time; ?></td>
+                <td><%= $archives['姓名']; %></td>
+                <td><%= $archives['行政班级']; %></td>
+                <td><%= $student->last_login_time; %></td>
                 <td>
                     <a
                         href="#detail-modal"
                         class="detail"
                         title="详细资料"
                         data-toggle="modal"
-                        data-sid='<?php echo $student->sid; ?>'
-                        data-json='<?php echo $student->archives; ?>'>
+                        data-sid='<%= $student->sid; %>'
+                        data-json='<%= $student->archives; %>'>
                         <span class="glyphicon glyphicon-file"></span>
                     </a>
                     <a
                         href="#send-modal"
                         title="发送消息"
                         data-toggle="modal"
-                        data-sid='<?php echo $student->sid; ?>'
+                        data-sid='<%= $student->sid; %>'
                         class="send">
                         <span class="glyphicon glyphicon-send"></span>
                     </a>
                 </td>
             </tr>
-            <?php endforeach; ?>
+            <% endforeach; %>
         </tbody>
     </table>
 </div>
 <div class="pages">
-    <?php if ($count > 1): ?>
+    <% if ($count > 1): %>
         <div>
-            <?php if ($count > 20): ?>
-                <?php
+            <% if ($count > 20): %>
+                <%
                 $this->widget('CLinkPager', array(
                     'pages' => $pages,
                     'header' => '',
@@ -79,9 +78,9 @@
                         'class' => 'pagination pagination-sm pull-left hidden-xs',
                     ),
                 ));
-                ?>
+                %>
                 <div class="listPager pull-left">
-                    <?php
+                    <%
                     $this->widget('CListPager', array(
                         'pages' => $pages,
                         'header' => '',
@@ -90,13 +89,13 @@
                             'class' => 'form-control input-sm',
                         ),
                     ));
-                    ?>
+                    %>
                 </div>
-            <?php endif; ?>
-            <span class="badge"><?php echo $count; ?></span>
+            <% endif; %>
+            <span class="badge"><%= $count; %></span>
             <div class="clearfix"></div>
         </div>
-    <?php endif; ?>
+    <% endif; %>
 </div>
 
 <div class="modal fade" id="detail-modal">
@@ -121,7 +120,7 @@
             <div class="modal-body">
                 <form
                     id="ajaxSendForm"
-                    action="<?php echo Yii::app()->createUrl('admin/message/send')?>"
+                    action="<%= Yii::app()->createUrl('admin/message/send'); %>"
                     method="post">
                     <input type="hidden" name="sender" value="0">
                     <input type="hidden" name="receiver" id="send-form-sid">
