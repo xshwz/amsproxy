@@ -11,6 +11,8 @@
         相思青果
         </title>
 
+        <base href="<%= $this->setting['base_url']; %>">
+
         <link rel="shortcut icon" href="favicon.ico">
 
         <link href="css/bootstrap.css" rel="stylesheet">

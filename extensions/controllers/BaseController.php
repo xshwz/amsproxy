@@ -37,6 +37,11 @@ class BaseController extends CController {
      */
     public $setting;
 
+    /**
+     * @var string
+     */
+    public $baseUrl;
+
     public function init() {
         $this->setting = Setting::model()->find();
         $this->mcrypt = new Mcrypt($this->setting['crypt_key']);

@@ -28,7 +28,6 @@ class WechatController extends BaseController {
             $this->student = Student::model()->find('wechat_openid=:openId',
                 array(':openId' => $this->request->FromUserName));
         } else {
-            var_dump(WechatMessage::model()->find()->student);
             Yii::app()->end();
         }
     }

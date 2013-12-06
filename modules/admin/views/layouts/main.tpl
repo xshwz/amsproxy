@@ -9,6 +9,8 @@
         相思青果后台管理
         </title>
 
+        <base href="<%= $this->setting['base_url']; %>">
+
         <link rel="shortcut icon" href="favicon.ico">
 
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -92,7 +94,7 @@
                             CHtml::link('
                                 <span class="glyphicon glyphicon-home"></span>
                                 <span class="visible-xs">首页</span>',
-                                array('/site'));
+                                array('/site/home/index'));
                             %>
                         </li>
                         <li>
