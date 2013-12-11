@@ -72,14 +72,18 @@ EOT;
             if ($course['weekDay'] == $weekDay) {
                 if (isset($weekCourses[$course['lessonStart']])) {
                     $weekCourses[$course['lessonStart']]['teacherName'] .=
-                        ',' . $course['teacherName'];
+                        '，' . $course['teacherName'];
                     $weekCourses[$course['lessonStart']]['location'] .=
-                        ',' . $course['location'];
+                        '，' . $course['location'];
                 } else {
                     $weekCourses[$course['lessonStart']] = $course;
                 }
             }
         }
+
+        usort($weekCourses, function($a, $b){
+            return $a['lessonStart'] > $b['lessonStart'];
+        });
 
         return $weekCourses;
     }

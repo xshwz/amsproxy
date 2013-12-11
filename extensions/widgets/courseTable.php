@@ -98,11 +98,11 @@ EOT;
             $course['isCourse'] = true;
             $course['lessonSpan'] = $course['lessonTo'] - $course['lessonStart'] + 1;
             if (isset($courseMap[$course['weekDay']][$course['lessonStart']])) {
-                $courseMap[$course['weekDay']][$course['lessonStart']]['teacherName'] .= ',' . $course['teacherName'];
-                $courseMap[$course['weekDay']][$course['lessonStart']]['location'] .= ',' . $course['location'];
-            }
-            else
+                $courseMap[$course['weekDay']][$course['lessonStart']]['teacherName'] .= '，' . $course['teacherName'];
+                $courseMap[$course['weekDay']][$course['lessonStart']]['location'] .= '，' . $course['location'];
+            } else {
                 $courseMap[$course['weekDay']][$course['lessonStart']] = $course;
+            }
         }
 
 
@@ -142,6 +142,7 @@ EOT;
      */
     public function getCoursesSeq($courses) {
         $coursesSeq = array();
+
         foreach ($courses as $course)
             if (!array_key_exists($course['courseName'], $coursesSeq))
                 $coursesSeq[$course['courseName']] = count($coursesSeq);

@@ -36,7 +36,7 @@
                                     'url' => array('/site/home/about'),
                                 ),
                                 array(
-                                    'label' => 'api',
+                                    'label' => 'API',
                                     'url' => array('/site/home/api'),
                                 ),
                             ),

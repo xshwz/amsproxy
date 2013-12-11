@@ -99,3 +99,32 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="edit-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">修改消息</h4>
+            </div>
+            <div class="modal-body">
+                <form
+                    id="edit-form"
+                    action="<%= Yii::app()->createUrl('admin/message/edit'); %>"
+                    method="post">
+                    <input type="hidden" name="id" id="message-id">
+                    <div class="form-group">
+                        <textarea
+                            name="message"
+                            rows="4"
+                            id="message-content"
+                            class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn">
+                        <i class="glyphicon glyphicon-ok"></i> 提交
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

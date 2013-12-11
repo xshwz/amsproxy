@@ -3,7 +3,7 @@
 <div class="wechat-header">
     <div><img src="img/wechat-qrcode.jpg" width="200" alt="微信二维码"></div>
     <div>
-        <h3>相思青果</h3>
+        <h3>相思青果 <small><em>XshAmsProxy</em></small></h3>
     </div>
 </div>
 
@@ -62,4 +62,4 @@ EOT;
     <li><p><code>/成绩</code>：默认返回最近一个学期的成绩，可带参数，比如“/成绩1”返回第一个学期的成绩</p></li>
     <li><p><code>/等级考试</code>：返回等级考试成绩</p></li>
 </ul>
-<p>PS. 发送的指令不一定都能成功返回，可以多试几次。</p>
+<p><em class="text-muted">PS. 发送的指令不一定都能成功返回，可以多试几次。</em></p>

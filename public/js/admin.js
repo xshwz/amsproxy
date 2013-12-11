@@ -24,6 +24,13 @@ $('a.send').each(function(){
     });
 });
 
+$('a.edit').each(function(){
+    $(this).click(function(){
+        $('#message-content').val($(this).prevAll().filter('p').text());
+        $('#message-id').val($(this).attr('data-id'));
+    });
+});
+
 $('#ajaxSendForm').ajaxForm({
     beforeSubmit: function() {
         if (!$('#send-msg').val()) {
@@ -33,6 +40,12 @@ $('#ajaxSendForm').ajaxForm({
     },
     success: function() {
         $('#send-modal').modal('hide');
+    }
+});
+
+$('#edit-form').ajaxForm({
+    success: function() {
+        $('#edit-modal').modal('hide');
     }
 });
 
