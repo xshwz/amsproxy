@@ -16,4 +16,16 @@ class MessageController extends AdminController {
             $this->render('send');
         }
     }
+
+    public function actionEdit() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['id']) && isset($_POST['message'])) {
+                $message = Message::model()->findByPk($_POST['id']);
+                $message->message = $_POST['message'];
+                $message->save();
+            }
+        } else {
+            $this->render('edit');
+        }
+    }
 }
