@@ -35,21 +35,24 @@ class getExamArrangement extends __base__ {
                 '考试地点',
                 '座位号',
             ),
+            'tbody' => array(),
         );
 
         $tables = $dom->getElementsByTagName('table');
-        foreach($tables->item(2)->getElementsByTagName('tr') as $tr) {
-            $tds = $tr->getElementsByTagName('td');
-            $exam['tbody'][] = array(
-                preg_replace('/\[.*?\]/', '',
-                    $tds->item(1)->textContent),
-                $tds->item(2)->textContent,
-                $tds->item(3)->textContent,
-                $tds->item(4)->textContent,
-                $tds->item(5)->textContent,
-                $tds->item(6)->textContent,
-                $tds->item(7)->textContent,
-            );
+        if ($tables->length) {
+            foreach($tables->item(2)->getElementsByTagName('tr') as $tr) {
+                $tds = $tr->getElementsByTagName('td');
+                $exam['tbody'][] = array(
+                    preg_replace('/\[.*?\]/', '',
+                        $tds->item(1)->textContent),
+                    $tds->item(2)->textContent,
+                    $tds->item(3)->textContent,
+                    $tds->item(4)->textContent,
+                    $tds->item(5)->textContent,
+                    $tds->item(6)->textContent,
+                    $tds->item(7)->textContent,
+                );
+            }
         }
 
         return $exam;

@@ -8,6 +8,7 @@ class SettingController extends ProxyController {
             $this->student->score = null;
             $this->student->rank_exam = null;
             $this->student->theory_subject = null;
+            $this->student->exam_arrangement = null;
             $this->student->save();
 
             $this->update();

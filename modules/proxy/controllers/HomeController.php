@@ -1,7 +1,8 @@
 <?php
 class HomeController extends ProxyController {
     public function actionIndex() {
-        $this->render('index');
+        $this->render('index', array(
+            'examArrangement' => $this->getExamArrangement()));
     }
 
     public function actionLogout() {
