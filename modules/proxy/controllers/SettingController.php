@@ -11,7 +11,7 @@ class SettingController extends ProxyController {
             $this->student->save();
 
             $this->update();
-            $this->success('<span class="glyphicon glyphicon-ok"></span> 更新成功');
+            $this->success('<span class="glyphicon glyphicon-ok"></span> 更新数据成功');
         } else {
             $this->render('update');
         }

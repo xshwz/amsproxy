@@ -16,10 +16,25 @@ class Student extends CActiveRecord {
      * @return array|null
      */
     public function getWeekCourses($wday) {
-        foreach (json_decode($this->course) as $course)
-            if ($course->weekDay == $wday)
-                $weekCourses[] = $course;
+        $weekCourses = array();
 
-        return isset($weekCourses) ? $weekCourses : null;
+        foreach (json_decode($this->course) as $course) {
+            if ($course->weekDay == $wday) {
+                if (isset($weekCourses[$course->lessonStart])) {
+                    $weekCourses[$course->lessonStart]->teacherName .=
+                        '，' . $course->teacherName;
+                    $weekCourses[$course->lessonStart]->location .=
+                        '，' . $course->location;
+                } else {
+                    $weekCourses[$course->lessonStart] = $course;
+                }
+            }
+        }
+
+        usort($weekCourses, function($a, $b){
+            return $a->lessonStart > $b->lessonStart;
+        });
+
+        return $weekCourses;
     }
 }
