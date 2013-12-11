@@ -1,4 +1,4 @@
-<form class="form-inline search-form" method="get">
+<form class="form-inline search-form" method="post">
     <div class="form-group">
         <div class="input-group">
             <input
@@ -6,7 +6,7 @@
                 name="keyword"
                 placeholder="关键字"
                 class="form-control"
-                value="<% if (isset($_GET['keyword'])) echo $_GET['keyword']; %>">
+                value="<%= $this->param('keyword'); %>">
             <span class="input-group-btn">
                 <button class="btn" type="submit" title="搜索">
                     <span class="glyphicon glyphicon-search"></span>

@@ -205,7 +205,7 @@ class BaseController extends CController {
      * @param string $date 
      * @return int
      */
-    function weekNumber($date=null)
+    public function weekNumber($date=null)
     {
         if ($date)
             $time = strtotime($date);
@@ -219,8 +219,24 @@ class BaseController extends CController {
     /**
      * return full url
      */
-    function createFullUrl($route, $params=array(), $ampersand='&') {
+    public function createFullUrl($route, $params=array(), $ampersand='&') {
         return 'http://' . $_SERVER['HTTP_HOST'] . $this->createUrl(
             $route, $params, $ampersand);
+    }
+
+    /**
+     * get request param with get or post
+     *
+     * @param string $param
+     * @return string
+     */
+    public function param($param) {
+        if (isset($_GET[$param]))
+            return $_GET[$param];
+
+        if (isset($_POST[$param]))
+            return $_POST[$param];
+
+        return '';
     }
 }

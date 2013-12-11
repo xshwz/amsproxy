@@ -3,9 +3,9 @@ class StudentController extends AdminController {
     public function actionIndex() {
         $criteria = new CDbCriteria();
 
-        if (isset($_GET['keyword'])) {
+        if ($this->param('keyword')) {
             $criteria->addSearchCondition('archives',
-                str_replace('"', '%', json_encode($_GET['keyword'])),
+                str_replace('"', '%', json_encode($this->param('keyword'))),
                 false);
         }
 

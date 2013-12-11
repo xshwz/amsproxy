@@ -118,20 +118,21 @@ body {
 }
 .pages .badge {
   margin-top: 25px;
-  float: left;
+  float: right;
 }
 @media (max-width: 768px) {
   .pages {
     text-align: center;
   }
   .pages .badge {
-    margin-top: 10px;
-    float: none;
+    margin-top: 22px;
   }
   .listPager {
     display: block;
     width: 100%;
     float: none;
+    padding-right: 52px;
+    margin-right: -52px;
     margin-top: 16px;
   }
 }
