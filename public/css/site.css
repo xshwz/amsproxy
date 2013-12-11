@@ -169,6 +169,9 @@
   padding: 20px;
   text-align: center;
 }
+.wechat-header h3 small {
+  color: #ffffff;
+}
 .modal.lightbox {
   text-align: center;
 }

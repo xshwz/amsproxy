@@ -1,12 +1,6 @@
 <% $this->pageTitle = 'API'; %>
 
 <div class="page-header">
-    <h3>API 访问控制及分类</h3>
-</div>
-<p><code>/site/api/*</code> 是公共 API，不做身份验证。</p>
-<p><code>/proxy/api/*</code> 是个人 API，需要进行身份验证，主要用于获取用户相关数据。</p>
-
-<div class="page-header">
     <h3>
         登录
         <small>
