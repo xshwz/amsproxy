@@ -141,6 +141,20 @@ class ProxyController extends BaseController {
         }
     }
 
+    /**
+     * @return array
+     */
+    public function getExamArrangement() {
+        if ($this->student->exam_arrangement) {
+            return json_decode($this->student->exam_arrangement, true);
+        } else {
+            $examArrangement = $this->AmsProxy()->invoke('getExamArrangement');
+            $this->student->exam_arrangement = json_encode($examArrangement);
+            $this->student->save();
+            return $examArrangement;
+        }
+    }
+
     public function update() {
         if (!$this->student->course)
             $this->getCourse();
@@ -153,5 +167,8 @@ class ProxyController extends BaseController {
 
         if (!$this->student->theory_subject)
             $this->getTheorySubject();
+
+        if (!$this->student->exam_arrangement)
+            $this->getExamArrangement();
     }
 }
