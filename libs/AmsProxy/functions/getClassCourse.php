@@ -43,7 +43,7 @@ class getClassCourse extends __base__ {
                     'examType'    => $course[3],
                     'teacherName' => preg_replace('/^\[.*?\]/', '', $course[4]),
                     'weekStart'   => (int)$week[0],
-                    'weekTo'      => (int)$week[1],
+                    'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
                     'weekDay'     => (int)self::$weekDict[$lesson[1]],
                     'lessonStart' => (int)$lesson[2],
                     'lessonTo'    => (int)$lesson[3],
