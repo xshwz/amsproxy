@@ -6,12 +6,15 @@
  */
 class getClassCourse extends __base__ {
     public function getData() {
-        if ($classCode = $this->getClassCode($this->args)) { // don't panic
+        include 'getClassCode.php';
+        $getCode = new getClassCode($this->amsProxy, $this->args);
+
+        if ($classCode = $getCode->run()) { // don't panic
             return $this->amsProxy->POST(
                 'ZNPK/KBFB_ClassSel_rpt.aspx',
                 array(
-                    'Sel_XNXQ' => '20130',
-                    'Sel_XZBJ' => $classCode,
+                    'Sel_XNXQ' => $this->getXNXQ(),
+                    'Sel_XZBJ' => $classCode['code'][0],
                     'type'     => 2,
                     'chkrxkc'  => 1,
                 )
@@ -44,7 +47,7 @@ class getClassCourse extends __base__ {
                     'teacherName' => preg_replace('/^\[.*?\]/', '', $course[4]),
                     'weekStart'   => (int)$week[0],
                     'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
-                    'weekDay'     => (int)self::$weekDict[$lesson[1]],
+                    'weekDay'     => self::$weekDict[$lesson[1]],
                     'lessonStart' => (int)$lesson[2],
                     'lessonTo'    => (int)$lesson[3],
                     'location'    => $course[9],
@@ -55,22 +58,5 @@ class getClassCourse extends __base__ {
         } else {
             return array();
         }
-    }
-
-    /**
-     * @param string $className
-     * @return array
-     */
-    public function getClassCode($className) {
-        $classInfo = $this->amsProxy->GET(
-            'ZNPK/Private/List_XZBJ.aspx',
-            array(
-                'xnxq' => '20130',
-                'xzbj' => iconv('utf-8', 'gb18030', $className),
-            )
-        );
-
-        preg_match('/option value=(\d+)/', $classInfo, $matches);
-        return isset($matches[1]) ? $matches[1] : null;
     }
 }
