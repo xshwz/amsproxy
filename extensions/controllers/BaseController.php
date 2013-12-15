@@ -205,8 +205,7 @@ class BaseController extends CController {
      * @param string $date 
      * @return int
      */
-    public function weekNumber($date=null)
-    {
+    public function weekNumber($date=null) {
         if ($date)
             $time = strtotime($date);
         else
