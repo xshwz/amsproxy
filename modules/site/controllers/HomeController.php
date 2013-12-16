@@ -31,7 +31,8 @@ class HomeController extends BaseController {
 
             if ($this->login($sid, $pwd)) {
                 if (isset($_GET['returnUri']))
-                    $this->redirect($_GET['returnUri']);
+                    $this->redirect(str_replace(
+                        '\\', '/', $_GET['returnUri']));
                 else
                     $this->redirect(array('/proxy'));
             } else {

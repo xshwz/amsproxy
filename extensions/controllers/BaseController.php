@@ -119,13 +119,13 @@ class BaseController extends CController {
      * @param int $time 保存时间，默认30天
      */
     public function remember($sid, $pwd, $time=2592000) {
-        setcookie('sid', $this->mcrypt->encrypt($sid), time() + $time);
-        setcookie('pwd', $this->mcrypt->encrypt($pwd), time() + $time);
+        setcookie('sid', $this->mcrypt->encrypt($sid), time() + $time, '/');
+        setcookie('pwd', $this->mcrypt->encrypt($pwd), time() + $time, '/');
     }
 
     public function destroyRemember() {
-        setcookie('sid', null, 1);
-        setcookie('pwd', null, 1);
+        setcookie('sid', null, 1, '/');
+        setcookie('pwd', null, 1, '/');
     }
 
     /**
@@ -205,8 +205,7 @@ class BaseController extends CController {
      * @param string $date 
      * @return int
      */
-    public function weekNumber($date=null)
-    {
+    public function weekNumber($date=null) {
         if ($date)
             $time = strtotime($date);
         else

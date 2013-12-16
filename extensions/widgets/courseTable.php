@@ -36,45 +36,48 @@ EOT;
             for ($weekDay = 1; $weekDay <= 7; $weekDay++) {
                 if (isset($courseTable[$weekDay][$lessonNum])) {
                     $course = $courseTable[$weekDay][$lessonNum];
-                    if ($course['isCourse']) {
-                        $timeStart = Setting::$timetable[$course['lessonStart']][0];
-                        $timeTo = Setting::$timetable[$course['lessonTo']][1];
+                    if ($course->isCourse) {
+                        $timeStart = Setting::$timetable[$course->lessonStart][0];
+                        $timeTo = Setting::$timetable[$course->lessonTo][1];
+
+                        $teacherName = $this->more($course, 'teacherName');
+                        $location = $this->more($course, 'location');
 
                         echo CHtml::openTag('td', array(
-                            'class' => "course course-{$course['seq']}",
-                            'rowspan' => $course['lessonSpan']));
+                            'class' => "course course-{$course->seq}",
+                            'rowspan' => $course->lessonSpan));
 
                         echo CHtml::openTag('div', array(
                             'title' => "
                                 <p>
                                     <span class='glyphicon glyphicon-book'></span>
-                                    {$course['courseName']}
+                                    {$course->courseName}
                                 </p>
                                 <p>
                                     <span class='glyphicon glyphicon-map-marker'></span>
-                                    {$course['location']}
+                                    {$location}
                                 </p>
                                 <p>
                                     <span class='glyphicon glyphicon-time'></span>
-                                    {$course['lessonStart']} - {$course['lessonTo']}（{$timeStart} - {$timeTo}）
+                                    {$course->lessonStart} - {$course->lessonTo}（{$timeStart} - {$timeTo}）
                                 </p>
                                 <p>
                                     <span class='glyphicon glyphicon-user'></span>
-                                    {$course['teacherName']}
+                                    {$teacherName}
                                 </p>
                                 <p>
                                     <span class='glyphicon glyphicon-tag'></span>
-                                    {$course['examType']}课
+                                    {$course->examType}课
                                 </p>
                                 ",
                             'data-html' => true,
                         ));
 
-                        echo $course['courseName'];
+                        echo $course->courseName;
                         echo '</div>';
                         echo '</td>';
                     } else {
-                        echo "<td rowspan='{$course['lessonSpan']}'></td>";
+                        echo "<td rowspan='{$course->lessonSpan}'></td>";
                     }
                 }
             }
@@ -94,14 +97,18 @@ EOT;
         $coursesSeq = $this->getCoursesSeq($courses);
 
         foreach ($courses as $course) {
-            $course['seq'] = $coursesSeq[$course['courseName']];
-            $course['isCourse'] = true;
-            $course['lessonSpan'] = $course['lessonTo'] - $course['lessonStart'] + 1;
-            if (isset($courseMap[$course['weekDay']][$course['lessonStart']])) {
-                $courseMap[$course['weekDay']][$course['lessonStart']]['teacherName'] .= '，' . $course['teacherName'];
-                $courseMap[$course['weekDay']][$course['lessonStart']]['location'] .= '，' . $course['location'];
+            $course->seq = $coursesSeq[$course->courseName];
+            $course->isCourse = true;
+            $course->lessonSpan = $course->lessonTo - $course->lessonStart + 1;
+            if (isset($courseMap[$course->weekDay][$course->lessonStart])) {
+                $courseMap[$course->weekDay][$course->lessonStart]->teacherName[]
+                    = $course->teacherName;
+                $courseMap[$course->weekDay][$course->lessonStart]->location[]
+                    = $course->location;
             } else {
-                $courseMap[$course['weekDay']][$course['lessonStart']] = $course;
+                $course->teacherName = array($course->teacherName);
+                $course->location = array($course->location);
+                $courseMap[$course->weekDay][$course->lessonStart] = $course;
             }
         }
 
@@ -112,7 +119,7 @@ EOT;
             for ($lessonNum = 1; $lessonNum <= 12; $lessonNum++) {
                 if (isset($courseMap[$weekDay][$lessonNum])) {
                     $courseTable[$weekDay][$lessonNum] = $courseMap[$weekDay][$lessonNum];
-                    $lessonNum += $courseMap[$weekDay][$lessonNum]['lessonSpan'] - 1;
+                    $lessonNum += $courseMap[$weekDay][$lessonNum]->lessonSpan - 1;
                     $lessonStart = $lessonNum + 1;
                     $lessonSpan = 1;
                 } else if (
@@ -121,7 +128,7 @@ EOT;
                     $lessonNum == 9 ||
                     $lessonNum == 12
                 ) {
-                    $courseTable[$weekDay][$lessonStart] = array(
+                    $courseTable[$weekDay][$lessonStart] = (object)array(
                         'lessonSpan' => $lessonSpan,
                         'isCourse' => false);
                     $lessonStart = $lessonNum + 1;
@@ -144,9 +151,33 @@ EOT;
         $coursesSeq = array();
 
         foreach ($courses as $course)
-            if (!array_key_exists($course['courseName'], $coursesSeq))
-                $coursesSeq[$course['courseName']] = count($coursesSeq);
+            if (!array_key_exists($course->courseName, $coursesSeq))
+                $coursesSeq[$course->courseName] = count($coursesSeq);
 
         return $coursesSeq;
+    }
+
+    /**
+     * @param array $array
+     * @return string
+     */
+    public function implode($array) {
+        $result = '';
+        foreach ($array as $index => $item) {
+            $index += 1;
+            $result .= "{$index}、{$item}\n";
+        }
+        return trim($result);
+    }
+
+    public function more($course, $key) {
+        if (count($course->location) > 1) {
+            return
+                '<abbr title="' . $this->implode($course->{$key}) . '">' .
+                    $course->{$key}[0] .
+                '<abbr>';
+        } else {
+            return $course->{$key}[0];
+        }
     }
 }

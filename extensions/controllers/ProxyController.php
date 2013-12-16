@@ -29,7 +29,8 @@ class ProxyController extends BaseController {
         $this->destroyRemember();
         $this->redirect(array(
             '/site/home/login',
-            'returnUri' => Yii::app()->request->requestUri,
+            'returnUri' => str_replace(
+                '/', '\\', Yii::app()->request->requestUri),
         ));
     }
 
@@ -94,7 +95,7 @@ class ProxyController extends BaseController {
      */
     public function getCourse() {
         if ($this->student->course) {
-            return json_decode($this->student->course, true);
+            return json_decode($this->student->course);
         } else {
             $archives = (array)$this->student->getArchives();
             $courses = array_merge(

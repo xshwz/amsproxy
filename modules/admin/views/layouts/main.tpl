@@ -9,7 +9,7 @@
         相思青果后台管理
         </title>
 
-        <base href="<%= $this->setting['base_url']; %>">
+        <base href="<%= $this->createAbsoluteUrl('/') . '/'; %>">
 
         <link rel="shortcut icon" href="favicon.ico">
 

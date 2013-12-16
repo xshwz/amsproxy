@@ -1,0 +1,80 @@
+{
+    "text": [
+        {
+            "pattern": "^(c\\b|course\\b|课程)\\s*(\\d?)$",
+            "handler": {
+                "type": "function",
+                "function": "responseCourse",
+                "requireBind": true
+            }
+        },
+        {
+            "pattern": "^(curriculum|课程表|课表)$",
+            "handler": {
+                "type": "function",
+                "function": "responseCurriculum",
+                "requireBind": true
+            }
+        },
+        {
+            "pattern": "^(a|archives|学籍|个人档案)$",
+            "handler": {
+                "type": "function",
+                "function": "responseArchives",
+                "requireBind": true
+            }
+        },
+        {
+            "pattern": "^(r|rank exam|等级考试|等级考试成绩)$",
+            "handler": {
+                "type": "function",
+                "function": "responseRankExam",
+                "requireBind": true
+            }
+        },
+        {
+            "pattern": "^(s\\b|score\\b|成绩)\\s*(.*)$",
+            "handler": {
+                "type": "function",
+                "function": "responseScore",
+                "requireBind": true
+            }
+        },
+        {
+            "pattern": "^(about|关于)$",
+            "handler": {
+                "type": "news",
+                "articles": [
+                    {
+                        "title": "关于“相思青果”",
+                        "description": "　　“相思青果”是相思湖网站开发的教务系统代理，目的在于让同学们可以在外网使用教务系统，同时提供更好使用体验和更丰富的功能。\n\n　　“相思青果”公众号通过开发模式提供消息自动回复，向我们的公众号发送消息（比如“成绩”），即可查询成绩、课程等（前提是要绑定哦）。",
+                        "url": "http://xsh.gxun.edu.cn/ams/about"
+                    }
+                ]
+            }
+        },
+        {
+            "pattern": "^(help|帮助)$",
+            "handler": {
+                "type": "news",
+                "articles": [
+                    {
+                        "title": "帮助",
+                        "description": "• 涉及个人数据的指令，比如“课表“、”成绩”等需要绑定后才能使用。\n\n• 发送的消息不一定都能成功返回，要多试几次哦\n\n• 欢迎你直接在微信上向我们反馈！",
+                        "url": "http://xsh.gxun.edu.cn/ams/wechat"
+                    }
+                ]
+            }
+        }
+    ],
+    "onSubscribe": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "欢迎关注“相思青果”",
+                "description": "• 发送“关于”了解详情\n\n• 发送“帮助”获取帮助\n\n• 发送的消息不一定都能成功返回，要多试几次哦\n\n• 管理员不一定每时每刻在线，可能无法及时回复你的反馈，但我们保证尽快回复！\n\n• 祝你开心每一天~",
+                "url": "http://xsh.gxun.edu.cn/ams/wechat"
+            }
+        ]
+    }
+}

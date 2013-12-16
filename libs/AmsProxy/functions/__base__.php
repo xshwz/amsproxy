@@ -71,4 +71,13 @@ class __base__ {
      * @return array
      */
     public function parse($data) {}
+
+    /**
+     * TODO: auto calculate or get
+     *
+     * @return string
+     */
+    public function getXNXQ() {
+        return '20130';
+    }
 }

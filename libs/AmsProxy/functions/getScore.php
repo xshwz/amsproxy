@@ -43,6 +43,7 @@ class getScore extends __base__ {
                 '绩点',
                 '学分绩点',
             ),
+            'tbody' => array(),
         );
 
         $tables = $dom->getElementsByTagName('table');

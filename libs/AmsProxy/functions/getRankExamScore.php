@@ -16,6 +16,7 @@ class getRankExamScore extends __base__ {
                 '操作成绩',
                 '综合成绩',
             ),
+            'tbody' => array(),
         );
 
         $tables = $dom->getElementsByTagName('table');
