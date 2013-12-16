@@ -4,8 +4,8 @@
             <div class="logo img-responsive">
                 <img src="img/logo.png" width="64" alt="相思湖网站 logo">
             </div>
+            <p class="xsh"><a href="http://xsh.gxun.edu.cn/">相思湖网站</a></p>
             <h1><span>相思</span>青果</h1>
-            <p class="description"><em>广西民族大学教务系统代理</em></p>
             <a
                 href="<%= Yii::app()->createUrl('/proxy'); %>"
                 class="btn btn-lg btn-bottom">进入</a>

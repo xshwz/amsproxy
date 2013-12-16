@@ -8,8 +8,16 @@ class courseLine extends CWidget {
      */
     public $courses = array();
 
+    /**
+     * @var ing
+     */
+    public $wday;
+
     public function run() {
-        $weekCourses = $this->getWeekCourse($this->courses, (int)date('N'));
+        if (!isset($this->wday))
+            $this->wday = (int)date('N');
+
+        $weekCourses = Student::_getWeekCourse($this->courses, $this->wday);
 
         if (count($weekCourses) == 0) {
             echo '<p><img src="img/rage_comics/happy-epic-win.png" class="img-responsive" alt="rage comic - happy epic win"></p>';
@@ -21,8 +29,11 @@ class courseLine extends CWidget {
         echo '<ul>';
 
         foreach ($weekCourses as $course) {
-            $timeStart = Setting::$timetable[$course['lessonStart']][0];
-            $timeTo = Setting::$timetable[$course['lessonTo']][1];
+            $timeStart = Setting::$timetable[$course->lessonStart][0];
+            $timeTo = Setting::$timetable[$course->lessonTo][1];
+
+            $teacherName = $this->more($course, 'teacherName');
+            $location = $this->more($course, 'location');
 
             echo <<<EOT
             <li>
@@ -30,23 +41,23 @@ class courseLine extends CWidget {
                     <dl>
                         <dd>
                             <span class='glyphicon glyphicon-book'></span>
-                            {$course['courseName']}
+                            {$course->courseName}
                         </dd>
                         <dd>
                             <span class='glyphicon glyphicon-map-marker'></span>
-                            {$course['location']}
+                            {$location}
                         </dd>
                         <dd>
                             <span class='glyphicon glyphicon-time'></span>
-                            {$course['lessonStart']} - {$course['lessonTo']}（{$timeStart} - {$timeTo}）
+                            {$course->lessonStart} - {$course->lessonTo}（{$timeStart} - {$timeTo}）
                         </dd>
                         <dd>
                             <span class='glyphicon glyphicon-user'></span>
-                            {$course['teacherName']}
+                            {$teacherName}
                         </dd>
                         <dd>
                             <span class='glyphicon glyphicon-tag'></span>
-                            {$course['examType']}课
+                            {$course->examType}课
                         </dd>
                     </dl>
                     <div class="arrow"></div>
@@ -62,29 +73,28 @@ EOT;
     }
 
     /**
-     * @param array $courses
-     * @param int $weekDay
-     * @return array
+     * @param array $array
+     * @return string
      */
-    public function getWeekCourse($courses, $weekDay) {
-        $weekCourses = array();
-        foreach ($courses as $course) {
-            if ($course['weekDay'] == $weekDay) {
-                if (isset($weekCourses[$course['lessonStart']])) {
-                    $weekCourses[$course['lessonStart']]['teacherName'] .=
-                        '，' . $course['teacherName'];
-                    $weekCourses[$course['lessonStart']]['location'] .=
-                        '，' . $course['location'];
-                } else {
-                    $weekCourses[$course['lessonStart']] = $course;
-                }
-            }
+    public function implode($array) {
+        $result = '';
+        foreach ($array as $index => $item) {
+            $index += 1;
+            $result .= "{$index}、{$item}";
+            if ($index != count($array))
+                $result .= '<br>';
         }
+        return $result;
+    }
 
-        usort($weekCourses, function($a, $b){
-            return $a['lessonStart'] > $b['lessonStart'];
-        });
-
-        return $weekCourses;
+    public function more($course, $key) {
+        if (count($course->location) > 1) {
+            return
+                '<abbr title="' . $this->implode($course->{$key}) . '">' .
+                    $course->{$key}[0] .
+                '<abbr>';
+        } else {
+            return $course->{$key}[0];
+        }
     }
 }

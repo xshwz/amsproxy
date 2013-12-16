@@ -11,6 +11,7 @@ return array(
         'site' => array(
             'defaultController' => 'home',
         ),
+        'wechat',
     ),
     'defaultController' => 'site',
     'import' => array(
@@ -34,7 +35,6 @@ return array(
                 ''       => 'site/home/index',
                 'about'  => 'site/home/about',
                 'faq'    => 'site/home/faq',
-                'login'  => 'site/home/login',
                 'wechat' => 'site/wechat/index',
 
                 'api'          => 'site/home/api',

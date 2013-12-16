@@ -11,7 +11,7 @@
         相思青果
         </title>
 
-        <base href="<%= $this->setting['base_url']; %>">
+        <base href="<%= $this->createAbsoluteUrl('/') . '/'; %>">
 
         <link rel="shortcut icon" href="favicon.ico">
 

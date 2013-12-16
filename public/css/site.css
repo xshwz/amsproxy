@@ -53,6 +53,7 @@
 }
 .index #top h1 {
   color: #27ae60;
+  margin-bottom: 20px;
 }
 .index #top h1 span {
   color: #34495e;
@@ -117,6 +118,12 @@
 .index #footer .links a {
   font-size: 18px;
   color: #2ecc71;
+}
+p.xsh {
+  margin-top: 8px;
+}
+p.xsh a {
+  color: #27ae60;
 }
 .login-form {
   max-width: 320px;
