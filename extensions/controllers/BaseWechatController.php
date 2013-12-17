@@ -61,7 +61,12 @@ class BaseWechatController extends BaseController {
     public function eventHandler() {
         switch ($this->request->Event) {
             case 'subscribe':
-                $this->execHandler($this->config->onSubscribe);
+                $this->execHandler($this->config->event->subscribe);
+                break;
+
+            case 'CLICK':
+                $this->execHandler(
+                    $this->config->event->CLICK->{$this->request->EventKey});
         }
     }
 
@@ -142,7 +147,7 @@ class BaseWechatController extends BaseController {
         ));
     }
 
-    public function responseCurriculum($args=null) {
+    public function responseCurriculum() {
         $this->responseNews(array(
             (object)array(
                 'title' => '课程表',
@@ -192,7 +197,7 @@ class BaseWechatController extends BaseController {
         ));
     }
 
-    public function responseRankExam($args=null) {
+    public function responseRankExam() {
         $rankExamScoreTable = json_decode($this->student->rank_exam);
         $rankExamScoreTable = $rankExamScoreTable->score->tbody;
 
@@ -225,7 +230,7 @@ class BaseWechatController extends BaseController {
         ));
     }
 
-    public function responseArchives($args=null) {
+    public function responseArchives() {
         $responseText = '';
         foreach (json_decode($this->student->archives) as $key => $value)
             $responseText .= "{$key}：\n{$value}\n\n";
@@ -248,7 +253,7 @@ class BaseWechatController extends BaseController {
             $this->responseNews(array(
                 (object)array(
                     'title' => '你还没有绑定哦',
-                    'description' => '点击此消息进行页面跳转，登录成功后即可完成绑定！',
+                    'description' => '点击此消息，登录成功后即可完成绑定！',
                     'url' => $this->createAbsoluteUrl(
                         '/proxy/wechat/bind',
                         array(
@@ -260,5 +265,66 @@ class BaseWechatController extends BaseController {
 
             Yii::app()->end();
         }
+    }
+
+    public function responseBind() {
+        $this->responseNews(array(
+            (object)array(
+                'title' => '绑定',
+                'description' => '点击此消息，登录成功后即可完成绑定！',
+                'url' => $this->createAbsoluteUrl(
+                    '/proxy/wechat/bind',
+                    array(
+                        'openId' => $this->request->FromUserName,
+                    )
+                ),
+            )
+        ));
+    }
+
+    public function responseUnBind() {
+        $this->student->wechat_openid = null;
+        $this->student->save();
+        $this->responseText('解除绑定成功！');
+    }
+
+    public function responseHelp() {
+        $this->responseNews(array(
+            (object)array(
+                'title' => '帮助',
+                'description' =>
+                    "• 涉及个人数据的指令，比如“课表“、”成绩”等需要绑定后才能使用\n\n" .
+                    "• 发送的消息不一定都能成功返回，要多试几次哦\n\n" .
+                    "• 欢迎你直接在微信上向我们反馈！\n\n\n" .
+                    "系统没有回复的原因\n" .
+                    "———————————\n" .
+                    "• 可能在教务系统里并没有相关的数据，建议你先去教务系统确认\n\n" .
+                    "• 如果教务系统确实有数据，那么可能是我们的系统没有获取到或者没有更新，发送指令“更新”可以更新数据\n\n" .
+                    "• 可能是遇到了 Bug 或者我们的服务器挂了，导致无法正常提供服务\n\n" .
+                    "\n支持的指令\n" .
+                    "——————\n" .
+                    "• 关于：“相思青果”介绍\n\n" .
+                    "• 学籍：返回个人学籍档案\n\n" .
+                    "• 课表：返回一周的课表，需要点击消息查看\n\n" .
+                    "• 课程：默认返回当天课程，可带参数，比如“课程3”返回星期三的课程\n\n" .
+                    "• 成绩：默认返回最近一个学期的成绩，可带参数，比如“成绩1”返回第一个学期的成绩\n\n" .
+                    "• 等级考试：返回等级考试成绩\n\n" .
+                    "• 绑定：不解释\n\n" .
+                    "• 解除绑定：不解释",
+                'url' => $this->createAbsoluteUrl('/wechat'),
+            )
+        ));
+    }
+
+    public function responseAbout() {
+        $this->responseNews(array(
+            (object)array(
+                'title' => '关于“相思青果”',
+                'description' =>
+                    "“相思青果”是相思湖网站开发的教务系统代理，目的在于让同学们可以在外网使用教务系统，同时提供更好使用体验和更丰富的功能。\n\n" .
+                    "“相思青果”公众号通过开发模式提供消息自动回复，向我们的公众号发送消息（比如“成绩”），即可查询成绩、课程等（前提是要绑定哦）。",
+                'url' => $this->createAbsoluteUrl('/about'),
+            )
+        ));
     }
 }

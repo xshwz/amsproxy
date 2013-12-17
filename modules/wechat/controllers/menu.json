@@ -1,0 +1,39 @@
+{
+    "button":[
+        {	
+            "type": "view",
+            "name": "BBS",
+            "url": "http://bbs.gxun.cn/portal.php"
+        },
+        {
+            "name": "相思青果",
+            "sub_button": [
+                {
+                    "type": "click",
+                    "name": "关于",
+                    "key": "about"
+                },
+                {
+                    "type": "click",
+                    "name": "帮助",
+                    "key": "help"
+                },
+                {
+                    "type": "click",
+                    "name": "今日课程",
+                    "key": "course"
+                },
+                {
+                    "type": "click",
+                    "name": "成绩",
+                    "key": "score"
+                },
+                {
+                    "type": "click",
+                    "name": "等级考试成绩",
+                    "key": "rankExamScore"
+                }
+            ]
+        }
+    ]
+}

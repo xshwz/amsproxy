@@ -41,7 +41,7 @@
             }
         },
         {
-            "pattern": "^(about|关于)$",
+            "pattern": "^(about|关于相思青果)$",
             "handler": {
                 "type": "function",
                 "function": "responseAbout",
@@ -91,11 +91,48 @@
             "type": "news",
             "articles": [
                 {
-                    "title": "欢迎关注“相思青果”",
+                    "title": "欢迎关注“相思湖网站”",
                     "description": "• 发送“关于”了解详情\n\n• 发送“帮助”获取帮助\n\n• 发送的消息不一定都能成功返回，要多试几次哦\n\n• 管理员不一定每时每刻在线，可能无法及时回复你的反馈，但我们保证尽快回复！\n\n• 祝你开心每一天~",
-                    "url": "http://xsh.gxun.edu.cn/ams/wechat"
+                    "url": "bbs.gxun.cn/portal.php"
                 }
             ]
+        },
+        "CLICK": {
+            "help": {
+                "type": "function",
+                "function": "responseHelp",
+                "requireBind": false
+            },
+            "about": {
+                "type": "function",
+                "function": "responseAbout",
+                "requireBind": false
+            },
+            "course": {
+                "type": "function",
+                "function": "responseCourse",
+                "requireBind": true
+            },
+            "curriculum": {
+                "type": "function",
+                "function": "responseCurriculum",
+                "requireBind": true
+            },
+            "archives": {
+                "type": "function",
+                "function": "responseArchives",
+                "requireBind": true
+            },
+            "rankExamScore": {
+                "type": "function",
+                "function": "responseRankExam",
+                "requireBind": true
+            },
+            "score": {
+                "type": "function",
+                "function": "responseScore",
+                "requireBind": true
+            }
         }
     }
 }
