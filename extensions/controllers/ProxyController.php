@@ -27,11 +27,23 @@ class ProxyController extends BaseController {
 
     public function notLoggedHandler() {
         $this->destroyRemember();
-        $this->redirect(array(
-            '/site/home/login',
-            'returnUri' => str_replace(
-                '/', '\\', Yii::app()->request->requestUri),
-        ));
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $sid = $_POST['sid'];
+            $pwd = $_POST['pwd'];
+
+            if (!$this->login($sid, $pwd)) {
+                $this->render('/common/login', array(
+                    'error' => true,
+                    'sid' => $sid,
+                ));
+
+                Yii::app()->end();
+            }
+        } else {
+            $this->render('/common/login');
+            Yii::app()->end();
+        }
     }
 
     /**
