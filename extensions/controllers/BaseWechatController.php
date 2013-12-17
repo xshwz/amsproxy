@@ -11,6 +11,11 @@ class BaseWechatController extends BaseController {
     public $request;
 
     /**
+     * @var WechatLog
+     */
+    public $logger;
+
+    /**
      * @var array
      */
     public $config;
@@ -18,14 +23,18 @@ class BaseWechatController extends BaseController {
     public function init() {
         parent::init();
 
+        if (!$this->checkSignature($this->setting->wechat_token))
+            Yii::app()->end();
+
         if (isset($_GET['echostr'])) {
             echo $_GET['echostr'];
             Yii::app()->end();
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->request = simplexml_load_string(
-                file_get_contents('php://input'));
+            $input = file_get_contents('php://input');
+            $this->createLogger($input);
+            $this->request = simplexml_load_string($input);
             $this->student = Student::model()->find('wechat_openid=:openId',
                 array(':openId' => $this->request->FromUserName));
             $this->config = json_decode(
@@ -42,6 +51,16 @@ class BaseWechatController extends BaseController {
         }
     }
 
+    /**
+     * @param string $token
+     * @return bool
+     */
+    public function checkSignature($token) {
+        $array = array($token, $_GET['timestamp'], $_GET['nonce']);
+        sort($array);
+        return sha1(implode($array)) == $_GET['signature'];
+    }
+
     public function actionIndex() {}
 
     /**
@@ -49,6 +68,7 @@ class BaseWechatController extends BaseController {
      */
     public function responseText($content) {
         $this->render('/common/text', array('content' => $content));
+        $this->setLoggerState(1);
     }
 
     /**
@@ -56,6 +76,7 @@ class BaseWechatController extends BaseController {
      */
     public function responseNews($articles) {
         $this->render('/common/news', array('articles' => $articles));
+        $this->setLoggerState(1);
     }
 
     public function eventHandler() {
@@ -326,5 +347,22 @@ class BaseWechatController extends BaseController {
                 'url' => $this->createAbsoluteUrl('/about'),
             )
         ));
+    }
+
+    /**
+     * @param string $message
+     */
+    public function createLogger($message) {
+        $this->logger = new WechatLog;
+        $this->logger->message = $message;
+        $this->logger->save();
+    }
+
+    /**
+     * @param int $state
+     */
+    public function setLoggerState($state) {
+        $this->logger->state = $state;
+        $this->logger->save();
     }
 }
