@@ -142,6 +142,9 @@ class BaseController extends CController {
     }
 
     public function renderStyle() {
+        if (!$this->getAction())
+            return;
+
         $styleFile =
             $this->getViewPath() . '/' .
             Yii::app()->controller->action->id . '.css';
@@ -154,9 +157,12 @@ class BaseController extends CController {
     }
 
     public function renderScript() {
+        if (!$this->getAction())
+            return;
+
         $scriptFile =
             $this->getViewPath() . '/' .
-            Yii::app()->controller->action->id . '.js';
+            $this->getAction()->id . '.js';
 
         if (file_exists($scriptFile))
             $this->script .= $this->renderFile(
