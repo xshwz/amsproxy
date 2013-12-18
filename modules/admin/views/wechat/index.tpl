@@ -8,10 +8,10 @@ $student = Student::model()->find('wechat_openid=:openId',
 $from = '';
 
 if ($message->ToUserName == 'gh_67699ccd1b26')
-    $from = '来自订阅号';
+    $from = '来自<span class="text-warning">订阅号</span>';
 
 if ($message->ToUserName == 'gh_a5d994754b2a')
-    $from = '来自服务号';
+    $from = '来自<span class="text-info">服务号</span>';
 
 if ($log->state)
     $stateClass = 'success';
@@ -39,9 +39,7 @@ switch ($message->MsgType) {
 }
 %>
 <div class="session <%= $stateClass %>">
-    <blockquote>
-    <%= $content %>
-    </blockquote>
+    <p><%= $content %></p>
     <div class="bottom">
         <div class="pull-left">
             <p><em><small>
