@@ -2,16 +2,24 @@
 <%
 foreach ($logs as $log):
 $message = simplexml_load_string($log->message);
-$student = Student::model()->find('wechat_openid=:openId',
-    array(':openId' => $message->FromUserName));
-
 $from = '';
 
-if ($message->ToUserName == 'gh_67699ccd1b26')
+if ($message->ToUserName == 'gh_67699ccd1b26') {
+    $field = 'openid_subscribe';
     $from = '来自<span class="text-warning">订阅号</span>';
+}
 
-if ($message->ToUserName == 'gh_a5d994754b2a')
+if ($message->ToUserName == 'gh_a5d994754b2a') {
+    $field = 'openid_server';
     $from = '来自<span class="text-info">服务号</span>';
+}
+
+$student = Student::model()->find(
+    $field . '=:openId',
+    array(
+        ':openId' => $message->FromUserName,
+    )
+);
 
 if ($log->state)
     $stateClass = 'success';
