@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 
   .colors(@color: @color-dark) {
-    color: @color-light;
+    color: @color-white;
     border-color: @color;
     background-color: @color;
   }
@@ -202,6 +202,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .text-danger {
   color: @color-danger;
+
+  &:hover {
+    color: @color-danger;
+  }
 }
 .text-success {
   color: @color-success;
