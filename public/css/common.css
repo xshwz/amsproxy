@@ -204,6 +204,18 @@ h6,
 .label {
   background-color: #1abc9c;
 }
+.label-warning {
+  background-color: #f39c12;
+}
+.label-success {
+  background-color: #2ecc71;
+}
+.label-danger {
+  background-color: #e74c3c;
+}
+.label-info {
+  background-color: #3498db;
+}
 .alert {
   border: none;
   color: #ffffff;

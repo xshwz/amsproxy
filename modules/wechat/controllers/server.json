@@ -41,7 +41,7 @@
             }
         },
         {
-            "pattern": "^(about|关于相思青果)$",
+            "pattern": "^(about|关于)$",
             "handler": {
                 "type": "function",
                 "function": "responseAbout",
