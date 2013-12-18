@@ -100,9 +100,13 @@
         {
             "pattern": "丘翔|周良|徐伟榕",
             "handler": {
-                "type": "function",
-                "function": "responseRandRageFace",
-                "requireBind": false
+                "type": "news",
+                "articles": [
+                    {
+                        "pictureUrl": "http://xsh.gxun.edu.cn/ams/img/rage_comics/fuck-that-bitch-yao-ming.png",
+                        "url": "http://xsh.gxun.edu.cn/ams/img/rage_comics/fuck-that-bitch-yao-ming.png"
+                    }
+                ]
             }
         }
     ],
