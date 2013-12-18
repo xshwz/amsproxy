@@ -376,4 +376,14 @@ class WechatBaseController extends BaseController {
         $this->logger->state = $state;
         $this->logger->save();
     }
+
+    public function responseRandRageFace() {
+        $url = 'http://xsh.gxun.edu.cn/rage_faces/' . rand(1, 449) . '.png';
+        $this->responseNews(array(
+            (object)array(
+                'pictureUrl' => $url,
+                'url' => $url,
+            )
+        ));
+    }
 }

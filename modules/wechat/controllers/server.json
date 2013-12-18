@@ -84,6 +84,26 @@
                     }
                 ]
             }
+        },
+        {
+            "pattern": "^(developer|开发者)$",
+            "handler": {
+                "type": "news",
+                "articles": [
+                    {
+                        "title": "开发者",
+                        "description": "姓名：丘翔\n班级：10网络工程\n邮箱：xiang.qiu@foxmail.com\n\n姓名：徐伟榕\n班级：11软件工程1班\n邮箱：weirongxuraidou@gmail.com"
+                    }
+                ]
+            }
+        },
+        {
+            "pattern": "丘翔|周良|徐伟榕",
+            "handler": {
+                "type": "function",
+                "function": "responseRandRageFace",
+                "requireBind": false
+            }
         }
     ],
     "event": {
