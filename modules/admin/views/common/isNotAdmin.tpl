@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>You are not an administrator</title>
+        <title>Are you fucking kidding me</title>
+        <base href="<%= $this->createAbsoluteUrl('/') . '/'; %>">
     </head>
     <body>
         <img

@@ -63,7 +63,7 @@
             </div>
             <div class="modal-body">
                 <form
-                    id="ajaxSendForm"
+                    id="sendForm"
                     action="<%= Yii::app()->createUrl('admin/message/send'); %>"
                     method="post">
                     <input type="hidden" name="sender" value="0">
