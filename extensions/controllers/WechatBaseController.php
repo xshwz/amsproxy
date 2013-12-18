@@ -1,5 +1,5 @@
 <?php
-class BaseWechatController extends BaseController {
+class WechatBaseController extends BaseController {
     /**
      * @var Student
      */
@@ -35,8 +35,12 @@ class BaseWechatController extends BaseController {
             $input = file_get_contents('php://input');
             $this->createLogger($input);
             $this->request = simplexml_load_string($input);
-            $this->student = Student::model()->find('wechat_openid=:openId',
-                array(':openId' => $this->request->FromUserName));
+            $this->student = Student::model()->find(
+                $this->openIdField . '=:openId',
+                array(
+                    ':openId' => $this->request->FromUserName,
+                )
+            );
             $this->config = json_decode(
                 file_get_contents($this->getConfigFile()));
 
@@ -160,7 +164,8 @@ class BaseWechatController extends BaseController {
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/weekCourse',
                     array(
-                        'openId' => $this->student->wechat_openid,
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
                         'wday' => $wday,
                     )
                 ),
@@ -176,7 +181,8 @@ class BaseWechatController extends BaseController {
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/curriculum',
                     array(
-                        'openId' => $this->student->wechat_openid,
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
                     )
                 ),
             ),
@@ -211,7 +217,8 @@ class BaseWechatController extends BaseController {
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/score',
                     array(
-                        'openId' => $this->student->wechat_openid,
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
                     )
                 ),
             ),
@@ -244,7 +251,8 @@ class BaseWechatController extends BaseController {
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/rankExam',
                     array(
-                        'openId' => $this->student->wechat_openid,
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
                     )
                 ),
             ),
@@ -262,7 +270,8 @@ class BaseWechatController extends BaseController {
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/archives',
                     array(
-                        'openId' => $this->student->wechat_openid,
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
                     )
                 ),
             ),
@@ -279,6 +288,7 @@ class BaseWechatController extends BaseController {
                         '/proxy/wechat/bind',
                         array(
                             'openId' => $this->request->FromUserName,
+                            'field' => $this->openIdField,
                         )
                     ),
                 )
@@ -297,6 +307,7 @@ class BaseWechatController extends BaseController {
                     '/proxy/wechat/bind',
                     array(
                         'openId' => $this->request->FromUserName,
+                        'field' => $this->openIdField,
                     )
                 ),
             )
@@ -304,7 +315,7 @@ class BaseWechatController extends BaseController {
     }
 
     public function responseUnBind() {
-        $this->student->wechat_openid = null;
+        $this->student->{$this->openIdField} = null;
         $this->student->save();
         $this->responseText('解除绑定成功！');
     }
