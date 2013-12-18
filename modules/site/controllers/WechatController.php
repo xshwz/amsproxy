@@ -23,9 +23,14 @@ class WechatController extends BaseController {
     public function init() {
         parent::init();
 
-        if (isset($_GET['openId']))
-            $this->student = Student::model()->find('wechat_openid=:openId',
-                array(':openId' => $_GET['openId']));
+        if (isset($_GET['openId'])) {
+            $this->student = Student::model()->find(
+                $_GET['field'] . '=:openId',
+                array(
+                    ':openId' => $_GET['openId'],
+                )
+            );
+        }
     }
 
     public function actionIndex() {
