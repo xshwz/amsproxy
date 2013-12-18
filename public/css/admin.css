@@ -45,6 +45,9 @@ body {
 .messages .session:last-child {
   margin: 0;
 }
+.messages .session.success {
+  border: 1px solid #2ecc71;
+}
 .messages .session > div.user,
 .messages .session > div.admin {
   padding: 4px 8px;
@@ -97,9 +100,19 @@ body {
   font-size: 12px;
   color: #7f8c8d;
 }
+.messages .session blockquote {
+  margin-bottom: 0;
+}
 .messages .session .bottom {
   position: relative;
   top: 4px;
+}
+.messages .session .bottom a:hover {
+  text-decoration: none;
+}
+.messages .session .bottom .pull-right > a,
+.messages .session .bottom .pull-right > span {
+  margin: 0 2px;
 }
 .search-form {
   margin-bottom: 12px;

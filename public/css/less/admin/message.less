@@ -10,6 +10,10 @@
       margin: 0;
     }
 
+    &.success {
+      border: 1px solid #2ecc71;
+    }
+
     > div {
       &.user, &.admin {
         padding: 4px 8px;
@@ -75,9 +79,23 @@
       }
     }
 
+    blockquote {
+      margin-bottom: 0;
+    }
+
     .bottom {
       position: relative;
       top: 4px;
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      .pull-right {
+        > a, > span {
+          margin: 0 2px;
+        }
+      }
     }
   }
 }

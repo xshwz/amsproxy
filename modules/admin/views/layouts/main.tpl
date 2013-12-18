@@ -64,6 +64,12 @@
                                     ),
                                     array(
                                         'label' => '
+                                            <span class="glyphicon glyphicon-phone"></span>
+                                            <span class="visible-xs">微信</span>',
+                                        'url' => array('/admin/wechat/index'),
+                                    ),
+                                    array(
+                                        'label' => '
                                             <span class="glyphicon glyphicon-cog"></span>
                                             <span class="visible-xs">设置</span>',
                                         'url' => array('/admin/setting/index'),
