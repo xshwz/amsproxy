@@ -1,3 +1,4 @@
+<?php if (!isset($message)): ?>
 $(function(){
     $('#termStats').highcharts({
         chart: {
@@ -66,3 +67,4 @@ $(function(){
         return typeof(a) == 'undefined' ? 0 : a.length;
     }
 });
+<?php endif; ?>
