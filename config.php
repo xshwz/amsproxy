@@ -17,6 +17,7 @@ return array(
     'import' => array(
         'ext.controllers.*',
         'application.libs.AmsProxy.AmsProxy',
+        'application.libs.SimplePie.*',
         'application.libs.Mcrypt',
         'application.models.*',
     ),

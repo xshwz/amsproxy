@@ -41,6 +41,7 @@ class WechatBaseController extends BaseController {
                     ':openId' => $this->request->FromUserName,
                 )
             );
+
             $this->config = json_decode(
                 file_get_contents($this->getConfigFile()));
 
@@ -323,28 +324,40 @@ class WechatBaseController extends BaseController {
     public function responseHelp() {
         $this->responseNews(array(
             (object)array(
-                'title' => '帮助',
-                'description' =>
+                'title' => "帮助",
+            ),
+            (object)array(
+                'title' =>
                     "• 涉及个人数据的指令，比如“课表“、”成绩”等需要绑定后才能使用\n\n" .
                     "• 发送的消息不一定都能成功返回，要多试几次哦\n\n" .
-                    "• 欢迎你直接在微信上向我们反馈！\n\n\n" .
-                    "系统没有回复的原因\n" .
-                    "———————————\n" .
+                    "• 欢迎你直接在微信上向我们反馈！",
+                'url' => $this->createAbsoluteUrl('/wechat'),
+            ),
+            (object)array(
+                'title' => "系统没有回复的原因",
+            ),
+            (object)array(
+                'title' =>
                     "• 可能在教务系统里并没有相关的数据，建议你先去教务系统确认\n\n" .
                     "• 如果教务系统确实有数据，那么可能是我们的系统没有获取到或者没有更新，发送指令“更新”可以更新数据\n\n" .
-                    "• 可能是遇到了 Bug 或者我们的服务器挂了，导致无法正常提供服务\n\n" .
-                    "\n支持的指令\n" .
-                    "——————\n" .
+                    "• 可能是遇到了 Bug 或者我们的服务器挂了，导致无法正常提供服务",
+                'url' => $this->createAbsoluteUrl('/wechat'),
+            ),
+            (object)array(
+                'title' => "支持的指令",
+            ),
+            (object)array(
+                'title' =>
                     "• 关于：“相思青果”介绍\n\n" .
                     "• 学籍：返回个人学籍档案\n\n" .
                     "• 课表：返回一周的课表，需要点击消息查看\n\n" .
                     "• 课程：默认返回当天课程，可带参数，比如“课程3”返回星期三的课程\n\n" .
                     "• 成绩：默认返回最近一个学期的成绩，可带参数，比如“成绩1”返回第一个学期的成绩\n\n" .
                     "• 等级考试：返回等级考试成绩\n\n" .
-                    "• 绑定：不解释\n\n" .
-                    "• 解除绑定：不解释",
+                    "• 绑定：←_←\n\n" .
+                    "• 解除绑定：→_→",
                 'url' => $this->createAbsoluteUrl('/wechat'),
-            )
+            ),
         ));
     }
 
