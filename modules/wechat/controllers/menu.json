@@ -1,27 +1,77 @@
 {
-    "button":[
-        {	
-            "type": "view",
+    "button": [
+        {
+            "name": "资讯",
+            "sub_button": [
+                {
+                    "type": "click",
+                    "name": "相思湖水",
+                    "key": "相思湖水"
+                },
+                {
+                    "type": "click",
+                    "name": "校园速递",
+                    "key": "校园速递"
+                },
+                {
+                    "type": "click",
+                    "name": "学院来风",
+                    "key": "学院来风"
+                },
+                {
+                    "type": "click",
+                    "name": "高校动态",
+                    "key": "高校动态"
+                },
+                {
+                    "type": "click",
+                    "name": "文悦星空",
+                    "key": "文悦星空"
+                }
+             ]
+        },
+        {
             "name": "BBS",
-            "url": "http://bbs.gxun.cn/portal.php"
+            "sub_button": [
+                {
+                    "type": "click",
+                    "name": "最新发帖",
+                    "key": "最新发帖"
+                },
+                {
+                    "type": "click",
+                    "name": "新生专栏",
+                    "key": "新生专栏"
+                },
+                {
+                    "type": "click",
+                    "name": "贸易市场",
+                    "key": "贸易市场"
+                },
+                {
+                    "type": "click",
+                    "name": "心情随笔",
+                    "key": "心情随笔"
+                },
+                {
+                    "type": "click",
+                    "name": "综合新闻",
+                    "key": "综合新闻"
+                }
+            ]
         },
         {
             "name": "相思青果",
             "sub_button": [
                 {
                     "type": "click",
-                    "name": "关于",
-                    "key": "about"
-                },
-                {
-                    "type": "click",
-                    "name": "帮助",
-                    "key": "help"
-                },
-                {
-                    "type": "click",
                     "name": "今日课程",
                     "key": "course"
+                },
+                {
+                    "type": "click",
+                    "name": "等级考试",
+                    "key": "rankExamScore"
                 },
                 {
                     "type": "click",
@@ -30,8 +80,13 @@
                 },
                 {
                     "type": "click",
-                    "name": "等级考试成绩",
-                    "key": "rankExamScore"
+                    "name": "帮助",
+                    "key": "help"
+                },
+                {
+                    "type": "click",
+                    "name": "关于",
+                    "key": "about"
                 }
             ]
         }
