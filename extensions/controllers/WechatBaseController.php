@@ -45,7 +45,7 @@ class WechatBaseController extends BaseController {
             );
 
             $this->config = json_decode(
-                file_get_contents($this->getConfigFile()));
+                $this->renderFile($this->getConfigFile(), null, true));
 
             switch ($this->request->MsgType) {
                 case 'text':

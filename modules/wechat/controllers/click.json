@@ -1,0 +1,123 @@
+{
+    "help": {
+        "type": "function",
+        "function": "responseHelp",
+        "requireBind": false
+    },
+    "about": {
+        "type": "function",
+        "function": "responseAbout",
+        "requireBind": false
+    },
+    "course": {
+        "type": "function",
+        "function": "responseCourse",
+        "requireBind": true
+    },
+    "curriculum": {
+        "type": "function",
+        "function": "responseCurriculum",
+        "requireBind": true
+    },
+    "archives": {
+        "type": "function",
+        "function": "responseArchives",
+        "requireBind": true
+    },
+    "rankExamScore": {
+        "type": "function",
+        "function": "responseRankExam",
+        "requireBind": true
+    },
+    "score": {
+        "type": "function",
+        "function": "responseScore",
+        "requireBind": true
+    },
+    "相思湖水": {
+        "type": "function",
+        "function": "responsePortal",
+        "param": 1,
+        "requireBind": false
+    },
+    "校园速递": {
+        "type": "function",
+        "function": "responsePortal",
+        "param": 8,
+        "requireBind": false
+    },
+    "学院来风": {
+        "type": "function",
+        "function": "responsePortal",
+        "param": 9,
+        "requireBind": false
+    },
+    "高校动态": {
+        "type": "function",
+        "function": "responsePortal",
+        "param": 11,
+        "requireBind": false
+    },
+    "文悦星空": {
+        "type": "function",
+        "function": "responsePortal",
+        "param": 6,
+        "requireBind": false
+    },
+
+    "最新发帖": {
+        "type": "function",
+        "function": "responseBBS",
+        "param": {
+            "title": "最新发帖",
+            "logo": "http://bbs.gxun.cn/static/image/common/logo.gif",
+            "url": "http://bbs.gxun.cn/forum.php",
+            "fid": 0
+        },
+        "requireBind": false
+    },
+    "新生专栏": {
+        "type": "function",
+        "function": "responseBBS",
+        "param": {
+            "title": "新生专栏",
+            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/xinsheng.gif",
+            "url": "http://bbs.gxun.cn/forum-174-1.html",
+            "fid": 174
+        },
+        "requireBind": false
+    },
+    "贸易市场": {
+        "type": "function",
+        "function": "responseBBS",
+        "param": {
+            "title": "贸易市场",
+            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/43.gif",
+            "url": "http://bbs.gxun.cn/forum-43-1.html",
+            "fid": 43
+        },
+        "requireBind": false
+    },
+    "心情随笔": {
+        "type": "function",
+        "function": "responseBBS",
+        "param": {
+            "title": "心情随笔",
+            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/56.gif",
+            "url": "http://bbs.gxun.cn/forum-56-1.html",
+            "fid": 56
+        },
+        "requireBind": false
+    },
+    "综合新闻": {
+        "type": "function",
+        "function": "responseBBS",
+        "param": {
+            "title": "综合新闻",
+            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/131.gif",
+            "url": "http://bbs.gxun.cn/forum-131-1.html",
+            "fid": 131
+        },
+        "requireBind": false
+    }
+}

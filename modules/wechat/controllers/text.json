@@ -1,0 +1,112 @@
+[
+    {
+        "pattern": "^(c\\b|course\\b|课程)\\s*(\\d?)$",
+        "handler": {
+            "type": "function",
+            "function": "responseCourse",
+            "requireBind": true
+        }
+    },
+    {
+        "pattern": "^(curriculum|课程表|课表)$",
+        "handler": {
+            "type": "function",
+            "function": "responseCurriculum",
+            "requireBind": true
+        }
+    },
+    {
+        "pattern": "^(a|archives|学籍|个人档案)$",
+        "handler": {
+            "type": "function",
+            "function": "responseArchives",
+            "requireBind": true
+        }
+    },
+    {
+        "pattern": "^(r|rank exam|等级考试|等级考试成绩)$",
+        "handler": {
+            "type": "function",
+            "function": "responseRankExam",
+            "requireBind": true
+        }
+    },
+    {
+        "pattern": "^(s\\b|score\\b|成绩)\\s*(.*)$",
+        "handler": {
+            "type": "function",
+            "function": "responseScore",
+            "requireBind": true
+        }
+    },
+    {
+        "pattern": "^(about|关于)$",
+        "handler": {
+            "type": "function",
+            "function": "responseAbout",
+            "requireBind": false
+        }
+    },
+    {
+        "pattern": "^(help|帮助)$",
+        "handler": {
+            "type": "function",
+            "function": "responseHelp",
+            "requireBind": false
+        }
+    },
+    {
+        "pattern": "^(bind|绑定)$",
+        "handler": {
+            "type": "function",
+            "function": "responseBind",
+            "requireBind": false
+        }
+    },
+    {
+        "pattern": "^(unbind|解除绑定)$",
+        "handler": {
+            "type": "function",
+            "function": "responseUnBind",
+            "requireBind": true
+        }
+    },
+    {
+        "pattern": "^(update|更新)$",
+        "handler": {
+            "type": "news",
+            "articles": [
+                {
+                    "title": "更新数据",
+                    "description": "点击更新",
+                    "url": "http://xsh.gxun.edu.cn/ams/proxy/setting/update"
+                }
+            ]
+        }
+    },
+    {
+        "pattern": "^(developer|开发者)$",
+        "handler": {
+            "type": "news",
+            "articles": [
+                {
+                    "title": "开发者",
+                    "description": "姓名：丘翔\n班级：10网络工程\n邮箱：xiang.qiu@foxmail.com\n\n姓名：徐伟榕\n班级：11软件工程1班\n邮箱：weirongxuraidou@gmail.com"
+                }
+            ]
+        }
+    },
+    {
+        "pattern": "丘翔|周良|徐伟榕|test",
+        "handler": {
+            "type": "news",
+            "articles": [
+                {
+                    "title": "你这么做，你爸妈知道吗？",
+                    "pictureUrl": "http://xsh.gxun.edu.cn/ams/img/rage_comics/fuck-that-bitch-yao-ming.png",
+                    "url": "http://xsh.gxun.edu.cn/ams/img/rage_comics/fuck-that-bitch-yao-ming.png"
+                }
+            ]
+        }
+    }
+]
