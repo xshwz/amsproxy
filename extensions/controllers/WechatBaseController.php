@@ -23,8 +23,10 @@ class WechatBaseController extends BaseController {
     public function init() {
         parent::init();
 
+        /*
         if (!$this->checkSignature($this->setting->wechat_token))
             Yii::app()->end();
+        */
 
         if (isset($_GET['echostr'])) {
             echo $_GET['echostr'];
@@ -125,6 +127,9 @@ class WechatBaseController extends BaseController {
                 if ($handler->requireBind)
                     $this->requireBind();
 
+                if (isset($handler->param))
+                    $args = $handler->param;
+
                 $this->{$handler->function}($args);
         }
     }
@@ -195,12 +200,18 @@ class WechatBaseController extends BaseController {
 
         $scoreType = $params[2] ? (int)$params[2] : 1; 
         $scoreTable = json_decode($this->student->score, true);
-        $scoreTable = $scoreTable[$scoreType]['tbody'];
-        $termNames = array_keys($scoreTable);
-        $termIndex = $params[1] ? (int)($params[1]) - 1 : count($termNames) - 1;
 
-        if ($scoreTable) {
+        if ($scoreTable &&
+            isset($scoreTable[$scoreType]['tbody']) &&
+            $scoreTable[$scoreType]['tbody']) {
+
+            $scoreTable = $scoreTable[$scoreType]['tbody'];
+            $termNames = array_keys($scoreTable);
+            $termIndex = $params[1] ? (int)($params[1]) - 1 : count($termNames) - 1;
+
+            $title = $termNames[$termIndex];
             $responseText = '';
+
             foreach ($scoreTable[$termNames[$termIndex]] as $score) {
                 $courseName = preg_replace('/\[.*?\]/', '', $score[0]);
                 $responseText .= "课程：{$courseName}\n";
@@ -208,12 +219,15 @@ class WechatBaseController extends BaseController {
                 $responseText .= "成绩：{$score[6]}\n\n";
             }
         } else {
-            $responseText = '暂无数据';
+            $title = '暂无数据';
+            $responseText =
+                "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
+                "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新数据”（前提是教务系统有相关数据哦）";
         }
 
         $this->responseNews(array(
             (object)array(
-                'title' => $termNames[$termIndex],
+                'title' => $title,
                 'description' => trim($responseText),
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/score',
@@ -228,11 +242,11 @@ class WechatBaseController extends BaseController {
 
     public function responseRankExam() {
         $rankExamScoreTable = json_decode($this->student->rank_exam);
-        $rankExamScoreTable = $rankExamScoreTable->score->tbody;
 
-        if ($rankExamScoreTable) {
+        if (isset($rankExamScoreTable->score->tbody)) {
+            $title = '等级考试成绩';
             $responseText = '';
-            foreach($rankExamScoreTable as $group) {
+            foreach($rankExamScoreTable->score->tbody as $group) {
                 foreach ($group as $row) {
                     $responseText .= "考试科目：{$row[0]}\n";
                     $responseText .= "考试年月：{$row[1]}\n";
@@ -242,12 +256,15 @@ class WechatBaseController extends BaseController {
                 }
             }
         } else {
-            $responseText = '暂无数据';
+            $title = '暂无数据';
+            $responseText =
+                "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
+                "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新数据”（前提是教务系统有相关数据哦）";
         }
 
         $this->responseNews(array(
             (object)array(
-                'title' => '等级考试成绩',
+                'title' => $title,
                 'description' => trim($responseText),
                 'url' => $this->createAbsoluteUrl(
                     '/site/wechat/rankExam',
@@ -322,29 +339,33 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseHelp() {
+        $url = $this->createAbsoluteUrl('/wechat');
         $this->responseNews(array(
             (object)array(
                 'title' => "帮助",
+                'url' => $url,
             ),
             (object)array(
                 'title' =>
                     "• 涉及个人数据的指令，比如“课表“、”成绩”等需要绑定后才能使用\n\n" .
                     "• 发送的消息不一定都能成功返回，要多试几次哦\n\n" .
                     "• 欢迎你直接在微信上向我们反馈！",
-                'url' => $this->createAbsoluteUrl('/wechat'),
+                'url' => $url,
             ),
             (object)array(
                 'title' => "系统没有回复的原因",
+                'url' => $url,
             ),
             (object)array(
                 'title' =>
                     "• 可能在教务系统里并没有相关的数据，建议你先去教务系统确认\n\n" .
                     "• 如果教务系统确实有数据，那么可能是我们的系统没有获取到或者没有更新，发送指令“更新”可以更新数据\n\n" .
                     "• 可能是遇到了 Bug 或者我们的服务器挂了，导致无法正常提供服务",
-                'url' => $this->createAbsoluteUrl('/wechat'),
+                'url' => $url,
             ),
             (object)array(
                 'title' => "支持的指令",
+                'url' => $url,
             ),
             (object)array(
                 'title' =>
@@ -356,7 +377,7 @@ class WechatBaseController extends BaseController {
                     "• 等级考试：返回等级考试成绩\n\n" .
                     "• 绑定：←_←\n\n" .
                     "• 解除绑定：→_→",
-                'url' => $this->createAbsoluteUrl('/wechat'),
+                'url' => $url,
             ),
         ));
     }
