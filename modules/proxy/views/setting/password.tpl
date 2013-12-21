@@ -13,19 +13,19 @@
     <div class="form-group">
         <label for="origin-password" class="col-sm-5 control-label">当前密码：</label>
         <div class="col-lg-3 col-md-4 col-sm-5">
-            <input id="origin-password" class="form-control" type="password" name="origin-password" placeholder="请输入你的当前密码" />
+            <input id="origin-password" class="form-control" type="password" name="origin-password">
         </div>
     </div>
     <div class="form-group">
         <label for="new-password" class="col-sm-5 control-label">新密码：</label>
         <div class="col-lg-3 col-md-4 col-sm-5">
-            <input id="new-password" class="form-control" type="password" name="new-password" placeholder="请输入你的新密码" />
+            <input id="new-password" class="form-control" type="password" name="new-password">
         </div>
     </div>
     <div class="form-group">
         <label for="new-password-t" class="col-sm-5 control-label">确认密码：</label>
         <div class="col-lg-3 col-md-4 col-sm-5">
-            <input id="new-password-t" class="form-control" type="password" name="new-password-t" placeholder="请再次输入你的新密码" />
+            <input id="new-password-t" class="form-control" type="password" name="new-password-t">
         </div>
     </div>
     <div class="form-group">

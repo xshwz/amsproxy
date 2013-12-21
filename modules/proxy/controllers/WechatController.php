@@ -19,7 +19,10 @@ class WechatController extends ProxyController {
                 <li><p><code>成绩</code>：默认返回最近一个学期的成绩，可带参数，比如“成绩1”返回第一个学期的成绩</p></li>
                 <li><p><code>等级考试</code>：等级考试成绩</p></li>
             </ul>
-            <p>PS. 发送的指令不一定都能成功返回，可以多试几次。</p>');
+            <em>
+                <span class="glyphicon glyphicon-info-sign"></span>
+                发送的指令不一定都能成功返回，可以多试几次。
+            </em>');
     }
 
     public function actionUnbind() {

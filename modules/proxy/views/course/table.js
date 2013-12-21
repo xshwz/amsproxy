@@ -1,4 +1,3 @@
-$('.courseTable .course > div').tooltip({
-    'placement': 'auto',
-    'trigger': 'click'
+$('.courseTable .course > div').popover({
+    'placement': 'auto'
 });

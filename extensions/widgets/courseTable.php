@@ -48,7 +48,7 @@ EOT;
                             'rowspan' => $course->lessonSpan));
 
                         echo CHtml::openTag('div', array(
-                            'title' => "
+                            'data-content' => "
                                 <p>
                                     <span class='glyphicon glyphicon-book'></span>
                                     {$course->courseName}
@@ -174,7 +174,7 @@ EOT;
         if (count($course->location) > 1) {
             return
                 '<abbr title="' . $this->implode($course->{$key}) . '">' .
-                    $course->{$key}[0] .
+                    $course->{$key}[0] . '…' .
                 '<abbr>';
         } else {
             return $course->{$key}[0];
