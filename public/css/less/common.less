@@ -11,8 +11,11 @@
   .bottom(@color-dark: @color-dark, @color-darker: @color-darker) {
     &.btn-bottom {
       box-shadow: 0 4px 0 darken(@color-dark, 8%);
-      padding-left: 30px;
-      padding-right: 30px;
+
+      &.btn-lg {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
 
       &:hover,
       &:focus,
