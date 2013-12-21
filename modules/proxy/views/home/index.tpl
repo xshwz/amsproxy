@@ -1,3 +1,5 @@
+<% $this->pageTitle = '主页' %>
+
 <div class="jumbotron home">
     <p class="current-date">
         今天是

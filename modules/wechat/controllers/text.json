@@ -39,6 +39,7 @@
             "requireBind": true
         }
     },
+
     {
         "pattern": "^(about|关于)$",
         "handler": {
@@ -84,6 +85,7 @@
             ]
         }
     },
+
     {
         "pattern": "^(developer|开发者)$",
         "handler": {
@@ -107,6 +109,15 @@
                     "url": "http://xsh.gxun.edu.cn/ams/img/rage_comics/fuck-that-bitch-yao-ming.png"
                 }
             ]
+        }
+    },
+
+    {
+        "pattern": "^民大要闻$",
+        "handler": {
+            "type": "function",
+            "function": "responseGxunNews",
+            "requireBind": false
         }
     }
 ]
