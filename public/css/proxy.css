@@ -35,19 +35,19 @@
 #body {
   position: absolute;
   width: 100%;
+  overflow-x: hidden;
 }
 #side {
   z-index: 999;
   width: 200px;
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   background-color: #34495e;
+  transition: all 0.2s;
 }
 #side ul {
   list-style: none;
   padding: 0;
-}
-#side a {
-  color: #ffffff;
 }
 #side a:hover,
 #side a:active,
@@ -55,26 +55,37 @@
   text-decoration: none;
 }
 #side > ul {
-  padding: 0 16px;
+  overflow: hidden;
+}
+#side > ul:hover,
+#side > ul:active,
+#side > ul:focus {
+  overflow-y: auto;
+  padding-right: 1px;
 }
 #side > ul > li {
   padding: 24px 0 16px 0;
   border-top: 1px solid #2c3e50;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+#side > ul > li:first-child {
+  border-top: none;
+  box-shadow: none;
+}
 #side > ul > li > span {
   font-size: 16px;
   font-weight: bold;
-  color: #1abc9c;
+  padding-left: 24px;
+  color: #ffffff;
 }
 #side > ul > li > ul {
   margin-top: 4px;
 }
 #side > ul > li > ul a {
   display: block;
-  padding: 6px 8px;
+  padding: 6px 24px;
   margin: 2px 0;
-  color: #ffffff;
+  color: #bdc3c7;
 }
 #side > ul > li > ul a .glyphicon {
   margin-right: 8px;
@@ -86,41 +97,20 @@
 }
 .side-header {
   text-align: center;
-  padding: 8px 0;
+  background-color: #e67e22;
 }
 .side-header h1 {
   font-size: 28px;
+  margin: 0;
+  padding: 8px;
 }
-.side-header h1 a:hover span {
-  display: inline;
+.side-header h1 a {
+  display: block;
+  height: 34px;
 }
 .side-header h1 img {
   position: relative;
-  top: -6px;
-}
-#side-toggle {
-  display: none;
-  z-index: 999;
-  padding: 8px 6px 8px 0;
-  cursor: pointer;
-  position: fixed;
-  bottom: 0;
-  left: 200px;
-  background-color: #34495e;
-  opacity: 0.9;
-  border-radius: 0 4px 4px 0;
-  border: none;
-  border-bottom: 2px solid #2c3e50;
-}
-#side-toggle .icon-bar {
-  background-color: #ffffff;
-  width: 10px;
-  border-radius: 0 1px 1px 0;
-}
-@media (max-width: 768px) {
-  #side-toggle {
-    display: block;
-  }
+  top: -4px;
 }
 #side-mask {
   opacity: 0;
@@ -133,9 +123,10 @@
 #main {
   margin-left: 200px;
   position: relative;
+  transition: all 0.2s;
 }
 #main > .container {
-  padding: 20px 20px 40px 20px;
+  padding: 72px 20px 40px 20px;
   width: 100%;
 }
 #footer {
@@ -147,31 +138,80 @@
 #footer .powered {
   color: #7f8c8d;
 }
-#message-label .badge {
-  background-color: #e74c3c;
-  position: relative;
-  top: 2px;
-}
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
   }
   #main > .container {
-    padding: 16px 8px 40px 8px;
+    padding: 66px 8px 40px 8px;
   }
   #side-toggle {
     left: 0;
   }
   #side {
-    overflow: auto;
     height: 100%;
     position: fixed;
     left: -200px;
+  }
+  #side > ul {
+    overflow: auto;
   }
   .form-horizontal .form-group {
     margin-left: 0;
     margin-right: 0;
   }
+}
+#top-nav {
+  height: 50px;
+  width: 100%;
+  z-index: 999;
+  background-color: #f39c12;
+  position: fixed;
+  padding-right: 200px;
+  color: #ffffff;
+}
+#top-nav .title {
+  margin: 0;
+  padding: 0;
+  float: left;
+  font-size: 16px;
+  padding: 16px;
+}
+#top-nav .links {
+  list-style: none;
+  float: right;
+}
+#top-nav .links li {
+  float: left;
+}
+#top-nav .links a {
+  display: block;
+  height: 50px;
+  font-size: 16px;
+  padding: 14px;
+  color: #ffffff;
+}
+#top-nav .links a:hover {
+  background-color: #e67e22;
+}
+#top-nav .links:after {
+  clear: both;
+}
+@media (max-width: 768px) {
+  #top-nav {
+    padding-right: 0;
+  }
+}
+#side-toggle {
+  float: left;
+  cursor: pointer;
+  margin-right: 0;
+  padding-right: 0;
+}
+#side-toggle .icon-bar {
+  background-color: #ffffff;
+  width: 16px;
+  border-radius: 0 1px 1px 0;
 }
 .messages .message {
   margin: 20px;

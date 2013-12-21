@@ -570,3 +570,14 @@ pre.example {
 .padding-box {
   padding: 16px;
 }
+.bubble {
+  position: relative;
+}
+.bubble .badge {
+  position: absolute;
+  background-color: #e74c3c;
+  font-size: 10px;
+  padding: 3px 6px;
+  top: 8px;
+  left: 20px;
+}

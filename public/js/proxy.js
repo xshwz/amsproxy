@@ -20,12 +20,8 @@ Highcharts.setOptions({
 /** 响应式布局 */
 (function(){
     function resize() {
-        $('#main').css('height', $(document).height());
-        if ($(window).width() < 768) {
-            $('#side').css('height', $(window).height());
-        } else {
-            $('#side').css('height', $(document).height());
-        }
+        $('#side>ul').css('height',
+            $(window).height() - $('.side-header').height());
     }
 
     $(window).load(resize).resize(resize);
@@ -34,23 +30,23 @@ Highcharts.setOptions({
     var speed = 600;
 
     function hideSideNavbar() {
-        $('#side').animate({left: -200}, speed, 'easeOutExpo');
-        $('#side-mask').animate({opacity: 0}, speed, function(){
-            $('#side-toggle').show();
-            $(this).remove();
-        });
+        $('#main').css('left', 0);
+        $('#side').css('left', -200);
     }
 
     function showSideNavBar() {
-        $('#side-toggle').hide();
-        $('#side').animate({left: 0}, speed, 'easeOutExpo');
-        $('body').append('<div id="side-mask"></div>');
-        $('#side-mask').animate({opacity: 0.5}, speed).click(function(){
-            hideSideNavbar();
-        });
+        $('#main').css('left', 200);
+        $('#side').css('left', 0);
+        $('#side>ul').focus();
     }
 
     $('#side-toggle').click(function(){
-        showSideNavBar();
+        if ($(this).hasClass('on')) {
+            hideSideNavbar();
+            $(this).removeClass('on');
+        } else {
+            showSideNavBar();
+            $(this).addClass('on');
+        }
     });
 })();

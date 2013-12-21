@@ -33,7 +33,7 @@
                 <div class="side-header">
                     <h1>
                         <a href="<%= $this->createUrl('/site/home/index'); %>">
-                            <img src="img/logo.png" width="32" alt="相思湖网站 Logo" title="相思青果">
+                            <img src="img/logo-white.png" width="32" alt="相思湖网站 Logo" title="相思青果">
                         </a>
                     </h1>
                 </div>
@@ -137,31 +137,32 @@
                                     ),
                                 ),
                             ),
-                            array(
-                                'label' => '',
-                                'items' => array(
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-envelope"></span> 消息',
-                                        'url' => array('/proxy/home/message'),
-                                        'linkOptions' => array('id' => 'message-label'),
-                                    ),
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-log-out"></span> 退出',
-                                        'url' => array('/proxy/home/logout'),
-                                    ),
-                                ),
-                            ),
                         ),
                     )
                 );
                 %>
             </div>
-            <a class="navbar-toggle" id="side-toggle" type="button">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
             <div id="main">
+                <nav id="top-nav">
+                    <a class="navbar-toggle" id="side-toggle" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <h2 class="title"><%= $this->pageTitle %></h2>
+                    <ul class="links">
+                        <li>
+                            <a title="消息" class="bubble" id="message-label" href="<%= $this->createUrl('/proxy/home/message') %>">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="退出" href="<%= $this->createUrl('/proxy/home/logout') %>">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
                 <div class="container">
                     <%
                     if (isset($this->breadcrumbs)) {
@@ -177,7 +178,6 @@
                             'links' => $this->breadcrumbs,
                         ));
                     }
-
                     if (isset($this->alert))
                         echo <<<EOT
                         <div class="alert alert-{$this->alert['type']}">
@@ -216,7 +216,7 @@ EOT;
 
             if (unread.length) {
                 $('#message-label').append(
-                    '<span class="badge pull-right">' +
+                    '<span class="badge">' +
                         unread.length +
                     '</span>'
                 );

@@ -23,17 +23,6 @@ body {
   position: relative;
   top: -3px;
 }
-.navbar-nav .bubble {
-  position: relative;
-}
-.navbar-nav .bubble .badge {
-  position: absolute;
-  background-color: #e74c3c;
-  font-size: 10px;
-  padding: 3px 6px;
-  top: 8px;
-  left: 20px;
-}
 .messages .session {
   background-color: #ffffff;
   border-radius: 4px;

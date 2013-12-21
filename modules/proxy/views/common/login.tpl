@@ -1,3 +1,5 @@
+<% $this->pageTitle = '登录' %>
+
 <link rel="stylesheet" href="css/site.css">
 
 <form class="login-form" method="POST">
