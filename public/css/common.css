@@ -411,11 +411,10 @@ a.thumbnail:focus {
 .courseTable td.course > div {
   cursor: pointer;
 }
-.courseTable td.course .tooltip-inner {
-  text-align: left;
-  padding: 8px;
+.courseTable td.course .popover-content {
+  color: #2c3e50;
 }
-.courseTable td.course .tooltip-inner p {
+.courseTable td.course .popover-content p {
   margin: 2px 0;
 }
 .courseTable td.course-1 {
