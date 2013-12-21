@@ -497,6 +497,8 @@ a.thumbnail:focus {
 }
 .btn.btn-bottom {
   box-shadow: 0 4px 0 #15987e;
+}
+.btn.btn-bottom.btn-lg {
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -512,6 +514,8 @@ a.thumbnail:focus {
 }
 .btn-warning.btn-bottom {
   box-shadow: 0 4px 0 #c96a17;
+}
+.btn-warning.btn-bottom.btn-lg {
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -527,6 +531,8 @@ a.thumbnail:focus {
 }
 .btn-info.btn-bottom {
   box-shadow: 0 4px 0 #2383c4;
+}
+.btn-info.btn-bottom.btn-lg {
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -542,6 +548,8 @@ a.thumbnail:focus {
 }
 .btn-danger.btn-bottom {
   box-shadow: 0 4px 0 #df2e1b;
+}
+.btn-danger.btn-bottom.btn-lg {
   padding-left: 30px;
   padding-right: 30px;
 }
