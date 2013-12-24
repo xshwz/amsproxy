@@ -23,14 +23,16 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="new-password-t" class="col-sm-5 control-label">确认密码：</label>
+        <label for="new-password-t" class="col-sm-5 control-label">确认新密码：</label>
         <div class="col-lg-3 col-md-4 col-sm-5">
             <input id="new-password-t" class="form-control" type="password" name="new-password-t">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-5 col-md-4 col-sm-5 col-lg-3">
-            <button type="submit" class="btn btn-block">确认修改</button>
+            <button type="submit" class="btn btn-block">
+                <span class="glyphicon glyphicon-ok"></span> 提交
+            </button>
         </div>
     </div>
 </form>

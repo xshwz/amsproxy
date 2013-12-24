@@ -8,7 +8,7 @@
         }
     },
     {
-        "pattern": "^(curriculum|课程表|课表)$",
+        "pattern": "^(t|curriculum|课程表|课表)$",
         "handler": {
             "type": "function",
             "function": "responseCurriculum",
@@ -24,6 +24,14 @@
         }
     },
     {
+        "pattern": "^(e|exam|考试|考试安排)$",
+        "handler": {
+            "type": "function",
+            "function": "responseExam",
+            "requireBind": true
+        }
+    },
+    {
         "pattern": "^(r|rank exam|等级考试|等级考试成绩)$",
         "handler": {
             "type": "function",
@@ -32,7 +40,7 @@
         }
     },
     {
-        "pattern": "^(s\\b|score\\b|成绩)\\s*(.*)$",
+        "pattern": "^(s\\b|score\\b|成绩)\\s*(\\d?)$",
         "handler": {
             "type": "function",
             "function": "responseScore",
@@ -49,7 +57,7 @@
         }
     },
     {
-        "pattern": "^(help|帮助)$",
+        "pattern": "^(h|help|帮助)$",
         "handler": {
             "type": "function",
             "function": "responseHelp",
@@ -73,7 +81,7 @@
         }
     },
     {
-        "pattern": "^(update|更新)$",
+        "pattern": "^(update|更新|更新数据)$",
         "handler": {
             "type": "news",
             "articles": [
