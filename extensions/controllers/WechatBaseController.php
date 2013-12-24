@@ -231,7 +231,7 @@ class WechatBaseController extends BaseController {
                 ),
             ));
         } else {
-            $this->responseNotData();
+            $this->responseNoData();
         }
     }
 
@@ -264,7 +264,7 @@ class WechatBaseController extends BaseController {
                 ),
             ));
         } else {
-            $this->responseNotData();
+            $this->responseNoData();
         }
     }
 
@@ -290,7 +290,7 @@ class WechatBaseController extends BaseController {
                 ),
             ));
         } else {
-            $this->responseNotData();
+            $this->responseNoData();
         }
     }
 
