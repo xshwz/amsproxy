@@ -22,18 +22,13 @@
     </p>
 </div>
 
-<!--
-<div class="row">
+<div class="row exam-arrangement">
     <% foreach ($examArrangement['tbody'] as $exam): %>
     <div class="col-sm-6 col-md-4 col-lg-3">
         <dl class="card">
             <dd>
                 <span class="glyphicon glyphicon-book"></span>
                 <%= $exam[0] %>
-            </dd>
-            <dd>
-                <span class="glyphicon glyphicon-tag"></span>
-                <%= $exam[2] %>/<%= $exam[3] %>课
             </dd>
             <dd>
                 <span class="glyphicon glyphicon-star"></span>
@@ -55,10 +50,3 @@
     </div>
     <% endforeach; %>
 </div>
--->
-
-<em class="visible-xs tips">
-    <span class="glyphicon glyphicon-info-sign"></span>
-    点击左下角的小按钮可以弹出菜单哦
-    <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-</em>

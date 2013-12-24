@@ -209,42 +209,36 @@ class WechatBaseController extends BaseController {
             $termNames = array_keys($scoreTable);
             $termIndex = $params[1] ? (int)($params[1]) - 1 : count($termNames) - 1;
 
-            $title = $termNames[$termIndex];
             $responseText = '';
-
             foreach ($scoreTable[$termNames[$termIndex]] as $score) {
                 $courseName = preg_replace('/\[.*?\]/', '', $score[0]);
                 $responseText .= "课程：{$courseName}\n";
                 $responseText .= "学分：{$score[1]}\n";
                 $responseText .= "成绩：{$score[6]}\n\n";
             }
-        } else {
-            $title = '暂无数据';
-            $responseText =
-                "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
-                "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新数据”（前提是教务系统有相关数据哦）";
-        }
 
-        $this->responseNews(array(
-            (object)array(
-                'title' => $title,
-                'description' => trim($responseText),
-                'url' => $this->createAbsoluteUrl(
-                    '/site/wechat/score',
-                    array(
-                        'openId' => $this->student->{$this->openIdField},
-                        'field' => $this->openIdField,
-                    )
+            $this->responseNews(array(
+                (object)array(
+                    'title' => $termNames[$termIndex],
+                    'description' => trim($responseText),
+                    'url' => $this->createAbsoluteUrl(
+                        '/site/wechat/score',
+                        array(
+                            'openId' => $this->student->{$this->openIdField},
+                            'field' => $this->openIdField,
+                        )
+                    ),
                 ),
-            ),
-        ));
+            ));
+        } else {
+            $this->responseNotData();
+        }
     }
 
     public function responseRankExam() {
         $rankExamScoreTable = json_decode($this->student->rank_exam);
 
         if (isset($rankExamScoreTable->score->tbody)) {
-            $title = '等级考试成绩';
             $responseText = '';
             foreach($rankExamScoreTable->score->tbody as $group) {
                 foreach ($group as $row) {
@@ -255,24 +249,59 @@ class WechatBaseController extends BaseController {
                     $responseText .= "综合成绩：{$row[4]}\n\n";
                 }
             }
-        } else {
-            $title = '暂无数据';
-            $responseText =
-                "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
-                "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新数据”（前提是教务系统有相关数据哦）";
-        }
 
+            $this->responseNews(array(
+                (object)array(
+                    'title' => '等级考试成绩',
+                    'description' => trim($responseText),
+                    'url' => $this->createAbsoluteUrl(
+                        '/site/wechat/rankExam',
+                        array(
+                            'openId' => $this->student->{$this->openIdField},
+                            'field' => $this->openIdField,
+                        )
+                    ),
+                ),
+            ));
+        } else {
+            $this->responseNotData();
+        }
+    }
+
+    public function responseExam() {
+        $examArrangement = json_decode(
+            $this->student->exam_arrangement);
+
+        if ($examArrangement && $examArrangement->tbody) {
+            $responseText = '';
+            foreach($examArrangement->tbody as $row) {
+                $responseText .= "科目：{$row[0]}\n";
+                $responseText .= "学分：{$row[1]}\n";
+                $responseText .= "时间：{$row[4]}\n";
+                $responseText .= "地点：{$row[5]}\n";
+                $responseText .= "座位：{$row[6]}\n\n";
+            }
+
+            $this->responseNews(array(
+                (object)array(
+                    'title' => '考试安排',
+                    'description' => trim($responseText),
+                    'url' => $this->createAbsoluteUrl('/proxy'),
+                ),
+            ));
+        } else {
+            $this->responseNotData();
+        }
+    }
+
+    public function responseNoData() {
         $this->responseNews(array(
             (object)array(
-                'title' => $title,
-                'description' => trim($responseText),
-                'url' => $this->createAbsoluteUrl(
-                    '/site/wechat/rankExam',
-                    array(
-                        'openId' => $this->student->{$this->openIdField},
-                        'field' => $this->openIdField,
-                    )
-                ),
+                'title' => '暂无数据',
+                'description' => 
+                    "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
+                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新数据”（前提是教务系统有相关数据哦）",
+                'url' => $this->createAbsoluteUrl('/proxy/setting/update'),
             ),
         ));
     }
@@ -353,28 +382,23 @@ class WechatBaseController extends BaseController {
                 'url' => $url,
             ),
             (object)array(
-                'title' => "系统没有回复的原因",
-                'url' => $url,
-            ),
-            (object)array(
                 'title' =>
+                    "系统没有回复的原因\n\n" .
                     "• 可能在教务系统里并没有相关的数据，建议你先去教务系统确认\n\n" .
                     "• 如果教务系统确实有数据，那么可能是我们的系统没有获取到或者没有更新，发送指令“更新”可以更新数据\n\n" .
                     "• 可能是遇到了 Bug 或者我们的服务器挂了，导致无法正常提供服务",
                 'url' => $url,
             ),
             (object)array(
-                'title' => "支持的指令",
-                'url' => $url,
-            ),
-            (object)array(
                 'title' =>
+                    "支持的指令\n\n" .
                     "• 关于：“相思青果”介绍\n\n" .
                     "• 学籍：返回个人学籍档案\n\n" .
                     "• 课表：返回一周的课表，需要点击消息查看\n\n" .
                     "• 课程：默认返回当天课程，可带参数，比如“课程3”返回星期三的课程\n\n" .
                     "• 成绩：默认返回最近一个学期的成绩，可带参数，比如“成绩1”返回第一个学期的成绩\n\n" .
                     "• 等级考试：返回等级考试成绩\n\n" .
+                    "• 考试安排：返回考试安排\n\n" .
                     "• 绑定：←_←\n\n" .
                     "• 解除绑定：→_→",
                 'url' => $url,
