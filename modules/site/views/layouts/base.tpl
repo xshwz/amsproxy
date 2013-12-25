@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="相思青果,相思湖网站,广西民族大学,教务系统">
         <meta name="description" content="“相思青果”是由相思湖网站开发的，广西民族大学教务系统代理。在这里，你可以不受校园网限制，方便的使用教务系统。">
+        <meta name="renderer" content="webkit">
 
         <title>
         <% if ($this->pageTitle) echo $this->pageTitle . ' - '; %>
