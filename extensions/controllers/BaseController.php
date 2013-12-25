@@ -77,10 +77,20 @@ class BaseController extends CController {
 
             if ($remember) $this->remember($sid, $pwd);
 
+            $this->updateStudentLastLoginTime(
+                Student::model()->findByPk($sid));
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function updateStudentLastLoginTime($student) {
+        $student->last_login_time = date('Y-m-d H:i:s');
+        $student->save();
     }
 
     /**
