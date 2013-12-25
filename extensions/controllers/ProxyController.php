@@ -18,8 +18,6 @@ class ProxyController extends BaseController {
 
         $this->student = Student::model()->findByPk(
             $_SESSION['student']['sid']);
-        $this->student->last_login_time = date('Y-m-d H:i:s');
-        $this->student->save();
 
         $this->unread = $this->getUnreadMessage();
         $this->update();
