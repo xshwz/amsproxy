@@ -34,10 +34,15 @@
         "function": "responseScore",
         "requireBind": true
     },
-    "相思湖水": {
+    "exam": {
+        "type": "function",
+        "function": "responseExam",
+        "requireBind": true
+    },
+    "民大人的一天": {
         "type": "function",
         "function": "responsePortal",
-        "param": 1,
+        "param": 7,
         "requireBind": false
     },
     "校园速递": {
@@ -65,59 +70,34 @@
         "requireBind": false
     },
 
-    "最新发帖": {
+    "最热新帖": {
         "type": "function",
         "function": "responseBBS",
-        "param": {
-            "title": "最新发帖",
-            "logo": "http://bbs.gxun.cn/static/image/common/logo.gif",
-            "url": "http://bbs.gxun.cn/forum.php",
-            "fid": 0
-        },
+        "param": 0,
         "requireBind": false
     },
-    "新生专栏": {
+    "失物招领": {
         "type": "function",
         "function": "responseBBS",
-        "param": {
-            "title": "新生专栏",
-            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/xinsheng.gif",
-            "url": "http://bbs.gxun.cn/forum-174-1.html",
-            "fid": 174
-        },
+        "param": 143,
         "requireBind": false
     },
     "贸易市场": {
         "type": "function",
         "function": "responseBBS",
-        "param": {
-            "title": "贸易市场",
-            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/43.gif",
-            "url": "http://bbs.gxun.cn/forum-43-1.html",
-            "fid": 43
-        },
+        "param": 43,
         "requireBind": false
     },
-    "心情随笔": {
+    "相思湖水": {
         "type": "function",
         "function": "responseBBS",
-        "param": {
-            "title": "心情随笔",
-            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/56.gif",
-            "url": "http://bbs.gxun.cn/forum-56-1.html",
-            "fid": 56
-        },
+        "param": 61,
         "requireBind": false
     },
-    "综合新闻": {
+    "精彩贴图": {
         "type": "function",
         "function": "responseBBS",
-        "param": {
-            "title": "综合新闻",
-            "logo": "http://bbs.gxun.cn/data/attachment/common/images/forumlogo/131.gif",
-            "url": "http://bbs.gxun.cn/forum-131-1.html",
-            "fid": 131
-        },
+        "param": 36,
         "requireBind": false
     }
 }

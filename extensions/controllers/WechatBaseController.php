@@ -300,7 +300,7 @@ class WechatBaseController extends BaseController {
                 'title' => '暂无数据',
                 'description' => 
                     "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
-                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新数据”（前提是教务系统有相关数据哦）",
+                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新”（前提是教务系统有相关数据哦）",
                 'url' => $this->createAbsoluteUrl('/proxy/setting/update'),
             ),
         ));
@@ -493,22 +493,10 @@ class WechatBaseController extends BaseController {
         $this->responseNews($this->createNews($feed->get_items(0, 10)));
     }
 
-    public function getBBSNews($fid) {
+    public function responseBBS($fid) {
         $feed = $this->createFeed(
             'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
-        return $this->createNews($feed->get_items(0, 9));
-    }
-
-    public function responseBBS($param) {
-        $this->responseNews(array_merge(
-                array((object)array(
-                    'title' => $param->title,
-                    'pictureUrl' => $param->logo,
-                    'url' => $param->url,
-                )),
-                $this->getBBSNews($param->fid)
-            )
-        );
+        $this->responseNews($this->createNews($feed->get_items(0, 10)));
     }
 
     public function responseGxunNews($catid) {

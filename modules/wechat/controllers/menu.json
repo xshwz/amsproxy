@@ -5,8 +5,8 @@
             "sub_button": [
                 {
                     "type": "click",
-                    "name": "相思湖水",
-                    "key": "相思湖水"
+                    "name": "民大人的一天",
+                    "key": "民大人的一天"
                 },
                 {
                     "type": "click",
@@ -31,17 +31,17 @@
              ]
         },
         {
-            "name": "BBS",
+            "name": "服务",
             "sub_button": [
                 {
                     "type": "click",
-                    "name": "最新发帖",
-                    "key": "最新发帖"
+                    "name": "最热新帖",
+                    "key": "最热新帖"
                 },
                 {
                     "type": "click",
-                    "name": "新生专栏",
-                    "key": "新生专栏"
+                    "name": "失物招领",
+                    "key": "失物招领"
                 },
                 {
                     "type": "click",
@@ -50,13 +50,13 @@
                 },
                 {
                     "type": "click",
-                    "name": "心情随笔",
-                    "key": "心情随笔"
+                    "name": "相思湖水",
+                    "key": "相思湖水"
                 },
                 {
                     "type": "click",
-                    "name": "综合新闻",
-                    "key": "综合新闻"
+                    "name": "精彩贴图",
+                    "key": "精彩贴图"
                 }
             ]
         },
@@ -65,8 +65,8 @@
             "sub_button": [
                 {
                     "type": "click",
-                    "name": "今日课程",
-                    "key": "course"
+                    "name": "考试安排",
+                    "key": "exam"
                 },
                 {
                     "type": "click",
