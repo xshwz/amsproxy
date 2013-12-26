@@ -186,10 +186,19 @@ h6,
 .text-muted {
   color: #95a5a6;
 }
+.text-muted:hover {
+  color: #95a5a6;
+}
 .text-primary {
   color: #3498db;
 }
+.text-primary:hover {
+  color: #3498db;
+}
 .text-warning {
+  color: #e67e22;
+}
+.text-warning:hover {
   color: #e67e22;
 }
 .text-danger {
@@ -201,7 +210,13 @@ h6,
 .text-success {
   color: #2ecc71;
 }
+.text-success:hover {
+  color: #2ecc71;
+}
 .text-info {
+  color: #3498db;
+}
+.text-info:hover {
   color: #3498db;
 }
 .label {

@@ -119,6 +119,20 @@
             ]
         }
     },
+    {
+        "pattern": "^→_→$",
+        "handler": {
+            "type": "text",
+            "content": "←_←"
+        }
+    },
+    {
+        "pattern": "^←_←$",
+        "handler": {
+            "type": "text",
+            "content": "→_→"
+        }
+    },
 
     {
         "pattern": "^民大要闻$",

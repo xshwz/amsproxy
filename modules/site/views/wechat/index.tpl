@@ -22,8 +22,8 @@
         for ($c = 1; $c <= 12; $c++) {
             echo <<<EOT
             <li>
-                <a href="#lightbox" class="lightbox" data-toggle="modal" class="thumbnail">
-                    <img width="160" src="img/wechat_screenshot/{$c}.png" alt="微信公众平台使用截图 {$c}">
+                <a href="#lightbox" data-image="img/wechat_screenshot/{$c}.png" data-toggle="modal" class="thumbnail">
+                    <img width="160" src="img/wechat_screenshot/thumbnails/{$c}.png" alt="微信公众平台使用截图 {$c}">
                 </a>
             </li>
 EOT;
@@ -38,7 +38,7 @@ EOT;
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <span class="glyphicon glyphicon-remove-circle"></span>
                 </button>
-                <img class="lightbox">
+                <img>
             </div>
         </div>
     </div>

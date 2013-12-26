@@ -3,8 +3,8 @@ $('.wechat-qrcode').tooltip({
     placement: 'auto'
 });
 
-$('a.lightbox').click(function(){
-    $($(this).attr('href') + ' img.lightbox')
-        .attr('src', $('img', this).attr('src'))
+$('a.thumbnail').click(function(){
+    $('#lightbox img')
+        .attr('src', $(this).attr('data-image'))
         .height($(window).height() - 60);
 });
