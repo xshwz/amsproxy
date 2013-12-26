@@ -13,6 +13,8 @@
 
             if ($message->state)
                 $className .= ' unread';
+
+            $archives = (array)json_decode($group['sender']->archives);
         %>
             <div class="<%= $className; %>">
                 <p><%= $message->message; %></p>
@@ -30,7 +32,7 @@
                 <% elseif ($message->receiver == 0): %>
                 <a
                     href="#send-modal"
-                    class="send operate"
+                    class="send operate user"
                     title="发送消息"
                     data-toggle="modal"
                     data-reply='<%= $message->id; %>'
@@ -47,7 +49,9 @@
                 title="用户信息"
                 data-toggle="modal"
                 data-json='<%= $group['sender']->archives; %>'>
-                <span class="glyphicon glyphicon-user"></span>
+                <small>
+                    <%= $archives['行政班级'] . ' ' . $archives['姓名'] %>
+                </small>
             </a>
         </div>
     </div>

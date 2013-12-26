@@ -56,14 +56,19 @@ foreach ($logs as $log):
             </small></em></p>
         </div>
         <div class="pull-right">
-            <% if ($student): %>
+            <%
+            if ($student):
+                $archives = (array)json_decode($student->archives);
+            %>
             <a
                 href="#detail-modal"
-                class="detail"
+                class="detail user"
                 title="用户信息"
                 data-toggle="modal"
                 data-json='<%= $student->archives; %>'>
-                <span class="glyphicon glyphicon-user"></span>
+                <small>
+                    <%= $archives['行政班级'] . ' ' . $archives['姓名'] %>
+                </small>
             </a>
             <% endif %>
             <span title="<%= $messageTypeTitle %>" class="glyphicon glyphicon-<%= $messageTypeIcon %>"></span>
