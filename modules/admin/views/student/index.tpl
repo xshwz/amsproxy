@@ -33,7 +33,13 @@
             %>
             <tr>
                 <td><%= $archives['姓名']; %></td>
-                <td><%= $archives['行政班级']; %></td>
+                <td>
+                    <%=
+                    CHtml::link($archives['行政班级'], array('index',
+                        'keyword' => $archives['行政班级'],
+                    ))
+                    %>
+                </td>
                 <td><%= $student->last_login_time; %></td>
                 <td>
                     <a

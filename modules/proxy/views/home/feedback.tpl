@@ -1,6 +1,6 @@
 <% $this->pageTitle = '反馈'; %>
 
-<div class="alert alert-info text-muted">
+<div class="alert alert-info">
     <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
     <em>
         <span class="glyphicon glyphicon-info-sign"></span>
