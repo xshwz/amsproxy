@@ -309,7 +309,7 @@ class WechatBaseController extends BaseController {
     public function responseArchives() {
         $responseText = '';
         foreach (json_decode($this->student->archives) as $key => $value)
-            $responseText .= "{$key}：\n{$value}\n\n";
+            $responseText .= "{$key}：{$value}\n";
         $this->responseNews(array(
             (object)array(
                 'title' => '学籍档案',

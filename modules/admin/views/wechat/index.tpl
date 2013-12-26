@@ -1,50 +1,50 @@
 <div class="messages">
 <%
 foreach ($logs as $log):
-$message = simplexml_load_string($log->message);
-$from = '';
+    $message = simplexml_load_string($log->message);
 
-if ($message->ToUserName == 'gh_67699ccd1b26') {
-    $field = 'openid_subscribe';
-    $from = '来自<span class="text-warning">订阅号</span>';
-}
+    if ($message->ToUserName == 'gh_67699ccd1b26') {
+        $field = 'openid_subscribe';
+        $from = '来自<span class="text-warning">订阅号</span>';
+    } elseif ($message->ToUserName == 'gh_a5d994754b2a') {
+        $field = 'openid_server';
+        $from = '来自<span class="text-info">服务号</span>';
+    } else {
+        $field = 'null';
+        $from = '来自<span class="text-danger">未知</span>';
+    }
 
-if ($message->ToUserName == 'gh_a5d994754b2a') {
-    $field = 'openid_server';
-    $from = '来自<span class="text-info">服务号</span>';
-}
+    $student = Student::model()->find(
+        $field . '=:openId',
+        array(
+            ':openId' => $message->FromUserName,
+        )
+    );
 
-$student = Student::model()->find(
-    $field . '=:openId',
-    array(
-        ':openId' => $message->FromUserName,
-    )
-);
+    if ($log->state)
+        $stateClass = 'success';
+    else
+        $stateClass = '';
 
-if ($log->state)
-    $stateClass = 'success';
-else
-    $stateClass = '';
+    switch ($message->MsgType) {
+        case 'text':
+            $messageTypeIcon = 'comment';
+            $messageTypeTitle = '文本';
+            $content = $message->Content;
+            break;
 
-switch ($message->MsgType) {
-    case 'text':
-        $messageTypeIcon = 'comment';
-        $messageTypeTitle = '文本';
-        $content = $message->Content;
-        break;
+        case 'event':
+            $messageTypeIcon = 'bell';
+            $messageTypeTitle = '事件';
+            $content = '<span class="label">' . $message->Event . '</span>';
 
-    case 'event':
-        $messageTypeIcon = 'bell';
-        $messageTypeTitle = '事件';
-        $content = '<span class="label">' . $message->Event . '</span>';
-
-        if (isset($message->EventKey)) {
-            $content .=
-                ' <span class="label label-warning">' .
-                    $message->EventKey .
-                '</span>';
-        }
-}
+            if (isset($message->EventKey)) {
+                $content .=
+                    ' <span class="label label-warning">' .
+                        $message->EventKey .
+                    '</span>';
+            }
+    }
 %>
 <div class="session <%= $stateClass %>">
     <p><%= $content %></p>

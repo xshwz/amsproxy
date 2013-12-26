@@ -191,27 +191,31 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
-.text-muted {
-  color: @color-concrete;
-}
-.text-primary {
-  color: @color-peterRiver;
-}
-.text-warning {
-  color: @color-warning;
-}
-.text-danger {
-  color: @color-danger;
+.text-color(@color) {
+  color: @color;
 
   &:hover {
-    color: @color-danger;
+    color: @color;
   }
 }
+
+.text-muted {
+  .text-color(@color-concrete);
+}
+.text-primary {
+  .text-color(@color-peterRiver);
+}
+.text-warning {
+  .text-color(@color-warning);
+}
+.text-danger {
+  .text-color(@color-danger);
+}
 .text-success {
-  color: @color-success;
+  .text-color(@color-success);
 }
 .text-info {
-  color: @color-info;
+  .text-color(@color-info);
 }
 
 .label {
