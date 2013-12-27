@@ -2,7 +2,7 @@
 <%
 $this->widget('ext.widgets.dataTable', array(
     'data' => $rankExamScore,
-    'type' => 1,
+    'isCollapse' => false,
 ));
 %>
 </div>
