@@ -39,6 +39,7 @@
         "function": "responseExam",
         "requireBind": true
     },
+
     "民大人的一天": {
         "type": "function",
         "function": "responsePortal",

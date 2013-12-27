@@ -63,6 +63,7 @@ EOT;
     <li><p><code>课程</code>：默认返回当天课程，可带参数，比如“课程3”返回星期三的课程</p></li>
     <li><p><code>成绩</code>：默认返回最近一个学期的成绩，可带参数，比如“成绩1”返回第一个学期的成绩</p></li>
     <li><p><code>等级考试</code>：返回等级考试成绩</p></li>
+    <li><p><code>考试安排</code>：返回考试安排表</p></li>
 </ul>
 <em class="text-muted"><small>
     <span class="glyphicon glyphicon-info-sign"></span>

@@ -1,0 +1,48 @@
+{
+    "pattern": "^(c|course\\b|课程)\\s*(\\d?)$",
+    "handler": {
+        "type": "function",
+        "function": "responseCourse",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^(t|curriculum|课程表|课表)$",
+    "handler": {
+        "type": "function",
+        "function": "responseCurriculum",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^(a|archives|学籍|个人档案|学籍档案|个人学籍档案)$",
+    "handler": {
+        "type": "function",
+        "function": "responseArchives",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^(e|exam|考试|考试安排|考试安排表)$",
+    "handler": {
+        "type": "function",
+        "function": "responseExam",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^(r|rank exam|等级考试|等级考试成绩)$",
+    "handler": {
+        "type": "function",
+        "function": "responseRankExam",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^(s|score\\b|成绩)\\s*(\\d?)$",
+    "handler": {
+        "type": "function",
+        "function": "responseScore",
+        "requireBind": true
+    }
+}

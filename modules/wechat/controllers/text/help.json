@@ -1,0 +1,57 @@
+{
+    "pattern": "^(about|关于)$",
+    "handler": {
+        "type": "function",
+        "function": "responseAbout",
+        "requireBind": false
+    }
+},
+{
+    "pattern": "^(h|help|帮助)$",
+    "handler": {
+        "type": "function",
+        "function": "responseHelp",
+        "requireBind": false
+    }
+},
+{
+    "pattern": "^(bind|绑定)$",
+    "handler": {
+        "type": "function",
+        "function": "responseBind",
+        "requireBind": false
+    }
+},
+{
+    "pattern": "^(unbind|解除绑定)$",
+    "handler": {
+        "type": "function",
+        "function": "responseUnBind",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^(update|更新|更新数据)$",
+    "handler": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "更新数据",
+                "description": "点击更新",
+                "url": "http://xsh.gxun.edu.cn/ams/proxy/setting/update"
+            }
+        ]
+    }
+},
+{
+    "pattern": "^(developer|开发者)$",
+    "handler": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "开发者",
+                "description": "姓名：丘翔\n班级：10网络工程\n邮箱：xiang.qiu@foxmail.com\n\n姓名：徐伟榕\n班级：11软件工程1班\n邮箱：weirongxuraidou@gmail.com"
+            }
+        ]
+    }
+}
