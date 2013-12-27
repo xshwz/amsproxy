@@ -6,6 +6,13 @@
     }
 },
 {
+    "pattern": "课表",
+    "handler": {
+        "type": "text",
+        "content": "欢迎使用相思青果，你是想查询课程表吗？\n\n查询课程表的指令为“课表”。\n\n发送“帮助”可以获取详细帮助信息。"
+    }
+},
+{
     "pattern": "成绩",
     "handler": {
         "type": "text",
