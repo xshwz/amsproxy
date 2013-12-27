@@ -119,7 +119,7 @@ class dataTable extends CWidget {
     protected function echoTrs($trs) {
         foreach ($trs as $row) {
             echo CHtml::openTag('tr', 
-                isset($row->state) && $row->state == false ?
+                isset($row['state']) && $row['state'] == false ?
                 array('class' => 'danger') : array()
             );
 

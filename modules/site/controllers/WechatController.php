@@ -59,14 +59,14 @@ class WechatController extends BaseController {
 
     public function actionRankExam() {
         $this->render('rankExamScore', array(
-            'rankExamScore' => json_decode($this->student->rank_exam, true)['score'],
+            'rankExamScore' => json_decode($this->student->rank_exam)['score'],
         ));
     }
 
     public function actionScore() {
-        $scoreTable = json_decode($this->student->score, true)[1];
+        $scoreTable = json_decode($this->student->score)[1];
 
-        foreach ($scoreTable['tbody'] as $termName => &$termScore) {
+        foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
                 if ((float)$row[6] < 60)
                     $row['state'] = false;
