@@ -1,0 +1,7 @@
+[
+    <?php include('proxy.json') ?>,
+    <?php include('help.json') ?>,
+    <?php include('joke.json') ?>,
+    <?php include('guide.json') ?>,
+    <?php include('news.json') ?>
+]

@@ -1,5 +1,5 @@
 {
-    "text": <?php include('text.json') ?>,
+    "text": <?php include('text/main.json') ?>,
     "event": {
         "subscribe": {
             "type": "news",
