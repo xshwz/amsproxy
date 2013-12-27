@@ -152,13 +152,28 @@
                     </a>
                     <h2 class="title"><%= $this->pageTitle %></h2>
                     <ul class="links">
+                        <% if ($this->isAdmin()): %>
                         <li>
-                            <a title="消息" class="bubble" id="message-label" href="<%= $this->createUrl('/proxy/home/message') %>">
+                            <a
+                                title="管理"
+                                href="<%= $this->createUrl('/admin') %>">
+                                <span class="glyphicon glyphicon-wrench"></span>
+                            </a>
+                        </li>
+                        <% endif %>
+                        <li>
+                            <a
+                                title="消息"
+                                class="bubble"
+                                id="message-label"
+                                href="<%= $this->createUrl('/proxy/home/message') %>">
                                 <span class="glyphicon glyphicon-envelope"></span>
                             </a>
                         </li>
                         <li>
-                            <a title="退出" href="<%= $this->createUrl('/proxy/home/logout') %>">
+                            <a
+                                title="退出"
+                                href="<%= $this->createUrl('/proxy/home/logout') %>">
                                 <span class="glyphicon glyphicon-log-out"></span>
                             </a>
                         </li>

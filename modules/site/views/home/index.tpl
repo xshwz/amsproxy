@@ -7,13 +7,13 @@
             <p class="xsh"><a href="http://xsh.gxun.edu.cn/">相思湖网站</a></p>
             <h1><span>相思</span>青果</h1>
             <a
-                href="<%= Yii::app()->createUrl('/proxy'); %>"
+                href="<%= Yii::app()->createUrl('/proxy') %>"
                 class="btn btn-lg btn-bottom">进入</a>
             <% if ($this->isAdmin()): %>
             <a
-                href="<%= Yii::app()->createUrl('/admin'); %>"
+                href="<%= Yii::app()->createUrl('/admin') %>"
                 class="btn btn-lg btn-warning btn-bottom">管理</a>
-            <% endif; %>
+            <% endif %>
         </div>
     </div>
 
@@ -89,16 +89,16 @@
         <div class="container">
             <ul class="links list-inline">
                 <li>
-                    <a href="<%= Yii::app()->createUrl('site/wechat/index'); %>">微信</a>
+                    <a href="<%= Yii::app()->createUrl('site/wechat/index') %>">微信</a>
                 </li>
                 <li>
-                    <a href="<%= Yii::app()->createUrl('site/home/faq'); %>">常见问题</a>
+                    <a href="<%= Yii::app()->createUrl('site/home/faq') %>">常见问题</a>
                 </li>
                 <li>
-                    <a href="<%= Yii::app()->createUrl('site/home/about'); %>">关于</a>
+                    <a href="<%= Yii::app()->createUrl('site/home/about') %>">关于</a>
                 </li>
                 <li>
-                    <a href="<%= Yii::app()->createUrl('site/home/api'); %>">API</a>
+                    <a href="<%= Yii::app()->createUrl('site/home/api') %>">API</a>
                 </li>
             </ul>
             <p class="powered">
