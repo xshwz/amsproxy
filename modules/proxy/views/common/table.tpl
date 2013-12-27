@@ -1,8 +1,7 @@
 <?php
-if (!isset($type))
-    $type = 0;
+if (!isset($isCollapse)) $isCollapse = true;
 
 $this->widget('ext.widgets.dataTable', array(
     'data' => $data,
-    'type' => $type,
+    'isCollapse' => $isCollapse,
 ));

@@ -23,7 +23,7 @@
 </div>
 
 <div class="row exam-arrangement">
-    <% foreach ($examArrangement['tbody'] as $exam): %>
+    <% foreach ($examArrangement->tbody as $exam): %>
     <div class="col-sm-6 col-md-4 col-lg-3">
         <dl class="card">
             <dd>

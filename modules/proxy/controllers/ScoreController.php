@@ -2,8 +2,9 @@
 class ScoreController extends ProxyController {
     public function actionOriginalScore() {
         $this->pageTitle = '原始成绩';
-        $scoreTable = $this->getScore(0);
-        if (isset($scoreTable['tbody']) && $scoreTable['tbody']) {
+        $scoreTable = $this->get('score')[0];
+
+        if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 10);
             $this->render('/common/table', array(
                 'data' => $scoreTable,
@@ -15,8 +16,9 @@ class ScoreController extends ProxyController {
 
     public function actionEffectiveScore() {
         $this->pageTitle = '有效成绩';
-        $scoreTable = $this->getScore(1);
-        if (isset($scoreTable['tbody']) && $scoreTable['tbody']) {
+        $scoreTable = $this->get('score')[1];
+
+        if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 6);
             $this->render('/common/table', array(
                 'data' => $scoreTable,
@@ -27,8 +29,8 @@ class ScoreController extends ProxyController {
     }
 
     public function actionStats() {
-        $scoreTable = $this->getScore(1);
-        if (isset($scoreTable['tbody']) && $scoreTable['tbody']) {
+        $scoreTable = $this->get('score')[1];
+        if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 6);
             $this->render('stats', array(
                 'termNames' => $this->getTermNames($scoreTable),
@@ -49,7 +51,7 @@ class ScoreController extends ProxyController {
      * @param array $scoreIndex
      */
     public function addScoreState(&$scoreTable, $scoreIndex) {
-        foreach ($scoreTable['tbody'] as $termName => &$termScore) {
+        foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
                 if ((float)$row[$scoreIndex] < 60)
                     $row['state'] = false;
@@ -67,7 +69,7 @@ class ScoreController extends ProxyController {
      */
     public function getTermScoreStats($scoreTable) {
         $termCount = 0;
-        foreach ($scoreTable['tbody'] as $termScore) {
+        foreach ($scoreTable->tbody as $termScore) {
             $stats[0][$termCount] = 0;
             $stats[1][$termCount] = 0;
 
@@ -92,7 +94,7 @@ class ScoreController extends ProxyController {
      */
     public function getScoreDist($scoreTable) {
         $scoreDict = array();
-        foreach ($scoreTable['tbody'] as $termScore) {
+        foreach ($scoreTable->tbody as $termScore) {
             foreach ($termScore as $row) {
                 if ($row[6] >= 90)
                     $index = 0;
@@ -121,7 +123,7 @@ class ScoreController extends ProxyController {
      * @return array 学期名数组
      */
     public function getTermNames($scoreTable) {
-        $termNames = array_keys($scoreTable['tbody']);
+        $termNames = array_keys((array)$scoreTable->tbody);
         foreach ($termNames as &$termName)
             $termName = str_replace('学年', '学年 ', $termName);
         return $termNames;

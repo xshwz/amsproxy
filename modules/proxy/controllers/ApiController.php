@@ -1,15 +1,44 @@
 <?php
 class ApiController extends ProxyController {
     public function actionCourses() {
-        echo json_encode($this->getCourse());
+        $this->getData('course');
     }
 
     public function actionScores() {
-        echo json_encode($this->getScore());
+        $this->getData('score');
     }
 
     public function actionRankExam() {
-        echo json_encode($this->getRankExam());
+        $this->getData('rank_exam');
+    }
+
+    public function actionArchives() {
+        $this->getData('archives');
+    }
+
+    public function actionExam() {
+        $this->getData('exam_arrangement');
+    }
+
+    public function actionUpdate() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['field']))
+                $this->updateItem($_POST['field']);
+            else
+                $this->update(true);
+
+            echo 'true';
+        }
+    }
+
+    /**
+     * @param string $field
+     */
+    public function getData($field) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+            $this->updateItem($field);
+
+        echo $this->get($field, false);
     }
 
     public function notLoggedHandler() {

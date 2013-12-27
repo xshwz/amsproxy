@@ -8,7 +8,7 @@ class getRankExamForm extends __base__ {
     }
 
     public function parse($dom) {
-        $exam = array(
+        $exam = (object)array(
             'thead' => array(
                 '等级',
                 '构成',
@@ -20,6 +20,7 @@ class getRankExamForm extends __base__ {
                 '状态',
                 '操作',
             ),
+            'tbody' => array(),
         );
 
         $tables = $dom->getElementsByTagName('table');
@@ -31,21 +32,24 @@ class getRankExamForm extends __base__ {
                 if ($_typeName = trim($tds->item(1)->textContent))
                     $typeName = $_typeName;
 
-                $exam['tbody'][$typeName][] = array(
-                    $tds->item(2)->textContent,
-                    $tds->item(3)->textContent,
-                    $tds->item(4)->textContent,
-                    $tds->item(5)->textContent,
-                    $tds->item(6)->textContent . ' - '
-                        . $tds->item(7)->textContent,
-                    $tds->item(10)->textContent,
-                    $tds->item(11)->textContent,
-                    $tds->item(8)->textContent,
-                    $tds->item(9)->textContent,
-
+                $exam->tbody[$typeName][] = (object)array(
+                    'data' => array(
+                        $tds->item(2)->textContent,
+                        $tds->item(3)->textContent,
+                        $tds->item(4)->textContent,
+                        $tds->item(5)->textContent,
+                        $tds->item(6)->textContent . ' - '
+                            . $tds->item(7)->textContent,
+                        $tds->item(10)->textContent,
+                        $tds->item(11)->textContent,
+                        $tds->item(8)->textContent,
+                        $tds->item(9)->textContent,
+                    ),
                     'id' => $tds->item(9)->getAttribute('id'),
                 );
             }
+
+            $exam->tbody = (object)$exam->tbody;
         }
 
         return $exam;

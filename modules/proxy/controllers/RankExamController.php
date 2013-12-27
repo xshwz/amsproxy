@@ -2,22 +2,28 @@
 class RankExamController extends ProxyController {
     public function actionForm() {
         $this->pageTitle = '等级考试报名';
-        $rankExam = $this->getRankExam();
-        if (isset($rankExam['form']['tbody'])) {
-            foreach ( $rankExam['form']['tbody'] as &$tbody ) {
-                foreach ( $tbody as &$trs ) {
-                    if ($trs[8]) {
-                        $trs[8] = CHtml::link($trs[8], array(
-                            'apply',
-                            'id' => $trs['id'],
-                        ));
+        $rankExamForm = $this->AmsProxy()->invoke('getRankExamForm');
+
+        if (isset($rankExamForm->tbody)) {
+            foreach ($rankExamForm->tbody as &$tbody) {
+                foreach ($tbody as &$trs) {
+                    if ($trs->data[8]) {
+                        $trs->data[8] = CHtml::link(
+                            $trs->data[8],
+                            array(
+                                'apply',
+                                'id' => $trs->id,
+                            )
+                        );
                     }
+
+                    $trs = $trs->data;
                 }
             }
 
             $this->render('/common/table', array(
-                'data' => $rankExam['form'],
-                'type' => 1,
+                'data' => $rankExamForm,
+                'isCollapse' => false,
             ));
         } else {
             $this->warning('暂无数据');
@@ -26,11 +32,12 @@ class RankExamController extends ProxyController {
 
     public function actionScore() {
         $this->pageTitle = '等级考试成绩';
-        $rankExam = $this->getRankExam();
-        if (isset($rankExam['score']['tbody'])) {
+        $rankExam = $this->get('rank_exam');
+
+        if (isset($rankExam->score->tbody)) {
             $this->render('/common/table', array(
-                'data' => $rankExam['score'],
-                'type' => 1,
+                'data' => $rankExam->score,
+                'isCollapse' => false,
             ));
         } else {
             $this->warning('暂无数据');
@@ -38,9 +45,7 @@ class RankExamController extends ProxyController {
     }
 
     public function actionApply() {
-        $this->AmsProxy()->invoke('rankExamApply', $_GET['id']);
-        $this->student->rank_exam = null;
-        $this->student->save();
+        $this->AmsProxy()->invoke('rankExamApply', $_GET->id);
         $this->redirect(array('form'));
     }
 }

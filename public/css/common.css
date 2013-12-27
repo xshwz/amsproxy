@@ -165,6 +165,14 @@ h6,
   border: none;
   white-space: nowrap;
 }
+.table-bordered.table > thead > tr > th,
+.table-bordered.table > tbody > tr > th,
+.table-bordered.table > tfoot > tr > th,
+.table-bordered.table > thead > tr > td,
+.table-bordered.table > tbody > tr > td,
+.table-bordered.table > tfoot > tr > td {
+  border: 1px solid #ddd;
+}
 .table-responsive {
   overflow-y: hidden;
   overflow-x: auto;
@@ -181,6 +189,9 @@ h6,
   }
   body .table-responsive .table {
     background-color: transparent;
+  }
+  body .table-responsive .table-bordered {
+    border: 1px solid #ddd;
   }
 }
 .text-muted {

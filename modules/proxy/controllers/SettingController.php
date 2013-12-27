@@ -2,16 +2,7 @@
 class SettingController extends ProxyController {
     public function actionUpdate() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->student->archives = json_encode(
-                $this->AmsProxy()->invoke('getArchives'));
-            $this->student->course = null;
-            $this->student->score = null;
-            $this->student->rank_exam = null;
-            $this->student->theory_subject = null;
-            $this->student->exam_arrangement = null;
-            $this->student->save();
-
-            $this->update();
+            $this->update(true);
             $this->success('<span class="glyphicon glyphicon-ok"></span> 更新数据成功');
         } else {
             $this->render('update');
@@ -22,18 +13,18 @@ class SettingController extends ProxyController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['origin-password'] != $_SESSION['student']['pwd']) {
                 $this->render('password', array(
-                    'error' => '原始密码错误'
+                    'error' => '当前密码输入错误'
                 ));
             } elseif ($_POST['new-password'] != $_POST['new-password-t']) {
                 $this->render('password', array(
-                    'error' => '两次输入的密码不相同'
+                    'error' => '两次输入的密码不一致'
                 ));
             } elseif ($_POST['origin-password'] == $_POST['new-password']) {
                 $this->render('password', array(
                     'error' => '密码没有改变'
                 ));
             } else {
-                $this->AmsProxy()->invoke('ChangePassword', array(
+                $this->AmsProxy()->invoke('changePassword', array(
                     'oldpwd' => $_POST['origin-password'],
                     'newpwd' => $_POST['new-password'],
                 ));

@@ -43,6 +43,8 @@ return array(
                 'api/courses'  => 'proxy/api/courses',
                 'api/scores'   => 'proxy/api/scores',
                 'api/rankExam' => 'proxy/api/rankExam',
+                'api/archives' => 'proxy/api/archives',
+                'api/exam'     => 'proxy/api/exam',
             ),
         ),
     ),
