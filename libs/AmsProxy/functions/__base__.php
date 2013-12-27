@@ -19,9 +19,7 @@ class __base__ {
      * @return mixed
      */
     public function run() {
-        $data = $this->getData();
-        $data = $this->htmlFinishing($data);
-        return $this->parse($this->dom($data));
+        return $this->parse($this->createDom($this->getData()));
     }
 
     /**
@@ -42,14 +40,9 @@ class __base__ {
      * @param string $html
      * @return DOMDocument
      */
-    public function dom($html) {
-        $error_reporting_level = error_reporting();
-        error_reporting(0);
-
+    public function createDom($html) {
         $dom = new DOMDocument;
-        $dom->loadHTML($html);
-
-        error_reporting($error_reporting_level);
+        @$dom->loadHTML($this->htmlFinishing($html));
         return $dom;
     }
 
