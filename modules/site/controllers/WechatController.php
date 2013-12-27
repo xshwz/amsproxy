@@ -59,7 +59,7 @@ class WechatController extends BaseController {
 
     public function actionRankExam() {
         $this->render('rankExamScore', array(
-            'rankExamScore' => json_decode($this->student->rank_exam)['score'],
+            'rankExamScore' => json_decode($this->student->rank_exam)->score,
         ));
     }
 
