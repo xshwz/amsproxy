@@ -1,32 +1,27 @@
 <?php
-/**
- * collapse表格部件
- */
 class dataTable extends CWidget {
     /**
-     * @var array 显示的表格数组
+     * @var array
      */
     public $data = array();
 
     /**
-     * 显示的类型
-     * @var int 0: Collapses 1: A table without title
+     * @var bool
      */
-    public $type = 0;
+    public $isCollapse = true;
 
     protected $thead = array();
     protected $tbody = array();
 
     public function run() {
-        $this->thead = $this->data['thead'];
+        $this->thead = $this->data->thead;
         $this->tbody = isset(
-            $this->data['tbody']) ? $this->data['tbody'] : null;
+            $this->data->tbody) ? $this->data->tbody : null;
 
-        switch ( $this->type ) {
-            case 0 : $this->echoPanel(); break;
-            case 1 : $this->echoTable(); break;
-            default: break;
-        }
+        if ($this->isCollapse)
+            $this->echoPanel();
+        else
+            $this->echoTable();
     }
 
     protected function echoTable() {
@@ -46,7 +41,7 @@ class dataTable extends CWidget {
     protected function echoPanel() {
         if (isset($this->tbody)) {
             echo '<div class="panel-group accordion">';
-            $tbodys = array_keys($this->tbody);
+            $tbodys = array_keys((array)$this->tbody);
             $last_collapse_name = $tbodys[count($tbodys) - 1];
             foreach ($this->tbody as $title => $tbody) {
 
@@ -124,7 +119,7 @@ class dataTable extends CWidget {
     protected function echoTrs($trs) {
         foreach ($trs as $row) {
             echo CHtml::openTag('tr', 
-                isset($row['state']) && $row['state'] == false ?
+                isset($row->state) && $row->state == false ?
                 array('class' => 'danger') : array()
             );
 

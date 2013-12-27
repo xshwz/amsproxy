@@ -10,6 +10,18 @@ class ProxyController extends BaseController {
      */
     public $amsProxy;
 
+    /**
+     * @var array
+     */
+    public $fields = array(
+        'score',
+        'course',
+        'exam_arrangement',
+        'rank_exam',
+        'archives',
+        'theory_subject',
+    );
+
     public function init() {
         parent::init();
 
@@ -81,105 +93,81 @@ class ProxyController extends BaseController {
     }
 
     /**
-     * @param int $scoreType 0、原始成绩；1、有效成绩
      * @return array
      */
-    public function getScore($scoreType=1) {
-        if ($this->student->score) {
-            $score = json_decode($this->student->score, true);
-        } else {
-            $score = array(
-                $this->AmsProxy()->invoke('getScore', 0),
-                $this->AmsProxy()->invoke('getScore', 1),
-            );
-
-            $this->student->score = json_encode($score);
-            $this->student->save();
-        }
-
-        return $score[$scoreType];
+    public function get_archives() {
+        return $this->AmsProxy()->invoke('getArchives');
     }
 
     /**
      * @return array
      */
-    public function getCourse() {
-        if ($this->student->course) {
-            return json_decode($this->student->course);
-        } else {
-            $archives = (array)$this->student->getArchives();
-            $courses = array_merge(
-                $this->AmsProxy()->invoke('getPersonalCourse'),
-                $this->AmsProxy()->invoke(
-                    'getClassCourse', $archives['行政班级']));
-            $this->student->course = json_encode($courses);
-            $this->student->save();
-
-            return $courses;
-        }
+    public function get_score() {
+        return array(
+            $this->AmsProxy()->invoke('getScore', 0),
+            $this->AmsProxy()->invoke('getScore', 1),
+        );
     }
 
     /**
      * @return array
      */
-    public function getRankExam() {
-        if ($this->student->rank_exam) {
-            $rankExam = json_decode($this->student->rank_exam, true);
-        } else {
-            $rankExam = array(
-                'form'  => $this->AmsProxy()->invoke('getRankExamForm'),
-                'score' => $this->AmsProxy()->invoke('getRankExamScore'),
-            );
-
-            $this->student->rank_exam = json_encode($rankExam);
-            $this->student->save();
-        }
-
-        return $rankExam;
+    public function get_course() {
+        return array_merge(
+            $this->AmsProxy()->invoke('getPersonalCourse'),
+            $this->AmsProxy()->invoke(
+                'getClassCourse', $this->get('archives')->{'行政班级'}));
     }
 
     /**
      * @return array
      */
-    public function getTheorySubject() {
-        if ($this->student->theory_subject) {
-            return json_decode($this->student->theory_subject, true);
-        } else {
-            $theorySubject = $this->AmsProxy()->invoke('getTheorySubject');
-            $this->student->theory_subject = json_encode($theorySubject);
-            $this->student->save();
-            return $theorySubject;
-        }
+    public function get_rank_exam() {
+        return array(
+            'score' => $this->AmsProxy()->invoke('getRankExamScore'),
+        );
     }
 
     /**
      * @return array
      */
-    public function getExamArrangement() {
-        if ($this->student->exam_arrangement) {
-            return json_decode($this->student->exam_arrangement, true);
-        } else {
-            $examArrangement = $this->AmsProxy()->invoke('getExamArrangement');
-            $this->student->exam_arrangement = json_encode($examArrangement);
-            $this->student->save();
-            return $examArrangement;
-        }
+    public function get_theory_subject() {
+        return $this->AmsProxy()->invoke('getTheorySubject');
     }
 
-    public function update() {
-        if (!$this->student->course)
-            $this->getCourse();
+    /**
+     * @return array
+     */
+    public function get_exam_arrangement() {
+        return $this->AmsProxy()->invoke('getExamArrangement');
+    }
 
-        if (!$this->student->score)
-            $this->getScore();
+    /**
+     * @param bool $force
+     */
+    public function update($force=false) {
+        foreach ($this->fields as $field)
+            if ($force || !$this->student->{$field})
+                 $this->updateItem($field);
+    }
 
-        if (!$this->student->rank_exam)
-            $this->getRankExam();
+    /**
+     * @param string $field
+     */
+    public function updateItem($field) {
+        $this->student->{$field} = json_encode($this->{'get_' . $field}());
+        $this->student->save();
+    }
 
-        if (!$this->student->theory_subject)
-            $this->getTheorySubject();
-
-        if (!$this->student->exam_arrangement)
-            $this->getExamArrangement();
+    /**
+     * @param string $field
+     * @param bool $json_encode
+     * @return mixed
+     */
+    public function get($field, $json_encode=true) {
+        if ($json_encode)
+            return json_decode($this->student->{$field});
+        else
+            return $this->student->{$field};
     }
 }

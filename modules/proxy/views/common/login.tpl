@@ -9,7 +9,7 @@
         <span class="glyphicon glyphicon-exclamation-sign"></span>
         登录失败，可能是学号或密码错误
     </div>
-    <% endif; %>
+    <% endif %>
     <div class="form-group">
         <input
             name="sid"

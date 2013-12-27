@@ -5,13 +5,6 @@ class Student extends CActiveRecord {
     }
 
     /**
-     * @return array
-     */
-    public function getArchives() {
-        return json_decode($this->archives);
-    }
-
-    /**
      * @param int $wday
      * @return array|null
      */

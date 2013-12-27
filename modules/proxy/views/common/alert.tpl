@@ -1,3 +1,3 @@
-<div class="alert alert-<?php echo $type; ?>">
-    <?php echo $message; ?>
+<div class="alert alert-<%= $type %>">
+    <%= $message %>
 </div>
