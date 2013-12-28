@@ -81,7 +81,9 @@ h6,
   opacity: 0.6;
   filter: alpha(opacity=60);
 }
-.close:hover {
+.close:hover,
+.close:focus,
+.close:active {
   color: #fff;
   opacity: 0.8;
   filter: alpha(opacity=80);

@@ -91,7 +91,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   opacity: 0.6;
   filter: alpha(opacity=60);
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: #fff;
     opacity: 0.8;
     filter: alpha(opacity=80);

@@ -12,7 +12,7 @@ class StatsController extends AdminController {
         );
 
         foreach (Student::model()->findAll() as $student) {
-            $archives = (array)$student->getArchives();
+            $archives = (array)json_decode($student->archives);
             $college = $archives['院(系)/部'];
             $discipline = $archives['专业'];
             $grade = $archives['入学年份'];

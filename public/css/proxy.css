@@ -45,6 +45,12 @@
   background-color: #34495e;
   transition: all 0.2s;
 }
+#side ::-webkit-scrollbar {
+  width: 4px;
+}
+#side ::-webkit-scrollbar-thumb {
+  background-color: #bdc3c7;
+}
 #side ul {
   list-style: none;
   padding: 0;
@@ -62,7 +68,6 @@
 #side > ul:active,
 #side > ul:focus {
   overflow-y: auto;
-  padding-right: 1px;
 }
 #side > ul > li {
   padding: 24px 0 16px 0;
@@ -76,7 +81,7 @@
 #side > ul > li > span {
   font-size: 16px;
   font-weight: bold;
-  padding-left: 24px;
+  padding-left: 16px;
   color: #ffffff;
 }
 #side > ul > li > ul {
@@ -84,8 +89,8 @@
 }
 #side > ul > li > ul a {
   display: block;
-  padding: 6px 16px;
-  margin: 2px 0;
+  padding: 6px 32px;
+  margin: 2px -16px;
   color: #bdc3c7;
 }
 #side > ul > li > ul a .glyphicon {
@@ -98,7 +103,7 @@
 }
 .side-header {
   text-align: center;
-  background-color: #e67e22;
+  background-color: #27ae60;
 }
 .side-header h1 {
   font-size: 28px;
@@ -163,7 +168,7 @@
   height: 50px;
   width: 100%;
   z-index: 999;
-  background-color: #f39c12;
+  background-color: #2ecc71;
   position: fixed;
   padding-right: 200px;
   color: #ffffff;
@@ -190,7 +195,7 @@
   color: #ffffff;
 }
 #top-nav .links a:hover {
-  background-color: #e67e22;
+  background-color: #27ae60;
 }
 #top-nav .links:after {
   clear: both;
