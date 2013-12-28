@@ -24,4 +24,18 @@
         "type": "text",
         "content": "→_→"
     }
+},
+{
+    "pattern": "帮助！",
+    "handler": {
+        "type": "text",
+        "content": "别慌！"
+    }
+},
+{
+    "pattern": "help!",
+    "handler": {
+        "type": "text",
+        "content": "Don't panic!"
+    }
 }
