@@ -7,7 +7,7 @@
                 name="keyword"
                 placeholder="关键字"
                 class="form-control"
-                value="<%= $this->param('keyword'); %>">
+                value="<%= $this->param('keyword') %>">
             <span class="input-group-btn">
                 <button class="btn" type="submit" id="search-submit" title="搜索">
                     <span class="glyphicon glyphicon-search"></span>
@@ -32,7 +32,17 @@
                 $archives = (array)json_decode($student->archives);
             %>
             <tr>
-                <td><%= $archives['姓名']; %></td>
+                <td>
+                    <a
+                        href="#detail-modal"
+                        class="detail"
+                        title="详细资料"
+                        data-toggle="modal"
+                        data-sid='<%= $student->sid %>'
+                        data-json='<%= $student->archives %>'>
+                        <%= $archives['姓名'] %>
+                    </a>
+                </td>
                 <td>
                     <%=
                     CHtml::link($archives['行政班级'], array('index',
@@ -40,28 +50,19 @@
                     ))
                     %>
                 </td>
-                <td><%= $student->last_login_time; %></td>
+                <td><%= $student->last_login_time %></td>
                 <td>
-                    <a
-                        href="#detail-modal"
-                        class="detail"
-                        title="详细资料"
-                        data-toggle="modal"
-                        data-sid='<%= $student->sid; %>'
-                        data-json='<%= $student->archives; %>'>
-                        <span class="glyphicon glyphicon-file"></span>
-                    </a>
                     <a
                         href="#send-modal"
                         title="发送消息"
                         data-toggle="modal"
-                        data-sid='<%= $student->sid; %>'
+                        data-sid='<%= $student->sid %>'
                         class="send">
                         <span class="glyphicon glyphicon-send"></span>
                     </a>
                 </td>
             </tr>
-            <% endforeach; %>
+            <% endforeach %>
         </tbody>
     </table>
 </div>
@@ -93,7 +94,7 @@
             <div class="modal-body">
                 <form
                     id="ajaxSendForm"
-                    action="<%= Yii::app()->createUrl('admin/message/send'); %>"
+                    action="<%= Yii::app()->createUrl('admin/message/send') %>"
                     method="post">
                     <input type="hidden" name="sender" value="0">
                     <input type="hidden" name="receiver" id="send-form-sid">
