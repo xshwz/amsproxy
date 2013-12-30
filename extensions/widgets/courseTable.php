@@ -165,7 +165,7 @@ EOT;
         $result = '';
         foreach ($array as $index => $item) {
             $index += 1;
-            $result .= "{$index}、{$item}\n";
+            $result .= "{$index}、{$item}<br>";
         }
         return trim($result);
     }

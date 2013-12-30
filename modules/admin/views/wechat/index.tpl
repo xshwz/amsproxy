@@ -44,6 +44,11 @@ foreach ($logs as $log):
                         $message->EventKey .
                     '</span>';
             }
+
+        default:
+            $messageTypeIcon = 'question-sign';
+            $messageTypeTitle = '未知';
+            $content = '<span class="label label-danger">' . $message->MsgType . '</span>';
     }
 %>
 <div class="session <%= $stateClass %>">
