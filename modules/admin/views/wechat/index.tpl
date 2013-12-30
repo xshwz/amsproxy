@@ -45,6 +45,8 @@ foreach ($logs as $log):
                     '</span>';
             }
 
+            break;
+
         default:
             $messageTypeIcon = 'question-sign';
             $messageTypeTitle = '未知';
