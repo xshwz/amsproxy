@@ -2,7 +2,8 @@
 class ScoreController extends ProxyController {
     public function actionOriginalScore() {
         $this->pageTitle = '原始成绩';
-        $scoreTable = $this->get('score')[0];
+        $scoreTable = $this->get('score');
+        $scoreTable = $scoreTable[0];
 
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 10);
@@ -16,7 +17,8 @@ class ScoreController extends ProxyController {
 
     public function actionEffectiveScore() {
         $this->pageTitle = '有效成绩';
-        $scoreTable = $this->get('score')[1];
+        $scoreTable = $this->get('score');
+        $scoreTable = $scoreTable[1];
 
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 6);
@@ -29,7 +31,8 @@ class ScoreController extends ProxyController {
     }
 
     public function actionStats() {
-        $scoreTable = $this->get('score')[1];
+        $scoreTable = $this->get('score');
+        $scoreTable = $scoreTable[1];
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 6);
             $this->render('stats', array(

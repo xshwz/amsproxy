@@ -1,8 +1,6 @@
 <?php
-namespace cUrl;
-include 'Response.php';
 
-class Request {
+class curl_request {
     /**
      * @var array
      */
@@ -17,7 +15,13 @@ class Request {
         $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->curl, CURLOPT_HEADER, true);
-        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 8);
+    }
+
+    /**
+     * @param int $timeout
+     */
+    public function setTimeout($timeout) {
+        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $timeout);
     }
 
     /**
@@ -65,6 +69,7 @@ class Request {
         $this->headers = array_merge($this->headers, $headers);
         foreach ($this->headers as $key => $value)
             $_headers[] = $key . ': ' . $value;
+
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, $_headers);
     }
 
@@ -80,6 +85,7 @@ class Request {
         $_cookies = array();
         foreach ($this->cookies as $key => $value)
             $_cookies[] = $key . '=' . $value;
+
         curl_setopt($this->curl, CURLOPT_COOKIE, join('; ', $_cookies));
     }
 
@@ -108,10 +114,69 @@ class Request {
         if (isset($options['headers']))
             $this->setHeaders($options['headers']);
 
-        $response = new Response($this->send(), curl_getInfo($this->curl));
+        $response = new curl_response(
+            $this->send(), curl_getInfo($this->curl));
+
         $this->setCookies($response->cookies);
 
         if ($callback) $callback();
+
         return $response;
+    }
+}
+
+class curl_response {
+    /**
+     * @var array
+     */
+    public $cookies = array();
+
+    /**
+     * @var array
+     */
+    public $headers = array();
+
+    /**
+     * @var string
+     */
+    public $header = '';
+
+    /**
+     * @var string
+     */
+    public $body = '';
+
+    /**
+     * @param string $response
+     * @param array $info curl info
+     */
+    public function __construct($response, $info) {
+        $this->header = substr($response, 0, $info['header_size'] - 4);
+        $this->body = substr($response,  -$info['size_download']);
+
+        $headers = explode("\r\n", $this->header);
+        foreach ($headers as $header) {
+            preg_match('/(.*?): (.*)/', $header, $matches);
+            if (count($matches) == 3) {
+                $key = strtolower($matches[1]);
+                $value = $matches[2];
+
+                if ($key == 'set-cookie') {
+                    $cookie = explode('; ', $value);
+                    preg_match('/(.*?)=(.*)/', $cookie[0], $matches);
+                    $this->cookies[$matches[1]] = $matches[2];
+                } else {
+                    $this->headers[$key] = $value;
+                }
+            }
+        }
+    }
+
+    public function json() {
+        return json_decode($this->body);
+    }
+
+    public function __toString() {
+        return $this->body;
     }
 }

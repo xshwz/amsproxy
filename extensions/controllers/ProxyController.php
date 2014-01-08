@@ -14,18 +14,19 @@ class ProxyController extends BaseController {
      * @var array
      */
     public $fields = array(
+        'archives',
         'score',
         'course',
         'exam_arrangement',
         'rank_exam',
-        'archives',
         'theory_subject',
     );
 
     public function init() {
         parent::init();
+        $this->checkSession();
 
-        if (!$this->isLogged() && !$this->tryLoginFromCookie())
+        if (!$this->isLogged())
             $this->notLoggedHandler();
 
         $this->student = Student::model()->findByPk(
@@ -35,25 +36,69 @@ class ProxyController extends BaseController {
         $this->update();
     }
 
-    public function notLoggedHandler() {
-        $this->destroyRemember();
+    public function checkSession() {
+        if (!isset($_SESSION['session'])) {
+            if (isset($_COOKIE['session'])) {
+                $_SESSION['session'] = $_COOKIE['session'];
+            } else {
+                setcookie(
+                    'session', $this->AmsProxy()->getSession(),
+                    time() + 4 * 365 * 24 * 60 * 60, '/');
+            }
+        }
+    }
 
+    public function notLoggedHandler() {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
 
-            if (!$this->login($sid, $pwd)) {
+            if ($result = $this->AmsProxy()->login(
+                $sid, $pwd, $_POST['captcha']
+            )) {
                 $this->render('/common/login', array(
-                    'error' => true,
-                    'sid' => $sid,
+                    'error'   => $result,
+                    'sid'     => $sid,
+                    'captcha' => base64_encode(
+                        $this->AmsProxy()->getCaptcha()),
                 ));
 
                 Yii::app()->end();
+            } else {
+                $this->saveStudent();
+                $this->updateStudentLastLoginTime(
+                    Student::model()->findByPk($sid));
+                $_SESSION['student'] = array(
+                    'sid'     => $sid,
+                    'pwd'     => $pwd,
+                    'isAdmin' => $this->isAdmin($sid),
+                );
             }
         } else {
-            $this->render('/common/login');
+            $this->render('/common/login', array(
+                'captcha' => base64_encode(
+                    $this->AmsProxy()->getCaptcha()),
+            ));
+
             Yii::app()->end();
         }
+    }
+
+    public function saveStudent() {
+        if (Student::model()->findByPk($this->AmsProxy()->sid) == null) {
+            $student = new Student;
+            $student->sid = $this->AmsProxy()->sid;
+            $student->archives = json_encode($this->get_archives());
+            $student->save();
+        }
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function updateStudentLastLoginTime($student) {
+        $student->last_login_time = date('Y-m-d H:i:s');
+        $student->save();
     }
 
     /**
@@ -64,29 +109,14 @@ class ProxyController extends BaseController {
     }
 
     /**
-     * @return bool
-     */
-    public function tryLoginFromCookie() {
-        if (isset($_COOKIE['sid']) && isset($_COOKIE['pwd'])) {
-            $sid = $this->decrypt($_COOKIE['sid']);
-            $pwd = $this->decrypt($_COOKIE['pwd']);
-
-            return $this->login($sid, $pwd);
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * @return AmsProxy
      */
     public function AmsProxy() {
         if ($this->amsProxy == null) {
-            $this->amsProxy = new AmsProxy(array(
-                'sid'     => $_SESSION['student']['sid'],
-                'pwd'     => $_SESSION['student']['pwd'],
-                'session' => $_SESSION['student']['session'],
-            ));
+            if (isset($_SESSION['session']))
+                $this->amsProxy = new AmsProxy($_SESSION['session']);
+            else
+                $this->amsProxy = new AmsProxy;
         }
 
         return $this->amsProxy;
@@ -96,7 +126,10 @@ class ProxyController extends BaseController {
      * @return array
      */
     public function get_archives() {
-        return $this->AmsProxy()->invoke('getArchives');
+        return array_merge(
+            $this->AmsProxy()->invoke('getArchives'),
+            $this->AmsProxy()->invoke('getArchivesEx')
+        );
     }
 
     /**

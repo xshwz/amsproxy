@@ -28,7 +28,7 @@ class SettingController extends ProxyController {
                     'oldpwd' => $_POST['origin-password'],
                     'newpwd' => $_POST['new-password'],
                 ));
-                $login_url = $this->createUrl('/site/home/login');
+                $login_url = $this->createUrl('/proxy');
                 $this->render('/common/alert', array(
                     'type' => 'success',
                     'message' => "修改成功, 3秒后自动退出

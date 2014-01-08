@@ -64,7 +64,8 @@ class WechatController extends BaseController {
     }
 
     public function actionScore() {
-        $scoreTable = json_decode($this->student->score)[1];
+        $scoreTable = json_decode($this->student->score);
+        $scoreTable = $scoreTable[1];
 
         foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
