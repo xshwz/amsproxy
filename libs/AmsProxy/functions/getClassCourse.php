@@ -17,7 +17,8 @@ class getClassCourse extends __base__ {
                     'Sel_XZBJ' => $classCode['code'][0],
                     'type'     => 2,
                     'chkrxkc'  => 1,
-                )
+                ),
+                null, $this->amsProxy->baseUrl . 'ZNPK/KBFB_ClassSel.aspx'
             );
         } else {
             return null;
@@ -37,8 +38,9 @@ class getClassCourse extends __base__ {
                     if ($tds->item($i + $j)->textContent)
                         $course[$j] = $tds->item($i + $j)->textContent;
 
-                preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[8], $lesson);
+                preg_match('/(...)\[(\d+)-?(\d+)?节\]/', $course[8], $lesson);
                 $week = explode('-', $course[7]);
+
                 $courses[] = array(
                     'courseName'  => preg_replace('/^\[.*?\]/', '', $course[0]),
                     'credit'      => $course[1],
@@ -49,8 +51,8 @@ class getClassCourse extends __base__ {
                     'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
                     'weekDay'     => self::$weekDict[$lesson[1]],
                     'lessonStart' => (int)$lesson[2],
-                    'lessonTo'    => (int)$lesson[3],
-                    'location'    => $course[9],
+                    'lessonTo'    => isset($lesson[3]) ? (int)$lesson[3] : (int)$lesson[2],
+                    'location'    => isset($course[9]) ? $course[9] : '',
                 );
             }
 

@@ -7,8 +7,7 @@ class HomeController extends ProxyController {
 
     public function actionLogout() {
         session_destroy();
-        $this->destroyRemember();
-        $this->redirect(array('/site/home/login'));
+        $this->redirect(array('/site/home'));
     }
 
     public function actionFeedback() {

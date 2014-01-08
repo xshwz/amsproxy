@@ -44,7 +44,6 @@ class BaseController extends CController {
 
     public function init() {
         $this->setting = Setting::model()->find();
-        $this->mcrypt = new Mcrypt($this->setting['crypt_key']);
     }
 
     /**
@@ -52,45 +51,6 @@ class BaseController extends CController {
      */
     public function isLogged() {
         return isset($_SESSION['student']);
-    }
-
-    /**
-     * @param string $sid
-     * @param string $pwd
-     * @param bool $remember
-     * @return bool
-     */
-    public function login($sid, $pwd, $remember=true) {
-        $amsProxy = new AmsProxy(array(
-            'sid' => $sid,
-            'pwd' => $pwd,
-        ));
-
-        if ($amsProxy->login()) {
-            $this->trySaveStudent($amsProxy);
-            $_SESSION['student'] = array(
-                'sid'     => $sid,
-                'pwd'     => $pwd,
-                'session' => $amsProxy->getSession(),
-                'isAdmin' => $this->isAdmin($sid),
-            );
-
-            if ($remember) $this->remember($sid, $pwd);
-
-            $this->updateStudentLastLoginTime(
-                Student::model()->findByPk($sid));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * @param Student $student
-     */
-    public function updateStudentLastLoginTime($student) {
-        $student->last_login_time = date('Y-m-d H:i:s');
-        $student->save();
     }
 
     /**
@@ -105,45 +65,6 @@ class BaseController extends CController {
             return $student->is_admin == '1';
         else
             return false;
-    }
-
-    /**
-     * @param AmsProxy $amsProxy
-     * @param string $archives
-     */
-    public function trySaveStudent($amsProxy) {
-        if (Student::model()->findByPk($amsProxy->sid) == null) {
-            $student = new Student;
-            $student->sid = $amsProxy->sid;
-            $student->archives = json_encode(
-                $amsProxy->invoke('getArchives'));
-            $student->save();
-        }
-    }
-
-    /**
-     * save sid and pwd to cookies
-     *
-     * @param string $sid
-     * @param string $pwd
-     * @param int $time 保存时间，默认30天
-     */
-    public function remember($sid, $pwd, $time=2592000) {
-        setcookie('sid', $this->mcrypt->encrypt($sid), time() + $time, '/');
-        setcookie('pwd', $this->mcrypt->encrypt($pwd), time() + $time, '/');
-    }
-
-    public function destroyRemember() {
-        setcookie('sid', null, 1, '/');
-        setcookie('pwd', null, 1, '/');
-    }
-
-    /**
-     * @param string
-     * @return string
-     */
-    public function decrypt($s) {
-        return rtrim($this->mcrypt->decrypt(urldecode($s)));
     }
 
     public function render($view, $data=null, $return=false) {

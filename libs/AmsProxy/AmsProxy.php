@@ -1,5 +1,5 @@
 <?php
-include 'cUrl/Request.php';
+include 'curl.php';
 include 'functions/__base__.php';
 
 class AmsProxy {
@@ -21,62 +21,60 @@ class AmsProxy {
     /**
      * @var array
      */
-    public $config = array(
-        'baseUrl' => 'http://ams.gxun.edu.cn/',
-    );
+    public $baseUrl = 'http://ams.gxun.edu.cn/';
 
     /**
-     * @param string $sid
-     * @param string $pwd
      * @param string $session
-     * @param array $config
      */
-    public function __construct($u, $config=null) {
-        $this->sid = $u['sid'];
-        $this->pwd = $u['pwd'];
-        $this->updateConfig($config);
-        $this->curl = new cUrl\Request;
-
-        if (isset($u['session']))
-            $this->setSession($u['session']);
+    public function __construct($session=null) {
+        $this->curl = new curl_request;
+        $this->curl->setTimeout(8);
+        if ($session) $this->setSession($session);
     }
 
     /**
-     * @return bool
+     * @param string $captcha
+     * @return string error message
      */
-    public function login() {
+    public function login($sid, $pwd, $captcha) {
         $responseText = $this->POST(
             '_data/Index_LOGIN.aspx',
             array(
                 'Sel_Type' => 'STU',
-                'UserID' => $this->sid,
-                'PassWord' => $this->pwd,
+                'UserID'   => $sid,
+                'PassWord' => $pwd,
+                'cCode'    => $captcha,
             )
         );
 
-        if (strpos($responseText, '正在加载权限数据'))
-            return true;
-        else
-            return false;
+        if (!strpos($responseText, '正在加载权限数据')) {
+            preg_match(
+                '/<font color="Red">(.*?)</', $responseText, $matches);
+            return $matches[1];
+        } else {
+            $this->sid = $sid;
+        }
     }
 
     /**
      * @param string $url
      * @param array $params url params
+     * @param string $referer header referer
      * @return string
      */
-    public function GET($url, $params=null) {
-        return $this->request('get', $url, $params);
+    public function GET($url, $params=null, $referer=null) {
+        return $this->request('get', $url, $params, null, $referer);
     }
 
     /**
      * @param string $url
      * @param array $data post data
      * @param array $params url params
+     * @param string $referer header referer
      * @return string
      */
-    public function POST($url, $data, $params=null) {
-        return $this->request('post', $url, $params, $data);
+    public function POST($url, $data, $params=null, $referer=null) {
+        return $this->request('post', $url, $params, $data, $referer);
     }
 
     /**
@@ -84,44 +82,51 @@ class AmsProxy {
      * @param string $url
      * @param array $params url params
      * @param array $data post data
+     * @param string $referer header referer
      * @return string
      */
-    public function request($method, $url, $params=null, $data=null) {
-        $responseText = iconv(
+    public function request(
+        $method, $url, $params=null, $data=null, $referer=null) {
+
+        if (!$referer)
+            $referer = $this->baseUrl . $url;
+
+        return iconv(
             'gb18030', 'utf-8//ignore',
             $this->curl->request(
                 array(
-                    'method' => $method,
-                    'url'    => $this->config['baseUrl'] . $url,
-                    'params' => $params,
-                    'data'   => $data,
+                    'method'  => $method,
+                    'url'     => $this->baseUrl . $url,
+                    'params'  => $params,
+                    'data'    => $data,
+                    'headers' => array(
+                        'Referer' => $referer,
+                    ),
                 )
             )->body
         );
-
-        if (strpos($responseText, '您无权访问此页')) {
-            $this->login();
-            $responseText = $this->request($method, $url, $params, $data);
-        }
-
-        return $responseText;
-    }
-
-    /**
-     * @param array $config
-     */
-    public function updateConfig($config) {
-        foreach (array_keys($this->config) as $key) {
-            if (isset($config[$key]))
-                $this->config[$key] = $config[$key];
-        }
     }
 
     /**
      * @return string
      */
     public function getSession() {
+        if (!isset($this->curl->cookies['ASP.NET_SessionId']))
+            $this->GET('');
+
         return $this->curl->cookies['ASP.NET_SessionId'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getCaptcha() {
+        return $this->curl->request(
+            array(
+                'method' => 'get',
+                'url'    => $this->baseUrl . 'sys/ValidateCode.aspx',
+            )
+        )->body;
     }
 
     /**

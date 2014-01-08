@@ -146,6 +146,11 @@ p.xsh a {
 .login-form .alert {
   padding: 10px 15px;
 }
+.login-form .input-group-addon {
+  padding: 0 4px;
+  background-color: #ecf0f1;
+  border-color: #ecf0f1;
+}
 .screenshot {
   width: 100%;
   overflow: auto;

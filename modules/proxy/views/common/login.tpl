@@ -7,7 +7,7 @@
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <span class="glyphicon glyphicon-exclamation-sign"></span>
-        登录失败，可能是学号或密码错误
+        <%= $error %>
     </div>
     <% endif %>
     <div class="form-group">
@@ -32,6 +32,19 @@
         <label class="input-icon" for="input-pwd">
             <span class="glyphicon glyphicon-lock"></span>
         </label>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <input
+                name="captcha"
+                id="input-captcha"
+                type="text"
+                class="form-control"
+                placeholder="验证码">
+            <span class="input-group-addon">
+                <img src="data:image/gif;base64,<%= $captcha %>" alt="captcha">
+            </span>
+        </div>
     </div>
     <div class="form-group">
         <button class="btn btn-block" type="submit">登录</button>
