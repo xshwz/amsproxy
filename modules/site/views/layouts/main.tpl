@@ -59,12 +59,7 @@
                             echo 'class="active"';
                         %>
                         >
-                        <%
-                        if ($this->isLogged())
-                            echo CHtml::link('青果', array('/proxy'));
-                        else
-                            echo CHtml::link('登录', array('/site/home/login'));
-                        %>
+                        <%= CHtml::link('青果', array('/proxy')) %>
                     </li>
                 </ul>
             </div>
