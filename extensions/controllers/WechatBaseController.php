@@ -216,6 +216,8 @@ class WechatBaseController extends BaseController {
                 $responseText .= "成绩：{$score[$fields[$scoreType]]}\n\n";
             }
 
+            $responseText .= '注：如果没有你想要查询的成绩，可能是还没有录入（通常在考试后两周左右，具体视老师心情而定），还有别忘了发送“更新”更新数据哦';
+
             $this->responseNews(array(
                 (object)array(
                     'title'       => $termNames[$termIndex],
@@ -378,23 +380,15 @@ class WechatBaseController extends BaseController {
             ),
             (object)array(
                 'title' =>
-                    "【一般问题】\n\n" .
+                    "\n【一般问题】\n\n" .
                     "• 涉及个人数据的指令，比如“课表“、”成绩”等需要绑定后才能使用\n\n" .
                     "• 发送的消息不一定都能成功返回，要多试几次哦\n\n" .
-                    "• 欢迎你直接在微信上向我们反馈！",
+                    "• 欢迎你直接在微信上向我们反馈！\n",
                 'url' => $url,
             ),
             (object)array(
                 'title' =>
-                    "【系统没有回复的原因】\n\n" .
-                    "• 可能在教务系统里并没有相关的数据，建议你先去教务系统确认\n\n" .
-                    "• 如果教务系统确实有数据，那么可能是我们的系统没有获取到或者没有更新，发送指令“更新”可以更新数据\n\n" .
-                    "• 可能是遇到了 Bug 或者我们的服务器挂了，导致无法正常提供服务",
-                'url' => $url,
-            ),
-            (object)array(
-                'title' =>
-                    "【支持的指令】\n\n" .
+                    "\n【支持的指令】\n\n" .
                     "• 关于\n  “相思青果”介绍\n\n" .
                     "• 学籍\n  返回个人学籍档案\n\n" .
                     "• 课表\n  返回一周的课表，需要点击消息查看\n\n" .
@@ -403,7 +397,7 @@ class WechatBaseController extends BaseController {
                     "• 等级考试\n  返回等级考试成绩\n\n" .
                     "• 考试安排\n  返回考试安排\n\n" .
                     "• 绑定\n  当前微信号与相思青果进行绑定\n\n" .
-                    "• 解除绑定\n  当前微信号与相思青果解除绑定",
+                    "• 解除绑定\n  当前微信号与相思青果解除绑定\n",
                 'url' => $url,
             ),
         ));
