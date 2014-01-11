@@ -39,7 +39,7 @@
     }
 },
 {
-    "pattern": "^(s|score\\b|成绩)\\s*(\\d?)$",
+    "pattern": "^(s|score\\b|成绩)\\s*(\\d?)\\s?(\\d?)$",
     "handler": {
         "type": "function",
         "function": "responseScore",
