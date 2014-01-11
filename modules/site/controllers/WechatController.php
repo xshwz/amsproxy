@@ -64,12 +64,14 @@ class WechatController extends BaseController {
     }
 
     public function actionScore() {
+        $scoreType = isset($_GET['scoreType']) ? (int)$_GET['scoreType'] : 0; 
         $scoreTable = json_decode($this->student->score);
-        $scoreTable = $scoreTable[1];
+        $scoreTable = $scoreTable[$scoreType];
+        $fields = array(10, 6);
 
         foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
-                if ((float)$row[6] < 60)
+                if ((float)$row[$fields[$scoreType]] < 60)
                     $row['state'] = false;
                 else
                     $row['state'] = true;

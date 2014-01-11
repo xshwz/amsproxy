@@ -15,6 +15,6 @@ class ApiController extends BaseController {
     }
 
     public function actionLogout() {
-        session_destr();
+        session_destroy();
     }
 }

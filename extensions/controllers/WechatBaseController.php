@@ -196,9 +196,8 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseScore($args) {
-        preg_match('/([1-8]?)\s?([0-1]?)/', $args[2], $params);
-
-        $scoreType = $params[2] ? (int)$params[2] : 1; 
+        $scoreType = $args[3] ? (int)$args[3] : 0; 
+        $fields = array(10, 6);
         $scoreTable = json_decode($this->student->score, true);
 
         if ($scoreTable &&
@@ -207,25 +206,26 @@ class WechatBaseController extends BaseController {
 
             $scoreTable = $scoreTable[$scoreType]['tbody'];
             $termNames = array_keys($scoreTable);
-            $termIndex = $params[1] ? (int)($params[1]) - 1 : count($termNames) - 1;
+            $termIndex = $args[2] ? (int)($args[2]) - 1 : count($termNames) - 1;
 
             $responseText = '';
             foreach ($scoreTable[$termNames[$termIndex]] as $score) {
                 $courseName = preg_replace('/\[.*?\]/', '', $score[0]);
                 $responseText .= "课程：{$courseName}\n";
                 $responseText .= "学分：{$score[1]}\n";
-                $responseText .= "成绩：{$score[6]}\n\n";
+                $responseText .= "成绩：{$score[$fields[$scoreType]]}\n\n";
             }
 
             $this->responseNews(array(
                 (object)array(
-                    'title' => $termNames[$termIndex],
+                    'title'       => $termNames[$termIndex],
                     'description' => trim($responseText),
-                    'url' => $this->createAbsoluteUrl(
+                    'url'         => $this->createAbsoluteUrl(
                         '/site/wechat/score',
                         array(
-                            'openId' => $this->student->{$this->openIdField},
-                            'field' => $this->openIdField,
+                            'openId'    => $this->student->{$this->openIdField},
+                            'field'     => $this->openIdField,
+                            'scoreType' => $scoreType,
                         )
                     ),
                 ),
@@ -299,8 +299,8 @@ class WechatBaseController extends BaseController {
             (object)array(
                 'title' => '暂无数据',
                 'description' => 
-                    "• 可能是教务系统没有相关数据，或者没有录入，比如大一新生可能就还没有成绩和等级考试的数据\n\n" .
-                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新”（前提是教务系统有相关数据哦）",
+                    "• 可能是教务系统没有相关数据，或者还没有录入，比如考试成绩通常会在考试后至少一周（视老师心情而定）才录入\n\n" .
+                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新”，或点击此消息进行更新。（前提是教务系统有相关数据哦）",
                 'url' => $this->createAbsoluteUrl('/proxy/setting/update'),
             ),
         ));
