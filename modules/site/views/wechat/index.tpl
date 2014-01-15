@@ -49,7 +49,8 @@ EOT;
 </div>
 <ol>
     <li>查找公众号“相思青果”或<abbr title="<img src='img/wechat-qrcode.jpg' width='160' style='margin: 5px 0;' alt='微信二维码'>" class="wechat-qrcode">扫描二维码</abbr>；</li>
-    <li>关注后会收到一条消息，点击链接，成功登录后即可完成绑定。</li>
+    <li>发送”绑定“系统会回复一条消息</li>
+    <li>点击该消息，会跳转到登录页面，成功登录后即可完成绑定。</li>
 </ol>
 
 <div class="page-header">
@@ -64,8 +65,10 @@ EOT;
     <li><p><code>成绩</code>：默认返回最近一个学期的成绩，可带参数，比如“成绩1”返回第一个学期的成绩</p></li>
     <li><p><code>等级考试</code>：返回等级考试成绩</p></li>
     <li><p><code>考试安排</code>：返回考试安排表</p></li>
+    <li><p><code>绑定</code>：与相思青果进行绑定</p></li>
+    <li><p><code>取消绑定</code>：取消与相思青果的绑定，如果你想重新绑定其他学号，要点击右上角退出哦</p></li>
 </ul>
-<em class="text-muted"><small>
+<em class="text-muted">
     <span class="glyphicon glyphicon-info-sign"></span>
     发送的指令不一定都能成功返回，可以多试几次。
-</small></em>
+</em>

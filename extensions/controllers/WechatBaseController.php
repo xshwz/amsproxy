@@ -209,7 +209,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseScore($args) {
-        $scoreType = $args[3] ? (int)$args[3] : 1; 
+        $scoreType = $args[3] ? (int)$args[3] : 0; 
         $fields = array(10, 6);
         $scoreTable = json_decode($this->student->score, true);
 
