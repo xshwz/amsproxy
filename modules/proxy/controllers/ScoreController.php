@@ -7,7 +7,7 @@ class ScoreController extends ProxyController {
 
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 10);
-            $this->render('/common/table', array(
+            $this->render('table', array(
                 'data' => $scoreTable,
             ));
         } else {
@@ -22,7 +22,7 @@ class ScoreController extends ProxyController {
 
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 6);
-            $this->render('/common/table', array(
+            $this->render('table', array(
                 'data' => $scoreTable,
             ));
         } else {

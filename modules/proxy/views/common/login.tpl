@@ -49,4 +49,8 @@
     <div class="form-group">
         <button class="btn btn-block" type="submit">登录</button>
     </div>
+    <p><em class="text-muted">
+        <span class="glyphicon glyphicon-info-sign"></span>
+        密码默认是身份证后六位，建议登录后修改
+    </em></p>
 </form>
