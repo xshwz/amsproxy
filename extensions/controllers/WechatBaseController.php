@@ -99,13 +99,26 @@ class WechatBaseController extends BaseController {
     }
 
     public function textHandler() {
+        $handled = false;
+
         foreach ($this->config->text as $item) {
             preg_match('/' . $item->pattern . '/i',
                 $this->request->Content, $matches);
 
             if (!empty($matches)) {
                 $this->execHandler($item->handler, $matches);
+                $handled = true;
             }
+        }
+
+        if (!$handled && $this->setting->wechat_auto_reply) {
+            $this->responseNews(array(
+                (object)array(
+                    'title' => '欢迎使用相思青果',
+                    'description' => "在这里，你可以通过发送特定指令获取相应信息，比如发送“成绩”可以查询成绩，更多支持的指令以及帮助信息可以发送“帮助”获取。\n\n提示：如果系统没有回复，可以多试几次哦。祝你寒假愉快 ~",
+                    'url' => $this->createAbsoluteUrl('/wechat'),
+                ),
+            ));
         }
     }
 
@@ -196,7 +209,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseScore($args) {
-        $scoreType = $args[3] ? (int)$args[3] : 0; 
+        $scoreType = $args[3] ? (int)$args[3] : 1; 
         $fields = array(10, 6);
         $scoreTable = json_decode($this->student->score, true);
 
@@ -216,7 +229,7 @@ class WechatBaseController extends BaseController {
                 $responseText .= "成绩：{$score[$fields[$scoreType]]}\n\n";
             }
 
-            $responseText .= '注：如果没有你想要查询的成绩，可能是还没有录入（通常在考试后两周左右，具体视老师心情而定），还有别忘了发送“更新”更新数据哦';
+            $responseText .= '注：如果没有你想要查询的成绩，可能是还没有录入（视老师心情而定），还有别忘了发送“更新”更新数据哦';
 
             $this->responseNews(array(
                 (object)array(
@@ -379,22 +392,9 @@ class WechatBaseController extends BaseController {
         $url = $this->createAbsoluteUrl('/wechat');
         $this->responseNews(array(
             (object)array(
-                'title' => "帮助",
-                'url' => $url,
-                'pictureUrl' =>
-                    $this->createAbsoluteUrl('/') . '/img/wechat/help.png',
-            ),
-            (object)array(
-                'title' =>
-                    "\n【一般问题】\n\n" .
-                    "• 涉及个人数据的指令，比如“课表“、”成绩”等需要绑定后才能使用\n\n" .
-                    "• 发送的消息不一定都能成功返回，要多试几次哦\n\n" .
-                    "• 欢迎你直接在微信上向我们反馈！\n",
-                'url' => $url,
-            ),
-            (object)array(
-                'title' =>
-                    "\n【支持的指令】\n\n" .
+                'title' => '帮助',
+                'description' =>
+                    "通过发送指令，比如发送“成绩”即可查询成绩，以下是支持的指令：\n\n" .
                     "• 关于\n  “相思青果”介绍\n\n" .
                     "• 学籍\n  返回个人学籍档案\n\n" .
                     "• 课表\n  返回一周的课表，需要点击消息查看\n\n" .
@@ -403,7 +403,8 @@ class WechatBaseController extends BaseController {
                     "• 等级考试\n  返回等级考试成绩\n\n" .
                     "• 考试安排\n  返回考试安排\n\n" .
                     "• 绑定\n  当前微信号与相思青果进行绑定\n\n" .
-                    "• 解除绑定\n  当前微信号与相思青果解除绑定\n",
+                    "• 解除绑定\n  当前微信号与相思青果解除绑定\n\n" .
+                    "提示：如果系统没有回复，可以多试几次哦",
                 'url' => $url,
             ),
         ));

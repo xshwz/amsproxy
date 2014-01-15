@@ -23,7 +23,7 @@
     }
 },
 {
-    "pattern": "^(unbind|解除绑定)$",
+    "pattern": "^(unbind|解除绑定|解绑|取消绑定)$",
     "handler": {
         "type": "function",
         "function": "responseUnBind",
@@ -31,7 +31,7 @@
     }
 },
 {
-    "pattern": "^(update|更新|更新数据)$",
+    "pattern": "^(update|更新|更新数据|刷新|刷新数据)$",
     "handler": {
         "type": "news",
         "articles": [
