@@ -36,7 +36,7 @@
             <p>
                 <span class="glyphicon glyphicon-user"></span> 丘翔<br>
                 <span class="glyphicon glyphicon-tag"></span> 10网络工程<br>
-                <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:qiuxiang55aa@gmail.com">qiuxiang55aa@gmail.com</a>
+                <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:qiuxiang55aa@gmail.com">xiang.qiu@foxmail.com</a>
             </p>
         </li>
         <li>
