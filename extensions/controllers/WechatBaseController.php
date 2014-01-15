@@ -366,7 +366,13 @@ class WechatBaseController extends BaseController {
     public function responseUnBind() {
         $this->student->{$this->openIdField} = null;
         $this->student->save();
-        $this->responseText('解除绑定成功！');
+        $this->responseNews(array(
+            (object)array(
+                'title' => '解除绑定成功',
+                'description' => '如果你希望重新绑定其他学号，要先点击此消息注销相思青果的登录哦',
+                'url' => $this->createAbsoluteUrl('/proxy/home/logout'),
+            )
+        ));
     }
 
     public function responseHelp() {
