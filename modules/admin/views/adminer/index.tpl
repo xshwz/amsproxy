@@ -30,7 +30,7 @@
         <tbody>
             <%
             foreach ($adminers as $student):
-            $archives = (array)$student->getArchives();
+            $archives = (array)json_decode($student->archives);
             %>
             <tr>
                 <td><%= $archives['姓名']; %></td>
