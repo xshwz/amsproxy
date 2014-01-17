@@ -124,7 +124,7 @@ class WechatBaseController extends BaseController {
                         "由于是放假期间，我们不再提供人工服务，有什么问题可以发送邮件给开发者：xiang.qiu@foxmail.com，祝你寒假愉快 ~",
                     'url' => $this->createAbsoluteUrl('/wechat'),
                 ),
-            ), WechatLog::$status['default']);
+            ), WechatLog::$status['untreated']);
         }
     }
 
@@ -352,7 +352,7 @@ class WechatBaseController extends BaseController {
 
     public function requireBind() {
         if (!$this->student) {
-            $this->responseNews(array(
+            $this->response('news', array(
                 (object)array(
                     'title' => '你还没有绑定哦',
                     'description' => '点击此消息，登录成功后即可完成绑定！',
@@ -366,6 +366,8 @@ class WechatBaseController extends BaseController {
                 )
             ));
 
+            $this->logger->state = WechatLog::$status['success'];
+            $this->logger->save();
             Yii::app()->end();
         }
     }

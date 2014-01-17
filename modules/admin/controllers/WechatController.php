@@ -9,7 +9,7 @@ class WechatController extends AdminController {
 
         $count = WechatLog::model()->count($criteria);
         $pages = new CPagination($count);
-        $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 100;
+        $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
         $pages->applyLimit($criteria);
 
         $this->render('index', array(

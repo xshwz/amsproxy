@@ -21,10 +21,18 @@ foreach ($logs as $log):
         )
     );
 
-    if ($log->state)
-        $stateClass = 'success';
-    else
-        $stateClass = '';
+    switch ($log->state) {
+        case WechatLog::$status['success']:
+            $stateClass = 'success';
+            break;
+
+        case WechatLog::$status['untreated']:
+            $stateClass = 'warning';
+            break;
+
+        default:
+            $stateClass = '';
+    }
 
     switch ($message->MsgType) {
         case 'text':

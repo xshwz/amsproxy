@@ -9,8 +9,9 @@ class WechatLog extends CActiveRecord {
     }
 
     static public $status = array(
-        'default' => 0,
-        'success' => 1,
-        'failure' => 2,
+        'default'   => 0,
+        'success'   => 1,
+        'failure'   => 2,
+        'untreated' => 3,
     );
 }
