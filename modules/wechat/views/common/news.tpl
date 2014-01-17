@@ -3,9 +3,9 @@
     <FromUserName><%= $this->request->ToUserName %></FromUserName>
     <CreateTime><%= time() %></CreateTime>
     <MsgType>news</MsgType>
-    <ArticleCount><%= count($articles) %></ArticleCount>
+    <ArticleCount><%= count($data) %></ArticleCount>
     <Articles>
-        <% foreach ($articles as $article): %>
+        <% foreach ($data as $article): %>
         <item>
             <% if (isset($article->title)): %>
             <Title><![CDATA[<%= $article->title %>]]></Title> 

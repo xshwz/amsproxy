@@ -7,4 +7,10 @@ class WechatLog extends CActiveRecord {
     public function tableName() {
         return 'wechat_log';
     }
+
+    static public $status = array(
+        'default' => 0,
+        'success' => 1,
+        'failure' => 2,
+    );
 }

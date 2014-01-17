@@ -6,6 +6,11 @@ class WechatBaseController extends BaseController {
     public $student;
 
     /**
+     * @var int
+     */
+    public $state;
+
+    /**
      * @var object
      */
     public $request;
@@ -36,6 +41,7 @@ class WechatBaseController extends BaseController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $input = file_get_contents('php://input');
             $this->createLogger($input);
+            $this->state = WechatLog::$status['default'];
             $this->request = simplexml_load_string($input);
             $this->student = Student::model()->find(
                 $this->openIdField . '=:openId',
@@ -70,20 +76,17 @@ class WechatBaseController extends BaseController {
 
     public function actionIndex() {}
 
-    /**
-     * @param string $content
-     */
-    public function responseText($content) {
-        $this->render('/common/text', array('content' => $content));
-        $this->setLoggerState(1);
+    protected function afterAction($action) {
+        $this->logger->state = $this->state;
+        $this->logger->save();
     }
 
-    /**
-     * @param array $articles
-     */
-    public function responseNews($articles) {
-        $this->render('/common/news', array('articles' => $articles));
-        $this->setLoggerState(1);
+    public function response($type, $data, $state=null) {
+        $this->render('/common/' . $type, array('data' => $data));
+        if ($state === null)
+            $this->state = WechatLog::$status['success'];
+        else
+            $this->state = $state;
     }
 
     public function eventHandler() {
@@ -112,13 +115,16 @@ class WechatBaseController extends BaseController {
         }
 
         if (!$handled && $this->setting->wechat_auto_reply) {
-            $this->responseNews(array(
+            $this->response('news', array(
                 (object)array(
                     'title' => '欢迎使用相思青果',
-                    'description' => "在这里，你可以通过发送特定指令获取相应信息，比如发送“成绩”可以查询成绩，更多支持的指令以及帮助信息可以发送“帮助”获取。\n\n提示：如果系统没有回复，可以多试几次哦。祝你寒假愉快 ~",
+                    'description' =>
+                        "在这里，你可以通过发送特定指令获取相应信息，比如发送“成绩”可以查询成绩，更多支持的指令以及帮助信息可以发送“帮助”获取。\n\n" .
+                        "如果系统没有回复，可以多试几次哦。\n\n" .
+                        "由于是放假期间，我们不再提供人工服务，有什么问题可以发送邮件给开发者：xiang.qiu@foxmail.com，祝你寒假愉快 ~",
                     'url' => $this->createAbsoluteUrl('/wechat'),
                 ),
-            ));
+            ), WechatLog::$status['default']);
         }
     }
 
@@ -129,11 +135,11 @@ class WechatBaseController extends BaseController {
     public function execHandler($handler, $args=null) {
         switch ($handler->type) {
             case 'text':
-                $this->responseText($handler->content);
+                $this->response('text', $handler->content);
                 break;
 
             case 'news':
-                $this->responseNews($handler->articles);
+                $this->response('news', $handler->articles);
                 break;
 
             case 'function':
@@ -175,7 +181,7 @@ class WechatBaseController extends BaseController {
             $responseText .= '今天没课～';
         }
 
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '第' . $this->weekNumber() . '周 ' .
                     Setting::$weeksName[$wday],
@@ -193,7 +199,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseCurriculum() {
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '课程表',
                 'description' => '点击查看',
@@ -221,30 +227,34 @@ class WechatBaseController extends BaseController {
             $termNames = array_keys($scoreTable);
             $termIndex = $args[2] ? (int)($args[2]) - 1 : count($termNames) - 1;
 
-            $responseText = '';
-            foreach ($scoreTable[$termNames[$termIndex]] as $score) {
-                $courseName = preg_replace('/\[.*?\]/', '', $score[0]);
-                $responseText .= "课程：{$courseName}\n";
-                $responseText .= "学分：{$score[1]}\n";
-                $responseText .= "成绩：{$score[$fields[$scoreType]]}\n\n";
-            }
+            if (count($termNames) > $termIndex) {
+                $responseText = '';
+                foreach ($scoreTable[$termNames[$termIndex]] as $score) {
+                    $courseName = preg_replace('/\[.*?\]/', '', $score[0]);
+                    $responseText .= "课程：{$courseName}\n";
+                    $responseText .= "学分：{$score[1]}\n";
+                    $responseText .= "成绩：{$score[$fields[$scoreType]]}\n\n";
+                }
 
-            $responseText .= '注：如果没有你想要查询的成绩，可能是还没有录入（视老师心情而定），还有别忘了发送“更新”更新数据哦';
+                $responseText .= '注：如果没有你想要查询的成绩，可能是还没有录入（视老师心情而定），还有别忘了发送“更新”更新数据哦';
 
-            $this->responseNews(array(
-                (object)array(
-                    'title'       => $termNames[$termIndex],
-                    'description' => trim($responseText),
-                    'url'         => $this->createAbsoluteUrl(
-                        '/site/wechat/score',
-                        array(
-                            'openId'    => $this->student->{$this->openIdField},
-                            'field'     => $this->openIdField,
-                            'scoreType' => $scoreType,
-                        )
+                $this->response('news', array(
+                    (object)array(
+                        'title'       => $termNames[$termIndex],
+                        'description' => trim($responseText),
+                        'url'         => $this->createAbsoluteUrl(
+                            '/site/wechat/score',
+                            array(
+                                'openId'    => $this->student->{$this->openIdField},
+                                'field'     => $this->openIdField,
+                                'scoreType' => $scoreType,
+                            )
+                        ),
                     ),
-                ),
-            ));
+                ));
+            } else {
+                $this->responseNoData();
+            }
         } else {
             $this->responseNoData();
         }
@@ -265,7 +275,7 @@ class WechatBaseController extends BaseController {
                 }
             }
 
-            $this->responseNews(array(
+            $this->response('news', array(
                 (object)array(
                     'title' => '等级考试成绩',
                     'description' => trim($responseText),
@@ -297,7 +307,7 @@ class WechatBaseController extends BaseController {
                 $responseText .= "座位：{$row[6]}\n\n";
             }
 
-            $this->responseNews(array(
+            $this->response('news', array(
                 (object)array(
                     'title' => '考试安排',
                     'description' => trim($responseText),
@@ -310,7 +320,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseNoData() {
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '暂无数据',
                 'description' => 
@@ -325,7 +335,7 @@ class WechatBaseController extends BaseController {
         $responseText = '';
         foreach (json_decode($this->student->archives) as $key => $value)
             $responseText .= "{$key}：{$value}\n";
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '学籍档案',
                 'description' => trim($responseText),
@@ -361,7 +371,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseBind() {
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '绑定',
                 'description' => '点击此消息，登录成功后即可完成绑定！',
@@ -379,7 +389,7 @@ class WechatBaseController extends BaseController {
     public function responseUnBind() {
         $this->student->{$this->openIdField} = null;
         $this->student->save();
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '解除绑定成功',
                 'description' => '如果你希望重新绑定其他学号，要先点击此消息注销相思青果的登录哦',
@@ -390,7 +400,7 @@ class WechatBaseController extends BaseController {
 
     public function responseHelp() {
         $url = $this->createAbsoluteUrl('/wechat');
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '帮助',
                 'description' =>
@@ -411,7 +421,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseAbout() {
-        $this->responseNews(array(
+        $this->response('news', array(
             (object)array(
                 'title' => '关于“相思青果”',
                 'description' =>
@@ -494,19 +504,19 @@ class WechatBaseController extends BaseController {
     public function responsePortal($catid) {
         $feed = $this->createFeed(
             'http://bbs.gxun.cn/portal.php?mod=rss&catid=' . $catid);
-        $this->responseNews($this->createNews($feed->get_items(0, 10)));
+        $this->response('news', $this->createNews($feed->get_items(0, 10)));
     }
 
     public function responseBBS($fid) {
         $feed = $this->createFeed(
             'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
-        $this->responseNews($this->createNews($feed->get_items(0, 10)));
+        $this->response('news', $this->createNews($feed->get_items(0, 10)));
     }
 
     public function responseGxunNews($catid) {
         $feed = $this->createFeed(
             'http://news.gxun.edu.cn/rssFeed.aspx?cid=17');
-        $this->responseNews(array_merge(
+        $this->response('news', array_merge(
             array((object)array(
                 'title' => '民大要闻',
                 'pictureUrl' => 'http://news.gxun.edu.cn/style/gxun/images/head.jpg',

@@ -3,5 +3,5 @@
     <FromUserName><%= $this->request->ToUserName %></FromUserName>
     <CreateTime><%= time() %></CreateTime>
     <MsgType>text</MsgType>
-    <Content><%= $content %></Content>
+    <Content><%= $data %></Content>
 </xml>
