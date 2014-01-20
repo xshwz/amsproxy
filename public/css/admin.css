@@ -41,6 +41,9 @@ body {
 .messages .session.success {
   border: 1px solid #2ecc71;
 }
+.messages .session.warning {
+  border: 1px solid #f1c40f;
+}
 .messages .session > div.user,
 .messages .session > div.admin {
   padding: 4px 8px;

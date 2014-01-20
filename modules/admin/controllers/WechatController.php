@@ -4,6 +4,9 @@ class WechatController extends AdminController {
         $criteria = new CDbCriteria();
         $criteria->order = 'id DESC';
 
+        if (isset($_GET['status']))
+            $criteria->addCondition('state=' . $_GET['status']);
+
         $count = WechatLog::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->pageSize = isset($_GET['pages']) ? (int)$_GET['pages'] : 20;
