@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"> 
+        <meta name="renderer" content="webkit">
 
         <title>
         <% if ($this->pageTitle) echo $this->pageTitle . ' - '; %>
