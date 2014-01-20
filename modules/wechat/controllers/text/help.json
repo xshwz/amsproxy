@@ -1,5 +1,5 @@
 {
-    "pattern": "^(about|关于)$",
+    "pattern": "^\\s*(about|关于)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseAbout",
@@ -7,7 +7,7 @@
     }
 },
 {
-    "pattern": "^(h|help|帮助)$",
+    "pattern": "^\\s*(h|help|帮助)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseHelp",
@@ -15,7 +15,7 @@
     }
 },
 {
-    "pattern": "^(bind|绑定)$",
+    "pattern": "^\\s*(bind|绑定)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseBind",
@@ -23,7 +23,7 @@
     }
 },
 {
-    "pattern": "^(unbind|解除绑定|解绑|取消绑定)$",
+    "pattern": "^\\s*(unbind|解除绑定|解绑|取消绑定)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseUnBind",
@@ -31,7 +31,7 @@
     }
 },
 {
-    "pattern": "^(update|更新|更新数据|刷新|刷新数据)$",
+    "pattern": "^\\s*(update|更新|更新数据|刷新|刷新数据)\\s*$",
     "handler": {
         "type": "news",
         "articles": [
@@ -44,7 +44,20 @@
     }
 },
 {
-    "pattern": "^(developer|开发者)$",
+    "pattern": "^\\s*(注销|退出)\\s*$",
+    "handler": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "注销相思青果的登录",
+                "description": "点击注销",
+                "url": "http://xsh.gxun.edu.cn/ams/proxy/home/logout"
+            }
+        ]
+    }
+},
+{
+    "pattern": "^\\s*(developer|开发者)\\s*$",
     "handler": {
         "type": "news",
         "articles": [
