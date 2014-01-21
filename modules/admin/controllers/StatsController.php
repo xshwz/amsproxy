@@ -11,8 +11,10 @@ class StatsController extends AdminController {
             'nation' => array(),
         );
 
-        foreach (Student::model()->findAll() as $student) {
-            $archives = (array)json_decode($student->archives);
+        /** 使用Dao取代ar,因为ar->findAll一次占用内存过多 */
+        $reader = Student::getDaoRaeder();
+        while (($student = $reader->read()) !== false) {
+            $archives = (array)json_decode($student['archives']);
             $college = $archives['院(系)/部'];
             $discipline = $archives['专业'];
             $grade = $archives['入学年份'];
