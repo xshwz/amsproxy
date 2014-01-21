@@ -40,4 +40,10 @@ class Student extends CActiveRecord {
 
         return $weekCourses;
     }
+
+    public static function getDaoRaeder($fields = '*') {
+        $connection=Yii::app()->getDb();
+        $command = $connection->createCommand('SELECT '.$fields.' FROM '.__CLASS__);
+        return $command->query();
+    }
 }
