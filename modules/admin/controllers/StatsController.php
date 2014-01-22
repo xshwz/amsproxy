@@ -15,8 +15,8 @@ class StatsController extends AdminController {
         $reader = Student::getDaoRaeder();
         while (($student = $reader->read()) !== false) {
             $archives = (array)json_decode($student['archives']);
-            $college = $archives['院(系)/部'];
-            $discipline = $archives['专业'];
+            $college = isset($archives['院(系)/部']) ? $archives['院(系)/部'] : '未知';
+            $discipline = isset($archives['专业']) ? $archives['专业'] : '未知';
             $grade = $archives['入学年份'];
             $nation = isset($archives['民族']) ? $archives['民族'] : null;
 
@@ -40,12 +40,12 @@ class StatsController extends AdminController {
             if (array_key_exists($college, $stats['college'])) {
                 $stats['college'][$college]['count']++;
                 if (array_key_exists(
-                    $discipline, $stats['college'][$college]['discipline'])) {
-
-                        $stats['college'][$college]['discipline'][$discipline]++;
-                    } else {
-                        $stats['college'][$college]['discipline'][$discipline] = 0;
-                    }
+                    $discipline, $stats['college'][$college]['discipline'])
+                ) {
+                    $stats['college'][$college]['discipline'][$discipline]++;
+                } else {
+                    $stats['college'][$college]['discipline'][$discipline] = 0;
+                }
             } else {
                 $stats['college'][$college] = array(
                     'count' => 1,

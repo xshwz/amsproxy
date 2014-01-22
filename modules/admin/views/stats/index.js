@@ -88,7 +88,6 @@ $(function(){
         }]
     });
 
-    /*
     $('#nationStats').highcharts({
         title: {
             text: '民族'
@@ -104,7 +103,6 @@ $(function(){
             ]
         }]
     });
-    */
 
     var colleges = <?php echo json_encode($stats['college']); ?>;
     for (var collegeName in colleges) {

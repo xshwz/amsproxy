@@ -34,7 +34,7 @@ h6,
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #1abc9c;
+  color: #27ae60;
   transition: color ease-in-out 0.2s;
 }
 .navbar-inverse .navbar-nav > li > a {
@@ -42,13 +42,13 @@ h6,
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #1abc9c;
+  color: #27ae60;
   transition: color ease-in-out 0.2s;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  background-color: #1abc9c;
+  background-color: #27ae60;
 }
 .navbar-inverse .navbar-toggle {
   border-color: #34495e;
