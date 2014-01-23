@@ -4,19 +4,16 @@
     <div class="page-header">
         <h3><span class="glyphicon glyphicon-screenshot"></span> 意图</h3>
     </div>
-    <p>你有没有吐槽过学校的教务系统不能从校外访问，并且难以使用？这就对了，这也正是我们的意图所在：让教务系统更易用。</p>
+    <p>你有没有吐槽过学校的教务系统不能从校外访问，并且难以使用？这正是我们的意图所在：让教务系统更易用。</p>
     <ul>
         <li>
             <p>利用相思湖网站服务器做数据中转，可以实现校外成绩查询；</p>
         </li>
         <li>
-            <p>使用缓存机制，和更直接的 <abbr title="超文本传输协议">HTTP</abbr> 操作，让你在选课阶段拥挤的教务系统中选到想选的课；</p>
-        </li>
-        <li>
             <p>移动设备兼容的网页设计，方便你随时随地使用教务系统；</p>
         </li>
         <li>
-            <p>通过这个平台提供统一的数据接口，可以进一步开发出手机客户端、<a href="<%= $this->createUrl('/site/wechat'); %>">微信公众平台</a>；</p>
+            <p>通过该平台提供统一的数据接口，可以进一步开发出手机客户端、<a href="<%= $this->createUrl('/site/wechat'); %>">微信公众平台</a>；</p>
         </li>
     </ul>
 
@@ -30,7 +27,7 @@
     <div class="page-header">
         <h3><span class="glyphicon glyphicon-wrench"></span> 开发者</h3>
     </div>
-    <p>目前的开发者主要是相思湖网站网络部的成员们。如果你也是开发者，如果你也对“相思青果”感兴趣，欢迎你的 fork and pull :)</p>
+    <p>目前的开发者主要是相思湖网站网络部成员。如果你也是开发者，如果你也对“相思青果”感兴趣，欢迎你的 fork and pull :)</p>
     <ul>
         <li>
             <p>

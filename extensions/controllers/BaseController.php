@@ -137,6 +137,17 @@ class BaseController extends CController {
     }
 
     /**
+     * alert info
+     * @param string $message 消息
+     */
+    public function information($message) {
+        $this->render('/common/alert', array(
+            'type' => 'info',
+            'message' => $message,
+        ));
+    }
+
+    /**
      * 计算目标日期距离开学经过了多少周，默认使用当前日期
      * 
      * @param string $date 

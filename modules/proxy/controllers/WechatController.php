@@ -7,7 +7,7 @@ class WechatController extends ProxyController {
     public function actionBind() {
         $this->student->{$_GET['field']} = $_GET['openId'];
         $this->student->save();
-        $this->success('
+        $this->information('
             <p><span class="glyphicon glyphicon-ok"></span> 绑定成功</p>
             <br>
             <ul>
