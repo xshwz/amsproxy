@@ -1,0 +1,10 @@
+data="
+    <xml>
+        <ToUserName>${toUserName}</ToUserName>
+        <FromUserName>${fromUserName}</FromUserName>
+        <CreateTime>${createTime}</CreateTime>
+        <MsgType>text</MsgType>
+        <Content>${2}</Content>
+        <MsgId>${msgId}</MsgId>
+    </xml>
+"
