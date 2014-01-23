@@ -57,6 +57,19 @@
     }
 },
 {
+    "pattern": "^\\s*(登录|登陆|相思青果)\\s*$",
+    "handler": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "登录相思青果",
+                "description": "点击登录",
+                "url": "http://xsh.gxun.edu.cn/ams/proxy"
+            }
+        ]
+    }
+},
+{
     "pattern": "^\\s*(developer|开发者)\\s*$",
     "handler": {
         "type": "news",
