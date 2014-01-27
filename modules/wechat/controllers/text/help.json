@@ -23,7 +23,7 @@
     }
 },
 {
-    "pattern": "^\\s*(unbind|解除绑定|解绑|取消绑定)\\s*$",
+    "pattern": "^\\s*(unbind|解除绑定|解绑|取消绑定|解除)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseUnBind",
