@@ -28,10 +28,8 @@ class WechatBaseController extends BaseController {
     public function init() {
         parent::init();
 
-        /*
         if (!$this->checkSignature($this->setting->wechat_token))
             Yii::app()->end();
-        */
 
         if (isset($_GET['echostr'])) {
             echo $_GET['echostr'];
@@ -77,8 +75,10 @@ class WechatBaseController extends BaseController {
     public function actionIndex() {}
 
     protected function afterAction($action) {
-        $this->logger->state = $this->state;
-        $this->logger->save();
+        if ($this->logger) {
+            $this->logger->state = $this->state;
+            $this->logger->save();
+        }
     }
 
     public function response($type, $data, $state=null) {
