@@ -38,4 +38,11 @@
         "type": "text",
         "content": "Don't panic!"
     }
+},
+{
+    "pattern": "新年",
+    "handler": {
+        "type": "text",
+        "content": "新年快乐 ~"
+    }
 }

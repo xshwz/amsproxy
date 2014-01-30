@@ -2,7 +2,7 @@
   .container .jumbotron,
   .container .wechat-header {
     border-radius: 0;
-    margin: -16px -8px 0 -8px;
+    margin: -22px -16px 0 -16px;
   }
   .container > .row {
     margin-right: -7px;
