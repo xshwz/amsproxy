@@ -17,7 +17,7 @@
             type="text"
             class="form-control"
             placeholder="学号"
-            value="<% if (isset($sid)) echo $sid; %>">
+            value="<%? $sid %>">
         <label class="input-icon" for="input-sid">
             <span class="glyphicon glyphicon-user"></span>
         </label>
