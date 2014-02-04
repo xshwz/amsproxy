@@ -24,7 +24,7 @@ return array(
             'connectionString' => 'sqlite:../data/amsProxy.db',
         ),
         'viewRenderer' => array(
-            'class' => 'CPradoViewRenderer',
+            'class' => 'ext.view.CPradoViewRenderer',
             'fileExtension' => '.tpl',
         ),
         'urlManager' => array(
