@@ -71,6 +71,6 @@ class __base__ {
      * @return string
      */
     public function getXNXQ() {
-        return '20130';
+        return '20131';
     }
 }
