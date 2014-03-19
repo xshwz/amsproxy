@@ -1,3 +1,7 @@
+<div class="form-group">
+    <a href="<%= $this->createUrl('', array('status' => 3)) %>" class="btn btn-bottom btn-warning">查看非指令消息</a>
+    <a href="<%= $this->createUrl('', array('status' => 0)) %>" class="btn btn-bottom">查看未处理消息</a>
+</div>
 <div class="messages">
 <%
 foreach ($logs as $log):

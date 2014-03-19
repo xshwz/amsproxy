@@ -82,15 +82,9 @@
     }
 },
 {
-    "pattern": "开学|收假",
+    "pattern": "选课",
     "handler": {
-        "type": "news",
-        "articles": [
-            {
-                "title": "开学时间",
-                "description": "2013-2014学年度下学期将于2014年2月17日—18日注册开学，2月19日开始上课。",
-                "url": "http://news.gxun.edu.cn/TongZhiGongGao/2013-12/22990.htm"
-            }
-        ]
+        "type": "text",
+        "content": "相思青果暂时不支持选课功能"
     }
 }

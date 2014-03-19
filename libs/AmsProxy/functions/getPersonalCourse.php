@@ -9,7 +9,7 @@ class getPersonalCourse extends __base__ {
         return $this->amsProxy->POST(
             'znpk/Pri_StuSel_rpt.aspx',
             array(
-                'Sel_XNXQ' => $this->args,
+                'Sel_XNXQ' => $this->getXNXQ(),
                 'rad'      => 1,
                 'px'       => 0,
             )
@@ -61,7 +61,7 @@ class getPersonalCourse extends __base__ {
                 'examType'    => $course[7],
                 'teacherName' => $course[8],
                 'weekStart'   => (int)$week[0],
-                'weekTo'      => (int)$week[1],
+                'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
                 'weekDay'     => (int)self::$weekDict[$lesson[1]],
                 'lessonStart' => (int)$lesson[2],
                 'lessonTo'    => (int)$lesson[3],
