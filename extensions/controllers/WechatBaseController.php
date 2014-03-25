@@ -28,8 +28,8 @@ class WechatBaseController extends BaseController {
     public function init() {
         parent::init();
 
-        if (!$this->checkSignature($this->setting->wechat_token))
-            Yii::app()->end();
+        //if (!$this->checkSignature($this->setting->wechat_token))
+        //    Yii::app()->end();
 
         if (isset($_GET['echostr'])) {
             echo $_GET['echostr'];
@@ -120,8 +120,7 @@ class WechatBaseController extends BaseController {
                     'title' => '欢迎使用相思青果',
                     'description' =>
                         "在这里，你可以通过发送特定指令获取相应信息，比如发送“成绩”可以查询成绩，更多支持的指令以及帮助信息可以发送“帮助”获取。\n\n" .
-                        "如果系统没有回复，可以多试几次哦。\n\n" .
-                        "由于是放假期间，我们不再提供人工服务，有什么问题可以发送邮件给开发者：xiang.qiu@foxmail.com，祝你寒假愉快 ~",
+                        "如果系统没有回复，可以多试几次哦。",
                     'url' => $this->createAbsoluteUrl('/wechat'),
                 ),
             ), WechatLog::$status['untreated']);
@@ -504,33 +503,15 @@ class WechatBaseController extends BaseController {
     }
 
     public function responsePortal($catid) {
-        $this->response('news', array(
-            (object)array(
-                'title' => '无法获取内容',
-                'description' =>
-                    "由于寒假期间相思湖论坛关闭了，暂时无法提供内容 :(",
-            )
-        ));
-        /*
         $feed = $this->createFeed(
             'http://bbs.gxun.cn/portal.php?mod=rss&catid=' . $catid);
         $this->response('news', $this->createNews($feed->get_items(0, 10)));
-        */
     }
 
     public function responseBBS($fid) {
-        $this->response('news', array(
-            (object)array(
-                'title' => '无法获取内容',
-                'description' =>
-                    "由于寒假期间相思湖论坛被关闭了，暂时无法提供内容 :(",
-            )
-        ));
-        /*
         $feed = $this->createFeed(
             'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
         $this->response('news', $this->createNews($feed->get_items(0, 10)));
-        */
     }
 
     public function responseGxunNews($catid) {
