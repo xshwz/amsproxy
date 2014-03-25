@@ -32,6 +32,9 @@
     right: 28px;
   }
 }
+body {
+  overflow: hidden;
+}
 #body {
   position: absolute;
   width: 100%;
@@ -42,14 +45,7 @@
   width: 200px;
   position: fixed;
   overflow: hidden;
-  background-color: #34495e;
-  transition: all 0.2s;
-}
-#side ::-webkit-scrollbar {
-  width: 4px;
-}
-#side ::-webkit-scrollbar-thumb {
-  background-color: #bdc3c7;
+  background-color: #3d566e;
 }
 #side ul {
   list-style: none;
@@ -62,7 +58,8 @@
 }
 #side > ul {
   overflow: hidden;
-  padding: 0 16px;
+  padding: 16px;
+  margin-bottom: 0;
 }
 #side > ul:hover,
 #side > ul:active,
@@ -70,40 +67,42 @@
   overflow-y: auto;
 }
 #side > ul > li {
-  padding: 24px 0 16px 0;
-  border-top: 1px solid #2c3e50;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-#side > ul > li:first-child {
-  border-top: none;
-  box-shadow: none;
+  padding: 8px 0;
 }
 #side > ul > li > span {
-  font-size: 16px;
-  font-weight: bold;
-  padding-left: 16px;
-  color: #ffffff;
+  padding-left: 12px;
+  color: #bdc3c7;
 }
 #side > ul > li > ul {
-  margin-top: 4px;
+  margin-top: 8px;
 }
 #side > ul > li > ul a {
   display: block;
-  padding: 6px 32px;
-  margin: 2px -16px;
+  padding: 4px 32px;
+  margin: 0 -16px;
   color: #bdc3c7;
 }
 #side > ul > li > ul a .glyphicon {
   margin-right: 8px;
 }
-#side > ul > li > ul li.active a,
-#side > ul > li > ul a:hover {
-  background-color: #2c3e50;
-  transition: background-color ease-in-out 0.2s;
+#side > ul > li > ul a:hover,
+#side > ul > li > ul li.active a {
+  color: #fff;
+  transition: color ease-in-out 0.2s;
+}
+@media (max-width: 768px) {
+  #side {
+    height: 100%;
+    position: fixed;
+    left: -200px;
+  }
+  #side > ul {
+    overflow: auto;
+  }
 }
 .side-header {
   text-align: center;
-  background-color: #27ae60;
+  background-color: #16a085;
 }
 .side-header h1 {
   font-size: 28px;
@@ -118,60 +117,33 @@
   position: relative;
   top: -4px;
 }
-#side-mask {
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 98;
-  position: fixed;
-}
 #main {
   margin-left: 200px;
   position: relative;
-  transition: all 0.2s;
+  overflow: hidden;
 }
 #main > .container {
-  padding: 72px 20px 40px 20px;
+  padding: 20px;
+  margin-top: 50px;
   width: 100%;
-}
-#footer {
-  text-align: center;
-}
-#footer .powered {
-  color: #7f8c8d;
+  overflow: auto;
 }
 @media (max-width: 768px) {
   #main {
     margin-left: 0;
   }
   #main > .container {
-    padding: 72px 16px 40px 16px;
-  }
-  #side-toggle {
-    left: 0;
-  }
-  #side {
-    height: 100%;
-    position: fixed;
-    left: -200px;
-  }
-  #side > ul {
-    overflow: auto;
-  }
-  .form-horizontal .form-group {
-    margin-left: 0;
-    margin-right: 0;
+    padding: 16px;
   }
 }
 #top-nav {
   height: 50px;
   width: 100%;
   z-index: 999;
-  background-color: #2ecc71;
+  background-color: #18b294;
   position: fixed;
   padding-right: 200px;
-  color: #ffffff;
+  color: #fff;
 }
 #top-nav .title {
   margin: 0;
@@ -192,10 +164,11 @@
   height: 50px;
   font-size: 16px;
   padding: 14px;
-  color: #ffffff;
+  color: #fff;
 }
 #top-nav .links a:hover {
-  background-color: #27ae60;
+  background-color: #16a085;
+  text-decoration: none;
 }
 #top-nav .links:after {
   clear: both;
@@ -212,9 +185,20 @@
   padding-right: 0;
 }
 #side-toggle .icon-bar {
-  background-color: #ffffff;
+  background-color: #fff;
   width: 16px;
   border-radius: 0 1px 1px 0;
+}
+@media (max-width: 768px) {
+  #side-toggle {
+    left: 0;
+  }
+}
+#footer {
+  text-align: center;
+}
+#footer .powered {
+  color: #7f8c8d;
 }
 .messages .message {
   margin: 20px;
