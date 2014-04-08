@@ -20,8 +20,9 @@ Highcharts.setOptions({
 /** 响应式布局 */
 (function(){
     function resize() {
-        $('#side>ul').css('height',
-            $(window).height() - $('.side-header').height());
+        var height = $(window).height() - $('.side-header').height();
+        $('#side>ul').css('height', height);
+        $('#main>.container').css('height', height);
     }
 
     $(window).load(resize).resize(resize);
