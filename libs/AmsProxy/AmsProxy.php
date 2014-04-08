@@ -57,6 +57,26 @@ class AmsProxy {
     }
 
     /**
+     * @return string error message
+     */
+    public function _login($sid, $pwd) {
+        $responseText = $this->POST(
+            '_data/Index_LOGIN_tfc.aspx',
+            array(
+                'Sel_Type' => 'STU',
+                'UserID'   => $sid,
+                'PassWord' => $pwd,
+            )
+        );
+
+        if (!strpos($responseText, '正在加载权限数据')) {
+            return '登录失败，可能是学号或密码输入错误';
+        } else {
+            $this->sid = $sid;
+        }
+    }
+
+    /**
      * @param string $url
      * @param array $params url params
      * @param string $referer header referer

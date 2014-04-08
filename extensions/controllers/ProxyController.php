@@ -53,14 +53,10 @@ class ProxyController extends BaseController {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
 
-            if ($result = $this->AmsProxy()->login(
-                $sid, $pwd, $_POST['captcha']
-            )) {
+            if ($result = $this->AmsProxy()->_login($sid, $pwd)) {
                 $this->render('/common/login', array(
                     'error'   => $result,
                     'sid'     => $sid,
-                    'captcha' => base64_encode(
-                        $this->AmsProxy()->getCaptcha()),
                 ));
 
                 Yii::app()->end();
@@ -75,11 +71,7 @@ class ProxyController extends BaseController {
                 );
             }
         } else {
-            $this->render('/common/login', array(
-                'captcha' => base64_encode(
-                    $this->AmsProxy()->getCaptcha()),
-            ));
-
+            $this->render('/common/login');
             Yii::app()->end();
         }
     }
