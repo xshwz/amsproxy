@@ -24,7 +24,6 @@ class ProxyController extends BaseController {
 
     public function init() {
         parent::init();
-        $this->checkSession();
 
         if (!$this->isLogged())
             $this->notLoggedHandler();

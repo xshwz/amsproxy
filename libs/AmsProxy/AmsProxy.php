@@ -29,7 +29,8 @@ class AmsProxy {
     public function __construct($session=null) {
         $this->curl = new curl_request;
         $this->curl->setTimeout(8);
-        if ($session) $this->setSession($session);
+        $session = $session ? $session : $this->generateSessionId();
+        $this->setSession($session);
     }
 
     /**
@@ -70,7 +71,7 @@ class AmsProxy {
         );
 
         if (!strpos($responseText, '正在加载权限数据')) {
-            return '登录失败，可能是学号或密码输入错误';
+            return '不小心引入了一个BUG，正在解决……';
         } else {
             $this->sid = $sid;
         }
@@ -166,5 +167,10 @@ class AmsProxy {
 
         $function = new $functionName($this, $args);
         return $function->run();
+    }
+
+    protected function generateSessionId() {
+        return substr(
+            str_shuffle('012345abcdefghijklmnopqrstuvwxyz'), 0, 24);
     }
 }

@@ -34,19 +34,6 @@
         </label>
     </div>
     <div class="form-group">
-        <div class="input-group">
-            <input
-                name="captcha"
-                id="input-captcha"
-                type="text"
-                class="form-control"
-                placeholder="验证码">
-            <span class="input-group-addon">
-                <img src="data:image/gif;base64,<%= $captcha %>" alt="captcha">
-            </span>
-        </div>
-    </div>
-    <div class="form-group">
         <button class="btn btn-block" type="submit">登录</button>
     </div>
 </form>
