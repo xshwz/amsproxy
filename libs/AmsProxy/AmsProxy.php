@@ -71,7 +71,7 @@ class AmsProxy {
         );
 
         if (!strpos($responseText, '正在加载权限数据')) {
-            return '不小心引入了一个BUG，正在解决……';
+            return '登录失败';
         } else {
             $this->sid = $sid;
         }

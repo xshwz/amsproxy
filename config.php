@@ -36,6 +36,8 @@ return array(
                 'faq'    => 'site/home/faq',
                 'wechat' => 'site/wechat/index',
 
+                'proxy/login'  => 'proxy/home/login',
+
                 'api'          => 'site/home/api',
                 'api/login'    => 'site/api/login',
                 'api/courses'  => 'proxy/api/courses',
