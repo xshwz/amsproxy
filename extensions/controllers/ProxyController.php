@@ -63,6 +63,7 @@ class ProxyController extends BaseController {
                 $this->saveStudent();
                 $this->updateStudentLastLoginTime(
                     Student::model()->findByPk($sid));
+                $_SESSION['session'] = $this->AmsProxy()->getSession();
                 $_SESSION['student'] = array(
                     'sid'     => $sid,
                     'pwd'     => $pwd,
