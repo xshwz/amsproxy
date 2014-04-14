@@ -24,6 +24,7 @@ class ProxyController extends BaseController {
 
     public function init() {
         parent::init();
+        $this->checkSession();
 
         if (!$this->isLogged())
             $this->notLoggedHandler();
@@ -52,10 +53,14 @@ class ProxyController extends BaseController {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
 
-            if ($result = $this->AmsProxy()->_login($sid, $pwd)) {
+            if ($result = $this->AmsProxy()->login(
+                $sid, $pwd, $_POST['captcha']
+            )) {
                 $this->render('/common/login', array(
                     'error'   => $result,
                     'sid'     => $sid,
+                    'captcha' => base64_encode(
+                        $this->AmsProxy()->getCaptcha()),
                 ));
 
                 Yii::app()->end();
@@ -63,7 +68,6 @@ class ProxyController extends BaseController {
                 $this->saveStudent();
                 $this->updateStudentLastLoginTime(
                     Student::model()->findByPk($sid));
-                $_SESSION['session'] = $this->AmsProxy()->getSession();
                 $_SESSION['student'] = array(
                     'sid'     => $sid,
                     'pwd'     => $pwd,
@@ -71,7 +75,11 @@ class ProxyController extends BaseController {
                 );
             }
         } else {
-            $this->render('/common/login');
+            $this->render('/common/login', array(
+                'captcha' => base64_encode(
+                    $this->AmsProxy()->getCaptcha()),
+            ));
+
             Yii::app()->end();
         }
     }

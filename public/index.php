@@ -1,6 +1,5 @@
 <?php
-session_start();
-define('YII_DEBUG', true);
-include 'ClassLoader.php';
-include '../libs/yii/yii.php';
-Yii::createWebApplication(include '../config.php')->run();
+include '../vendor/autoload.php';
+include '../vendor/yiisoft/yii/framework/yii.php';
+Yii::createWebApplication(include '../config/yii.php')->run();
+include '../';

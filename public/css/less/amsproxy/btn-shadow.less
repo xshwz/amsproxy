@@ -1,0 +1,44 @@
+.btn {
+  .shadow(@color-dark) {
+    &.btn-shadow {
+      box-shadow: 0 4px 0 darken(@color-dark, 8%);
+
+      &.btn-lg {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: 0 4px 0 darken(@color-dark, 12%);
+      }
+
+      &:active {
+        position: relative;
+        top: 2px;
+        box-shadow: 0 2px 0 darken(@color-dark, 8%);
+      }
+    }
+  }
+
+  &-primary {
+    .shadow(@brand-primary);
+  }
+
+  &-warning {
+    .shadow(@brand-warning);
+  }
+
+  &-info {
+    .shadow(@brand-info);
+  }
+
+  &-danger {
+    .shadow(@brand-danger);
+  }
+
+  &-success {
+    .shadow(@brand-success);
+  }
+}

@@ -1,0 +1,110 @@
+<div class="introduction">
+  <header class="jumbotron" id="top">
+    <div class="container">
+      <figure class="logo img-responsive">
+        <img
+          src="{{this.config.static}}img/xshweb-logo.png"
+          alt="相思湖网站Logo"
+          width="64">
+      </figure>
+      <p><a href="http://xsh.gxun.edu.cn/">相思湖网站</a></p>
+      <h1><span>相思</span>青果</h1>
+      <a
+        href="{{ this.createUrl('/proxy') }}"
+        class="btn btn-lg btn-primary btn-shadow">进入</a>
+      {% if this.isAdmin %}
+      <a
+        href="{{ this.createUrl('/admin') }}"
+        class="btn btn-lg btn-warning btn-shadow">管理</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="jumbotron" id="functions">
+    <div class="container">
+      <h2>主要功能</h2>
+      <section class="col-sm-3 course">
+        <figure>
+          <img src="{{this.config.static}}img/icons/Book.png" alt="课程">
+        </figure>
+        <div class="description">
+          <h3>课程</h3>
+          <ul>
+            <li>查看教学计划</li>
+            <li>查看课程表</li>
+            <li>更直观的显示今日课程</li>
+          </ul>
+        </div>
+      </section>
+      <section class="col-sm-3 score">
+        <figure>
+          <img src="{{this.config.static}}img/icons/Clipboard.png" alt="成绩">
+        </figure>
+        <div class="description">
+          <h3>成绩</h3>
+          <ul>
+            <li>成绩统计</li>
+            <li>查看成绩</li>
+          </ul>
+        </div>
+      </section>
+      <section class="col-sm-3 exam">
+        <figure>
+          <img src="{{this.config.static}}img/icons/Pensils.png" alt="考试">
+        </figure>
+        <div class="description">
+          <h3>考试</h3>
+          <ul>
+            <li>查看考试安排</li>
+          </ul>
+        </div>
+      </section>
+      <section class="col-sm-3 rankExam">
+        <figure>
+          <img src="{{this.config.static}}img/icons/Retina-Ready.png" alt="等级考试">
+        </figure>
+        <div class="description">
+          <h3>等级考试</h3>
+          <ul>
+            <li>等级考试报名</li>
+            <li>查看等级考试成绩</li>
+          </ul>
+        </div>
+      </section>
+      <div class="clearfix"></div>
+    </div>
+  </section>
+
+  <section class="jumbotron" id="responsive">
+    <div class="container">
+      <div class="col-sm-8">
+        <h2>响应式设计</h2>
+        <p>在这里，所有页面都经过响应式设计，这意味着无论在桌面、手机还是平板上访问，都可以获得一致的体验。</p>
+      </div>
+      <div class="col-sm-4 text-center">
+        <img src="{{this.config.static}}img/responsive-design.jpg" alt="响应式设计">
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="container">
+      <ul class="links list-inline">
+        <li>
+          <a href="{{ this.createUrl('/public/wechat/index') }}">微信</a>
+        </li>
+        <li>
+          <a href="{{ this.createUrl('/public/home/faq') }}">常见问题</a>
+        </li>
+        <li>
+          <a href="{{ this.createUrl('/public/home/about') }}">关于</a>
+        </li>
+        <li>
+          <a href="{{ this.createUrl('/public/home/api') }}">API</a>
+        </li>
+      </ul>
+      {% include 'modules/common/views/powered.twig' %}
+    </div>
+  </footer>
+</div>

@@ -1,5 +1,4 @@
-public/adminer.php
-public/phpinfo.php
 data/amsProxy.db
 runtime/*
 *.swp
+vendor

@@ -1,8 +1,0 @@
-{
-    "pattern": "^民大要闻|新闻|资讯$",
-    "handler": {
-        "type": "function",
-        "function": "responseGxunNews",
-        "requireBind": false
-    }
-}

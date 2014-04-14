@@ -5,10 +5,6 @@ class HomeController extends ProxyController {
             'examArrangement' => $this->get('exam_arrangement')));
     }
 
-    public function actionLogin() {
-        echo 'true';
-    }
-
     public function actionLogout() {
         session_destroy();
         $this->redirect(array('/proxy'));

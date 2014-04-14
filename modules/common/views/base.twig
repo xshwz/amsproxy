@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"> 
+
+    <meta name="keywords" content="相思青果,相思湖网站,广西民族大学,教务系统">
+    <meta name="description" content="“相思青果”是由相思湖网站开发的，广西民族大学教务系统代理。在这里，你可以不受校园网限制，方便的使用教务系统。">
+
+    <title>{{ this.pageTitle }} - 相思青果</title>
+
+    <base href="{{ this.createAbsoluteUrl('/') ~ '/' }}">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="{{this.config.static}}css/amsproxy.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="http://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="http://cdn.staticfile.org/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    {{ content }}
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43494312-1', 'gxun.edu.cn');
+    ga('send', 'pageview');
+    </script>
+  </body>
+</html>

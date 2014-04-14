@@ -1,0 +1,49 @@
+{{ this.beginContent('/layouts/base') }}
+<div class="public">
+  <div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button
+          class="navbar-toggle"
+          data-toggle="collapse"
+          data-target=".navbar-collapse">
+
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{{ this.createUrl('/') }}" class="navbar-brand">
+          <img
+            width="18"
+            src="{{this.config.static}}img/xshweb-logo.png"
+            alt="相思湖网站Logo">
+          相思青果
+        </a>
+      </div>
+      <div class="collapse navbar-collapse">
+        {{ this.widget('zii.widgets.CMenu', {
+          'items': [
+            {'label': '微信',     'url':['/public/wechat/index']},
+            {'label': '常见问题', 'url':['/public/home/faq']},
+            {'label': '关于',     'url':['/public/home/about']},
+            {'label': 'API',      'url':['/public/home/api']},
+          ], 'htmlOptions': {'class': 'nav navbar-nav'},
+        }, true) }}
+
+        <ul class="nav navbar-nav navbar-right">
+          {% if this.isAdmin() %}
+          <li>{{ html.link('管理', ['/admin']) }}</li>
+          {% endif %}
+          <li>{{ html.link('青果', ['/proxy']) }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    {{ content }}
+  </div>
+  <div id="footer">
+    {% include 'modules/common/views/powered.twig' %}
+  </div>
+</div>
+{{ this.endContent() }}

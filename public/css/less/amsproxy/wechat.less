@@ -1,0 +1,70 @@
+.screenshot {
+  overflow: auto;
+  white-space: nowrap;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .thumbnail {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: @screen-sm) {
+        img {
+          width: 80px;
+        }
+      }
+    }
+  }
+}
+
+.wechat-header {
+  background-color: #1abc9c;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+
+  h3 small {
+    color: lighten(#f1c40f, 10%);
+  }
+}
+
+.modal.lightbox {
+  text-align: center;
+
+  .modal-content {
+    box-shadow: none;
+    border: 0;
+    background-color: transparent;
+    
+    .lightbox-wrap {
+      display: inline-block;
+      position: relative;
+      box-shadow: 0 0 16px;
+
+      .close {
+        opacity: 1;
+        text-shadow: none;
+        position: absolute;
+        top: -16px;
+        right: -16px;
+        color: #fff;
+      }
+    }
+  }
+
+  @media (max-width: @screen-sm) {
+    .modal-content {
+      margin-top: 20px;
+    }
+  }
+}

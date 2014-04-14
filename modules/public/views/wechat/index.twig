@@ -1,0 +1,71 @@
+<header class="wechat-header">
+  <div>
+    <img src="img/wechat-qrcode.jpg" width="200" alt="微信二维码">
+  </div>
+  <div>
+    <h3>相思青果 <small><em>XshAmsProxy</em></small></h3>
+  </div>
+</header>
+
+<header class="page-header">
+  <h2>介绍</h2>
+</header>
+<p>如果你是一个微信用户，可以关注我们的微信公众号“相思青果”，简单绑定后，即可通过微信向我们的公众号发送指令消息查询课程、成绩等信息。这些功能基于微信公众平台开发模式实现，保证消息的自动及时回复。</p>
+<p>同时，我们的公众号也作为与使用者沟通交流的平台，欢迎同学们的交流反馈。</p>
+
+<header class="page-header">
+  <h2>使用截图</h2>
+</header>
+<div class="screenshot">
+  <ul>
+    {% for i in range(1, 12) %}
+    <li>
+      <a
+        href="#lightbox"
+        data-image="{{this.config.static}}img/screenshots/{{i}}.png"
+        data-toggle="modal"
+        class="thumbnail">
+
+        <img
+          width="160"
+          src="{{this.config.static}}img/screenshots/thumbnails/{{i}}.png"
+          alt="微信公众平台使用截图 {{i}}">
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="modal fade lightbox" id="lightbox">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="lightbox-wrap">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span class="glyphicon glyphicon-remove-circle"></span>
+        </button>
+        <img>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="page-header">
+  <h2>如何绑定</h2>
+</header>
+<ol>
+  <li>查找公众号“相思青果”或扫描二维码</li>
+  <li>发送”绑定“系统会回复一条消息</li>
+  <li>点击该消息，会跳转到登录页面，成功登录后即可完成绑定</li>
+</ol>
+
+<header class="page-header">
+  <h2>支持的指令</h2>
+</header>
+{% include 'modules/common/views/suported-commands.twig' %}
+
+<script>
+$('a.thumbnail').click(function(){
+  $('#lightbox img')
+    .attr('src', $(this).attr('data-image'))
+    .height($(window).height() - 60);
+});
+</script>
