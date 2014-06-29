@@ -49,7 +49,7 @@ class getPersonalCourse extends __base__ {
         $courses = array();
 
         foreach ($originalCourse as $course) {
-            preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[10], $lesson);
+            preg_match('/(...)\[(\d+)-?(\d+)?节\]/', $course[10], $lesson);
             $week = explode('-', $course[9]);
 
             if ($course[0])
@@ -67,7 +67,7 @@ class getPersonalCourse extends __base__ {
                 'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
                 'weekDay'     => (int)self::$weekDict[$lesson[1]],
                 'lessonStart' => (int)$lesson[2],
-                'lessonTo'    => (int)$lesson[3],
+                'lessonTo'    => isset($lesson[3]) ? (int)$lesson[3] : (int)$lesson[2],
                 'location'    => $course[11],
             );
         }
