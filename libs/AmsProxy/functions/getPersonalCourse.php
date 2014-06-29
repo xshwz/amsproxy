@@ -52,14 +52,17 @@ class getPersonalCourse extends __base__ {
             preg_match('/(...)\[(\d+)-(\d+)节\]/', $course[10], $lesson);
             $week = explode('-', $course[9]);
 
+            if ($course[0])
+                $_course = $course;
+
             $courses[] = array(
-                'courseName'  => preg_replace('/^\[.*?\]/', '', $course[0]),
-                'credit'      => $course[1],
-                'totalHour'   => $course[2],
-                'courseType'  => $course[5],
-                'teachType'   => $course[6],
-                'examType'    => $course[7],
-                'teacherName' => $course[8],
+                'courseName'  => preg_replace('/^\[.*?\]/', '', $_course[0]),
+                'credit'      => $_course[1],
+                'totalHour'   => $_course[2],
+                'courseType'  => $_course[5],
+                'teachType'   => $_course[6],
+                'examType'    => $_course[7],
+                'teacherName' => $_course[8],
                 'weekStart'   => (int)$week[0],
                 'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
                 'weekDay'     => (int)self::$weekDict[$lesson[1]],
