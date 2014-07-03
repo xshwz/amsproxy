@@ -1,5 +1,6 @@
 public/adminer.php
 public/phpinfo.php
 data/amsProxy.db
-runtime/*
+runtime/cache
+runtime/views
 *.swp
