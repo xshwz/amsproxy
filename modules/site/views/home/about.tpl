@@ -21,7 +21,7 @@
         <h3><span class="glyphicon glyphicon-lock"></span> 隐私与安全</h3>
     </div>
     <p>我们注重个人的隐私，并保证你的个人信息不会以任何形式公开。需要声明的是，为了提高系统效率，你的一些信息（班级、课表、成绩）会被缓存在数据库中。</p>
-    <p>为了让你可以清楚的知道我们的系统做了什么，我们选择将源代码公开，在 <a href="https://github.com/QiuXiang/AmsProxy">Github</a> 你可以查看整个项目的源代码，如果你也是开发者，欢迎你的贡献。</p>
+    <p>为了让你可以清楚的知道我们的系统做了什么，我们选择将源代码公开，在 <a href="https://github.com/xshwz/AmsProxy">Github</a> 你可以查看整个项目的源代码，如果你也是开发者，欢迎你的贡献。</p>
     <p>我们清楚的知道，没有绝对安全的系统，但我们仍然可以自信的将源代码公开，因为我们相信，虽然开源更容易将 bug 暴露，但系统也将因此而更加健壮。</p>
 
     <div class="page-header">
@@ -33,7 +33,7 @@
             <p>
                 <span class="glyphicon glyphicon-user"></span> 丘翔<br>
                 <span class="glyphicon glyphicon-tag"></span> 10网络工程<br>
-                <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:qiuxiang55aa@gmail.com">xiang.qiu@foxmail.com</a>
+                <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:xiang.qiu@qq.com">xiang.qiu@qq.com</a>
             </p>
         </li>
         <li>
