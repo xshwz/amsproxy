@@ -4,3 +4,4 @@ data/amsProxy.db
 runtime/cache
 runtime/views
 *.swp
+.idea

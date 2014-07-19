@@ -42,16 +42,22 @@ class AmsProxy {
             '_data/Index_LOGIN.aspx',
             array(
                 'Sel_Type' => 'STU',
-                'UserID'   => $sid,
-                'PassWord' => $pwd,
-                'cCode'    => $captcha,
+                'txt_asmcdefsddsd'   => $sid,
+                'txt_pewerwedsdfsdff' => $pwd,
+                'txt_sdertfgsadscxcadsads' => $captcha,
+                'fgfggfdgtyuuyyuuckjg' => $this->md5($this->md5(strtoupper($captcha)) . '10608'),
+                'dsdsdsdsdxcxdfgfg' => $this->md5($sid . $this->md5($pwd) . '10608'),
             )
         );
 
         if (!strpos($responseText, '正在加载权限数据')) {
             preg_match(
                 '/<font color="Red">(.*?)</', $responseText, $matches);
-            return $matches[1];
+            if (isset($matches[1])) {
+                return $matches[1];
+            } else {
+                return '未知错误';
+            }
         } else {
             $this->sid = $sid;
         }
@@ -172,5 +178,9 @@ class AmsProxy {
     protected function generateSessionId() {
         return substr(
             str_shuffle('012345abcdefghijklmnopqrstuvwxyz'), 0, 24);
+    }
+
+    public function md5($s) {
+        return strtoupper(substr(md5($s), 0, 30));
     }
 }
