@@ -71,7 +71,7 @@ class AmsProxy {
         );
 
         if (!strpos($responseText, '正在加载权限数据')) {
-            return '登录失败';
+            return '由于教务系统更新，导致相思青果暂时无法提供服务 :(';
         } else {
             $this->sid = $sid;
         }

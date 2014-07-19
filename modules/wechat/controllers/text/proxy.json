@@ -1,5 +1,5 @@
 {
-    "pattern": "^\\s*(c|course\\b|课程)\\s*(\\d?)\\s*$",
+    "pattern": "^\\s*(c|kc|course\\b|课程)\\s*(\\d?)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseCourse",
@@ -7,7 +7,7 @@
     }
 },
 {
-    "pattern": "^\\s*(t|curriculum|课程表|课表)\\s*$",
+    "pattern": "^\\s*(t|kb|curriculum|课程表|课表)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseCurriculum",
@@ -15,7 +15,7 @@
     }
 },
 {
-    "pattern": "^\\s*(a|archives|学籍|个人档案|学籍档案|个人学籍档案)\\s*$",
+    "pattern": "^\\s*(a|xj|archives|学籍|个人档案|学籍档案|个人学籍档案)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseArchives",
@@ -23,7 +23,7 @@
     }
 },
 {
-    "pattern": "^\\s*(e|exam|考试|考试安排|考试安排表)\\s*$",
+    "pattern": "^\\s*(e|ks|exam|考试|考试安排|考试安排表)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseExam",
@@ -39,7 +39,7 @@
     }
 },
 {
-    "pattern": "^\\s*(s|score\\b|成绩)\\s*(\\d?)\\s?(\\d?)\\s*$",
+    "pattern": "^\\s*(s|cj|score\\b|成绩)\\s*(\\d?)\\s?(\\d?)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseScore",

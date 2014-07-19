@@ -31,7 +31,7 @@
     }
 },
 {
-    "pattern": "^\\s*(update|更新|更新数据|刷新|刷新数据)\\s*$",
+    "pattern": "^\\s*(update|gx|更新|更新数据|刷新|刷新数据)\\s*$",
     "handler": {
         "type": "news",
         "articles": [
