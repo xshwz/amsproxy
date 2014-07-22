@@ -324,7 +324,8 @@ class WechatBaseController extends BaseController {
                 'title' => '暂无数据',
                 'description' => 
                     "• 可能是教务系统没有相关数据，或者还没有录入，比如考试成绩通常会在考试后至少一周（视老师心情而定）才录入\n\n" .
-                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新”，或点击此消息进行更新。（前提是教务系统有相关数据哦）",
+                    "• 也可能是我们的系统没有及时更新数据，可以尝试回复“更新”，或点击此消息进行更新。（前提是教务系统有相关数据哦）\n\n" .
+                    "• 注意，没有评教会导致无法获取到成绩",
                 'url' => $this->createAbsoluteUrl('/proxy/setting/update'),
             ),
         ));
@@ -503,15 +504,17 @@ class WechatBaseController extends BaseController {
     }
 
     public function responsePortal($catid) {
-        $feed = $this->createFeed(
-            'http://bbs.gxun.cn/portal.php?mod=rss&catid=' . $catid);
-        $this->response('news', $this->createNews($feed->get_items(0, 10)));
+        //$feed = $this->createFeed(
+        //    'http://bbs.gxun.cn/portal.php?mod=rss&catid=' . $catid);
+        //$this->response('news', $this->createNews($feed->get_items(0, 10)));
+        $this->response('text', '由于暑假期间论坛关闭，暂时无法提供数据');
     }
 
     public function responseBBS($fid) {
-        $feed = $this->createFeed(
-            'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
-        $this->response('news', $this->createNews($feed->get_items(0, 10)));
+        //$feed = $this->createFeed(
+        //    'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
+        //$this->response('news', $this->createNews($feed->get_items(0, 10)));
+        $this->response('text', '由于暑假期间论坛关闭，暂时无法提供数据');
     }
 
     public function responseGxunNews($catid) {

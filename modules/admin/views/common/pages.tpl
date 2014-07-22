@@ -19,18 +19,6 @@
                     ),
                 ));
                 %>
-                <div class="listPager pull-left">
-                    <%
-                    $this->widget('CListPager', array(
-                        'pages' => $pages,
-                        'header' => '',
-                        'htmlOptions' => array(
-                            'id' => 'studentListPager',
-                            'class' => 'form-control input-sm',
-                        ),
-                    ));
-                    %>
-                </div>
             <% endif; %>
             <span class="badge"><%= $count; %></span>
             <div class="clearfix"></div>

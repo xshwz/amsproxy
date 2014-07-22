@@ -39,6 +39,17 @@
         "function": "responseExam",
         "requireBind": true
     },
+    "update": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "更新数据",
+                "description": "点击更新",
+                "url": "http://xsh.gxun.edu.cn/ams/proxy/setting/update"
+            }
+        ],
+        "requireBind": false
+    },
 
     "民大人的一天": {
         "type": "function",

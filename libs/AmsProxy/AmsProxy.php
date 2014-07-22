@@ -56,7 +56,7 @@ class AmsProxy {
             if (isset($matches[1])) {
                 return $matches[1];
             } else {
-                return '未知错误';
+                return '系统错误，无法登录';
             }
         } else {
             $this->sid = $sid;
