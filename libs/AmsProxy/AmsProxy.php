@@ -43,7 +43,7 @@ class AmsProxy {
             array(
                 'Sel_Type' => 'STU',
                 'txt_asmcdefsddsd'   => $sid,
-                'txt_pewerwedsdfsdff' => $pwd,
+                'txt_pewerwedsdfsdff' => urlencode($pwd),
                 'txt_sdertfgsadscxcadsads' => $captcha,
                 'fgfggfdgtyuuyyuuckjg' => $this->md5($this->md5(strtoupper($captcha)) . '10608'),
                 'dsdsdsdsdxcxdfgfg' => $this->md5($sid . $this->md5($pwd) . '10608'),
