@@ -14,7 +14,7 @@ class getExamArrangement extends __base__ {
                 '/option\\s+value=[\'"](\\d+,)/',
                 $responseText, $matches);
             if (sizeof($matches) == 0) {
-                return ;
+                return null;
             }
             $this->args = $matches[1];
         }
