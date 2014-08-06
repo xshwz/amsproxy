@@ -13,7 +13,9 @@ class getExamArrangement extends __base__ {
             preg_match(
                 '/option\\s+value=[\'"](\\d+,)/',
                 $responseText, $matches);
-            $this->args = $matches[1];
+            if (sizeof($matches) > 0) {
+                $this->args = $matches[1];
+            }
         }
 
         return $this->amsProxy->POST(
