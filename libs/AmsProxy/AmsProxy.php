@@ -19,9 +19,15 @@ class AmsProxy {
     public $curl;
 
     /**
-     * @var array
+     * @var string
      */
     public $baseUrl = 'http://ams.gxun.edu.cn/';
+
+    /**
+     * @var string
+     */
+    public $schoolcode = '10608';
+
 
     /**
      * @param string $session
@@ -45,8 +51,8 @@ class AmsProxy {
                 'txt_asmcdefsddsd'   => $sid,
                 'txt_pewerwedsdfsdff' => $pwd,
                 'txt_sdertfgsadscxcadsads' => $captcha,
-                'fgfggfdgtyuuyyuuckjg' => $this->md5($this->md5(strtoupper($captcha)) . '10608'),
-                'dsdsdsdsdxcxdfgfg' => $this->md5($sid . $this->md5($pwd) . '10608'),
+                'fgfggfdgtyuuyyuuckjg' => $this->md5($this->md5(strtoupper($captcha)) . $this->schoolcode),
+                'dsdsdsdsdxcxdfgfg' => $this->md5($sid . $this->md5($pwd) . $this->schoolcode),
             )
         );
 
