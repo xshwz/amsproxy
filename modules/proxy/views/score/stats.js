@@ -63,6 +63,30 @@ $(function(){
         }]
     });
 
+    $('#credits').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '学分统计'
+        },
+        xAxis: {
+           categories: ['总学分 <?php echo $credits['all'] ?>']
+        },
+        colors: ['#1abc9c', '#f1c40f', '#2ecc71', '#e67e22', '#3498db', '#e74c3c', '#9b59b6', '#16a085', '#f39c12', '#27ae60', '#d35400', '#2980b9', '#c0392b', '#8e44ad', '#bdc3c7', '#2c3e50', '#7f8c8d'],
+        series: [
+          <?php foreach ($credits['items'] as $name => $value): ?>
+          {
+            name: '<?php echo $name ?>',
+            data: [<?php echo $value ?>],
+            dataLabels: {
+              enabled: true,
+            }
+          },
+          <?php endforeach ?>
+        ]
+    });
+
     function len(a) {
         return typeof(a) == 'undefined' ? 0 : a.length;
     }

@@ -39,6 +39,7 @@ class ScoreController extends ProxyController {
                 'termNames' => $this->getTermNames($scoreTable),
                 'termScoreStats' => $this->getTermScoreStats($scoreTable),
                 'scoreDict' => $this->getScoreDist($scoreTable),
+                'credits' => $this->getCredits($scoreTable),
             ));
         } else {
             $this->warning('暂无数据');
@@ -130,5 +131,29 @@ class ScoreController extends ProxyController {
         foreach ($termNames as &$termName)
             $termName = str_replace('学年', '学年 ', $termName);
         return $termNames;
+    }
+
+    /**
+     * 学分统计
+     *
+     * @param array $scoreTable 成绩表
+     * @return array 学分统计表
+     */
+    public function getCredits($scoreTable) {
+        $credits = array();
+        $all = 0;
+
+        foreach ($scoreTable->tbody as $term) {
+            foreach ($term as $row) {
+                $all += $row[7];
+                if (array_key_exists($row[2], $credits)) {
+                    $credits[$row[2]] += $row[7];
+                } else {
+                    $credits[$row[2]] = $row[7];
+                }
+            }
+        }
+
+        return array('all' => $all, 'items' => $credits);
     }
 }
