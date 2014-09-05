@@ -45,4 +45,12 @@
         "function": "responseScore",
         "requireBind": true
     }
+},
+{
+    "pattern": "^\\s*(xf|credit|学分)\\s*$",
+    "handler": {
+        "type": "function",
+        "function": "responseCredits",
+        "requireBind": true
+    }
 }

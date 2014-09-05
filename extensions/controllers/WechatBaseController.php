@@ -434,6 +434,27 @@ class WechatBaseController extends BaseController {
         ));
     }
 
+    public function responseCredits() {
+        $credits = $this->getCredits(json_decode($this->student->score)[1]);
+        $responseText = '';
+        foreach ($credits['credits'] as $type => $item) {
+          $responseText .= $type . '（共 ' . $item['count'] . "）：\n";
+          foreach ($item['courses'] as $course) {
+            if ($course['credit']) {
+              $responseText .= $course['credit'] . ' ' . $course['name'] . "\n";
+            }
+          }
+          $responseText .= "\n";
+        }
+
+        $this->response('news', array(
+            (object)array(
+                'title' => '总共获得学分 ' . $credits['total'],
+                'description' => trim($responseText),
+            )
+        ));
+    }
+
     /**
      * @param string $message
      */
@@ -504,16 +525,16 @@ class WechatBaseController extends BaseController {
     }
 
     public function responsePortal($catid) {
-        //$feed = $this->createFeed(
-        //    'http://bbs.gxun.cn/portal.php?mod=rss&catid=' . $catid);
-        //$this->response('news', $this->createNews($feed->get_items(0, 10)));
+        $feed = $this->createFeed(
+            'http://bbs.gxun.cn/portal.php?mod=rss&catid=' . $catid);
+        $this->response('news', $this->createNews($feed->get_items(0, 10)));
         $this->response('text', '由于暑假期间论坛关闭，暂时无法提供数据');
     }
 
     public function responseBBS($fid) {
-        //$feed = $this->createFeed(
-        //    'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
-        //$this->response('news', $this->createNews($feed->get_items(0, 10)));
+        $feed = $this->createFeed(
+            'http://bbs.gxun.cn/forum.php?mod=rss&fid=' . $fid);
+        $this->response('news', $this->createNews($feed->get_items(0, 10)));
         $this->response('text', '由于暑假期间论坛关闭，暂时无法提供数据');
     }
 
@@ -528,5 +549,38 @@ class WechatBaseController extends BaseController {
             )),
             $this->createNews($feed->get_items(0, 9))
         ));
+    }
+
+    /**
+     * 学分统计
+     *
+     * @param array $scoreTable 成绩表
+     * @return array 学分统计表
+     */
+    public function getCredits($scoreTable) {
+        $credits = array();
+        $total = 0;
+
+        foreach ($scoreTable->tbody as $term) {
+            foreach ($term as $row) {
+                $total += $row[7];
+                $course = array(
+                  'name' => $row[0],
+                  'credit' => $row[7],
+                );
+
+                if (array_key_exists($row[2], $credits)) {
+                    $credits[$row[2]]['count'] += $row[7];
+                    $credits[$row[2]]['courses'][] = $course;
+                } else {
+                  $credits[$row[2]] = array(
+                    'count' => $row[7],
+                    'courses' => array($course),
+                  );
+                }
+            }
+        }
+
+        return array('total' => $total, 'credits' => $credits);
     }
 }
