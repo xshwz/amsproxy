@@ -39,6 +39,10 @@
                                     'label' => 'API',
                                     'url' => array('/site/home/api'),
                                 ),
+                                array(
+                                    'label' => '实用工具',
+                                    'url' => array('/site/utils/credits'),
+                                ),
                             ),
                             'htmlOptions' => array(
                                 'class' => 'nav navbar-nav',
