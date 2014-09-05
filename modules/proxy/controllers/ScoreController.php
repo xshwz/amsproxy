@@ -141,19 +141,28 @@ class ScoreController extends ProxyController {
      */
     public function getCredits($scoreTable) {
         $credits = array();
-        $all = 0;
+        $total = 0;
 
         foreach ($scoreTable->tbody as $term) {
             foreach ($term as $row) {
-                $all += $row[7];
+                $total += $row[7];
+                $course = array(
+                  'name' => $row[0],
+                  'credit' => $row[7],
+                );
+
                 if (array_key_exists($row[2], $credits)) {
-                    $credits[$row[2]] += $row[7];
+                    $credits[$row[2]]['count'] += $row[7];
+                    $credits[$row[2]]['courses'][] = $course;
                 } else {
-                    $credits[$row[2]] = $row[7];
+                  $credits[$row[2]] = array(
+                    'count' => $row[7],
+                    'courses' => array($course),
+                  );
                 }
             }
         }
 
-        return array('all' => $all, 'items' => $credits);
+        return array('total' => $total, 'credits' => $credits);
     }
 }
