@@ -87,4 +87,17 @@
         "type": "text",
         "content": "相思青果暂时不支持选课功能"
     }
+},
+{
+    "pattern": "绩点|jd",
+    "handler": {
+        "type": "news",
+        "articles": [
+            {
+                "title": "平均学分绩点计算",
+                "description": "点击进入",
+                "url": "http://xsh.gxun.edu.cn/ams/site/utils/credits"
+            }
+        ]
+    }
 }

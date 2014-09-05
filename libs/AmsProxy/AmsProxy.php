@@ -34,7 +34,7 @@ class AmsProxy {
      */
     public function __construct($session=null) {
         $this->curl = new curl_request;
-        $this->curl->setTimeout(8);
+        $this->curl->setTimeout(4);
         $session = $session ? $session : $this->generateSessionId();
         $this->setSession($session);
     }

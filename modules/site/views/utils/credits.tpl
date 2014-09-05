@@ -37,7 +37,7 @@ var creditsCtrl = function ($scope) {
     if (score < 60) {
       return 0
     } else {
-      return GP(score) * credit
+      return parseFloat((GP(score) * credit).toFixed(2))
     }
   }
 
