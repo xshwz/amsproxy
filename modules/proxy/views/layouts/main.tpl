@@ -237,6 +237,7 @@ EOT;
         <script src="js/libs/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
         <script src="js/libs/jquery.form.min.js"></script>
+        <script src="js/libs/jquery.easing.js"></script>
         <script src="js/libs/highcharts.js"></script>
         <script src="js/proxy.js"></script>
 

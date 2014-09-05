@@ -27,7 +27,6 @@ Highcharts.setOptions({
 
     $(window).load(resize).resize(resize);
 
-    $.getScript('js/libs/jquery.easing.js');
     var speed = 600;
 
     function hideSideNavbar() {
