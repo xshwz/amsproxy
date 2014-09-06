@@ -55,10 +55,18 @@
     }
 },
 {
-    "pattern": "^\\s*(tj|stats|统计)\\s*$",
+    "pattern": "^\\s*(tj|stats|statistics|统计)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseStats",
+        "requireBind": true
+    }
+},
+{
+    "pattern": "^\\s*(gk|fuck|挂科)\\s*$",
+    "handler": {
+        "type": "function",
+        "function": "responseHanged",
         "requireBind": true
     }
 }

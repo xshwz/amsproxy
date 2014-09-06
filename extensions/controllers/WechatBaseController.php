@@ -471,6 +471,35 @@ class WechatBaseController extends BaseController {
         ));
     }
 
+    public function responseHanged() {
+        $scoreTable = (json_decode($this->student->score)[1]);
+        $count = 0;
+        $responseText = '';
+
+        foreach ($scoreTable->tbody as $term) {
+            foreach ($term as $row) {
+                if ($row[6] < 60) {
+                    $responseText .= "课程：{$row[0]}\n";
+                    $responseText .= "类型：{$row[2]}\n";
+                    $responseText .= "学分：{$row[1]}\n";
+                    $responseText .= "成绩：{$row[6]}\n\n";
+                    $count++;
+                }
+            }
+        }
+
+        if (!$responseText) {
+            $responseText = 'What is the meaning of life, the universe and everything?';
+        }
+
+        $this->response('news', array(
+            (object)array(
+                'title' => '挂科科目（' . $count . '门）',
+                'description' => trim($responseText),
+            )
+        ));
+    }
+
     /**
      * @param string $message
      */
