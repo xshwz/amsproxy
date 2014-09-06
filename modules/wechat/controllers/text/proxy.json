@@ -69,4 +69,12 @@
         "function": "responseHanged",
         "requireBind": true
     }
+},
+{
+    "pattern": "^\\s*(cjfb|成绩分布)\\s*$",
+    "handler": {
+        "type": "function",
+        "function": "responseScoreDist",
+        "requireBind": true
+    }
 }

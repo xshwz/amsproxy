@@ -500,6 +500,50 @@ class WechatBaseController extends BaseController {
         ));
     }
 
+    public function responseScoreDist() {
+        function display($dist) {
+            $s = '';
+            foreach ($dist as $row) {
+                $s .= "{$row[0]} {$row[1]}\n";
+            }
+            return $s;
+        }
+
+        $scoreDict = $this->getScoreDist(json_decode($this->student->score)[1]);
+        $responseText = "【90以上】\n";
+        $responseText .= display($scoreDict[0]);
+        $responseText .= "\n";
+
+        $responseText .= "【80 - 90】\n";
+        $responseText .= display($scoreDict[1]);
+        $responseText .= "\n";
+
+        $responseText .= "【70 - 80】\n";
+        $responseText .= display($scoreDict[2]);
+        $responseText .= "\n";
+
+        $responseText .= "【60 - 70】\n";
+        $responseText .= display($scoreDict[3]);
+        $responseText .= "\n";
+
+        $responseText .= "【60以下】\n";
+        $responseText .= display($scoreDict[4]);
+
+        $this->response('news', array(
+            (object)array(
+                'title' => '成绩分布',
+                'description' => trim($responseText),
+                'url' => $this->createAbsoluteUrl(
+                    '/site/wechat/stats',
+                    array(
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
+                    )
+                ),
+            )
+        ));
+    }
+
     /**
      * @param string $message
      */
@@ -627,5 +671,35 @@ class WechatBaseController extends BaseController {
         }
 
         return array('total' => $total, 'credits' => $credits);
+    }
+
+    /**
+     * 计算成绩分布情况
+     *
+     * @param array $scoreTable 成绩表
+     * @return array 成绩分布表
+     */
+    public function getScoreDist($scoreTable) {
+        $scoreDict = array();
+        foreach ($scoreTable->tbody as $termScore) {
+            foreach ($termScore as $row) {
+                if ($row[6] >= 90)
+                    $index = 0;
+                else if ($row[6] >= 80)
+                    $index = 1;
+                else if ($row[6] >= 70)
+                    $index = 2;
+                else if ($row[6] >= 60)
+                    $index = 3;
+                else
+                    $index = 4;
+
+                $scoreDict[$index][] = array(
+                    preg_replace('/\[.*?\]/', '', $row[0]),
+                    $row[6],
+                );
+            }
+        }
+        return $scoreDict;
     }
 }
