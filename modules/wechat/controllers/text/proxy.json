@@ -53,4 +53,12 @@
         "function": "responseCredits",
         "requireBind": true
     }
+},
+{
+    "pattern": "^\\s*(tj|stats|统计)\\s*$",
+    "handler": {
+        "type": "function",
+        "function": "responseStats",
+        "requireBind": true
+    }
 }

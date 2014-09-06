@@ -197,6 +197,22 @@ class WechatBaseController extends BaseController {
         ));
     }
 
+    public function responseStats() {
+        $this->response('news', array(
+            (object)array(
+                'title' => '成绩统计',
+                'description' => '点击查看',
+                'url' => $this->createAbsoluteUrl(
+                    '/site/wechat/stats',
+                    array(
+                        'openId' => $this->student->{$this->openIdField},
+                        'field' => $this->openIdField,
+                    )
+                ),
+            ),
+        ));
+    }
+
     public function responseCurriculum() {
         $this->response('news', array(
             (object)array(

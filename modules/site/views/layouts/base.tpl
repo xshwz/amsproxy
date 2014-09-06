@@ -22,6 +22,10 @@
         <link href="css/common.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
 
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.form.min.js"></script>
+
         <!--[if lt IE 9]>
         <link href="css/ie.css" rel="stylesheet">
         <![endif]-->
@@ -49,10 +53,6 @@
         <![endif]-->
 
         <%= $content; %>
-
-        <script src="js/libs/jquery.min.js"></script>
-        <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/libs/jquery.form.min.js"></script>
 
         <% $this->renderScript(); %>
         <% $this->renderPartial('/common/stats'); %>
