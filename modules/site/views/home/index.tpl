@@ -100,6 +100,9 @@
                 <li>
                     <a href="<%= Yii::app()->createUrl('site/home/api') %>">API</a>
                 </li>
+                <li>
+                    <a href="<%= Yii::app()->createUrl('site/utils/credits') %>">实用工具</a>
+                </li>
             </ul>
             <p class="powered">
                 <em>
