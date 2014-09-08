@@ -41,13 +41,13 @@ angular.module('app', [])
       $scope.sumScore = 0
 
       $.each($scope.scores, function(i, item) {
-        item.credit = Number(item.credit)
-        item.score = Number(item.score)
+        var score = Number(item.score)
+          , credit = Number(item.credit)
 
-        if (item.credit && item.score) {
-          $scope.sumCredit += item.credit
-          $scope.sumScore += item.score
-          $scope.sumGPA += $filter('GPA')(item.score, item.credit)
+        if (credit && score) {
+          $scope.sumCredit += credit
+          $scope.sumScore += score
+          $scope.sumGPA += $filter('GPA')(score, credit)
         }
       })
 
@@ -109,38 +109,38 @@ angular.element(document).ready(function() {
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <button ng-click="score_add()" class="btn btn-primary btn-block">
             <span class="glyphicon glyphicon-plus"></span>
           </button>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <label class="control-label">总分：</label>
           <span class="form-control-static">{{sumScore}}</span>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <label class="control-label">平均分：</label>
           <span class="form-control-static">{{average}}</span>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <label class="control-label">总学分：</label>
           <span class="form-control-static">{{sumCredit}}</span>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <label class="control-label">总学分绩点：</label>
           <span class="form-control-static">{{sumGPA}}</span>
         </td>
       </tr>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <label class="control-label">平均学分绩点：</label>
           <span class="form-control-static">{{averageGPA}}</span>
         </td>

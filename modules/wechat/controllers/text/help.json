@@ -7,7 +7,7 @@
     }
 },
 {
-    "pattern": "^\\s*(h|help|帮助)\\s*$",
+    "pattern": "^\\s*(h|help|帮助|指令)\\s*$",
     "handler": {
         "type": "function",
         "function": "responseHelp",
