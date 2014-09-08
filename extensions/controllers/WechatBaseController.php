@@ -459,13 +459,13 @@ class WechatBaseController extends BaseController {
         $credits = $this->getCredits(json_decode($this->student->score)[1]);
         $responseText = '';
         foreach ($credits['credits'] as $type => $item) {
-          $responseText .= $type . '（共 ' . $item['count'] . "）：\n";
-          foreach ($item['courses'] as $course) {
-            if ($course['credit']) {
-              $responseText .= $course['credit'] . ' ' . $course['name'] . "\n";
+            $responseText .= $type . '（共 ' . $item['count'] . "）：\n";
+            foreach ($item['courses'] as $course) {
+                if ($course['credit']) {
+                    $responseText .= $course['credit'] . ' ' . $course['name'] . "\n";
+                }
             }
-          }
-          $responseText .= "\n";
+            $responseText .= "\n";
         }
 
         $this->response('news', array(
@@ -506,33 +506,33 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseScoreDist() {
-        function display($dist) {
-            $s = '';
-            foreach ($dist as $row) {
-                $s .= "{$row[0]} {$row[1]}\n";
+        function display($dist, $index) {
+            if (array_key_exists($index, $dist)) {
+                $s = '';
+                foreach ($dist[$index] as $row) {
+                    $s .= "{$row[0]} {$row[1]}\n";
+                }
+            } else {
+                $s = '无';
             }
-            return $s;
+            return $s . "\n";
         }
 
         $scoreDict = $this->getScoreDist(json_decode($this->student->score)[1]);
         $responseText = "【90以上】\n";
-        $responseText .= display($scoreDict[0]);
-        $responseText .= "\n";
+        $responseText .= display($scoreDict, 0);
 
         $responseText .= "【80 - 90】\n";
-        $responseText .= display($scoreDict[1]);
-        $responseText .= "\n";
+        $responseText .= display($scoreDict, 1);
 
         $responseText .= "【70 - 80】\n";
-        $responseText .= display($scoreDict[2]);
-        $responseText .= "\n";
+        $responseText .= display($scoreDict, 2);
 
         $responseText .= "【60 - 70】\n";
-        $responseText .= display($scoreDict[3]);
-        $responseText .= "\n";
+        $responseText .= display($scoreDict, 3);
 
         $responseText .= "【60以下】\n";
-        $responseText .= display($scoreDict[4]);
+        $responseText .= display($scoreDict, 4);
 
         $this->response('news', array(
             (object)array(
@@ -659,18 +659,18 @@ class WechatBaseController extends BaseController {
             foreach ($term as $row) {
                 $total += $row[7];
                 $course = array(
-                  'name' => $row[0],
-                  'credit' => $row[7],
+                    'name' => $row[0],
+                    'credit' => $row[7],
                 );
 
                 if (array_key_exists($row[2], $credits)) {
                     $credits[$row[2]]['count'] += $row[7];
                     $credits[$row[2]]['courses'][] = $course;
                 } else {
-                  $credits[$row[2]] = array(
-                    'count' => $row[7],
-                    'courses' => array($course),
-                  );
+                    $credits[$row[2]] = array(
+                        'count' => $row[7],
+                        'courses' => array($course),
+                    );
                 }
             }
         }
