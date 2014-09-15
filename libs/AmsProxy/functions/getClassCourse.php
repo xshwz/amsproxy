@@ -41,19 +41,21 @@ class getClassCourse extends __base__ {
                 preg_match('/(...)\[(\d+)-?(\d+)?节\]/', $course[8], $lesson);
                 $week = explode('-', $course[7]);
 
-                $courses[] = array(
-                    'courseName'  => preg_replace('/^\[.*?\]/', '', $course[0]),
-                    'credit'      => $course[1],
-                    'totalHour'   => $course[2],
-                    'examType'    => $course[3],
-                    'teacherName' => preg_replace('/^\[.*?\]/', '', $course[4]),
-                    'weekStart'   => (int)$week[0],
-                    'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
-                    'weekDay'     => self::$weekDict[$lesson[1]],
-                    'lessonStart' => (int)$lesson[2],
-                    'lessonTo'    => isset($lesson[3]) ? (int)$lesson[3] : (int)$lesson[2],
-                    'location'    => isset($course[9]) ? $course[9] : '',
-                );
+                if ($course[1] != '1.0' || $course[2] != '20.0') {
+                    $courses[] = array(
+                        'courseName'  => preg_replace('/^\[.*?\]/', '', $course[0]),
+                        'credit'      => $course[1],
+                        'totalHour'   => $course[2],
+                        'examType'    => $course[3],
+                        'teacherName' => preg_replace('/^\[.*?\]/', '', $course[4]),
+                        'weekStart'   => (int)$week[0],
+                        'weekTo'      => isset($week[1]) ? (int)$week[1] : (int)$week[0],
+                        'weekDay'     => self::$weekDict[$lesson[1]],
+                        'lessonStart' => (int)$lesson[2],
+                        'lessonTo'    => isset($lesson[3]) ? (int)$lesson[3] : (int)$lesson[2],
+                        'location'    => isset($course[9]) ? $course[9] : '',
+                    );
+                }
             }
 
             return $courses;
