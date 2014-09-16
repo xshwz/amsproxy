@@ -573,7 +573,7 @@ class WechatBaseController extends BaseController {
         $feed = new SimplePie;
         $feed->set_feed_url($url);
         $feed->enable_cache(false);
-        //$feed->set_cache_location('../runtime/cache');
+        $feed->set_cache_location('../runtime/cache');
         $feed->init();
         return $feed;
     }

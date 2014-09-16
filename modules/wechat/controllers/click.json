@@ -51,10 +51,10 @@
         "requireBind": false
     },
 
-    "民大人的一天": {
+    "高校动态": {
         "type": "function",
         "function": "responsePortal",
-        "param": 7,
+        "param": 11,
         "requireBind": false
     },
     "校园速递": {
@@ -78,7 +78,13 @@
     "文悦星空": {
         "type": "function",
         "function": "responsePortal",
-        "param": 6,
+        "param": 14,
+        "requireBind": false
+    },
+    "微周刊": {
+        "type": "function",
+        "function": "responsePortal",
+        "param": 14,
         "requireBind": false
     },
 
