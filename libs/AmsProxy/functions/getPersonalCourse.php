@@ -6,14 +6,35 @@
  */
 class getPersonalCourse extends __base__ {
     public function getData() {
+        $hidyzm = $this->getHidyzm();
+
+        // $m 是一个随机字串, 这里就不随机了.
+        $m = 'hDIbFprNaT0AGia';
+        $hidsjyzm = strtoupper(md5($this->amsProxy->schoolcode . $this->getXNXQ() . $m));
+
         return $this->amsProxy->POST(
             'znpk/Pri_StuSel_rpt.aspx',
             array(
                 'Sel_XNXQ' => $this->getXNXQ(),
                 'rad'      => 1,
                 'px'       => 0,
+                'hidyzm' => $hidyzm,
+                'hidsjyzm' => $hidsjyzm,
+            ),
+            array(
+                'm' => $m,
             )
         );
+    }
+
+    public function getHidyzm() {
+        $dom = new DOMDocument;
+        @$dom->loadHTML($this->htmlFinishing($this->amsProxy->GET('znpk/Pri_StuSel.aspx')));
+        $form = $dom->getElementsByTagName('form');
+        $hidyzm_input = $form->item(0)->getElementsByTagName('table')->item(0)->
+            getElementsByTagName('tr')->item(6)->
+            getElementsByTagName('input')->item(0);
+        return $hidyzm_input->attributes->getNamedItem('value')->textContent;
     }
 
     public function parse($dom) {
