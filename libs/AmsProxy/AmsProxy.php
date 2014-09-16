@@ -182,8 +182,12 @@ class AmsProxy {
     }
 
     protected function generateSessionId() {
-        return substr(
-            str_shuffle('012345abcdefghijklmnopqrstuvwxyz'), 0, 24);
+        $str = '012345abcdefghijklmnopqrstuvwxyz';
+        $result = '';
+        for ($i=0; $i < 24; $i++) {
+            $result .= $str[rand(0, strlen($str)-1)];
+        }
+        return $result;
     }
 
     public function md5($s) {
