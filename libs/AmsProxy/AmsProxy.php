@@ -21,12 +21,12 @@ class AmsProxy {
     /**
      * @var string
      */
-    public $baseUrl = 'http://ams.gxun.edu.cn/';
+    public $baseUrl;
 
     /**
      * @var string
      */
-    public $schoolcode = '10608';
+    public $schoolcode;
 
 
     /**
@@ -35,6 +35,8 @@ class AmsProxy {
     public function __construct($session=null) {
         $this->curl = new curl_request;
         $this->curl->setTimeout(4);
+        $this->baseUrl = Yii::app()->params['baseUrl'];
+        $this->schoolcode = Yii::app()->params['schoolcode'];
         $session = $session ? $session : $this->generateSessionId();
         $this->setSession($session);
     }

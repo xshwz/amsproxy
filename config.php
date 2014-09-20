@@ -48,4 +48,8 @@ return array(
             ),
         ),
     ),
+    'params' => array(
+        'baseUrl' => 'http://ams.gxun.edu.cn/',
+        'schoolcode' => '10608',
+    ),
 );
