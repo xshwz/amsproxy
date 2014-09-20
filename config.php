@@ -51,5 +51,9 @@ return array(
     'params' => array(
         'baseUrl' => 'http://ams.gxun.edu.cn/',
         'schoolcode' => '10608',
+        'superAdmin' => array(
+            '110263100136',
+            '111253050122',
+        ),
     ),
 );

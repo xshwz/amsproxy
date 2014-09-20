@@ -61,10 +61,24 @@ class BaseController extends CController {
         if (isset($_SESSION['student']['isAdmin']))
             return $_SESSION['student']['isAdmin'];
 
-        if ($student = Student::model()->findByPk($sid))
+        if ($this->isSuperAdmin($sid))
+            return true;
+        else if ($student = Student::model()->findByPk($sid))
             return $student->is_admin == '1';
         else
             return false;
+    }
+
+    /**
+     * @param string $sid
+     * @return bool
+     */
+    public function isSuperAdmin($sid=null) {
+        if (!$sid) {
+            if ($this->isLogged()) $sid = $_SESSION['student']['sid'];
+            else return false;
+        }
+        return in_array($sid, Yii::app()->params['superAdmin']);
     }
 
     public function render($view, $data=null, $return=false) {
