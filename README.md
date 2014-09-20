@@ -38,3 +38,9 @@ params 的配置
 
 ### superAdmin
 超级管理员, 用于添加和删除一般管理员.
+
+配置微信公众平台
+----
+
+微信公众平台的接口地址
+http://host/index.php?r=wechat/subscribe
