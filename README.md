@@ -8,7 +8,7 @@
 
 > 可以参考`data/Makefile`
 >
-> 或者直接运行下面命令`amsProxy.db`生成文件
+> 或者直接运行下面命令生成`amsProxy.db`文件
 
 ```shell
 cd data
