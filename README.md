@@ -6,9 +6,8 @@
 生成sqlite数据库文件
 ----
 
-> 可以参考`data/Makefile`
->
-> 或者直接运行下面命令生成`amsProxy.db`文件
+可以参考`data/Makefile`  
+或者直接运行下面命令生成`amsProxy.db`文件  
 
 ```shell
 cd data
