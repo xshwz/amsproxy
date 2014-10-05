@@ -18,13 +18,13 @@
 
         <link rel="shortcut icon" href="favicon.ico">
 
-        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
 
         <script src="js/libs/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/libs/jquery.form.min.js"></script>
+        <script src="js/libs/jquery.form.js"></script>
 
         <!--[if lt IE 9]>
         <link href="css/ie.css" rel="stylesheet">
@@ -33,7 +33,7 @@
         <% $this->renderStyle(); %>
 
         <!--[if lt IE 9]>
-        <script src="js/libs/html5shiv.js"></script>
+        <script src="js/libs/html5shiv.min.js"></script>
         <script src="js/libs/respond.min.js"></script>
         <![endif]-->
     </head>

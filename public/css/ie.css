@@ -1,16 +1,2 @@
-.courseLine {
-  width: 400px;
-  margin: auto;
-}
-.courseLine .circle {
-  border: none;
-  width: 6px;
-  height: 6px;
-  left: -30px;
-  top: 28px;
-  background-color: #f1c40f;
-}
-
-.lightbox .lightbox-wrap {
-  margin-top: 20px;
-}
+.courseLine{width:400px;margin:auto}.courseLine .circle{border:none;width:6px;height:6px;left:-30px;top:28px;background-color:#f1c40f}.lightbox .lightbox-wrap{margin-top:20px}
+/*# sourceMappingURL=ie.css.map */

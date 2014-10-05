@@ -5,3 +5,8 @@ runtime/cache
 runtime/views
 *.swp
 .idea
+bower_components
+tags
+node_modules
+*.css.map
+*.js.map

@@ -16,7 +16,7 @@
 
         <link rel="shortcut icon" href="favicon.ico">
 
-        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet">
         <link href="css/proxy.css" rel="stylesheet">
         <!--[if lt IE 9]>
@@ -26,7 +26,7 @@
         <% $this->renderStyle(); %>
 
         <!--[if lt IE 9]>
-        <script src="js/libs/html5shiv.js"></script>
+        <script src="js/libs/html5shiv.min.js"></script>
         <script src="js/libs/respond.min.js"></script>
         <![endif]-->
     </head>
@@ -236,7 +236,7 @@ EOT;
 
         <script src="js/libs/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/libs/jquery.form.min.js"></script>
+        <script src="js/libs/jquery.form.js"></script>
         <script src="js/libs/jquery.easing.js"></script>
         <script src="js/libs/highcharts.js"></script>
         <script src="js/proxy.js"></script>
