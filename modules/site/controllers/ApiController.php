@@ -14,6 +14,14 @@ class ApiController extends BaseController {
         }
     }
 
+    public function actionVcode() {
+        $captcha = $this->AmsProxy()->getCaptcha();
+        if (isset($_GET['base64']) && $_GET['base64']=='true') {
+            echo base64_encode($captcha);
+        }
+        echo $captcha;
+    }
+
     public function actionLogout() {
         session_destroy();
     }

@@ -6,11 +6,6 @@ class ProxyController extends BaseController {
     public $student;
 
     /**
-     * @var AmsProxy
-     */
-    public $amsProxy;
-
-    /**
      * @var array
      */
     public $fields = array(
@@ -103,23 +98,6 @@ class ProxyController extends BaseController {
      */
     public function getUnreadMessage() {
         return Message::unread($_SESSION['student']['sid']);
-    }
-
-    /**
-     * @return AmsProxy
-     */
-    public function AmsProxy() {
-        if ($this->amsProxy == null) {
-            if (isset($_SESSION['session'])) {
-                $this->amsProxy = new AmsProxy($_SESSION['session']);
-            }
-            else {
-                $this->amsProxy = new AmsProxy;
-                $_SESSION['session'] = $this->amsProxy->getSession();
-            }
-        }
-
-        return $this->amsProxy;
     }
 
     /**

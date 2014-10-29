@@ -10,3 +10,5 @@ indent_size=4
 indent_size=4
 [*.php]
 indent_size=4
+[*.tpl]
+indent_size=4

@@ -42,6 +42,11 @@ class BaseController extends CController {
      */
     public $baseUrl;
 
+    /**
+     * @var AmsProxy
+     */
+    public $amsProxy;
+
     public function init() {
         $this->setting = Setting::model()->find();
     }
@@ -68,6 +73,24 @@ class BaseController extends CController {
         else
             return false;
     }
+
+    /**
+     * @return AmsProxy
+     */
+    public function AmsProxy() {
+        if ($this->amsProxy == null) {
+            if (isset($_SESSION['session'])) {
+                $this->amsProxy = new AmsProxy($_SESSION['session']);
+            }
+            else {
+                $this->amsProxy = new AmsProxy;
+                $_SESSION['session'] = $this->amsProxy->getSession();
+            }
+        }
+
+        return $this->amsProxy;
+    }
+
 
     /**
      * @param string $sid

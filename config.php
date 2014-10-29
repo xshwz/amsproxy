@@ -39,6 +39,7 @@ return array(
                 'proxy/login'  => 'proxy/home/login',
 
                 'api'          => 'site/home/api',
+                'api/vcode'    => 'site/api/vcode',
                 'api/login'    => 'site/api/login',
                 'api/courses'  => 'proxy/api/courses',
                 'api/scores'   => 'proxy/api/scores',

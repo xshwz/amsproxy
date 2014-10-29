@@ -15,6 +15,22 @@
         </thead>
         <tbody>
             <tr>
+                <td>读取验证码</td>
+                <td><span class="label label-success">不需要</span></td>
+                <td>
+                    <a href="<%= $this->createUrl('/site/api/vcode') %>">
+                        api/vcode
+                    </a>
+                </td>
+                <td><span class="label">GET</span></td>
+                <td>
+                    <code>base64</code>: <code>true</code> 或 <code>false</code>
+                    默认为 <code>flase</code>
+                </td>
+                <td>验证码数据</td>
+                <td>获取验证码</td>
+            </tr>
+            <tr>
                 <td rowspan="2">登录</td>
                 <td rowspan="2"><span class="label label-success">不需要</span></td>
                 <td rowspan="2">
