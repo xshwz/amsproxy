@@ -14,6 +14,7 @@ cd data
 make
 ```
 
+
 配置nginx
 ----
 
@@ -21,6 +22,13 @@ make
 http://www.yiiframework.com/doc/guide/1.1/en/quickstart.apache-nginx-config
 
 启动文件 `public/index.php`
+
+
+需要的php扩展
+----
+* pdo_sqlite
+* curl
+
 
 配置config.php
 ----
