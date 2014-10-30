@@ -24,8 +24,7 @@
                 </td>
                 <td><span class="label">GET</span></td>
                 <td>
-                    <code>base64</code>: <code>true</code> 或 <code>false</code>
-                    默认为 <code>flase</code>
+                    <code>type</code>: image、base64、html, 默认为 image。
                 </td>
                 <td>验证码数据</td>
                 <td>获取验证码</td>
@@ -49,6 +48,7 @@
                     <ul class="list-unstyled">
                         <li><code>sid</code>：学号</li>
                         <li><code>pwd</code>：密码</li>
+                        <li><code>vcode</code>：验证码</li>
                     </ul>
                 </td>
                 <td>进行登录</td>

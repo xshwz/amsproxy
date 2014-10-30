@@ -52,10 +52,46 @@ class BaseController extends CController {
     }
 
     /**
+     * @return string error message
+     */
+    public function login($sid, $pwd, $captcha) {
+        if ($error = $this->AmsProxy()->login($sid, $pwd, $captcha)) {
+            return $error;
+        } else {
+            $this->saveStudent();
+            $this->updateStudentLastLoginTime(
+                Student::model()->findByPk($sid));
+            $_SESSION['session'] = $this->AmsProxy()->getSession();
+            $_SESSION['student'] = array(
+                'sid'     => $sid,
+                'pwd'     => $pwd,
+                'isAdmin' => $this->isAdmin($sid),
+            );
+        }
+    }
+
+    /**
      * @return bool
      */
     public function isLogged() {
         return isset($_SESSION['student']);
+    }
+
+    public function saveStudent() {
+        if (Student::model()->findByPk($this->AmsProxy()->sid) == null) {
+            $student = new Student;
+            $student->sid = $this->AmsProxy()->sid;
+            $student->archives = json_encode($this->get_archives());
+            $student->save();
+        }
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function updateStudentLastLoginTime($student) {
+        $student->last_login_time = date('Y-m-d H:i:s');
+        $student->save();
     }
 
     /**

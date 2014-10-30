@@ -4,10 +4,10 @@ class ApiController extends BaseController {
         if ($this->isLogged()) {
             echo 'true';
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if ($this->login($_POST['sid'], $_POST['pwd'])) {
-                echo 'true';
-            } else {
+            if ($error = $this->login($_POST['sid'], $_POST['pwd'], $_POST['vcode'])) {
                 echo 'false';
+            } else {
+                echo 'true';
             }
         } else {
             echo 'false';
@@ -16,10 +16,19 @@ class ApiController extends BaseController {
 
     public function actionVcode() {
         $captcha = $this->AmsProxy()->getCaptcha();
-        if (isset($_GET['base64']) && $_GET['base64']=='true') {
+        if (! isset($_GET['type'])) $_GET['type'] = 'image';
+
+        switch ($_GET['type']) {
+        case 'image':
+            echo $captcha;
+            break;
+        case 'base64':
             echo base64_encode($captcha);
+            break;
+        case 'html':
+            echo '<img src="data:image/gif;base64,'.base64_encode($captcha).'"/>';
+            break;
         }
-        echo $captcha;
     }
 
     public function actionLogout() {

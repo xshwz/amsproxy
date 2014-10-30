@@ -47,50 +47,24 @@ class ProxyController extends BaseController {
             $sid = $_POST['sid'];
             $pwd = $_POST['pwd'];
 
-            if ($result = $this->AmsProxy()->login($sid, $pwd, $_POST['captcha'])) {
+            if ($error = $this->login($sid, $pwd, $_POST['captcha'])) {
                 $this->render('/common/login', array(
-                    'error'   => $result,
+                    'error'   => $error,
                     'sid'     => $sid,
                     'captcha' => base64_encode(
                         $this->AmsProxy()->getCaptcha())
                 ));
 
                 Yii::app()->end();
-            } else {
-                $this->saveStudent();
-                $this->updateStudentLastLoginTime(
-                    Student::model()->findByPk($sid));
-                $_SESSION['session'] = $this->AmsProxy()->getSession();
-                $_SESSION['student'] = array(
-                    'sid'     => $sid,
-                    'pwd'     => $pwd,
-                    'isAdmin' => $this->isAdmin($sid),
-                );
             }
         } else {
             $this->render('/common/login', array(
                 'captcha' => base64_encode(
                     $this->AmsProxy()->getCaptcha())
             ));
+
             Yii::app()->end();
         }
-    }
-
-    public function saveStudent() {
-        if (Student::model()->findByPk($this->AmsProxy()->sid) == null) {
-            $student = new Student;
-            $student->sid = $this->AmsProxy()->sid;
-            $student->archives = json_encode($this->get_archives());
-            $student->save();
-        }
-    }
-
-    /**
-     * @param Student $student
-     */
-    public function updateStudentLastLoginTime($student) {
-        $student->last_login_time = date('Y-m-d H:i:s');
-        $student->save();
     }
 
     /**
