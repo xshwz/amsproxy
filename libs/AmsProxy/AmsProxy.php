@@ -75,6 +75,7 @@ class AmsProxy {
     }
 
     /**
+     * _login 旧版登陆接口
      * @return string error message
      */
     public function _login($sid, $pwd) {
