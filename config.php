@@ -41,6 +41,7 @@ return array(
                 'api'          => 'site/home/api',
                 'api/vcode'    => 'site/api/vcode',
                 'api/login'    => 'site/api/login',
+                'api/logout'   => 'site/api/logout',
                 'api/courses'  => 'proxy/api/courses',
                 'api/scores'   => 'proxy/api/scores',
                 'api/rankExam' => 'proxy/api/rankExam',
@@ -50,6 +51,7 @@ return array(
         ),
     ),
     'params' => array(
+        'debug' => true,
         'baseUrl' => 'http://ams.gxun.edu.cn/',
         'schoolcode' => '10608',
         'superAdmin' => array(
