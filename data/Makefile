@@ -1,2 +1,2 @@
-init:
-	cat amsProxy.sql | sqlite3 amsProxy.db
+create-database:
+	./create-database.sh
