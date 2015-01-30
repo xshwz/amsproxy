@@ -19,7 +19,11 @@ class __base__ {
      * @return mixed
      */
     public function run() {
-        return $this->parse($this->createDom($this->getData()));
+        $data = $this->getData();
+        if ($data !== false)
+            return $this->parse($this->createDom($data));
+        else
+            return array();
     }
 
     /**

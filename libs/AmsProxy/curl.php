@@ -9,7 +9,9 @@ class curl_request {
     /**
      * @var array
      */
-    public $headers = array();
+    public $headers = array(
+        'User-Agent' => 'Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/6.0)',
+    );
 
     public function __construct() {
         $this->curl = curl_init();
