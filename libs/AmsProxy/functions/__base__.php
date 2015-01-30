@@ -70,11 +70,19 @@ class __base__ {
     public function parse($data) {}
 
     /**
-     * TODO: auto calculate or get
-     *
+     * 2015.1 ~ 2015.2
+     *  get 20140
+     * 2015.3 ~ 2015.7
+     *  get 20141
+     * 2015.8 ~ 2015.12
+     *  get 20150
      * @return string
      */
     public function getXNXQ() {
-        return '20140';
+        $month = (int) date('m');
+        $year = (int) date('Y');
+        if ($month <= 7)
+            $year -= 1;
+        echo $year . ($month < 3 || $month > 7 ? '0' : '1');
     }
 }
