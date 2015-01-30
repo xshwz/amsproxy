@@ -83,6 +83,6 @@ class __base__ {
         $year = (int) date('Y');
         if ($month <= 7)
             $year -= 1;
-        echo $year . ($month < 3 || $month > 7 ? '0' : '1');
+        return $year . ($month < 3 || $month > 7 ? '0' : '1');
     }
 }

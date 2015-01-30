@@ -5,6 +5,7 @@
  * @param bool is effective
  */
 class getScore extends __base__ {
+    // 这个获取方法在广西民大里已经无效
     public function getData() {
         return $this->amsProxy->POST(
             'xscj/Stu_MyScore_rpt.aspx',

@@ -9,12 +9,12 @@ class ProxyController extends BaseController {
      * @var array
      */
     public $fields = array(
-        'archives',
+        // 'archives',
         'score',
-        'course',
-        'exam_arrangement',
-        'rank_exam',
-        'theory_subject',
+        // 'course',
+        // 'exam_arrangement',
+        // 'rank_exam',
+        // 'theory_subject',
     );
 
     public function init() {
@@ -89,8 +89,10 @@ class ProxyController extends BaseController {
      */
     public function get_score() {
         return array(
-            $this->AmsProxy()->invoke('getScore', 0),
-            $this->AmsProxy()->invoke('getScore', 1),
+            // $this->AmsProxy()->invoke('getScore', 0),
+            // $this->AmsProxy()->invoke('getScore', 1),
+            $this->AmsProxy()->invoke(
+                'getScoreAffirm', $this->get('archives')->{'入学年份'}),
         );
     }
 

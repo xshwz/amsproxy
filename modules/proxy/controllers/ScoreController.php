@@ -73,6 +73,7 @@ class ScoreController extends ProxyController {
     public function addScoreState(&$scoreTable, $scoreIndex) {
         foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
+                // TODO 找出中文字面上的挂科成绩
                 if (is_numeric($row[$scoreIndex]) && (float)$row[$scoreIndex] < 60)
                     $row['state'] = false;
                 else

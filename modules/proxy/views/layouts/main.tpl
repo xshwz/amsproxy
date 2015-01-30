@@ -97,13 +97,17 @@
                                         'url' => array('/proxy/score/stats'),
                                     ),
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-check"></span> 有效成绩',
-                                        'url' => array('/proxy/score/effectiveScore'),
+                                        'label' => '<span class="glyphicon glyphicon-check"></span> 认定成绩',
+                                        'url' => array('/proxy/score/affirmScore'),
                                     ),
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-unchecked"></span> 原始成绩',
-                                        'url' => array('/proxy/score/originalScore'),
-                                    ),
+                                    // array(
+                                    //     'label' => '<span class="glyphicon glyphicon-check"></span> 有效成绩',
+                                    //     'url' => array('/proxy/score/effectiveScore'),
+                                    // ),
+                                    // array(
+                                    //     'label' => '<span class="glyphicon glyphicon-unchecked"></span> 原始成绩',
+                                    //     'url' => array('/proxy/score/originalScore'),
+                                    // ),
                                 ),
                             ),
                             array(
