@@ -1,27 +1,43 @@
 <?php
 class ScoreController extends ProxyController {
-    public function actionOriginalScore() {
-        $this->pageTitle = '原始成绩';
+    // 民大已无效
+    // public function actionOriginalScore() {
+    //     $this->pageTitle = '原始成绩';
+    //     $scoreTable = $this->get('score');
+    //     $scoreTable = $scoreTable[0];
+    //
+    //     if (isset($scoreTable->tbody) && $scoreTable->tbody) {
+    //         $this->addScoreState($scoreTable, 10);
+    //         $this->render('table', array(
+    //             'data' => $scoreTable,
+    //         ));
+    //     } else {
+    //         $this->warning('暂无数据');
+    //     }
+    // }
+    //
+    // public function actionEffectiveScore() {
+    //     $this->pageTitle = '有效成绩';
+    //     $scoreTable = $this->get('score');
+    //     $scoreTable = $scoreTable[1];
+    //
+    //     if (isset($scoreTable->tbody) && $scoreTable->tbody) {
+    //         $this->addScoreState($scoreTable, 6);
+    //         $this->render('table', array(
+    //             'data' => $scoreTable,
+    //         ));
+    //     } else {
+    //         $this->warning('暂无数据');
+    //     }
+    // }
+
+    public function actionAffirmScore() {
+        $this->pageTitle = '认定成绩';
         $scoreTable = $this->get('score');
         $scoreTable = $scoreTable[0];
 
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-            $this->addScoreState($scoreTable, 10);
-            $this->render('table', array(
-                'data' => $scoreTable,
-            ));
-        } else {
-            $this->warning('暂无数据');
-        }
-    }
-
-    public function actionEffectiveScore() {
-        $this->pageTitle = '有效成绩';
-        $scoreTable = $this->get('score');
-        $scoreTable = $scoreTable[1];
-
-        if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-            $this->addScoreState($scoreTable, 6);
+            $this->addScoreState($scoreTable, 7);
             $this->render('table', array(
                 'data' => $scoreTable,
             ));
@@ -32,9 +48,9 @@ class ScoreController extends ProxyController {
 
     public function actionStats() {
         $scoreTable = $this->get('score');
-        $scoreTable = $scoreTable[1];
+        $scoreTable = $scoreTable[0];
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-            $this->addScoreState($scoreTable, 6);
+            $this->addScoreState($scoreTable, 7);
             $this->render('stats', array(
                 'termNames' => $this->getTermNames($scoreTable),
                 'termScoreStats' => $this->getTermScoreStats($scoreTable),
@@ -57,7 +73,7 @@ class ScoreController extends ProxyController {
     public function addScoreState(&$scoreTable, $scoreIndex) {
         foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
-                if ((float)$row[$scoreIndex] < 60)
+                if (is_numeric($row[$scoreIndex]) && (float)$row[$scoreIndex] < 60)
                     $row['state'] = false;
                 else
                     $row['state'] = true;
