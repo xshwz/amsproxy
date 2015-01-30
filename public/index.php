@@ -1,6 +1,7 @@
 <?php
 session_start();
-define('YII_DEBUG', true);
+$config = include '../config.php';
+define('YII_DEBUG', $config['params']['debug']);
 include 'ClassLoader.php';
 include '../libs/yii/yii.php';
-Yii::createWebApplication(include '../config.php')->run();
+Yii::createWebApplication($config)->run();
