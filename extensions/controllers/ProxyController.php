@@ -9,12 +9,12 @@ class ProxyController extends BaseController {
      * @var array
      */
     public $fields = array(
-        // 'archives',
+        'archives',
         'score',
-        // 'course',
-        // 'exam_arrangement',
-        // 'rank_exam',
-        // 'theory_subject',
+        'course',
+        'exam_arrangement',
+        'rank_exam',
+        'theory_subject',
     );
 
     public function init() {

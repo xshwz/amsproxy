@@ -64,14 +64,11 @@ class WechatController extends BaseController {
     }
 
     public function actionScore() {
-        $scoreType = isset($_GET['scoreType']) ? (int)$_GET['scoreType'] : 0; 
-        $scoreTable = json_decode($this->student->score);
-        $scoreTable = $scoreTable[$scoreType];
-        $fields = array(10, 6);
+        $scoreTable = json_decode($this->student->score)[0];
 
         foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
-                if ((float)$row[$fields[$scoreType]] < 60)
+                if (is_numeric($row[7]) && (float)$row[7] < 60)
                     $row['state'] = false;
                 else
                     $row['state'] = true;
@@ -82,7 +79,8 @@ class WechatController extends BaseController {
     }
 
     public function actionStats() {
-        $scoreTable = json_decode($this->student->score)[1];
+        $scoreTable = json_decode($this->student->score)[0];
+
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
             $this->addScoreState($scoreTable, 6);
             $this->render('stats', array(

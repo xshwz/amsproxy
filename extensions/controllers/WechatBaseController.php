@@ -230,15 +230,13 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseScore($args) {
-        $scoreType = $args[3] ? (int)$args[3] : 0; 
-        $fields = array(10, 6);
         $scoreTable = json_decode($this->student->score, true);
 
         if ($scoreTable &&
-            isset($scoreTable[$scoreType]['tbody']) &&
-            $scoreTable[$scoreType]['tbody']) {
+            isset($scoreTable[0]['tbody']) &&
+            $scoreTable[0]['tbody']) {
 
-            $scoreTable = $scoreTable[$scoreType]['tbody'];
+            $scoreTable = $scoreTable[0]['tbody'];
             $termNames = array_keys($scoreTable);
             $termIndex = $args[2] ? (int)($args[2]) - 1 : count($termNames) - 1;
 
@@ -248,7 +246,7 @@ class WechatBaseController extends BaseController {
                     $courseName = preg_replace('/\[.*?\]/', '', $score[0]);
                     $responseText .= "课程：{$courseName}\n";
                     $responseText .= "学分：{$score[1]}\n";
-                    $responseText .= "成绩：{$score[$fields[$scoreType]]}\n\n";
+                    $responseText .= "成绩：{$score[7]}\n\n";
                 }
 
                 $responseText .= '注：如果没有你想要查询的成绩，可能是还没有录入（视老师心情而定），还有别忘了发送“更新”更新数据哦';
@@ -262,7 +260,7 @@ class WechatBaseController extends BaseController {
                             array(
                                 'openId'    => $this->student->{$this->openIdField},
                                 'field'     => $this->openIdField,
-                                'scoreType' => $scoreType,
+                                'scoreType' => 0,
                             )
                         ),
                     ),
