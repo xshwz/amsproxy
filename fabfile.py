@@ -1,6 +1,9 @@
 from fabric.api import run, env, task, local, put, cd, sudo
+from datetime import datetime
 
 # env.host_string = 'xsh.gxun.edu.cn:443'
+
+now = datetime.now().strftime('%Y-%m-%d.%H-%M-%S')
 
 _source_list = [
   'extensions/',
@@ -26,7 +29,7 @@ def _create_vendor():
 @task
 def backup_db():
   with cd('/var/www/AmsProxy'):
-    run('scp data/amsProxy.db 210.36.79.100:/var/xsh_backups/amsproxy/')
+    run('scp data/amsProxy.db 210.36.79.100:/var/xsh_backups/amsproxy/amsProxy.' + now + '.db')
 
 @task(default=True)
 def deploy():
