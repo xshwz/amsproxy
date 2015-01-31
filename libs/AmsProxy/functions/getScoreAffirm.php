@@ -55,7 +55,9 @@ class getScoreAffirm extends __base__ {
             // 从 入学学期读到本学期, 如 20110, 20111, 20120, 20121, 20130
             $getScoreAffirmByTerm = new getScoreAffirmByTerm($this->amsProxy, $start_year);
             $score = $getScoreAffirmByTerm->run();
-            $scores = array_merge($scores, $score);
+            foreach ($score as $key => $val) {
+                $scores[$key] = $val;
+            }
             $start_year += ($start_year % 10 === 1) ? 9 : 1;
             if (++ $count > 8) {
                 // 因为毕竟 `开学学年` 是从ams获取的，所以容易导致长循环问题。
