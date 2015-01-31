@@ -26,14 +26,14 @@ class getScoreAffirmByTerm extends __base__ {
 
                 $score[$term_name][] = array(
                     preg_replace('/\[.*?\]/', '',
-                    $tds->item(0)->textContent),
-                    $tds->item(1)->textContent,
-                    $tds->item(2)->textContent,
-                    $tds->item(3)->textContent,
-                    $tds->item(4)->textContent,
-                    $tds->item(5)->textContent,
-                    $tds->item(6)->textContent,
-                    $tds->item(7)->textContent,
+                    trim($tds->item(0)->textContent)),
+                    trim($tds->item(1)->textContent),
+                    trim($tds->item(2)->textContent),
+                    trim($tds->item(3)->textContent),
+                    trim($tds->item(4)->textContent),
+                    trim($tds->item(5)->textContent),
+                    trim($tds->item(6)->textContent),
+                    trim($tds->item(7)->textContent),
                 );
             }
         }
@@ -65,7 +65,7 @@ class getScoreAffirm extends __base__ {
                 break;
             }
         }
-
+        ksort($scores);
         return $scores;
     }
 
