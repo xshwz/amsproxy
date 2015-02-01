@@ -73,7 +73,7 @@
         text: ''
       },
       xAxis: {
-        categories: ['总学分 <?php echo $credits['total'] ?>']
+        categories: ['']
       },
       colors: ['#1abc9c', '#f1c40f', '#2ecc71', '#e67e22', '#3498db', '#e74c3c', '#9b59b6', '#16a085', '#f39c12', '#27ae60', '#d35400', '#2980b9', '#c0392b', '#8e44ad', '#bdc3c7', '#2c3e50', '#7f8c8d'],
       tooltip: {
