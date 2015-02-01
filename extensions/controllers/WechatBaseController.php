@@ -119,8 +119,10 @@ class WechatBaseController extends BaseController {
                 (object)array(
                     'title' => '欢迎使用相思青果',
                     'description' =>
-                        "在这里，你可以通过发送特定指令获取相应信息，比如发送“成绩”可以查询成绩，更多支持的指令以及帮助信息可以发送“帮助”获取。\n\n" .
-                        "如果系统没有回复，可以多试几次哦。",
+                        "相思青果由相思湖网站网络部成员开发维护。\n\n" .
+                        "在这里，你可以通过发送特定指令获取相应信息，比如发送“成绩”可以查询成绩，更多支持的指令以及帮助信息可以发送“帮助”获取查看。\n\n" .
+                        "如果系统没有回复，可以多试几次（查成绩高峰期偶尔会出现短时间的无法响应）。\n\n" .
+                        "如果有问题需要反馈，请通过邮箱 <xiang.qiu@qq.com> 联系我，发在公众号上的消息是看不过来的。",
                     'url' => $this->createAbsoluteUrl('/wechat'),
                 ),
             ), WechatLog::$status['untreated']);
