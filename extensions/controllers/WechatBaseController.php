@@ -454,6 +454,7 @@ class WechatBaseController extends BaseController {
     }
 
     public function responseCredits() {
+        /*
         $credits = $this->getCredits(json_decode($this->student->score)[1]);
         $responseText = '';
         foreach ($credits['credits'] as $type => $item) {
@@ -472,10 +473,13 @@ class WechatBaseController extends BaseController {
                 'description' => trim($responseText),
             )
         ));
+        */
+
+        $this->response('text', '在一些 bug 修复之前暂时无法使用。');
     }
 
     public function responseHanged() {
-        $scoreTable = (json_decode($this->student->score)[1]);
+        $scoreTable = json_decode($this->student->score)[0];
         $count = 0;
         $responseText = '';
 
@@ -485,7 +489,7 @@ class WechatBaseController extends BaseController {
                     $responseText .= "课程：{$row[0]}\n";
                     $responseText .= "类型：{$row[2]}\n";
                     $responseText .= "学分：{$row[1]}\n";
-                    $responseText .= "成绩：{$row[6]}\n\n";
+                    $responseText .= "成绩：{$row[7]}\n\n";
                     $count++;
                 }
             }
@@ -516,7 +520,7 @@ class WechatBaseController extends BaseController {
             return $s . "\n";
         }
 
-        $scoreDict = $this->getScoreDist(json_decode($this->student->score)[1]);
+        $scoreDict = $this->getScoreDist(json_decode($this->student->score)[0]);
         $responseText = "【90以上】\n";
         $responseText .= display($scoreDict, 0);
 
