@@ -101,7 +101,7 @@ class WechatController extends BaseController {
     public function addScoreState(&$scoreTable, $scoreIndex) {
         foreach ($scoreTable->tbody as $termName => &$termScore) {
             foreach ($termScore as &$row) {
-                if ((float)$row[$scoreIndex] < 60)
+                if (is_numeric($row[6]) && (float)$row[$scoreIndex] < 60)
                     $row['state'] = false;
                 else
                     $row['state'] = true;

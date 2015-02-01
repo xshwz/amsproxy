@@ -36,7 +36,7 @@
 
     $('#scoreDict').highcharts({
       title: {
-        text: '成绩分布'
+        text: ''
       },
       colors: ['#2ecc71', '#f1c40f', '#3498db', '#9b59b6', '#e74c3c'],
       tooltip: {
@@ -70,7 +70,7 @@
         type: 'column'
       },
       title: {
-        text: '学分统计'
+        text: ''
       },
       xAxis: {
         categories: ['总学分 <?php echo $credits['total'] ?>']

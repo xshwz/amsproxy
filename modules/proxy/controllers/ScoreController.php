@@ -95,7 +95,7 @@ class ScoreController extends ProxyController {
             $stats[1][$termCount] = 0;
 
             foreach ($termScore as $row) {
-                if ((float)$row[6] < 60)
+                if (is_numeric($row[6]) && (float)$row[6] < 60)
                     $stats[1][$termCount]++;
                 else
                     $stats[0][$termCount]++;
