@@ -63,7 +63,7 @@ class AmsProxy {
 
         if (!strpos($responseText, '正在加载权限数据')) {
             preg_match(
-                '/<font color="Red">(.*?)</', $responseText, $matches);
+                '/color:Red;">(.*?)</', $responseText, $matches);
             if (isset($matches[1])) {
                 return $matches[1];
             } else {
