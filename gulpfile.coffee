@@ -18,7 +18,7 @@ gulp.task 'less', ->
   .pipe sourcemaps.init()
   .pipe less
     compress: true
-  .pipe sourcemaps.write './'
+  #.pipe sourcemaps.write './'
   .pipe gulp.dest 'public/css'
 
 gulp.task 'bower', ->
