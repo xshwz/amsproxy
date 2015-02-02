@@ -4,8 +4,7 @@
     <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
     <em>
         <span class="glyphicon glyphicon-info-sign"></span>
-        你也可以关注我们的微信公众号“相思青果”，通过微信向我们反馈。
-        <a href="<%= $this->createUrl('/site/wechat'); %>">&gt;&gt;关于微信公众号</a>
+        建议通过邮箱 &lt;<a href="mailto:xiang.qiu@qq.com">xiang.qiu@qq.com</a>&gt; 向我反馈，我会第一时间回复你~
     </em>
 </div>
 
