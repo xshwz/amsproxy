@@ -1,7 +1,7 @@
 from fabric.api import run, env, task, local, put, cd, sudo
 from datetime import datetime
 
-# env.host_string = 'xsh.gxun.edu.cn:443'
+env.host_string = 'xsh.gxun.edu.cn:443'
 
 now = datetime.now().strftime('%Y-%m-%d.%H-%M-%S')
 
