@@ -46,9 +46,9 @@ class AmsProxy {
      * @return string error message
      */
     public function login($sid, $pwd, $captcha) {
-        function _hash($s) {
+        $_hash = function($s) {
             return strtoupper(substr(md5($s), 0, 30));
-        }
+        };
         $responseText = $this->POST(
             '_data/Index_LOGIN.aspx',
             array(
@@ -56,8 +56,8 @@ class AmsProxy {
                 'txt_asmcdefsddsd'   => $sid,
                 'txt_pewerwedsdfsdff' => urlencode($pwd),
                 'txt_sdertfgsadscxcadsads' => $captcha,
-                'fgfggfdgtyuuyyuuckjg' => _hash(_hash(strtoupper($captcha)) . $this->schoolcode),
-                'dsdsdsdsdxcxdfgfg' => _hash($sid . _hash($pwd) . $this->schoolcode),
+                'fgfggfdgtyuuyyuuckjg' => $_hash($_hash(strtoupper($captcha)) . $this->schoolcode),
+                'dsdsdsdsdxcxdfgfg' => $_hash($sid . $_hash($pwd) . $this->schoolcode),
             )
         );
 
