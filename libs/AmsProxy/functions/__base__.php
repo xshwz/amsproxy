@@ -21,7 +21,7 @@ class __base__ {
     public function run() {
         $data = $this->getData();
         if ($data !== false)
-            return $this->parse($this->createDom($data));
+            return $this->parse($this->createDom($data),$data);
         else
             return array();
     }
@@ -67,7 +67,7 @@ class __base__ {
      * @param mixed $data
      * @return array
      */
-    public function parse($data) {}
+    //public function parse($data,$raw) {}
 
     /**
      * 2015.1 ~ 2015.2
@@ -79,10 +79,25 @@ class __base__ {
      * @return string
      */
     public function getXNXQ() {
+        return $this->getXN() . $this->getXQ();
+    }
+    public function getXN() {
         $month = (int) date('m');
         $year = (int) date('Y');
-        if ($month <= 7)
+        $day = (int) date('d');
+        if ($month < 7)
             $year -= 1;
-        return $year . ($month < 3 || $month > 7 ? '0' : '1');
+        return $year;
+    }
+    public function getXQ() {
+        $month = (int) date('m');
+        $day = (int) date('d');
+        return ( $month <= 2 || ($month >= 6) ) ? '0' : '1';
+    }
+    public function lastXN(){
+        return (!$this->lastXQ())? $this->getXN() : $this->getXN() -1;
+    }
+    public function lastXQ(){
+        return ($this->getXQ()) ? 0 : 1 ;
     }
 }

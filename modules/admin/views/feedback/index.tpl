@@ -50,7 +50,7 @@
                 data-toggle="modal"
                 data-json='<%= $group['sender']->archives; %>'>
                 <small>
-                    <%= $archives['行政班级'] . ' ' . $archives['姓名'] %>
+                    <%= $archives['行政班级'] . ' ' . $archives['姓    名'] %>
                 </small>
             </a>
         </div>

@@ -9,7 +9,7 @@
 
         <title>
         <% if ($this->pageTitle) echo $this->pageTitle . ' - '; %>
-        相思青果后台管理
+        后台管理
         </title>
 
         <base href="<%= $this->createAbsoluteUrl('/') . '/'; %>">
@@ -42,7 +42,7 @@
                     </a>
                     <a href="<%= Yii::app()->createUrl('/admin'); %>" class="navbar-brand">
                         <img width="17" height="17" src="img/logo.png" alt="logo">
-                        相思青果后台管理
+                        后台管理
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
@@ -103,7 +103,7 @@
                             CHtml::link('
                                 <span class="glyphicon glyphicon-home"></span>
                                 <span class="visible-xs">首页</span>',
-                                array('/site/home/index'));
+                                array('/proxy'));
                             %>
                         </li>
                         <li>

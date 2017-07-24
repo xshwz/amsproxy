@@ -54,36 +54,80 @@ class BaseController extends CController {
     /**
      * @return string error message
      */
-    public function login($sid, $pwd, $captcha) {
-        if ($error = $this->AmsProxy()->login($sid, $pwd, $captcha)) {
-            return $error;
-        } else {
-            $this->saveStudent();
-            $this->updateStudentLastLoginTime(
-                Student::model()->findByPk($sid));
-            $_SESSION['session'] = $this->AmsProxy()->getSession();
-            $_SESSION['student'] = array(
-                'sid'     => $sid,
-                'pwd'     => $pwd,
-                'isAdmin' => $this->isAdmin($sid),
-            );
+    public function login($sid, $pwd, $captcha=null, $force=false) {
+        $student = Student::model()->findByPk($sid);
+
+        if( ($captcha == null|| $captcha == '') && isset($student->sid) && $pwd == $student->pwd && !$force){
+            $this->afterLogin($sid,$pwd,false);
+        }elseif($captcha){
+            if ($error = $this->AmsProxy()->login($sid, $pwd, $captcha)) {
+                return $error;
+            } else {
+                $this->afterLogin($sid,$pwd,true);
+            }
+        }else{
+            $count = 0;
+            $url = 'public/img/captcha/'.$sid.'.jpg';
+            $url = dirname(__FILE__).'/../../'.$url;
+            do{
+                $check = file_put_contents($url,$this->AmsProxy()->getCaptcha());
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $this->AmsProxy()->orcApi.'http://proxy.deepkolos.cn/img/captcha/'.$sid.'.jpg?t='.time());
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch, CURLOPT_TIMEOUT, "3");//单位为秒
+                curl_setopt($ch,CURLOPT_FOLLOWLOCATION,true); //完成重定向
+                // curl_setopt($ch,CURLOPT_PROXY,'127.0.0.1:8887');//设置代理服务器
+                // curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);//若PHP编译时不带openssl则需要此行
+                $captcha = curl_exec($ch);
+                curl_close($ch); 
+
+                // $error = $captcha;
+                if(strlen($captcha) == 4)
+                    if($error = $this->AmsProxy()->login($sid, $pwd, $captcha)){
+                        ;
+                    }else{
+                        $this->afterLogin($sid,$pwd,true);
+                    }
+                else{
+                    $error = '验证码错误！';
+                    // echo '收到的验证码长度为:'.$captcha.'<br>';
+                }
+                $count++;
+            }while($error == '验证码错误！' && $count < 5);
+            // unlink($url);
+            if($error != null)
+                return $error;
         }
     }
-
     /**
      * @return bool
      */
     public function isLogged() {
         return isset($_SESSION['student']);
     }
-
-    public function saveStudent() {
-        if (Student::model()->findByPk($this->AmsProxy()->sid) == null) {
+    public function afterLogin($sid,$pwd,$setSession){
+        $this->saveStudent($sid,$pwd);
+        $this->updateStudentLastLoginTime(
+            Student::model()->findByPk($sid));
+        if($setSession)
+            $_SESSION['session'] = $this->AmsProxy()->getSession();
+        $_SESSION['student'] = array(
+            'sid'     => $sid,
+            'pwd'     => $pwd,
+            'isAdmin' => $this->isAdmin($sid),
+        );
+    }
+    public function saveStudent($sid,$pwd) {
+        $student = Student::model()->findByPk($sid);
+        if (!$student) {
             $student = new Student;
-            $student->sid = $this->AmsProxy()->sid;
-            $student->archives = json_encode($this->get_archives());
-            $student->save();
         }
+        $student->sid = $sid;
+        $student->pwd = $pwd;
+        // $student->archives = json_encode($this->get_archives());
+        $student->save();
     }
 
     /**
@@ -120,7 +164,8 @@ class BaseController extends CController {
             }
             else {
                 $this->amsProxy = new AmsProxy;
-                $_SESSION['session'] = $this->amsProxy->getSession();
+                if($this->amsProxy->getSession())
+                    $_SESSION['session'] = $this->amsProxy->getSession();
             }
         }
 
@@ -228,12 +273,15 @@ class BaseController extends CController {
      */
     public function weekNumber($date=null) {
         if ($date)
-            $time = strtotime($date);
+            $now = strtotime($date);
         else
-            $time = time();
-
-        $time -= strtotime($this->setting['start_date']);
-        return (int)($time / 86400 / 7 + 1);
+            $now = time();
+        $start = strtotime($this->setting['start_date']);
+        $week_offset  = (int)date('N',$start) - 1;
+        $start_ajusted = $start - $week_offset * 86400;
+        $day = ($now - $start_ajusted)/86400;
+        $week = floor($day/7);
+        return $week;
     }
 
     /**
@@ -243,6 +291,10 @@ class BaseController extends CController {
         return 'http://' . $_SERVER['HTTP_HOST'] . $this->createUrl(
             $route, $params, $ampersand);
     }
+
+    public function noneNull(&$obj){
+        return (isset($obj))?$obj:null;
+    }//我觉得应该这个使用宏比较好吧
 
     /**
      * get request param with get or post

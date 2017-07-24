@@ -25,7 +25,7 @@ class ApiController extends ProxyController {
             if (isset($_POST['field']))
                 $this->updateItem($_POST['field']);
             else
-                $this->update(true);
+                $this->update($this->fields,$this->fileFields,true);
 
             echo 'true';
         }

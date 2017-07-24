@@ -52,7 +52,7 @@ class DefaultController extends CController
 	 */
 	public function actionLogout()
 	{
-		Yii::app()->user->logout(false);
+		// Yii::app()->user->logout(false);
 		$this->redirect(array('index'));
 	}
 }

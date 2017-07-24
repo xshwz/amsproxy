@@ -5,7 +5,7 @@ class curl_request {
      * @var array
      */
     public $cookies = array();
-
+    public $curl = null;
     /**
      * @var array
      */
@@ -17,6 +17,11 @@ class curl_request {
         $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->curl, CURLOPT_HEADER, true);
+        //
+        if(CURL_DEBUG){
+            curl_setopt($this->curl,CURLOPT_PROXY,'127.0.0.1:8887');//设置代理服务器
+            curl_setopt($this->curl,CURLOPT_SSL_VERIFYPEER,0);//若PHP编译时不带openssl则需要此行
+        }
     }
 
     /**

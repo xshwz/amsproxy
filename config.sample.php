@@ -23,10 +23,10 @@ return array(
         'db' => array(
             // 'connectionString' => 'sqlite:../data/amsProxy.db',
             'class'=>'CDbConnection',
-			'connectionString'=>'mysql:host=localhost;dbname=eduSystem',
-			'username'=>'root',
-			'password'=>'sDA6kFbInOrtELb6lEI6!',
-			'emulatePrepare'=>true,  // needed by some MySQL installations
+			'connectionString'=>'',
+			'username'=>'',
+			'password'=>'',
+			'emulatePrepare'=>true,  
         ),
         'viewRenderer' => array(
             'class' => 'ext.view.CPradoViewRenderer',
@@ -60,7 +60,7 @@ return array(
         'debug' => true,
         'curl_debug' => true,
         'useCaptcha'=>true,
-        'baseUrl' => 'http://119.146.68.54/Jwweb/',
+        'baseUrl' => '',
         'schoolcode' => '10577',
         'superAdmin' => array(
             '110263100136',
