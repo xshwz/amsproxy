@@ -8,6 +8,16 @@ $this->widget('ext.widgets.dataTable', array(
 ));
 %>
 
+<%
+if (!isset($isCollapse)) $isCollapse = true;
+
+if(isset($graduateRequirement->score))
+    $this->widget('ext.widgets.dataTable', array(
+        'data' => $graduateRequirement->score,
+        'isCollapse' => $isCollapse,
+    ));
+%>
+
 <br>
 <p class="text-muted"><em>
     <span class="glyphicon glyphicon-info-sign"></span>

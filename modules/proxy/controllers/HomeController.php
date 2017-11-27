@@ -26,6 +26,10 @@ class HomeController extends ProxyController {
         // 打补丁咯
         if(isset($fileField[0]) && $fileField[0] == 'score')
             $fileField[] = 'scoreMinor';
+
+        //继续打补丁
+        if(isset($field[0]) && $field[0] == 'GPA')
+            $field[] = 'graduate_requirement';
         
         $this->update(array(
             'fields'=>$field,

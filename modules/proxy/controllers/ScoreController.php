@@ -26,6 +26,7 @@ class ScoreController extends ProxyController {
     public function actionGPA() {
         $this->pageTitle = '绩点统计';
         $GPATable = $this->get('GPA');
+        $graduateRequirementTable = $this->get('graduate_requirement');
 
         $this->field = 'GPA';
 
@@ -37,6 +38,7 @@ class ScoreController extends ProxyController {
         if (isset($GPATable->tbody) && $GPATable->tbody)
             $this->render('GPA', array(
                 'data' => $GPATable,
+                'graduateRequirement' => $graduateRequirementTable
             ));
         else 
             $this->warning('暂无数据, 点击右上角[刷新]获取最新数据~');

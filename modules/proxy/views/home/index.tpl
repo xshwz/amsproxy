@@ -32,12 +32,19 @@
     </p>
     <br>
     <br>
-    <br>
-    <br>
-    <p class="text-muted" style="font-size:17px;">
-        <span class="glyphicon glyphicon-info-sign"></span> Update log
+    <p class="text-muted" style="font-size:16px;">
+        <span class="glyphicon glyphicon-info-sign"></span> 提示
     </p>
     <p class="text-muted" style="font-size:14px;">
+    需要查看以往成绩的同学, 点击左上角菜单, 进入认定成绩即可~
+    </p>
+    <br>
+    <br>
+    <p class="text-muted" style="font-size:16px;">
+        <span class="glyphicon glyphicon-info-sign"></span> 更新日志
+    </p>
+    <p class="text-muted" style="font-size:14px;">
+        7/25 : 增加<b>毕业学分要求</b>查看, 在绩点统计那里, 不过部分同学可能没有数据~原因和绩点统计一样~<br>
         7/03 : 增加<b>辅修</b>成绩查看, 加快首次登陆时间~<br>
         6/28 : 修复成绩查看~现在设定为6/25号之后查看这个期末的成绩,25之前是上个学期的成绩~<br>
         4/11 : 增加入学以来的绩点统计~有什么功能需要的可以点右上角给我留言~~<br>

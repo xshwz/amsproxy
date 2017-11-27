@@ -26,6 +26,7 @@ class ProxyController extends BaseController {
         'scoreAffirm',
         'validScore',
         'GPA',
+        'graduate_requirement',
         'exam_arrangement',
         'rank_exam',
         'theory_subject',
@@ -181,6 +182,9 @@ class ProxyController extends BaseController {
     }
     public function get_GPA() {
         return $this->AmsProxy()->invoke('getGPA');
+    }
+    public function get_graduate_requirement() {
+        return $this->AmsProxy()->invoke('getGraduateRequirement');
     }
     public function get_scoreAffirm() {
         //获取行政班级

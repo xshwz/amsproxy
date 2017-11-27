@@ -12,5 +12,6 @@
 <br><br>
 <p class="text-muted"><em>
     <span class="glyphicon glyphicon-info-sign"></span>
-    点击<strong>右上角的刷新</strong>按钮可以获取最新数据~
+    点击<strong>右上角的刷新</strong>按钮可以获取最新数据~<br>
+    <b>想查以往成绩的同学<a href="/proxy/score/affirmScore">点这里~~</a></b>
 </em></p>

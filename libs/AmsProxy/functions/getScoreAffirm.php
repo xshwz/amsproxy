@@ -19,7 +19,10 @@ class getScoreAffirmByTerm extends __base__ {
         $tables = $dom->getElementsByTagName('table');
         $score = array();
         if ($tables->length) {
-            foreach ($tables->item(1)->getElementsByTagName('tr') as $num => $tr) {
+            $testTable = $tables->item(1) ?? $tables->item(0);
+
+            if($testTable)
+            foreach ($testTable->getElementsByTagName('tr') as $num => $tr) {
                 if ($num === 0) continue;
                 $tds = $tr->getElementsByTagName('td');
 

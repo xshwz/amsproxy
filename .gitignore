@@ -13,3 +13,4 @@ tags
 *.js.map
 .ropeproject
 *.pyc
+config.php
