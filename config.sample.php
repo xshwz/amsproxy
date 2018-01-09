@@ -26,7 +26,7 @@ return array(
 			'connectionString'=>'',
 			'username'=>'',
 			'password'=>'',
-			'emulatePrepare'=>true,  
+			'emulatePrepare'=>true,
         ),
         'viewRenderer' => array(
             'class' => 'ext.view.CPradoViewRenderer',
@@ -60,7 +60,7 @@ return array(
         'debug' => true,
         'curl_debug' => true,
         'useCaptcha'=>true,
-        'baseUrl' => '',
+        'baseUrl' => 'http://proxy.ngrok.deepkolos.cn:8081/jwweb/',
         'schoolcode' => '10577',
         'superAdmin' => array(
             '110263100136',
