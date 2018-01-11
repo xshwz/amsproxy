@@ -10,15 +10,25 @@ class getRankExamForm extends __base__ {
     public function parse($dom) {
         $exam = (object)array(
             'thead' => array(
+                '操作',
                 '等级',
-                '构成',
+                '状态',
+                '剩余名额',
+                '收费（元）',
                 '考试年月',
-                '收费标准（元）',
                 '报名时间区段',
                 '限定名额',
-                '剩余名额',
-                '状态',
-                '操作',
+                '构成',
+
+                // '等级',
+                // '构成',
+                // '考试年月',
+                // '收费标准（元）',
+                // '报名时间区段',
+                // '限定名额',
+                // '剩余名额',
+                // '状态',
+                // '操作',
             ),
             'tbody' => array(),
         );
@@ -34,16 +44,27 @@ class getRankExamForm extends __base__ {
 
                 $exam->tbody[$typeName][] = (object)array(
                     'data' => array(
+                        $tds->item(9)->textContent,
                         $tds->item(2)->textContent,
-                        $tds->item(3)->textContent,
-                        $tds->item(4)->textContent,
+                        $tds->item(8)->textContent,
+                        $tds->item(11)->textContent,
                         $tds->item(5)->textContent,
+                        $tds->item(4)->textContent,
                         $tds->item(6)->textContent . ' - '
                             . $tds->item(7)->textContent,
                         $tds->item(10)->textContent,
-                        $tds->item(11)->textContent,
-                        $tds->item(8)->textContent,
-                        $tds->item(9)->textContent,
+                        $tds->item(3)->textContent,
+
+                        // $tds->item(2)->textContent,
+                        // $tds->item(3)->textContent,
+                        // $tds->item(4)->textContent,
+                        // $tds->item(5)->textContent,
+                        // $tds->item(6)->textContent . ' - '
+                        //     . $tds->item(7)->textContent,
+                        // $tds->item(10)->textContent,
+                        // $tds->item(11)->textContent,
+                        // $tds->item(8)->textContent,
+                        // $tds->item(9)->textContent,
                     ),
                     'id' => $tds->item(9)->getAttribute('id'),
                 );

@@ -1,65 +1,104 @@
 <?php
+
 class ScoreController extends ProxyController {
-    // 民大已无效
-    // public function actionOriginalScore() {
-    //     $this->pageTitle = '原始成绩';
-    //     $scoreTable = $this->get('score');
-    //     $scoreTable = $scoreTable[0];
-    //
-    //     if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-    //         $this->addScoreState($scoreTable, 10);
-    //         $this->render('table', array(
-    //             'data' => $scoreTable,
-    //         ));
-    //     } else {
-    //         $this->warning('暂无数据');
-    //     }
-    // }
-    //
-    // public function actionEffectiveScore() {
-    //     $this->pageTitle = '有效成绩';
-    //     $scoreTable = $this->get('score');
-    //     $scoreTable = $scoreTable[1];
-    //
-    //     if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-    //         $this->addScoreState($scoreTable, 6);
-    //         $this->render('table', array(
-    //             'data' => $scoreTable,
-    //         ));
-    //     } else {
-    //         $this->warning('暂无数据');
-    //     }
-    // }
 
     public function actionAffirmScore() {
         $this->pageTitle = '认定成绩';
-        $scoreTable = $this->get('score');
-        $scoreTable = $scoreTable[0];
+        $scoreTable = $this->get('scoreAffirm');
+
+        $this->field = 'scoreAffirm';
+
+        if($scoreTable == null){
+            $this->update_fields('scoreAffirm');
+            $scoreTable = $this->get('scoreAffirm');
+        }
 
         if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-            $this->addScoreState($scoreTable, 7);
+            $this->addScoreState($scoreTable, 2);
             $this->render('table', array(
                 'data' => $scoreTable,
             ));
         } else {
-            $this->warning('暂无数据');
+            $this->warning('暂无数据, 点击右上角[刷新]获取最新数据~');
         }
     }
 
-    public function actionStats() {
-        $scoreTable = $this->get('score');
-        $scoreTable = $scoreTable[0];
-        if (isset($scoreTable->tbody) && $scoreTable->tbody) {
-            $this->addScoreState($scoreTable, 7);
-            $this->render('stats', array(
-                'termNames' => $this->getTermNames($scoreTable),
-                'termScoreStats' => $this->getTermScoreStats($scoreTable),
-                'scoreDict' => $this->getScoreDist($scoreTable),
-                'credits' => $this->getCredits($scoreTable),
-            ));
-        } else {
-            $this->warning('暂无数据');
+    public function actionGPA() {
+        $this->pageTitle = '绩点统计';
+        $GPATable = $this->get('GPA');
+        $graduateRequirementTable = $this->get('graduate_requirement');
+
+        $this->field = 'GPA';
+
+        if($GPATable == null){
+            $this->update_fields('GPA');
+            $GPATable = $this->get('GPA');
         }
+
+        if (isset($GPATable->tbody) && $GPATable->tbody)
+            $this->render('GPA', array(
+                'data' => $GPATable,
+                'graduateRequirement' => $graduateRequirementTable
+            ));
+        else 
+            $this->warning('暂无数据, 点击右上角[刷新]获取最新数据~');
+    }
+
+    public function actionValidScore() {
+        $this->pageTitle = '有效成绩';
+        $scoreTable = $this->get('validScore');
+        $scoreImg = $this->get('validScoreImg','fileFields');
+        // $img = 'data:image/*;base64,'.base64_encode($scoreImg);
+
+        $src = $this->webUrl('validScoreImg');
+        // if(isset($_GET['refreshed'])){
+            $src = $src.'?t='.time();
+        // }
+
+        $this->field = 'validScore';
+        $this->fileField = 'validScoreImg';
+        if($scoreTable == null){
+            $this->update_fields('validScore');
+            $this->update_fileFields('validScoreImg');
+            $scoreTable = $this->get('validScore');
+        }
+
+        $this->render('validScore', array(
+            'src' => $src,
+            'data' => $scoreTable,
+        ));
+    }
+
+    public function actionStats() {
+        $this->pageTitle = '原始成绩';
+        // $scoreTable = $this->get('score','fileFields');//走缓存
+        // $scoreTable = $this->get_score();//不走缓存
+
+        $this->fileField = 'score';
+        
+        // $img = 'data:image/*;base64,'.base64_encode($scoreTable);
+        $src = $this->webUrl('score');
+        // if(isset($_GET['refreshed'])){
+            $src = $src.'?t='.time();
+        // }
+
+        $scoreMinorSrc = file_exists($this->cacheUrl('scoreMinor')) ?
+            file_get_contents($this->cacheUrl('scoreMinor')) : '';
+
+        if(strlen($scoreMinorSrc) > 0){
+            $this->render('score', array(
+                'src' => $src,
+                'lastXN' => $this->lastXN(),
+                'lastXQ' => $this->lastXQ(),
+                'scoreMinor' => $this->webUrl('scoreMinor').'?t='.time()
+            ));
+        }else
+            $this->render('score', array(
+                'src' => $src,
+                'lastXN' => $this->lastXN(),
+                'lastXQ' => $this->lastXQ()
+            ));
+
     }
 
     public function actionTable() {
@@ -75,7 +114,7 @@ class ScoreController extends ProxyController {
             foreach ($termScore as &$row) {
                 // TODO 找出中文字面上的挂科成绩
                 if (is_numeric($row[$scoreIndex]) && (float)$row[$scoreIndex] < 60)
-                    $row['state'] = false;
+                     $row['state'] = false;
                 else
                     $row['state'] = true;
             }

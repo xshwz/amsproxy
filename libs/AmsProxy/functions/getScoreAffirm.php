@@ -8,8 +8,9 @@ class getScoreAffirmByTerm extends __base__ {
         return $this->amsProxy->POST(
             'xscj/c_ydcjrdjl_rpt.aspx',
             array(
-                'sel_xnxq' => $this->args,
-                'radCx' => 1,
+                'sel_xnxq'   => $this->args,
+                'radCx'      => 1,
+                'btn_search' => '%BC%EC%CB%F7'
             )
         );
     }
@@ -18,7 +19,10 @@ class getScoreAffirmByTerm extends __base__ {
         $tables = $dom->getElementsByTagName('table');
         $score = array();
         if ($tables->length) {
-            foreach ($tables->item(1)->getElementsByTagName('tr') as $num => $tr) {
+            $testTable = $tables->item(1) ?? $tables->item(0);
+
+            if($testTable)
+            foreach ($testTable->getElementsByTagName('tr') as $num => $tr) {
                 if ($num === 0) continue;
                 $tds = $tr->getElementsByTagName('td');
 
@@ -27,13 +31,13 @@ class getScoreAffirmByTerm extends __base__ {
                 $score[$term_name][] = array(
                     preg_replace('/\[.*?\]/', '',
                     trim($tds->item(0)->textContent)),
+                    trim($tds->item(6)->textContent),
+                    trim($tds->item(7)->textContent),
                     trim($tds->item(1)->textContent),
                     trim($tds->item(2)->textContent),
                     trim($tds->item(3)->textContent),
                     trim($tds->item(4)->textContent),
                     trim($tds->item(5)->textContent),
-                    trim($tds->item(6)->textContent),
-                    trim($tds->item(7)->textContent),
                 );
             }
         }
@@ -69,7 +73,7 @@ class getScoreAffirm extends __base__ {
         return $scores;
     }
 
-    /**
+    /*
      * createDom
      * @overwrite
      * @param mixed $arr data
@@ -83,13 +87,13 @@ class getScoreAffirm extends __base__ {
         return array(
             'thead' => array(
                 '课程/环节',
+                '原始成绩',
+                '有效成绩',
                 '学分',
                 '课程类别',
                 '修读性质',
                 '考核方式',
                 '辅修标记',
-                '原始成绩',
-                '有效成绩',
             ),
             'tbody' => $arr,
         );

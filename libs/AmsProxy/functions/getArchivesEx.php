@@ -34,11 +34,19 @@ class getArchivesEx extends __base__ {
             $this->amsProxy->GET('xsxj/Stu_xszcxs_rpt.aspx')
         )->getElementsByTagName('tr');
 
-        $tds = $trs->item($trs->length - 1)->getElementsByTagName('td');
-        return array(
-            '院(系)/部' => $tds->item(2)->textContent,
-            '年级/专业' => $tds->item(3)->textContent,
-            '行政班级'  => $tds->item(4)->textContent,
-        );
+        if($trs->item($trs->length - 1) != null){
+            $tds = $trs->item($trs->length - 1)->getElementsByTagName('td');
+            return array(
+                '院(系)/部' => $tds->item(2)->textContent,
+                '年级/专业' => $tds->item(3)->textContent,
+                '行政班级'  => $tds->item(4)->textContent,
+            );
+        }else{
+            return array(
+                '院(系)/部' => '',
+                '年级/专业' => '',
+                '行政班级'  => '',
+            );
+        }
     }
 }

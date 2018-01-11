@@ -1,8 +1,9 @@
 /public/adminer.php
 /public/phpinfo.php
 /data/amsProxy.db
-/runtime/cache
-/runtime/views
+/runtime
+/public/img/captcha
+/public/img/cache
 *.swp
 .idea
 /bower_components
@@ -12,3 +13,4 @@ tags
 *.js.map
 .ropeproject
 *.pyc
+config.php

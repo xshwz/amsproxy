@@ -1,4 +1,4 @@
-<% $this->pageTitle = '登录' %>
+<% $this->pageTitle = '登录-惠大微报' %>
 
 <link rel="stylesheet" href="css/site.css">
 
@@ -8,6 +8,13 @@
         <button type="button" class="close" data-dismiss="alert">×</button>
         <span class="glyphicon glyphicon-exclamation-sign"></span>
         <%= $error %>
+    </div>
+    <% endif %>
+    <% if ($message !== null): %>
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        <%= $message %>
     </div>
     <% endif %>
     <div class="form-group">
@@ -28,11 +35,13 @@
             id="input-pwd"
             type="password"
             class="form-control"
-            placeholder="密码">
+            placeholder="密码"
+            value="<% if (isset($pwd)) echo $pwd; %>">
         <label class="input-icon" for="input-pwd">
             <span class="glyphicon glyphicon-lock"></span>
         </label>
     </div>
+    <% if ($captcha =='') echo '<!--'; %>
     <div class="form-group">
         <div class="input-group">
             <input
@@ -40,17 +49,20 @@
                 id="input-captcha"
                 type="text"
                 class="form-control"
-                placeholder="验证码">
+                placeholder="不更新数据,不用验证码~">
             <span class="input-group-addon">
                 <img src="data:image/gif;base64,<%= $captcha %>" alt="captcha">
             </span>
         </div>
     </div>
+    <% if ($captcha == '') echo '-->'; %>
     <div class="form-group">
         <button class="btn btn-block" type="submit">登录</button>
     </div>
-    <p><em class="text-muted">
+    <br>
+    <p class="text-muted">
         <span class="glyphicon glyphicon-info-sign"></span>
-        密码默认是身份证后六位，建议登录后修改
-    </em></p>
+        首次登陆时间变快了~~<br>
+        最近使用人数比较多,验证码还是不启用了~
+    </p>
 </form>

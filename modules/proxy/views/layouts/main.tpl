@@ -6,51 +6,28 @@
 
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"> 
         <meta name="renderer" content="webkit">
-
+        <meta name="keywords" content="惠州学院,教务系统,教务,惠大微报,手机" />
+        <meta name="description" content="惠州学院,教务系统,教务,移动教务,免验证码登陆,保存课表图片,手机显示适配" />
         <title>
         <% if ($this->pageTitle) echo $this->pageTitle . ' - '; %>
-        相思青果
+        惠大微报 - 移动 - 教务系统 - 惠州学院
         </title>
 
         <base href="<%= $this->createAbsoluteUrl('/') . '/'; %>">
 
         <link rel="shortcut icon" href="favicon.ico">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/common.css" rel="stylesheet">
-        <link href="css/proxy.css" rel="stylesheet">
-        <!--[if lt IE 9]>
-        <link href="css/ie.css" rel="stylesheet">
-        <![endif]-->
-
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/common.css" rel="stylesheet">
+        <link href="/css/proxy.css" rel="stylesheet">
         <% $this->renderStyle(); %>
-
-        <!--[if lt IE 9]>
-        <script src="js/libs/html5shiv.min.js"></script>
-        <script src="js/libs/respond.min.js"></script>
-        <![endif]-->
     </head>
     <body>
-        <!--[if lt IE 8]>
-        <div class="alert alert-warning">
-            <h2>噢！你的IE浏览器版本太低了！</h2>
-            <p>相思青果不兼容低版本IE浏览器，为了正常使用相思青果，建议：</p>
-            <ul>
-                <li>请把你的IE浏览器升级到最新版本</li>
-                <li>如果你的IE浏览器已经是最新版本，请<a href="http://windows.microsoft.com/zh-cn/internet-explorer/use-compatibility-view">关闭兼容性试图</a></li>
-                <li>如果你使用的是双核浏览器，比如360安全浏览器，请<a href="http://se.360.cn/v6/help/help5.html">切换至极速模式</a></li>
-            </ul>
-            <p>为什么不能兼容？</p>
-            <p>需要同学们知道的是，相思青果最初是我（相思湖网站网络部某某）为了方便大家可以在校外使用教务系统而开发的，从最初到现在，所有的开发维护、服务器配置，几乎只有我一个人在做（吐槽一下，徐伟榕太懒了）。尽管从技术上可以做到更好的兼容，但是请原谅我已经没有再多的精力。</p>
-        </div>
-        <![endif]-->
         <div id="body">
             <div id="side">
                 <div class="side-header">
-                    <h1>
-                        <a href="<%= $this->createUrl('/site/home/index'); %>">
-                            <img src="img/logo-white.png" width="32" alt="相思湖网站 Logo" title="相思青果">
-                        </a>
+                    <h1 style="color:white;">
+                    惠大微报
                     </h1>
                 </div>
                 <%
@@ -75,13 +52,13 @@
                             array(
                                 'label' => '课程',
                                 'items' => array(
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-list"></span> 今日课程',
-                                        'url' => array('/proxy/course/today'),
-                                    ),
+                                    //array(
+                                    //    'label' => '<span class="glyphicon glyphicon-list"></span> 今日课程',
+                                    //    'url' => array('/proxy/course/today'),
+                                    //),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-th"></span> 课程表',
-                                        'url' => array('/proxy/course/table'),
+                                        'url' => array('/proxy/course/tableImg'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-list-alt"></span> 理论课程',
@@ -93,17 +70,21 @@
                                 'label' => '成绩',
                                 'items' => array(
                                     array(
-                                        'label' => '<span class="glyphicon glyphicon-stats"></span> 统计',
+                                        'label' => '<span class="glyphicon glyphicon-stats"></span> 原始成绩',
                                         'url' => array('/proxy/score/stats'),
+                                    ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-list-alt"></span> 有效成绩',
+                                        'url' => array('/proxy/score/validScore'),
                                     ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-check"></span> 认定成绩',
                                         'url' => array('/proxy/score/affirmScore'),
                                     ),
-                                    // array(
-                                    //     'label' => '<span class="glyphicon glyphicon-check"></span> 有效成绩',
-                                    //     'url' => array('/proxy/score/effectiveScore'),
-                                    // ),
+                                    array(
+                                        'label' => '<span class="glyphicon glyphicon-th"></span> 绩点统计',
+                                        'url' => array('/proxy/score/GPA'),
+                                    ),
                                     // array(
                                     //     'label' => '<span class="glyphicon glyphicon-unchecked"></span> 原始成绩',
                                     //     'url' => array('/proxy/score/originalScore'),
@@ -134,10 +115,10 @@
                                         'label' => '<span class="glyphicon glyphicon-lock"></span> 修改密码',
                                         'url' => array('/proxy/setting/password'),
                                     ),
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-phone"></span> 微信',
-                                        'url' => array('/proxy/wechat/index'),
-                                    ),
+                                    //array(
+                                    //    'label' => '<span class="glyphicon glyphicon-phone"></span> 微信',
+                                    //    'url' => array('/proxy/wechat/index'),
+                                    //),
                                 ),
                             ),
                             array(
@@ -147,13 +128,13 @@
                                         'label' => '<span class="glyphicon glyphicon-comment"></span> 反馈',
                                         'url' => array('/proxy/home/feedback'),
                                     ),
-                                    array(
-                                        'label' => '<span class="glyphicon glyphicon-question-sign"></span> 常见问题',
-                                        'url' => array('/site/home/FAQ'),
-                                    ),
+                            //      array(
+                            //            'label' => '<span class="glyphicon glyphicon-question-sign"></span> 常见问题',
+                            //            'url' => array('/site/home/FAQ'),
+                            //        ),
                                     array(
                                         'label' => '<span class="glyphicon glyphicon-info-sign"></span> 关于',
-                                        'url' => array('/site/home/about'),
+                                        'url' => array('/proxy/home/about'),
                                     ),
                                 ),
                             ),
@@ -171,6 +152,16 @@
                     </a>
                     <h2 class="title"><%= $this->pageTitle %></h2>
                     <ul class="links">
+                        <li>
+                            <a 
+                                title="刷新"
+                                href="<%= $this->createUrl('/proxy/home/refreshThis?' . 
+                                ((isset($this->field))? 'field='.$this->field.'&' : '') .
+                                ((isset($this->fileField))? 'fileField='.$this->fileField.'&' : '').
+                                ((isset($this->commonField))? 'commonField='.$this->commonField.'&' : '')
+                                ) %>"><span class="glyphicon glyphicon-refresh"></span>
+                            </a>
+                        </li>
                         <% if ($this->isAdmin()): %>
                         <li>
                             <a
@@ -187,6 +178,13 @@
                                 id="message-label"
                                 href="<%= $this->createUrl('/proxy/home/message') %>">
                                 <span class="glyphicon glyphicon-envelope"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                title="反馈"
+                                href="<%= $this->createUrl('/proxy/home/feedback') %>">
+                                <span class="glyphicon glyphicon-comment"></span>
                             </a>
                         </li>
                         <li>
@@ -228,22 +226,19 @@ EOT;
                 <div id="footer">
                     <p class="powered">
                         <em>
-                            Powered By
-                            <a href="http://xsh.gxun.edu.cn/">
-                                <img src="img/logo.png" width="16" alt="xsh logo">相思湖网站
-                            </a>
+                            Powered By 惠大微报
                         </em>
                     </p>
                 </div>
             </div>
         </div>
 
-        <script src="js/libs/jquery.min.js"></script>
-        <script src="js/libs/bootstrap.min.js"></script>
-        <script src="js/libs/jquery.form.js"></script>
-        <script src="js/libs/jquery.easing.min.js"></script>
-        <script src="js/libs/highcharts.js"></script>
-        <script src="js/proxy.js"></script>
+        <script src="/js/libs/jquery.min.js"></script>
+        <script src="/js/libs/bootstrap.min.js"></script>
+        <script src="/js/libs/jquery.form.js"></script>
+        <script src="/js/libs/jquery.easing.min.js"></script>
+        <script src="/js/libs/highcharts.js"></script>
+        <script src="/js/proxy.js"></script>
 
         <% $this->renderScript(); %>
         <script>

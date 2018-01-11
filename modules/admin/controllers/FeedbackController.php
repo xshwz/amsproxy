@@ -18,7 +18,7 @@ class FeedbackController extends AdminController {
         $_messages = Message::model()->findAll(array(
             'order' => 'time DESC',
         ));
-
+        $messages = array();
         foreach ($_messages as $message) {
             if ($message->sender == 0 && $message->receiver != 0) {
                 $messages[$message->receiver]['sender'] = $message->_receiver;

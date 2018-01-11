@@ -40,7 +40,7 @@
                         data-toggle="modal"
                         data-sid='<%= $student->sid %>'
                         data-json='<%= $student->archives %>'>
-                        <%= $archives['姓名'] %>
+                        <%= $archives['姓    名'] %>
                     </a>
                 </td>
                 <td>

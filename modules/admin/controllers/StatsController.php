@@ -16,11 +16,15 @@ class StatsController extends AdminController {
         while (($student = $reader->read()) !== false) {
             $archives = (array)json_decode($student['archives']);
             $college = isset($archives['院(系)/部']) ? $archives['院(系)/部'] : '未知';
-            $discipline = isset($archives['专业']) ? $archives['专业'] : '未知';
-            $grade = $archives['入学年份'];
-            $nation = isset($archives['民族']) ? $archives['民族'] : null;
+            $discipline = isset($archives['专    业']) ? $archives['专    业'] : '未知';
+            if(isset($archives['行政班级']))
+                $grade = '20' . substr($archives['行政班级'],0,2);
+            else 
+                $grade = '20??';
+            $nation = isset($archives['民    族']) ? $archives['民    族'] : null;
 
-            $stats['gender'][$archives['性别']]++;
+            if(isset($archives['性    别']))
+                $stats['gender'][$archives['性    别']]++;
 
             /** 年级统计 */
             if (array_key_exists($grade, $stats['grade']))

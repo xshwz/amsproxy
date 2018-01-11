@@ -28,6 +28,9 @@ class AmsProxy {
      */
     public $schoolcode;
 
+    public $isTestOk = false;
+    
+    public $orcApi = 'http://meanchun.com/wb/wbocr/wbocr.php?url=';
 
     /**
      * @param string $session
@@ -37,8 +40,8 @@ class AmsProxy {
         $this->curl->setTimeout(4);
         $this->baseUrl = Yii::app()->params['baseUrl'];
         $this->schoolcode = Yii::app()->params['schoolcode'];
-        $session = $session ? $session : $this->generateSessionId();
-        $this->setSession($session);
+        if($session != null)
+            $this->setSession($session);
     }
 
     /**
@@ -65,7 +68,7 @@ class AmsProxy {
             preg_match(
                 '/color:Red;">(.*?)</', $responseText, $matches);
             if (isset($matches[1])) {
-                return $matches[1];
+                return $matches[1];//这里输出验证码错误还有密码错误信息
             } else {
                 return '系统错误，无法登录';
             }
@@ -73,7 +76,29 @@ class AmsProxy {
             $this->sid = $sid;
         }
     }
-
+    
+    public function testCurl(){//还有就是会多次测试,其实只要每个updateget一次权限就可以了
+        // var_dump($this->isTestOk);
+        if(!$this->isTestOk){
+            $month = (int) date('m');
+            $year = (int) date('Y');
+            if ($month <= 7)
+                $year -= 1;
+            $result = $this->POST(
+                'xscj/c_ydcjrdjl_rpt.aspx',
+                array(
+                    'sel_xnxq'   => $year.($month < 3 || $month > 7 ? '0' : '1'),
+                    'radCx'      => 1,
+                    'btn_search' => '%BC%EC%CB%F7'
+                )
+            );
+            // echo "<pre>{$result}</pre>";
+            if(strpos($result, '系统提示：您无权访问此页') !== false || $result == ''){
+                return false;
+            }
+        }
+        return $this->isTestOk = true;
+    }
     /**
      * _login 旧版登陆接口
      * @return string error message
@@ -104,6 +129,9 @@ class AmsProxy {
     public function GET($url, $params=null, $referer=null) {
         return $this->request('get', $url, $params, null, $referer);
     }
+    public function GETRaw($url, $params=null, $referer=null) {
+        return $this->requestRaw('get', $url, $params, null, $referer);
+    }
 
     /**
      * @param string $url
@@ -115,7 +143,6 @@ class AmsProxy {
     public function POST($url, $data, $params=null, $referer=null) {
         return $this->request('post', $url, $params, $data, $referer);
     }
-
     /**
      * @param string $method
      * @param string $url
@@ -146,13 +173,34 @@ class AmsProxy {
         );
     }
 
+    public function requestRaw(
+        $method, $url, $params=null, $data=null, $referer=null) {
+
+        if (!$referer)
+            $referer = $this->baseUrl . $url;
+
+        return $this->curl->request(
+                array(
+                    'method'  => $method,
+                    'url'     => $this->baseUrl . $url,
+                    'params'  => $params,
+                    'data'    => $data,
+                    'headers' => array(
+                        'Referer' => $referer,
+                    ),
+                )
+            )->body;
+    }
     /**
      * @return string
      */
     public function getSession() {
-        if (!isset($this->curl->cookies['ASP.NET_SessionId']))
-            $this->GET('');
-
+        if (!isset($this->curl->cookies['ASP.NET_SessionId'])){
+            $this->GET('_data/LOGIN_NEW.ASPX');
+            if (!isset($this->curl->cookies['ASP.NET_SessionId'])){
+                return $this->generateSessionId();
+            }
+        }
         return $this->curl->cookies['ASP.NET_SessionId'];
     }
 
@@ -164,6 +212,9 @@ class AmsProxy {
             array(
                 'method' => 'get',
                 'url'    => $this->baseUrl . 'sys/ValidateCode.aspx',
+                'headers' => array(
+                    'Referer' => $this->baseUrl . '_data/home_login.aspx ',
+                ),
             )
         )->body;
     }
@@ -179,8 +230,8 @@ class AmsProxy {
      * @param string $function
      * @param mixed $args
      */
-    public function invoke($functionName, $args=null) {
-        if (!class_exists($functionName, false))
+    public function invoke($functionName, $args=null) {//应该设置__call方法的使用起来是更加自然
+        if (!class_exists($functionName, false))//好像我有比原作更方便的加载方法哦~
             include 'functions/' . $functionName . '.php';
 
         $function = new $functionName($this, $args);

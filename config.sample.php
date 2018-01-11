@@ -21,7 +21,12 @@ return array(
     ),
     'components' => array(
         'db' => array(
-            'connectionString' => 'sqlite:../data/amsProxy.db',
+            // 'connectionString' => 'sqlite:../data/amsProxy.db',
+            'class'=>'CDbConnection',
+			'connectionString'=>'',
+			'username'=>'',
+			'password'=>'',
+			'emulatePrepare'=>true,
         ),
         'viewRenderer' => array(
             'class' => 'ext.view.CPradoViewRenderer',
@@ -31,7 +36,8 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                ''       => 'site/home/index',
+                ''       => 'proxy/',
+                // ''       => 'site/home/index',
                 'about'  => 'site/home/about',
                 'faq'    => 'site/home/faq',
                 'wechat' => 'site/wechat/index',
@@ -52,11 +58,14 @@ return array(
     ),
     'params' => array(
         'debug' => true,
-        'baseUrl' => 'http://ams.gxun.edu.cn/',
-        'schoolcode' => '10608',
+        'curl_debug' => true,
+        'useCaptcha'=>true,
+        'baseUrl' => 'http://proxy.ngrok.deepkolos.cn:8081/jwweb/',
+        'schoolcode' => '10577',
         'superAdmin' => array(
             '110263100136',
             '111253050122',
+            '1514080902121'
         ),
     ),
 );
